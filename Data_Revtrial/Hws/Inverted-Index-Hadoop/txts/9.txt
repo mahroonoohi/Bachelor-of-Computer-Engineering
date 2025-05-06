@@ -1,0 +1,1426 @@
+Sharp departure beyond post-Newtonian formalism
+Hoang Ky Nguyen∗
+Department of Physics, Babeş-Bolyai University, Cluj-Napoca 400084, Romania
+Bertrand Chauvineau†
+Université Côte d’Azur, Observatoire de la Côte d’Azur,
+CNRS, Laboratoire Lagrange, Nice cedex 4, France
+(Dated: March 29, 2024)
+We offer a concrete example exhibiting marked deviation from the parametrized post-Newtonian
+(PPN) approximation in a modified theory of gravity. Specifically, we derive the exact formula for
+the Robertson parameter γin Brans-Dicke gravity for spherical compact mass sources, explicitly
+incorporating the pressure content of these sources. We achieve this by exploiting the integrability
+of the 00−component of the Brans-Dicke field equation. In place of the conventional PPN result
+γPPN=ω+1
+ω+2, we obtain the analytical expression γexact =ω+1+(ω+2)Θ
+ω+2+(ω+1)ΘwhereΘis the ratio of the
+total pressure P∗
+∥+2P∗
+⊥and total energy E∗contained within the mass source. Our non-perturbative
+formula is valid for all field strengths and types of matter comprising the mass source. Importantly,
+the dimensionless quantity Θparticipates in the γparameter due to the higher-derivative nature of
+Brans-Dicke gravity. In addition, we establish two new mathematical identities linking the active
+gravitational mass, the ADM (Arnowitt-Deser-Misner) mass, and the Tolman mass, applicable for
+Brans-Dicke gravity. We draw four key conclusions: (1) The usual γPPNformula is violated in
+the presence of pressure, viz. when Θ̸= 0, revealing a limitation of the PPN approximation in
+Brans-Dicke gravity. (2) The PPN result mainly stems from the assumption of pressureless matter.
+Even in the weak-field star case, non-zero pressure leads to a violation of the PPN formula for γ.
+Conversely, the PPN result is a good approximation for low-pressure matter, i.e. when Θ≈0, for
+all field strengths. (3) Observational constraints on γsetjointbounds onωandΘ, with the latter
+representingaglobalcharacteristicofamasssource. Iftheequationofstateofmattercomprisingthe
+mass source approaches the ultra-relativistic form, entailing Θ≃1,γexactconverges to 1irrespective
+ofω. (4) In a broader context, by exposing a limitation of the PPN approximation in Brans-Dicke
+gravity, our findings indicate the latent significance of considering the interior structure of stars in
+observational astronomy when testing candidate theories of gravitation, particularly those with a
+higher-derivative nature.
+I. MOTIVATION
+The parametrized post-Newtonian (PPN) framework
+has been an invaluable tool in the study of gravita-
+tional theories [1–3]. It is founded upon the assump-
+tions of weak field and slow motion, representing the
+post-Newtonian limit of gravity. In this limit, the frame-
+workcharacterizesagivenmetrictheory, atthefirstpost-
+Newtonian level, by a set of ten real-valued parameters.
+One of the most powerful applications of the PPN for-
+malismisthecalculationoftheRobertson(orEddington-
+Robertson-Schiff) parameter γ. This important parame-
+ter governs the amount of space-curvature produced by
+a body at rest and can be directly measured via the de-
+tection of light deflection and the Shapiro time delay.
+For one of the simplest extensions beyond General Rel-
+ativity (GR)—the Brans-Dicke (BD) theory—the PPN
+approach is known to yield
+γPPN=ω+ 1
+ω+ 2(1)
+∗hoang.nguyen@ubbcluj.ro
+†bertrand.chauvineau@oca.euwhereωis the BD parameter. This formula recovers the
+resultγGR= 1known for GR in the limit of infinite ω,
+in which the BD scalar field approaches a constant field.
+Current bounds using Solar System observations set the
+magnitude of ωto exceed 40,000. Generalizations of the
+PPNγresult to other modified theories of gravity are
+available [1, 2, 4–17].
+In the case of GR, by virtue of Birkhoff’s theorem,
+spherically symmetric vacuum solutions are static and
+asymptotically flat. The vacuum spacetime exterior of
+a mass source is described by the Schwarzschild met-
+ric which is dependent on only one parameter, the
+Schwarzschild radius. All information regarding the in-
+ternal structure and composition of the source, namely,
+the types of matter comprising it as well as the distribu-
+tion profile of matter in the source, is fully encapsulated
+in the Schwarzschild radius. Since GR, as a classical the-
+ory, lacks an inherent length scale (such as the Planck
+length), the dimensionful Schwarzschild radius cannot
+participate in the dimensionless γparameter. Thus, this
+parameter is independent of the source in GR (a fact
+compatible with γGR= 1).
+BD gravity, however, has a richer structure due to the
+BD scalar field Φ, an additional degree of freedom be-arXiv:2404.00094v1  [gr-qc]  29 Mar 20242
+sidesthemetriccomponents. Forthespecialcaseofblack
+holes, the no-hair theorem applies [18, 19], meaning that
+the static non-rotating spherisymmetric vacuum exterior
+to a black hole in BD gravity is a Schwarzschild solution.
+Consequently, black holes in BD gravity, irrespective of
+the value of ω, haveγ= 1rather than the usualω+1
+ω+2
+result. Besides black holes, BD gravity exhibits other
+structures—normal stars and exotic ones, such as worm-
+holes and naked singularities [20–22]. For these struc-
+tures, the BD scalar field in the exterior vacuum is gen-
+erally non-constant. The PPN formalism makes use of
+thenon-constancy inΦto derive the usual PPN result
+for stars, given in Eq. (1), which explicitly depends on
+the BD parameter ω[23]. Yet, it is important to note
+that the PPN γparameter, per Eq. (1), contains no in-
+formation about the star (aside from the fact that the
+star is regular at its center), as the BD parameter ωis a
+parameter of the theory, not one of the resulting exterior
+vacuum.
+In contrast to the second-derivative GR, where
+all information about the stellar source is condensed
+into one single parameter—the Schwarzschild radius—
+BD gravity, as a higher-order theory, permits the
+internal structure of the star to influence higher-
+derivative characteristics of the exterior solution, po-
+tentially leaving its footprints on the PPN parame-
+ters. In their seminal work [26], Brans and Dicke
+recognized the approximate nature of estimating the
+two parameters characterizing the exterior vacuum so-
+lution, later known as the Brans Class I solution [27].
+This recognition was evidenced in Eq. (34) of Ref. [26].
+The PPN formula in Eq. (1) should be regarded as an
+approximation applicable in the limit of weak field ev-
+erywhere (including inside the star) and slow motion in
+BD gravity, whereby the higher-derivative features of the
+exterior vacuum are suppressed. An important question
+arises:Can the internal structure of a star in BD gravity,
+and in modified theories in general, manifest through the
+PPN parameters? And if so, under what conditions?
+An obvious course of action would be to lift the weak
+field hypothesis on the source of the field, enabling an ex-
+act calculation of the external field, from which the PPN
+parameters can be extracted. An attempt in this direc-
+tion has been made recently in [24] where it is suggested
+that the higher-order terms can impact the γparameter.
+Yet,thereexistsanothercondition,albeitlessexplicit,re-
+lated to the pressure within the star. Note that the PPN
+requirement of slow motion applies not only for macro-
+scopic objects but also for their microscopic constituents.
+Per the post-Newtonian bookkeeping scheme in Ref. [1],
+this translates to a requirement for low pressure rela-
+tive to the energy content. Whereas a star is stationary,
+the microscopic motion of the matter contained within its
+domain can be relativistic , resulting in appreciably high
+pressure compared with its energy content.
+Despite the challenges of relaxing the weak-field and
+low-pressure constraints, significant progress can beachieved in one particular situation—the BD theory. In
+our current study and its companion paper [25], we focus
+on a specific case—the BD exterior vacuum surrounding
+a matter spherical distribution which has a finite domain
+of support; we shall collectively call this type of structure
+a compact star. Here, we rigorously account for the influ-
+ence of the compact mass source on the exterior vacuum
+and theγparameter without resorting to any approxima-
+tions. We achieve this by making use of the integrability
+of the 00-component of the BD field equations, enabling
+us to circumvent the limitations of the weak-field and
+low-pressureapproximations. Advancementsindetection
+methods allow for the study of neutron stars, making our
+investigation relevant both for practical applications and
+theoretical inquiries into the formalism and methodolo-
+gies employed. Our study shall shed light on the role of
+stellar pressure and provide a benchmark for assessing its
+impacts in theories of modified gravity.
+This paper complements its companion paper, Ref.
+[25], and is organized as follows. Section II revisits
+the form of the energy-momentum tensor (EMT) of star
+sources in BD gravity. Sections III and IV handle the
+fieldequationsinthestandardcoordinatesandtransform
+the results to the isotropic coordinates. The uniqueness
+of Brans solutions is addressed in Section V. Sections
+VI and VII conduct the interior-exterior matching and
+derive theγparameter. Section VIII obtains mass re-
+lations, valid for BD gravity. Sections IX and X offer
+discussions and outlooks. A further exposition on the
+uniqueness of Brans solutions is given in Appendix A.
+II. THE ENERGY-MOMENTUM TENSOR
+Consider the BD action in the Jordan frame [26, 27]
+/integraldisplay
+d4x√−g
+16π/bracketleftig
+ΦR−ω
+Φ∇µΦ∇µΦ/bracketrightig
++/integraldisplay
+d4x√−gL(m)(2)
+with the metric signature convention (−+ ++). Here-
+after, we choose the units G=c= 1withGbeing the
+far-field Newtonian constant.
+It is well documented [28] that upon the Weyl map-
+ping/braceleftbig
+˜gµν:= Φgµν,˜Φ := ln Φ/bracerightbig
+, the gravitational sector
+of the BD action can be brought to the Einstein frame as/integraltext
+d4x√−˜g
+16π/bracketleftig
+˜R−(ω+ 3/2)˜∇µ˜Φ˜∇µ˜Φ/bracketrightig
+. The Einstein-frame
+BD scalar field ˜Φhas a kinetic term with a signum de-
+termined by (ω+ 3/2). Unless stated otherwise, we shall
+restrictourconsiderationtothenormal(“non-phantom”)
+case ofω>−3/2, where the kinetic energy for ˜Φis pos-
+itive.
+In this paper, we work exclusively in the Jordan frame.
+For convenience, let us denote a rank-two tensor
+Xµν:= ΦRµν−∇µ∇νΦ−ω
+Φ∇µΦ∇νΦ(3)3
+The BD field equation for the metric components is
+Xµν= 8π/bracketleftig
+Tµν−ω+ 1
+2ω+ 3gµνT/bracketrightig
+(4)
+and the equation for the BD scalar field is
+□Φ =8π
+2ω+ 3T (5)
+wheretheenergy-momentumtensor(EMT)ofthematter
+sector is
+Tµν:=−2√−gδ/parenleftbig√−gL(m)/parenrightbig
+δgµν(6)
+For a coordinate system that is static and spherically
+symmetric, the metric can be written as (with g01=
+g10= 0)
+ds2=−A(r)dt2+B(r)dr2+C(r)dΩ2(7)
+With this metric, the only non-vanishing components of
+the tensor Xµνare the diagonal ones, namely, µ=ν.
+With respect to the off-diagonal components, µ̸=ν,
+sincegµν= 0, the field equation requires
+Tµν= 0ifµ̸=ν (8)
+meaningtheEMThastobediagonal. Thetraceismerely
+a sumT=T0
+0+T1
+1+T2
+2+T3
+3. Furthermore since
+g33=g22sin2θ (9)
+X33=X22sin2θ (10)
+one has
+T33=T22sin2θ=⇒T3
+3=T2
+2 (11)
+Therefore, the EMT must adopt the following form
+Tν
+µ=
+−ϵ(r) 0 0 0
+0p∥(r) 0 0
+0 0 p⊥(r) 0
+0 0 0 p⊥(r)
+(12)
+The only assumptions we made are the stationarity and
+spherical symmetry for the metric components and the
+BD scalar field. The energy density ϵ, the radial pressure
+p∥and the tangential pressure p⊥are functions of r. The
+trace is simplified to
+T=−ϵ+p∥+ 2p⊥ (13)
+We shall not impose any further constraints on the
+EMT, which can be anisotropic.
+III. INTEGRABILITY OF THE 00−FIELD
+EQUATION
+Let us start with the standard areal coordinate system
+ds2=−A(r)dt2+B(r)dr2+r2dΩ2(14)In this form, a star center exists at r= 0, at which the
+metric components, A(r)andB(r)and the BD field Φ(r)
+are regular (including their first derivatives with respect
+tor). The scalar field equation (5) yields
+d
+dr/parenleftbigg
+r2/radicalbigg
+A
+BdΦ
+dr/parenrightbigg
+sinθ=8πT
+2ω+ 3√−g(15)
+Multiply both sides with dV=drdθdφ, then integrate
+/integraldisplayr
+0d/parenleftbigg
+r2/radicalbigg
+A
+BdΦ
+dr/parenrightbigg/integraldisplayπ
+0sinθdθ/integraldisplay2π
+0dφ
+=8π
+2ω+ 3/integraldisplay
+VdV√−gT(16)
+with the integral domain Vbeing a ball of radius r, cen-
+tered at the origin.
+SinceA,B,Φ,A′,Φ′are finite at the star center,
+r= 0, (viz. regularity conditions), upon integration of
+the left hand side, the above equation becomes
+r2/radicalbigg
+A
+BdΦ
+dr=2
+2ω+ 3/integraldisplay
+VdV√−gT (17)
+Next, the 00−component of Xµνcan be written as
+X00= ΦR00+ Γ1
+00dΦ
+dr(18)
+=√
+A
+2r2√
+Bd
+dr/parenleftbiggr2Φ√
+ABdA
+dr/parenrightbigg
+(19)
+=−sinθ
+2√−gg00d
+dr/parenleftbiggr2Φ√
+ABdA
+dr/parenrightbigg
+(20)
+It is imperative to note that theX00term is expressible
+in a neat “integrable” form, Eq. (20). Consequently, the
+00−component of the field equation (4) yields
+d
+dr/parenleftbiggr2Φ√
+ABdA
+dr/parenrightbigg
+sinθ=−16π/parenleftig
+T0
+0−ω+ 1
+2ω+ 3T/parenrightig√−g
+(21)
+Integrating from the star center (assuming regularity)
+r2Φ√
+ABdA
+dr=−4/integraldisplay
+VdV√−g/parenleftig
+T0
+0−ω+ 1
+2ω+ 3T/parenrightig
+(22)
+Therestofthissectiondealswiththetermsintheright
+hand side of Eqs. (17) and (22). Consider a compact star
+of finite radius r∗and denote V∗the domain of the star,
+namely,V∗beingaballcenteredattheoriginwithradius
+r∗. Thefollowingintegralsaredefinedforthedomain V∗:
+E∗:=/integraldisplay
+V∗dV√−gϵ= 4π/integraldisplayr∗
+0drr2√
+ABϵ ;
+P∗
+∥:=/integraldisplay
+V∗dV√−gp∥= 4π/integraldisplayr∗
+0drr2√
+ABp∥;(23)
+P∗
+⊥:=/integraldisplay
+V∗dV√−gp⊥= 4π/integraldisplayr∗
+0drr2√
+ABp⊥.4
+Note that outside the star, ϵ,p∥, andp⊥vanish. There-
+fore for a ball Vthat is centered at the origin and en-
+closesV∗(namely, its radius rexceedsr∗), the following
+identities hold:
+/integraldisplay
+VdV√−gϵ=E∗;
+/integraldisplay
+VdV√−gp∥=P∗
+∥; (24)
+/integraldisplay
+VdV√−gp⊥=P∗
+⊥.
+For a ballVenclosingV∗, the integrals in the right hand
+side of Eqs. (17) and (22) are
+/integraldisplay
+VdV√−gT=/integraldisplay
+VdV√−g/bracketleftbig
+−ϵ+p∥+ 2p⊥/bracketrightbig
+(25)
+=−E∗+P∗
+∥+ 2P∗
+⊥ (26)
+and/integraldisplay
+VdV√−g/parenleftig
+T0
+0−ω+ 1
+2ω+ 3T/parenrightig
+=/integraldisplay
+VdV√−g/bracketleftig
+−ω+ 2
+2ω+ 3ϵ−ω+ 1
+2ω+ 3/parenleftbig
+p∥+ 2p⊥/parenrightbig/bracketrightig
+(27)
+=−ω+ 2
+2ω+ 3E∗−ω+ 1
+2ω+ 3/parenleftbig
+P∗
+∥+ 2P∗
+⊥/parenrightbig
+(28)
+Remark 1.The integrability property that we exploited
+in deriving Eqs. (17) and (22) is not limited to the stan-
+dard coordinates. If we used the metric in Eq. (7), the
+left hand side of Eqs. (17) and (22) would read C/radicalig
+A
+BdΦ
+dr
+andCΦ√
+ABdA
+arrespectively, and the√−gterm in the right
+hand side of these equation would be calculated using
+the latter metric. Nevertheless, the standard-coordinate
+metric in (14) explicitly reveals the presence of the point
+r= 0at which the surface area of a 2-sphere vanishes.
+This point naturally corresponds to the star’s center and
+serves as the lower bound in the integrals defined in (23).
+Remark 2.In the integrals defined in Eq. (23), the
+elementdV√−gis equal to√
+A/parenleftig
+r2√
+Bdr sinθdθdφ/parenrightig
+.
+The term√
+A, equal to√−g00, is a “redshift fac-
+tor”. The combination r2√
+Bdr sinθdθdφ, equal to
+r2√g11drsinθdθdφ, is the spatial volume element in the
+spatial part of the metric given in Eq. (14). Note that
+in the region occupied with matter, e.g. where ϵ(r)̸= 0,
+the space in general is not Euclidean; consequently, for
+the standard-coordinate metric, B(r)deviates from 1.
+It should also be noted that the combination
+r2√g11drsinθdθdφis equal to/radicalbig
+g(3)dV, whereg(3)is
+the determinant of the spatial section of the metric in Eq.
+(14). The combination is thus invariant with respect to
+a twice-differentiable transformation of the radial coordi-
+nate. The quantities E∗,P∗
+∥, andP∗
+⊥can be interpreted
+as the total energy, radial pressure, and tangential pres-
+sure contained within the compact star.IV. ‌TRANSFORMING TO ISOTROPIC
+COORDINATES
+With the total energy and pressures defined via Eq.
+(24), the set of equations (17), (22), (26), and (28) es-
+sentially provide the “conservation” rules for the metric
+components and the BD scalar in the exterior vacuum,
+i.e., forr>r∗, per
+r2/radicalbigg
+A
+BdΦ
+dr=2
+2ω+ 3/bracketleftig
+−E∗+P∗
+∥+ 2P∗
+⊥/bracketrightig
+(29)
+and
+r2Φ√
+ABdA
+dr=4
+2ω+ 3/bracketleftig
+(ω+ 2)E∗+ (ω+ 1)/parenleftbig
+P∗
+∥+ 2P∗
+⊥/parenrightbig/bracketrightig
+(30)
+Note that the right hand sides of Eqs. (29) and (30) are
+integration constants , induced by the matter distribution
+in the interior of the compact mass source.
+Ournextstepistorelatethe parameters oftheexterior
+vacuum to these constants. The vacuum solution for BD
+gravity is best known in the isotropic coordinate, in the
+form of the Brans Class I solution. (The issue with the
+generality and uniqueness of the Brans Class I solution
+shall be addressed in Section V.) It is thus necessary to
+bring the left hand sides of Eqs. (29) and (30) to the
+isotropic coordinate ρ, namely, using the following metric
+ds2=−F(ρ)dt2+G(ρ)/parenleftbig
+dρ2+ρ2dΩ2/parenrightbig
+(31)
+and the BD scalar ϕ(ρ). Transforming (14) into (31)
+requires the following identifications
+F(ρ) =A(r);G(ρ)/parenleftbiggdρ
+dr/parenrightbigg2
+=B(r);G(ρ)ρ2=r2(32)
+in addition to a mapping for the BD scalar
+ϕ(ρ) = Φ(r) (33)
+In the far-field region, it is expected that the relation be-
+tweenrandρis monotonic, viz.dρ
+dr>0. The quantities
+of interest thence become
+r2/radicalbigg
+A
+BdΦ
+dr=Gρ2/radicaltp/radicalvertex/radicalvertex/radicalbtF
+G/parenleftig
+dρ
+dr/parenrightig2dϕ
+dρdρ
+dr=ρ2√
+FGdϕ
+dρ(34)
+and
+r2Φ√
+ABdA
+dr=Gρ2ϕ/radicalbigg
+FG/parenleftig
+dρ
+dr/parenrightig2dF
+dρdρ
+dr=ρ2ϕ/radicalbigg
+G
+FdF
+dρ(35)
+We thus arrive at
+ρ2√
+FGdϕ
+dρ=2
+2ω+ 3/bracketleftig
+−E∗+P∗
+∥+ 2P∗
+⊥/bracketrightig
+(36)5
+and
+ρ2ϕ/radicalbigg
+G
+FdF
+dρ=4
+2ω+ 3/bracketleftig
+(ω+ 2)E∗+ (ω+ 1)/parenleftbig
+P∗
+∥+ 2P∗
+⊥/parenrightbig/bracketrightig
+(37)
+Remark 3.As we stated at the end of the preceding sec-
+tion, the energy density and pressure quantities are in-
+variant upon a coordinate transformation in the radial
+coordinate. This can be verified for the case at hand. For
+example, the total energy in the standard coordinates is
+E∗
+std=/integraldisplay
+Vdrdθdφ/radicalbig
+−A(r)B(r)r2sinθϵ(r)(38)
+whereas in the isotropic coordinates
+E∗
+iso=/integraldisplay
+Vdρdθdφ/radicalbig
+−F(ρ)G3(ρ)ρ2sinθϵ′(ρ)(39)
+with the identification ϵ′(ρ) =ϵ(r(ρ)). It is straightfor-
+ward to see that
+E∗
+std=/integraldisplay
+V/parenleftbigg
+dρdr
+dρ/parenrightbigg
+dθdφ/radicaligg
+−FG/parenleftbiggdρ
+dr/parenrightbigg2
+Gρ2sinθϵ(r(ρ))
+(40)
+=/integraldisplay
+Vdρdθdφ/radicalbig
+−FG3ρ2sinθϵ′(ρ) (41)
+=E∗
+iso (42)
+Hence, the energy integral E∗is the same for both
+systems—the standard and the isotropic coordinates.
+Likewise, the same conclusion applies for the pressure
+integralsP∗
+∥andP∗
+⊥.
+V. BRANS CLASS I AS THE UNIQUE
+VACUUM SOLUTION FOR ω>−3/2
+Equations (36) and (37) stand handy for us to relate
+the parameters of the exterior vacuum solution to the
+energy-pressure integrals. It is well documented that the
+BransClassIsolutionisavacuumsolutioninBDgravity.
+In this section, we shall furtherdemonstrate that, for the
+case of non-phantom kinetic energy for the BD field, viz.
+ω>−3/2, the Brans Class I solution is the most general
+andunique vacuum solution. That is to say, the Brans
+Class I solution is thevacuum solution in BD gravity,
+whenω>−3/2.
+Historically, Brans discovered the solutions during his
+PhD thesis and reported them in [27] without offering
+a derivation, although the solutions can be verified via
+direct inspection. The earliest public account for an ana-
+lytical derivation of these solutions can be traced back to
+Ref. [28] in which Bronnikov discovered the more general
+Brans-Dicke-Maxwell electrovacuum solution.
+The Brans solutions are comprised of 4 different
+classes (or types). In the exposition of Bronnikov[28], the Brans-Dicke theory is first mapped from
+the Jordan frame to the Einstein frame via a Weyl
+mapping. The transformed BD scalar field becomes
+uncoupled (thus free) scalar field which sources the
+Einstein-frame spacetime metric. This transformed
+theory is known to admit the Fisher-Janis-Newman-
+Winicour (FJNW) solution. (Note: The solution has
+been re-discovered several times, and is also known as
+the Fisher-Bergmann-Leipnik-Janis-Newman-Winicour-
+Buchdahl-Wyman (FBLJNWBW) solution [29–34].) Via
+theEinstein-framerepresentation, ithasbeenestablished
+by now that the classes of Brans solutions are the most
+generalsolutions that are static and spherisymmetric in
+Brans-Dicke gravity [34, 35].
+However, the existence of multiple Brans classes has
+sidetracked a recognition of their “uniqueness”. There
+is a degree of redundancy in these classes, however. In
+[35] Bhadra and Sarkar pointed out that Class III and
+Class IV are equivalent via a coordinate transformation,
+ρ↔1/ρ, reducing the count of classes to 3. These au-
+thors also uncovered a “symmetry” in terms of parame-
+tersof Brans Class I and Brans Class II, upon making
+certain replacement in the parameters (and a coordinate
+transform)1. Consequently, it was deemed that the two
+classes, I and II, were equivalent, leaving only Class I
+and Class III to be truly independent. Nomenclature
+aside, it should be noted that diffeomorphism alone can-
+not transform Class I into Class II and vice versa. In
+[34] Faraoni and colleagues revisited this issue and cor-
+rectlybrandedthe“symmetry”alludedabovea“duality”
+rather than an “equivalence”. As we shall show momen-
+tarily, the 3 Brans classes (I, II, and IV) remain separate
+solutions (while fully covering) in the parameter space.
+Yet, the 3 classes can be “unified” upon an appropriate
+parametrization. That is to say, all 3 Brans classes of
+solution can be brought into a single form, as we shall do
+below.
+Consider the metric and scalar field
+
+
+ds2=−F(ρ)dt2+G(ρ)/parenleftbig
+dρ2+ρ2dΩ2/parenrightbig
+F(ρ) =/parenleftbiggρ−1
+2M1√κ
+ρ+1
+2M1√κ/parenrightbigg2√κ
+G(ρ) =/parenleftbigg
+1−M2
+1κ
+4ρ2/parenrightbigg2/parenleftbiggρ−1
+2M1√κ
+ρ+1
+2M1√κ/parenrightbigg−2(1+Λ)√κ
+ϕ(ρ) =/parenleftbiggρ−1
+2M1√κ
+ρ+1
+2M1√κ/parenrightbiggΛ√κ(43)
+withM1∈R+(a parameter of length dimension) and di-
+mensionless parameters Λ∈Randκ∈R. It is straight-
+forward to verify by direct inspection that the metric
+1The replacement of parameters to map Class II into Class I can
+also be viewed as a “Wick rotation” [36].6
+Figure 1. Parameter space for the “unified” Brans solution,
+Eq. (43). The solid line corresponds to (1 + Λ)2−Λ/parenleftbig
+1−
+ωΛ/2/parenrightbig
+= 0. The two branches of κ= 0asymptote ω→− 2
+at large values of Λ. The local peak in the left branch occurs
+at {ω=−3/2,Λ =−2}. The region with ω>−3/2is Brans
+Class I, exclusively.
+and scalar field satisfy the BD field equations, with the
+parameterκ∈Robeying (ω∈RandΛ∈R)
+κ:= (1 + Λ)2−Λ/parenleftbig
+1−ω
+2Λ/parenrightbig
+(44)
+Three cases to consider, depending on the signum of κ:
+Case 1: Forκ > 0, it is evidently Brans Class I
+solution as originally reported in [27].
+Case 2: Forκ < 0, utilizing the identity tan−1x=
+i
+2ln1−ix
+1+ix, one has
+1√κlnρ−1
+2M1√κ
+ρ+1
+2M1√κ=−2√−κtan−1M1√−κ
+2ρ(45)
+The change of variable ρ=1
+4M2
+1κ/ρ′, hencedρ=
+−1
+4M2
+1κ/ρ′2dρ′, renders
+/parenleftbiggρ−1
+2M1√κ
+ρ+1
+2M1√κ/parenrightbigg1√κ
+=e2√
+−κtan−12ρ′
+M1√
+−κ(46)
+1−M2
+1κ
+4ρ2= 1 +4ρ′2
+M2
+1(−κ)(47)
+resulting in Brans Class II solution in the new radialcoordinate ρ′[27]:
+F(ρ′) =e4√
+−κtan−12ρ′
+M1√
+−κ (48)
+G(ρ′) =/parenleftbigg
+1 +M2
+1(−κ)
+4ρ′2/parenrightbigg2
+e−2(1+Λ)√
+−κtan−12ρ′
+M1√
+−κ(49)
+ϕ(ρ′) =e2Λ√
+−κtan−12ρ′
+M1√
+−κ. (50)
+Case 3: Forκ= 0, the limit
+/parenleftbiggρ−1
+2M1√κ
+ρ+1
+2M1√κ/parenrightbigg1√κ
+≃
+κ→0e−M1
+ρ (51)
+produces Brans Class IV solution [27]:2
+F(ρ) =e−M1
+ρ (52)
+G(ρ) =e(1+Λ)M1
+ρ (53)
+ϕ(ρ) =e−ΛM1
+ρ. (54)
+Let us emphasize that the recasting exercise thus far
+represents nothing essentially new . The important point
+which our recasting offers is that the signum of κelects
+the “class” that the “unified” Brans solution, Eq. (43),
+belongs. Moreover, a pair of {ω,Λ}uniquely determines
+the signum for κ, and hence the form of the solution.
+Figure 1 shows the categorization. In the {ω,Λ}plane,
+the two branches of the solid line correspond to the loci
+ofκ= 0, viz. (1 + Λ)2−Λ/parenleftbig
+1−ωΛ/2/parenrightbig
+= 0. Above and
+below the solid line are the domains for Brans Class I and
+Brans Class II, respectively. The 3 classes do not overlap
+while fully covering the {ω,Λ}plane. The ambiguity in
+selecting the solution is removed. The uniqueness of the
+“unified”Branssolution, Eq. (43), istherebyestablished.
+Remark 4.Forω >−3/2, the function κis positive-
+definite for all values of ΛinR, as can be seen by rewrit-
+ingκas
+κ=[(ω+ 2)Λ + 1]2+ 2ω+ 3
+2(ω+ 2)>0forω>−3/2(55)
+Consequently, only Brans Class I is admissible for the
+non-phantom action, ω>−3/2, a fact evident in Fig. 1.
+Remark5.It is worth noting that Brans Class I recovers
+the Schwarzschild metric when Λ = 0forcingκ= 1. On
+the other hand, Brans Class II and Class III do not have
+this property and are often relegated as “pathological”
+solutions. Conveniently, they only exist for the phantom
+action, i.e., ω⩽−3/2.
+2Brans Class III is obtainable from Brans Class IV via a coordi-
+nate transform, ρ=M2
+1/(4ρ′).7
+Another way to recognize the unified nature of the 3
+Brans solutions is via the harmonic coordinate instead of
+the isotropic coordinate [28]. For completeness, we shall
+revisit this representation in Appendix A.
+VI. MATCHING THE EXTERIOR SOLUTION
+WITH ENERGY-PRESSURE INTEGRALS
+As established in the preceding section, for the non-
+phantom kinetic action (i.e., ω >−3/2), the exterior
+vacuum solution is exclusively Brans Class I. We are now
+equipped to perform the matching of its parameters.
+With the metric given in Eq. (43), the left hand sides
+of Eqs. (36) and (37) readily yield
+ρ2√
+FGdϕ
+dρ=M1Λ (56)
+ρ2ϕ/radicalbigg
+G
+FdF
+dρ= 2M1 (57)
+With the aid of Eqs. (36) and (37), we deduce that
+M1= 2(ω+ 2)E∗+ (ω+ 1)/parenleftbig
+P∗
+∥+ 2P∗
+⊥/parenrightbig
+2ω+ 3(58)
+Λ =−E∗+P∗
+∥+ 2P∗
+⊥
+(ω+ 2)E∗+ (ω+ 1)/parenleftbig
+P∗
+∥+ 2P∗
+⊥/parenrightbig (59)
+Denote the dimensionless ratio
+Θ:=P∗
+∥+ 2P∗
+⊥
+E∗(60)
+For an isotropic EMT, P∗
+∥=P∗
+⊥≡P∗, the quantity Θis
+3P∗/E∗. In general, thence
+M1= 2E∗(ω+ 2) + (ω+ 1)Θ
+2ω+ 3(61)
+Λ =Θ−1
+(ω+ 2) + (ω+ 1)Θ(62)
+Note that for ω >−3/2,E > 0, and 0⩽Θ < 1, the
+positive-definiteness of M1is ensured
+M1=E∗/bracketleftbigg
+1 +Θ+1−Θ
+2ω+ 3/bracketrightbigg
+⩾E∗.(63)
+Furthermore, from Eq. (44), the parameter κ
+κ=2ω+ 3
+4(2ω+ 3) (1 +Θ)2+ (1−Θ)2
+((ω+ 2) + (ω+ 1)Θ)2(64)
+givingκ>0forω>−3/2, confirming the validity of the
+Brans Class I solution under consideration.VII. THE ROBERTSON PARAMETERS
+The Robertson expansion in isotropic coordinates is
+[23]:
+ds2=−/parenleftbigg
+1−2M1
+ρ+ 2βM2
+1
+ρ2+.../parenrightbigg
+dt2
++/parenleftbigg
+1 + 2γM1
+ρ+.../parenrightbigg/parenleftbig
+dρ2+ρ2dΩ2/parenrightbig
+(65)
+in whichβandγare the Robertson (or Eddington-
+Robertson-Schiff) parameters. The metric in Eq. (43)
+can be re-expressed in the expansion form
+ds2=−/parenleftbigg
+1−2M1
+ρ+ 2M2
+1
+ρ2+.../parenrightbigg
+dt2
++/parenleftbigg
+1 + 2 (1 + Λ)M1
+ρ+.../parenrightbigg/parenleftbig
+dρ2+ρ2dΩ2/parenrightbig
+(66)
+Comparing Eqs. (65) against Eq. (66), we obtain
+βexact = 1 (67)
+γexact = 1 + Λ (68)
+where we have added in the subscript “exact” as empha-
+sis. Note that Λmeasures the deviation of the γparam-
+eters from GR ( γGR= 1). From Eq. (62), Λdepends on
+bothωandΘ. Finally, we arrive at
+γexact =ω+ 1 + (ω+ 2)Θ
+ω+ 2 + (ω+ 1)Θ(69)
+which can also be conveniently recast as
+γexact =γPPN+Θ
+1 +γPPNΘ(70)
+by recalling that γPPN=ω+1
+ω+2. With the aid of Eqs. (60)
+and (61), the active gravitational mass is
+Mgrav:=M1 (71)
+=E∗+P∗
+∥+ 2P∗
+⊥+E∗−/parenleftbig
+P∗
+∥+ 2P∗
+⊥/parenrightbig
+2ω+ 3(72)
+where the contribution of pressure to the active gravita-
+tional mass is evident [37, 38].
+VIII. MASS RELATIONS IN BRANS-DICKE
+GRAVITY
+In GR, the Tolman mass was defined as [39–41]
+mT:=/integraldisplay
+VdV√−g/parenleftbig
+−T0
+0+T1
+1+T2
+2+T3
+3/parenrightbig
+(73)
+In our EMT form (12), this renders
+mT=/integraldisplay
+VdV√−g/parenleftbig
+ϵ+p∥+ 2p⊥/parenrightbig
+(74)
+=E∗+P∗
+∥+ 2P∗
+⊥ (75)8
+For a metric that has the following asymptotic form (i.e.,
+asρ→∞) [41]:
+ds2=−/parenleftbigg
+1−2Mgrav
+ρ/parenrightbigg
+dt2
++/parenleftbigg
+1 +2MADM
+ρ/parenrightbigg/parenleftbig
+dρ2+ρ2dΩ2/parenrightbig
+(76)
+the quantity Mgravis the active gravitation mass of the
+source, whereas MADMis the ADM mass. In GR, it is
+known that
+Mgrav=MADM =MT (77)
+For BD gravity, besides Expression (72) for Mgrav, viz.
+Mgrav=MT+E∗−/parenleftbig
+P∗
+∥+ 2P∗
+⊥/parenrightbig
+2ω+ 3(78)
+we can also calculate the ADM mass, with the aid of Eqs.
+(65) and (69)
+MADM =γMgrav (79)
+=E∗+P∗
+∥+ 2P∗
+⊥−E∗−/parenleftbig
+P∗
+∥+ 2P∗
+⊥/parenrightbig
+2ω+ 3(80)
+=MT−E∗−/parenleftbig
+P∗
+∥+ 2P∗
+⊥/parenrightbig
+2ω+ 3(81)
+The difference
+Mgrav−MADM =E∗−/parenleftbig
+P∗
+∥+ 2P∗
+⊥/parenrightbig
+ω+ 3/2⩾0(82)
+forω >−3/2and normal matter, viz. p∥⩽1
+3ϵand
+p∗
+⊥⩽1
+3ϵ.
+Remark6.In the limit of infinite ω, we recover the usual
+relation in GR
+mgrav=mADM =mT=E∗+P∗
+∥+ 2P∗
+⊥(83)
+Furthermore, in GR,the ADM mass hasbeen established
+within the Tolman-Oppenheimer-Volkoff framework (us-
+ing the standard coordinates) to be
+mADM = 4π/integraldisplayr∗
+0drr2ϵ(r) (84)
+Using Eq. (23) in the standard coordinates (14), we
+rewrite the right hand side of Eq. (83) as
+E∗+P∗
+∥+ 2P∗
+⊥= 4π/integraldisplayr∗
+0drr2√−g00g11/parenleftbig
+ϵ+p∥+ 2p⊥/parenrightbig
+(85)
+Combining the last 3 equations yields
+/integraldisplayr∗
+0drr2ϵ=/integraldisplayr∗
+0drr2√−g00g11/parenleftbig
+ϵ+p∥+ 2p⊥/parenrightbig
+(86)
+We thus have re-derived the Tolman relation in GR, as a
+by-product of our study [37, 38].IX. DISCUSSIONS
+Formula (69) is the final outcome of our derivation.
+This section aims to clarify a number of logical and tech-
+nical steps taken in the derivation, and discusses the im-
+plications of Formula (69).
+Our derivation proceeded in the following steps:
+1. Assuming the metric and the mass source to be
+stationary and spherically symmetric, we deduced
+from the BD field equation that the most gen-
+eral EMT of the source can be put in the form
+Tν
+µ=diag/parenleftbig
+−ϵ(r),p∥(r),p⊥(r),p⊥(r)/parenrightbig
+. Whereas
+the EMT can be anisotropic, we imposed no fur-
+therconditionsontheEMT,suchasbeingaperfect
+fluid. See Section II.
+2. The standard coordinate system, ds2=
+−A(r)dt2+B(r)dr2+r2dΩ2, is suitable for
+describing stars. Using the scalar field equation
+forΦand the 00−component of the field equa-
+tion, and imposing regularity conditions at the
+star’s center, we derived two ODE’s—Eqs. (17)
+and (22)—which express A(r),B(r)and Φ(r)
+in theexterior vacuum in terms of the total
+energyE∗and total pressure P∗
+∥+ 2P∗
+⊥contained
+within the star . The standard coordinate sys-
+tem allows for the existence of the point r= 0
+at which the surface area of the 2-sphere van-
+ishes, which naturally serves as the star’s center.
+This point acts as the lower bound for the domain
+of integration for E∗andP∗
+∥+2P∗
+⊥. See Section III.
+3. We next transformed the two aforementioned
+ODE’s into the isotropic coordinate system, ds2=
+−F(ρ)dt2+G(ρ)/parenleftbig
+dρ2+ρ2dΩ2/parenrightbig
+. The resulting
+ODE’s in terms of F(ρ),G(ρ)andϕ(ρ)are Eqs.
+(36) and (37). The advantage of the isotropic coor-
+dinates is that the exterior solution is best known
+in this system (i.e., the Brans solutions). Further-
+more, the energy and pressure integrals, E∗and
+P∗
+∥+ 2P∗
+⊥, are unchanged when moving to this sys-
+tem. See Section IV.
+4. Wenextpresentedthe“unified”Branssolution,Eq.
+(43), which cover all Brans Classes I, II and IV
+(with Class III being equivalent to Class IV). For
+a non-phantom action, i.e. ω>−3/2, Brans Class
+I is the most general and uniquestatic spherisym-
+metric vacuum solution. For a phantom action, i.e.
+ω<−3/2, all 3 Brans classes are admissible; how-
+ever, only one single class is selected for a given set
+of parameters of the “unified” Brans solution. The
+uniqueness of the “unified” Brans solution is thus
+established. See Section V.
+5. We employed theBrans Class I solution to perform
+the matching of the functions F(ρ),G(ρ)andϕ(ρ)9
+withtheenergyandpressureintegrals, E∗andP∗
+∥+
+2P∗
+⊥. See Section VI.
+6. Expressing the Brans Class I metric in the Robert-
+son expansion, we obtain the γparameter in terms
+ofωand a (dimensionless) Θ, defined as the ratio
+ofP∗
+∥+ 2P∗
+⊥andE∗. See Section VII.
+7. As a by-product, we obtained two mathematical
+relations linking the active gravitational mass and
+the ADM mass with the energy and pressure inte-
+grals for BD gravity. In addition, we (re)-derived
+the Tolman relation in GR. See Section VIII.
+Generality of our derivation —(i)Non-perturbative ap-
+proach: Our derivation is non-perturbative in nature. It
+makes use of the integrability of the 00−component of
+the BD field equation, along with the scalar field equa-
+tioninvolving □Φ. (ii)Minimal assumptions : Thephysi-
+cal assumptions employed are the regularity at the star’s
+center and the existence of the star’s surface separat-
+ing the interior and the exterior. Our derivation relies
+solely on the scalar field equation and the 00-component
+of the field equation, without the need for the full set
+of equations, specifically the 11−and22−components
+of the field equation. Consequently, the conservation
+equation (by way of the Bianchi identity) is not re-
+quired. (iii) Universality of result: The final formula,
+Eq. (69), holds for all field strengths and all types of
+matter (whether convective or non-convective, for exam-
+ple). We do not assume the matter comprising the stars
+to be a perfect fluid or isentropic.
+Higher-derivative characteristics —In contrast to the
+one-parameter Schwarzschild metric, the Brans Class I
+solution depends on two parameters, i.e. the solution is
+not only defined by its gravitational mass, but also by a
+scalar mass besides the gravitational one [28]. This is be-
+cause the BD description of gravity involves more fields
+than the only metric involved in GR, a scalar field being
+also part of the gravitational sector. (The same is also
+to be expected in the higher order theories framework,
+likef(R)theories, since f(R)theories can be recast as
+ω= 0BD theories endowed with a scalar dependent
+potential.) The exterior BD vacuum should reflect the
+internal structure and composition of the star. This ex-
+pectation is confirmed in the final result, Eq. (69), which
+underscores the participation of the parameter Θ.
+Role of pressure —Figure 2 shows a contour plot of
+γexactas a function of γPPN(i.e,ω+1
+ω+2) andΘ. There
+are two interesting observations:
+•An ultra-relativistic limit, Θ≲1, would render
+γexact≃1,regardless ofω.
+•For Newtonian stars, i.e. low pressure ( Θ≈0), the
+PPN result is a good approximation regardless of
+the field strength.
+Figure 2. Contour plot of γexactin terms of Θandω+1
+ω+2. A
+measuredγexact≈1could meanω+1
+ω+2≈1(i.e.,ω≫1) orΘ≈
+1(i.e., ultra-relativistic matter). Contours are equally spaced
+in 0.01 increments. For a given contour, the corresponding
+value ofγexactcan be read on the abscissa axis, where the
+contour intersects it.
+O(1/√ω)anomaly—It has been discovered that the
+Brans-Dicke-Maxwell (electro)vacuum does not necessar-
+ilyconvergetoavacuumofGR[43–52]. Additionally, the
+convergence rate is 1/√ωrather than the usual 1/ωbe-
+havior. Recently, the present authors proved that this
+O(1/√ω)anomaly exists for all types of matter regard-
+less of the trace of the EMT [53] (see also [54, 55]). For
+this anomaly to occur, the “remnant” BD scalar field
+needs to exhibit a singularity or time-dependence. How-
+ever, these conditions are not satisfied for static stars,
+where regularity requirements are imposed. Therefore,
+the violation of γreported in this current article is not
+related to theO(1/√ω)anomaly.
+On the loss of Birkhoff’s theorem— It can be argued
+that, in BD gravity, the loss of Birkhoff’s theorem and
+the dependence of γon a star’s internal structure may be
+interconnected. Indeed, let us consider, in BD gravity, a
+static spherisymmetric Newtonian star (initial state). Its
+exterior vacuum is described by a Brans Class I solution
+given by Eq. (43), characterized by 2 parameters M1and
+Λ(or equivalently κper Eq. (44)). Note that the param-
+eterΛdepends on the pressure content of the star, as is
+evident in Eq. (62). For the initial Newtonian star, since
+p≪ϵinside the whole star, Θiniis approximately zero,
+rendering Λini≈−1
+ω+2. Let us now consider that this
+star starts collapsing, and that the collapse ends at some
+(final) compact state. The pressure is no longer negli-
+gible with respect to ϵin this final state, in such a way
+that the final value Θfinis significant, making Λfinsignif-
+icantly differing from Λini. On the other hand, Birkhoff’s
+theorem in GR mandates that any spherisymmetric vac-
+uum must be independent of the coordinate tregardless
+of the(time-) evolution of the source. If Birkhoff’s the-
+orem were valid for BD gravity, the vacuum exterior to10
+the collapsing star would have been left unchanged dur-
+ing the process (i.e. a time independent solution), which
+is incompatible with the observation that the final Λfin
+differs from the initial one Λini. Thence, the fact that
+Λexplicitly depends on Θ, as described by Eq. (62), im-
+plies that Birkhoff’s theorem cannot hold for BD gravity.
+Reciprocally, the strong necessity to revisit the BD grav-
+ity’s PPNγexpression could have been anticipated from
+the mere fact that Birkhoff’s theorem is not valid in BD
+gravity.
+X. CLOSING AND OUTLOOKS
+We derived the exact analytical formula, Eq. (69),
+of the Robertson parameter γfor compact mass sources
+in BD gravity. The derivation’s success hinges on the
+integrability of the 00−component of the field equation,
+rendering it non-perturbative and applicable for any field
+strengthandtypeofmatterconstitutingthesource. This
+paper provides comprehensive technical insights to com-
+plement a companion paper [25], which delves into phys-
+ical implications of our findings.
+Outlook #1—The conventional PPN result for BD
+gravityγPPN =ω+1
+ω+2lacks dependence on the physi-
+cal features of the mass source, a trait shared by other
+alternative theories beyond GR, such as the Bergman-
+Wagoner theory. In the light of our exact result, the
+γPPNshould be regarded as an approximation for stars
+in modified gravity under low-pressure conditions. Our
+findings underscore the limitations of the PPN formal-
+ism, particularly in scenarios characterized by high star
+pressure. Itisplausibletoexpectthattheroleofpressure
+may extend to other modified theories of gravitation.
+Outlook #2—The energy and pressure integrals, E∗
+andP∗
+∥+ 2P∗
+⊥defined in Eq. (23), can be evaluated
+within the Tolman-Oppenheimer-Volkoff (TOV) frame-
+work for BD gravity. This approach entails developing
+the TOV equations and integrating them from the star’s
+center outward. The resulting exterior solution is fully
+determined by factors such as the equation of state of
+the star’s constituent matter and the central pressure of
+the star. Accordingly, the matching between the interior
+spacetime solution and the exterior vacuum is automati-
+cally handled when the integration crosses the surface at
+which the pressure vanishes. However, it should be noted
+that the integration procedure is numerical in nature, as
+there is currently no exact analytical solution available
+for the interior of stars in BD gravity. Inspired by our
+exactγderivation presented in this paper, details regard-
+ing the TOV equation for BD gravity, presented in a new
+optimal gauge choice, are currently underway [42].ACKNOWLEDGMENTS
+H.K.N. thanks Mustapha Azreg-Aïnou for stimulating
+discussions, and Valerio Faraoni and Tiberiu Harko for
+valuable commentaries.
+—————–∞—————–
+Appendix A: Mapping the unified Brans solution to
+harmonic radial coordinate
+The uniqueness of Brans solutions can also be made
+more transparent with the use of harmonic radial coor-
+dinates. This Appendix provides a brief explanation of
+this aspect.
+Introducing a new parameter χand making the fol-
+lowing coordinate transformation to a radial coordinate
+u
+ρ=1
+2M1√κ1 +e√χu
+1−e√χu;/parenleftbiggdρ
+du/parenrightbigg2
+=M2
+1κχ
+/parenleftbig
+1−e√χu/parenrightbig4(A1)
+Resulting in
+/parenleftbigg
+1−M2
+1κ
+4ρ2/parenrightbigg2
+ρ2=M2
+1κ
+sinh2(√χu);(A2)
+/parenleftbigg
+1−M2
+1κ
+4ρ2/parenrightbigg2/parenleftbiggdρ
+du/parenrightbigg2
+=M2
+1κχ
+sinh4(√χu).(A3)
+Introducing two parameters αandβsuch that
+χ= (a+b)κ (A4)
+Λ =−2b
+a+b(A5)
+The BD scalar field and the metric become (upon rescal-
+ingdt→M1√κ√χdtandds→M1√κ√χds), respectively
+ϕ(u) =e−2bu(A6)
+ds2=1
+ϕ(u)/bracketleftbigg
+−e2audt2+e−2au/parenleftbiggdu2
+s4(χ,u)+dΩ2
+s2(χ,u)/parenrightbigg/bracketrightbigg
+(A7)
+with the “Bronnikov” function (first introduced in [28])
+defined as
+s(χ, u) :=1√χsinh√χu (A8)
+The proper part satisfies the radial harmonic gauge. De-
+pending on whether χis positive, null, or negative, the
+function is numerically equal to
+s(χ, u) =
+
+1√χsinh√χuifχ>0
+u ifχ= 0
+1√−χsin√−χuifχ<0(A9)11
+The three cases correspond to Brans Class I, Class IV,
+and Class II, in that order. Plugging Eqs. (A4) and
+(A5) in to Eq. (44), we obtain the following “constraint”
+among the parameters
+χ=a2+ (2ω+ 3)b2(A10)
+Obviously, a pair of {ω, a/b}uniquely specifies the
+signum for χ.This is nothing but the metric obtained
+in the harmonic radial coordinate u, presented in Bron-
+nikov [28]. The proper part of the metric is the Fisher-
+Janis-Newman-Winicour (FJNW) solution [29–34].) The
+generality of this metric is thus established therein. For
+ω >−3/2,χ > 0is the Brans Class I. Whereas ω <
+−3/2, all three possibilities for χpositive, null, negative
+are admissible. However, for a given pair of {ω, a/b}, the
+signum ofχis uniquely determined, selecting the class
+that the solution belongs. The ambiguity in picking one
+solution among the three possibilities is removed.
+One final remark is that Bronnikov used a slightly dif-
+ferent notation which may have obscured the “unique-ness” of the Brans solutions [28])
+ds2=1
+ϕ(u)/bracketleftbigg
+−e2audt2
++e−2au/parenleftbiggdu2
+s4
+Bronnikov (k,u)+dΩ2
+s2
+Bronnikov (k,u)/parenrightbigg/bracketrightbigg
+(A11)
+depending on the signum of k:
+sBronnikov (k, u) :=
+
+k−1sinhkuifk>0
+u ifk= 0
+k−1sinkuifk<0(A12)
+The three cases correspond to Brans Class I, Class IV,
+and Class II, in that order.
+The distinction between (A9) and (A12) is subtle.
+Comparing the two functions, kcan be formally iden-
+tified with√−χ. However, with χ∈R,√−χcan be real
+or pure imaginary, whereas the kparameter in (A12)
+needs be defined separately for χ > 0andχ < 0. The
+“bifurcation” at k= 0may have obscured the duality be-
+tween Brans Class I and Class II, an issue we elucidated
+in the Section V.
+[1] C.M. Will, Theory and Experiment in Gravitational
+Physics, second edition, Cambridge University Press,
+Cambridge, 2018
+[2] C.M. Will, The Confrontation between General Relativ-
+ity and Experiment , Living Rev. Relativ. 17, 4 (2014),
+https://doi.org/10.12942/lrr-2014-4
+[3] C.M. Will, On the unreasonable effectiveness of the post-
+Newtonian approximation in gravitational physics , Proc.
+Nat. Acad. Sci. 108(2011) 5938
+[4] M. Hohmann, L. Järv, P. Kuusk, and E. Randla, Post-
+Newtonian parameters γandβof scalar-tensor grav-
+ity with a general potential , Phys. Rev. D 88, 084054
+(2013); Erratum Phys. Rev. D 89, 069901 (2014),
+arXiv:1309.0031 [gr-qc]
+[5] M. Hohmann, Parameterized post-Newtonian formalism
+for multimetric gravity , Class. Quant. Grav. 31, 135003
+(2014), arXiv:1309.7787 [gr-qc]
+[6] M. Hohmann, Parameterized post-Newtonian limit of
+Horndeski’s gravity theory , Phys. Rev. D 92, 064019
+(2015), arXiv:1506.04253 [gr-qc]
+[7] M. Hohmann, L. Järv, P. Kuusk, E. Randla, and O. Vil-
+son,Post-Newtonian parameter γfor multiscalar-tensor
+gravity with a general potential , Phys. Rev. D 94, 124015
+(2016), arXiv:1607.02356 [gr-qc]
+[8] M. Hohmann, Post-Newtonian parameter γand the de-
+flection of light in ghost-free massive bimetric gravity ,
+Phys.Rev.D 95, 124049(2017), arXiv:1701.07700[gr-qc]
+[9] M. Hohmann and A. Schärer, Post-Newtonian param-
+eters γand βof scalar-tensor gravity for a homoge-
+neous gravitating sphere ,Phys.Rev.D 96,104026(2017),
+arXiv:1708.07851 [gr-qc]
+[10] U. Ualikhanova and M. Hohmann, Parameterized post-Newtonian limit of general teleparallel gravity theories ,
+Phys. Rev. D 100, 104011 (2019), arXiv:1907.08178 [gr-
+qc]
+[11] E. D. Emtsova and M. Hohmann, Post-Newtonian limit
+of scalar-torsion theories of gravity as analogue to scalar-
+curvature theories , Phys. Rev. D 101, 024017 (2020),
+arXiv:1909.09355 [gr-qc]
+[12] M. Hohmann, Gauge-invariant approach to the
+parametrized post-Newtonian formalism , Phys. Rev.
+D101, 024061 (2020), arXiv:1910.09245 [gr-qc]
+[13] K. Flathmann and M. Hohmann, Post-Newtonian limit
+of generalized scalar-torsion theories of gravity , Phys.
+Rev. D101, 024005 (2020), arXiv:1910.01023 [gr-qc]
+[14] Sebastian Bahamonde, Konstantinos F. Dialektopoulos,
+Manuel Hohmann, Jackson Levi Said, Post-Newtonian
+limit of Teleparallel Horndeski gravity , Class. Quant.
+Grav.38, 025006 (2020), arXiv:2003.11554 [gr-qc]
+[15] K. Flathmann and M. Hohmann, Post-Newtonian limit
+of generalized symmetric teleparallel gravity , Phys. Rev.
+D103, 044030 (2021), arXiv:2012.12875 [gr-qc]
+[16] K. Flathmann and M. Hohmann, Parametrized post-
+Newtonian limit of generalized scalar-nonmetricity the-
+ories of gravity , Phys. Rev. D 105, 044002 (2022),
+arXiv:2111.02806 [gr-qc]
+[17] M. Hohmann and U. Ualikhanova, Post-Newtonian
+limit of generalized scalar-teleparallel theories of gravity ,
+arXiv:2312.13352 [gr-qc]
+[18] S.W. Hawking, Black holes in Brans-Dicke theory of
+gravitation , Commun. Math. Phys. 25, 167 (1972)
+[19] T.P. Sotiriou and V. Faraoni, Black holes in scalar-
+tensor gravity , Phys. Rev. Lett. 108, 081103 (2012),
+arXiv:1109.6324 [gr-qc]12
+[20] A.G. Agnese and M. La Camera, Wormholes in the
+Brans-Dicke theory of gravitation , Phys. Rev. D 51, 2011
+(1995)
+[21] V. Faraoni, F. Hammad, and S.D. Belknap-Keet, Revis-
+iting the Brans solutions of scalar-tensor gravity , Phys.
+Rev. D94, 104019 (2016), arXiv:1609.02783 [gr-qc]
+[22] H.K. Nguyen and M. Azreg-Aïnou, Revisiting Weak En-
+ergy Condition and wormholes in Brans-Dicke gravity ,
+arXiv:2305.15450 [gr-qc]
+[23] S. Weinberg, Gravitation and Cosmology: Principles and
+Applications of the General Theory of Relativity , John
+Wiley & Sons, New York, 1972
+[24] V. Faraoni, J. Côté, and A. Giusti, Do solar system ex-
+periments constrain scalar–tensor gravity?, Eur. Phys. J.
+C80, 132 (2020), arxiv:1906.05957 [gr-qc]
+[25] B. Chauvineau and H. K. Nguyen, Violation of γin mod-
+ified gravity (in preparation)
+[26] C.H. Brans and R. Dicke, Mach’s Principle and a Rel-
+ativistic Theory of Gravitation , Phys. Rev. 124, 925
+(1961)
+[27] C.H. Brans, Mach’s Principle and a relativistic theory of
+gravitation II, Phys. Rev. 125, 2194 (1962)
+[28] K.A. Bronnikov, Scalar-tensor theory and scalar charge ,
+Acta Phys. Polon. B 4, 251 (1973), Link to pdf
+[29] I.Z. Fisher, Scalar mesostatic field with regard for grav-
+itational effects , Zh. Eksp. Teor. Fiz. 18, 636 (1948),
+arXiv:gr-qc/9911008
+[30] O. Bergmann and R. Leipnik, Space-Time Structure of
+a Static Spherically Symmetric Scalar Field , Phys. Rev.
+107, 1157 (1957)
+[31] A.I. Janis, E.T. Newman, and J. Winicour, Reality of
+the Schwarzschild Singularity , Phys. Rev. Lett. 20, 878
+(1968)
+[32] H.A.Buchdahl, Static solutions of the Brans-Dicke equa-
+tions, Int. J. Theor. Phys. 6, 407 (1972)
+[33] M. Wyman, Static spherically symmetric scalar fields in
+general relativity , Phys. Rev. D 24, 839 (1981)
+[34] V. Faraoni, F. Hammad, A.M. Cardini, and T. Gobeil,
+Revisiting the analogue of the Jebsen-Birkhoff theorem
+in Brans-Dicke gravity , Phys. Rev. D 97, 084033 (2018),
+arXiv:1801.00804 [gr-qc]
+[35] A. Bhadra and K. Sarkar, On static spherically symmet-
+ric solutions of the vacuum Brans-Dicke theory ,Gen.Rel-
+ativ. Gravit. 37, 2189 (2005), arXiv:gr-qc/0505141
+[36] R. Izmailov, A. Bhattacharya, and K. K. Nandi, Brans-
+Dicke womhole revisited II , arXiv:1006.4819 [gr-qc]
+[37] J. C. Baez and E. F. Bunn, The Meaning of Einstein’s
+Equation , Amer. Jour. Phys. 73, 644 (2005), arXiv:gr-
+qc/0103044
+[38] J. Ehlers, I. Ozsvath, E. L. Schucking, and Y. Shang,Pressure as a Source of Gravity , Phys. Rev. D 72, 124003
+(2005) , arXiv:gr-qc/0510041
+[39] R. C. Tolman, On the Use of the Energy-Momentum
+Principle in General Relativity , Phys. Rev. 35, 875
+(1930)
+[40] P. S. Florides, On the Tolman and MNøller mass-energy
+formulae in general relativity , J. Phys.: Conf. Ser 189,
+012014 (2009)
+[41] D. N. Vollick, On the Meaning of Various Mass Defini-
+tions for Asymptotically Flat Spacetimes , Can. J. Phys.
+101(2023) 1, 9-16; arXiv:2101.12570 [gr-qc]
+[42] H. K. Nguyen and B. Chauvineau, An optimal gauge for
+Tolman-Oppenheimer-Volkoff equation in Brans-Dicke
+gravity(in preparation)
+[43] C. Romero and A. Barros, Does the Brans-Dicke theory
+of gravity go over to general relativity when ω→∞?,
+Phys. Lett. A 173, 243 (1993)
+[44] C. Romero and A. Barros, Brans-Dicke Vacuum Solu-
+tions and the Cosmological Constant: a Qualitative Anal-
+ysis, Gen. Relativ. Gravit. 25, 491 (1993)
+[45] F.M. Paiva and C. Romero, The Limits of Brans-Dicke
+Spacetimes: a Coordinate-free Approach , Gen. Relativ.
+Gravit.25, 1305 (1993)
+[46] A. Barros and C. Romero, On the weak field approxima-
+tion of the Brans-Dicke theory of gravity , Phys. Lett. A
+245, 31 (1998)
+[47] V. Faraoni, Theω→ ∞limit of Brans-Dicke theory ,
+Phys. Lett. A 245, 26 (1998), arXiv:gr-qc/9805057
+[48] V. Faraoni, Illusions of general relativity in Brans-Dicke
+gravity, Phys. Rev. D 59, 084021 (1999), arXiv:gr-
+qc/9902083
+[49] V. Faraoni and J. Côté, Two new approaches to the
+anomalous limit of Brans-Dicke to Einstein gravity ,
+Phys.Rev.D 99, 064013(2019), arXiv:1811.01728[gr-qc]
+[50] A. Bhadra, General relativity limit of the scalar-tensor
+theories for traceless matter field , gr-qc/0204014 [gr-qc]
+[51] N. Banerjee and S. Sen, Does Brans-Dicke theory always
+yield general relativity in the infinite ωlimit?, Phys. Rev.
+D56, 1334 (1997)
+[52] A. Bhadra and K.K. Nandi, ωdependence of the scalar
+field in Brans-Dicke theory , Phys. Rev. D 64, 087501
+(2001), arXiv:gr-qc/0409091
+[53] H.K. Nguyen and B. Chauvineau, O(1/√ω)anomaly
+in Brans-Dicke gravity with trace-carrying matter,
+arXiv:2402.14076 [gr-qc]
+[54] B. Chauvineau, On the limit of Brans–Dicke theory when
+ω→∞,Class. Quant. Grav. 20, 2617 (2003)
+[55] B.Chauvineau, Stationarity and large ωBrans–Dicke so-
+lutions versus general relativity , Gen.Relativ.Gravit. 39,
+297 (2007)

@@ -1,0 +1,17 @@
+GET my-dsl-index/_search 
+{
+  "query": {
+    "bool": {
+      "must": {
+        "match": {
+          "title": "Moneyball"
+        }
+      },
+      "filter": {
+        "term" : {
+          "year": 2011
+        }
+      }
+    }
+  }
+}

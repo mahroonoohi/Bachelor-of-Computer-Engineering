@@ -1,0 +1,500 @@
+Draft version April 2, 2024
+Typeset using L ATEX default style in AASTeX61
+CLUES IN BAILEY DIAGRAMS INDICATE THAT THE HORIZONTAL BRANCH EVOLUTIONARY EFFECT
+IS THE DIRECT REASON FOR OOSTERHOFF PHENOMENON
+Li, L.-J.,1Qian, S.-B.,1, 2, 3Zhu, L.-Y.,1, 4Shi, X.-D.,1and Liao, W.-P.1, 4
+1Yunnan Observatories, Chinese Academy of Sciences, P.O. Box 110, Kunming, 650216, People’s Republic China
+2Department of Astronomy, School of Physics and Astronomy, Yunnan University, Kunming 650091, People’s Republic of China
+3Key Laboratory of Astroparticle Physics of Yunnan Province, Yunnan University, Kunming 650091, People’s Republic of China
+4University of Chinese Academy of Sciences, No.1 Yanqihu East Rd, Huairou District, Beijing, 101408, People’s Republic China
+Submitted to ApJL
+ABSTRACT
+Noticing the potential relationship between the pulsation amplitude of fundamental mode RR Lyrae stars and
+their average effective temperatures, we derived the relation between them from observational data. Using these
+relationships, we present the zero-age horizontal branch lines and corresponding evolutionary tracks in the Bailey
+diagrams. We first find that the trends of zero-age horizontal branch lines are consistent with the distributions of
+Oosterhoff I RR Lyrae stars, and there is a period shift effect in relatively metal-rich samples ([Fe/H] >-1). Main
+results show that evolutionary effects are the direct cause of the Oosterhoff dichotomy. The vast majority of Oosterhoff
+I RR Lyrae stars are in the early stage of horizontal branch evolution, while most of the Oosterhoff II stars are near
+the end of the horizontal branch phase. Our Bailey diagrams can intuitively explain some Oosterhoff phenomena (e.g.,
+long-period RR Lyrae stars in the metal-rich globular clusters NGC 6388 and NGC 6441), and also have the potential
+to become an important tool for in-depth study of RR Lyrae stars. Further research is needed on the Oosterhoff
+dichotomy to explore the formations and evolutionary processes of the Milky Way and its substructures.
+Keywords: methods: data analysis – stars: fundamental parameters – stars: horizontal-branch – stars:
+pulsations – stars: variables: RR Lyrae variable
+Corresponding author: L.-J. Li
+lipk@ynao.ac.cnarXiv:2404.00911v1  [astro-ph.SR]  1 Apr 20242 Li et al.
+1.INTRODUCTION
+RR Lyrae stars are a type of short period pulsating variables widely distributed in various celestial systems within
+the Milky Way. They are old, small mass stars in the evolutionary stage of the horizontal branch (HB), generally
+believed to be over 10 billion years old. Therefore, they are one of the important probes for studying the structure
+and evolution of the Milky Way and neighboring galaxies (Smith 2004). Single mode RR Lyrae stars can be divided
+into two types: the ab-type (RRab stars) and the c-type (RRc stars). The former are dominated by the fundamental
+mode, while the latter are dominated by the first overtone mode with a relatively short pulsation period. In the
+Hertzsprung-Russell diagram (HR diagram), RR Lyrae stars, as those horizontal branch stars, also undergo evolution
+over time. For a metal-intermediate RR Lyrae star, it begins its evolution from the zero-age horizontal branch (ZAHB),
+first evolves from blue to red, then in the opposite direction, and finally turns towards the asymptotic giant branch
+(AGB) located in the upper right corner of the HR diagram (Bono et al. 2020). The typical lifetime of a horizontal
+branch star is generally 0.1 Gyr, and it may only spend a portion of its life in the Instability Strip (IS, Sandage 1957;
+Lee 1991; Pietrinferni et al. 2004; Le Borgne et al. 2007). In this process, the physical parameters of the stars such
+as luminosity, and effective temperature change with evolution. Consequently, the pulsation parameters, which are
+dependent on these physical parameters (e.g., period, amplitude), will also undergo changes (Di Criscienzo et al. 2004;
+Le Borgne et al. 2007).
+RR Lyrae stars were first discovered in globular clusters (GCs), and the observation and research of such stars were
+initially mostly focused on those in GCs (Smith 2004). One of the important discoveries was the Oosterhoff dichotomy.
+This phenomenon refers to significant differences in the average pulsation period distribution and the proportion of
+RRc stars to the total number of RR Lyrae stars in different GCs (Oosterhoff 1939). The clusters with short periods
+and low proportions (i.e., M3) are known as Oosterhoff type I clusters (OoI clusters), while those with long periods
+and high proportions (i.e., M15) are known as Oosterhoff type II clusters (OoII clusters, Smith 2004). It was later
+discovered that the metallicity of stars in the OoII clusters were weaker than that of stars in the OoI clusters (Arp 1955;
+Kinman 1959). Numerous studies have been conducted to explain the Oosterhoff phenomenon. Interested readers can
+refer to Smith (2004) and recent papers such as Fabrizio et al. (2021) and Zhang et al. (2023).
+In the present paper, we focus on the relevant work conducted from the evolutionary perspective. Sandage (1958)
+suggested that OoII RR Lyrae stars are brighter than those in OoI GCs. Subsequently, Sandage et al. (1981) discovered
+the period shift effect based on observations of the RR Lyrae stars in GCs M3 and M15. In subsequent work, Sandage
+(1981a) and Sandage (1982) pointed out that this effect exists in other GCs and has a general correlation with metal
+abundance. In a series of Sandages works, the Oosterhoff phenomenon and period shift effect are primarily explained
+by an increase in luminosity with decreasing metallicity. However, the evolutionary factors have also been mentioned
+in Sandage (1981b). Actually, the evolutionary effect has also been noted by some other scholars (van Albada & Baker
+1973; Gratton et al. 1986; Caputo & de Santis 1992), but the first literature that explicitly connects the Oosterhoff
+phenomenon to evolutionary effects should be Lee et al. (1990). Based on their calculations, they pointed out that
+”almost all of the RR Lyrae variables in group II clusters are highly evolved stars from the blue side of the instability
+strip” and ”calculations for group I clusters like M3 indicate that the masses and luminosities of the RR Lyrae variables
+are not much different from those of the ZAHB models”. The viewpoints that evolution is related to the Oosterhoff
+dichotomy are also supported by models and observations (Caputo & de Santis 1992; Cox 1995; Clement & Shelton
+1999; Lee & Carney 1999; Cacciari et al. 2005; Prudil et al. 2020; Zhang et al. 2023).
+In recent decades, with the development of multiple photometric surveys, the number of discovered RR Lyrae stars
+in the Milky Way and nearby dwarf galaxies has also rapidly increased (Alcock et al. 1998; Ivezi´ c et al. 2000; Vivas
+et al. 2004; Kinemuchi et al. 2006; Szczygie l & Fabrycky 2007; Soszy´ nski et al. 2014, 2016, 2019; Clementini et al. 2019,
+2023; Moln´ ar et al. 2022). In the study of these objects, the Bailey diagrams (Bailey et al. 1919), also known as the
+Ppul- Amplitude diagram, are usually used to investigate the Oosterhoff phenomenon (Kinemuchi et al. 2006; Kunder
+& Chaboyer 2009; Szczygie l et al. 2009; Smith et al. 2011; Bono et al. 2020). The latest studies utilize spectral data
+to determine metal abundance and kinetic parameters, and combine the Bailey diagram to analyze the Oosterhoff
+dichotomy (Fabrizio et al. 2019, 2021; Zhang et al. 2023). The two pulsation parameters in the Bailey diagram,
+pulsation period Ppuland amplitude, are independent of distance and reddening, and are related to the physical and
+evolutionary parameters of stars. The relationship between the pulsation period and these parameters is well-known
+(van Albada & Baker 1971). If we establish the relationship between amplitude and these parameters (or a specific
+parameter), we can plot the evolutionary tracks on the Bailey diagram, similar to the HR diagram, and compare them
+with the observational results. In fact, this approach has appeared in previous studies (Bono et al. 1997, 2020).Bailey Diagrams 3
+In Section 2, we utilize the data from the LAMOST low-resolution spectrum (Xiang et al. 2019) and Gaia DR3 (Gaia
+Collaboration 2022; Clementini et al. 2023) to establish the relationship between effective temperature ( Teff) and the
+amplitude of the G band ( A(G)). In Section 3, we utilize the relationships between pulsation parameters and physical
+parameters to derive the pulsation parameters of RR Lyrae stars under various horizontal branching states, and then
+depict the ZAHB and evolutionary tracks in the Bailey diagram. Sections 4 and 5 are the discussion and conclusion,
+respectively.
+2.RELATIONSHIP BETWEEN TEFFAND A(G)
+Given the structural evolution parameters (mass, [Fe/H], Teff, luminosity, etc.) of a horizontal branch star in the IS,
+its pulsation period can be obtained by using the equation provided by van Albada & Baker (1971):
+logPpul= 11.497−0.68 logM
+M⊙+ 0.84 logL
+L⊙−3.48 log Teff. (1)
+Therefore, all we need to do is find the correlation between the pulsation amplitude and these evolutionary parameters.
+Sandage (1981b) pointed out that the Bband amplitude A(B) is neither a function of luminosity nor of [Fe/H], but
+depends principally on Teffalone. Bono et al. (1997) used a nonlinear convection model to conduct theoretical research.
+The studies revealed that the luminosity amplitude is closely related to the Teff, and the dependence on stellar mass
+and metal abundance can be ignored. McNamara & Barnes (2014) also pointed out that the dependence of the light
+amplitude of RR Lyrae stars on temperature is independent of Oosterhoff type. They provided the equations for the
+relationships between the intrinsic color index ( B−V)0and the amplitudes of BandVbands, which can be used to
+determine interstellar reddening. Based on the these literature, we assume that the average effective temperature is
+the only variable in the amplitude function and use the observational results to establish the relationship between the
+two parameters.
+TheTeffdata come from Xiang et al. (2019), while the amplitude data we adopted are the G band amplitude
+A(G) provided by Gaia DR3. Xiang et al. (2019) analyzed the LAMOST low-resolution spectra, providing multiple
+elemental abundance data for 6 million stars, as well as corresponding atmospheric physical parameters such as Teff,
+[Fe/H], and surface gravity log g. In the present paper, we use the Teffdata provided in their work. In fact, the data
+obtained from the LAMOST spectrum have been successfully applied to RR Lyrae stars and related fields (Li et al.
+2020; Liu et al. 2020, 2022; Duan et al. 2021a,b; Wang et al. 2022; Zhang et al. 2023; Cabrera Garcia et al. 2024).
+Using the xmatch tool from the CDS website1(Boch et al. 2012; Pineau et al. 2020), we cross-referenced the catalog
+provided by Xiang et al. (2019) with the Gaia DR3 RR Lyrae variable catalog (Gaia Collaboration 2022; Clementini
+et al. 2023) and obtained 4550 consistent results. After removing the results with Teffless than 5500 K, errors of Teff
+greater than 500 K, and A(G) greater than 1.3 mag, we finally obtained 4071 results (depicted as light gray dots in
+Figure 1). The observation of LAMOST can be regarded as a random sampling of the objects. Due to the asymmetry
+of the RRab variation curves, most of the sampling corresponds to phases with low luminosity, which corresponds to
+low temperature during the pulsation phase 0.5 - 0.8. It is shown in Figure 1 that most data points are concentrated
+in the temperature range of 6000 - 6450 K. It can also be observed that the temperature distribution range is widest
+with a large amplitude, and the highest temperature can exceed 8000 K. This supports the perspective of Sandage
+(1981b) that ”amplitude is a unique function of depth of penetration into the instability strip.”
+We use a simple and crude method to obtain the relationship between amplitude and Teff. We divide multiple regions
+at equal intervals between A(G) of 0.1 - 1.3 mag, and calculate the arithmetic means of the TeffandA(G) for each
+region. The results are highlighted with black dots in Figure 1. Furthermore, we use a parabola to fit the data points
+and establish the relationship between A(G) and log Teff(represented by the red line in Figure 1):
+A(G) = −4030(1340) + 2083(700) ·log T eff−269.1(91.7)·(log T eff)2. (2)
+The typical exposure times for LAMOST low-resolution spectra range from tens of minutes to over an hour (Luo et al.
+2019). Due to the long exposure times, the actual temperatures obtained near phase 0 should be lower than the true
+instantaneous maximum temperatures. It can be inferred that the average Teffin Figure 1 is slightly underestimated.
+However, the Blazhko effect can also lead to an overestimation of Teffby affecting the amplitude. The Blazhko
+1http://cdsxmatch.u-strasbg.fr/4 Li et al.
+phenomenon is mainly characterized by periodic or quasi-periodic changes in the amplitude and phase of the light
+curve of RR Lyrae stars, which was first noticed by Blaˇ zko (1907). It is generally believed that the existence of the
+Blazhko effect suppresses pulsation, leading to a decrease in pulsation amplitude (Smith 2004), but has a relatively
+small impact on the average temperature (Jurcsik et al. 2012). Therefore, the Blazhko effect can cause some originally
+high-temperature objects to appear in low-amplitude regions, leading to overestimates of the average Teff.
+In fact, we can use the information provided by Bono et al. (1997) and McNamara & Barnes (2014) to establish the
+relationship between A(G) and Teff. The log TeffandA(B) of fundamental mode pulsators are provided in Tables 3
+and 4 of Bono et al. (1997). Just convert the A(B) toA(G)2, and we can obtain the relationship (see green and blue
+pecked lines in Figure 1). Similarly, using the Equations (3, 5, 7) provided by McNamara & Barnes (2014), along with
+the amplitude conversion formulas for different bands, we derived the relationship between A(G) and Teff(refer to the
+green and blue dashed lines in Figure 1). It can be seen that there are differences in the relationship trends derived
+from the two literatures, and our results fall exactly between their distributions. This suggests that our results are
+reasonable. According to Equation (2), when the minimum A(G) is 0.1 mag and the maximum A(G) is 1.3 mag, the
+corresponding average Teffis 6250 K and 6900 K, respectively. This indicates that the width of the fundamental mode
+IS is about 650 K.
+3.BAILEY DIAGRAM
+After understanding the relationship between pulsation parameters and evolutionary parameters, our focus now shifts
+to obtaining the evolutionary parameters of HB stars. In the present paper, we use the theoretical model parameters
+provided by Dorman (1992). This oxygen-enhanced model provided the HB evolution sequences of a large grid, in which
+the partial mixing has been accurately calculated during most of the evolution. It may be more suitable for stars in
+GCs than scaled-solar models. Dorman (1992) provided detailed ZAHB sequences at different metal abundances, and
+calculated the evolutionary sequences for 10-13 masses for each composition. The entire computational grid consists of
+115 sequences and approximately 40,000 stellar models, each with corresponding parameters including [Fe/H], oxygen
+to iron abundance [O/Fe], helium abundance Y, post-helium-flash age, mass, luminosity, Teff, logg, absolute magnitude
+inVband, color index B−V, etc. When the evolution is in the instability strip, Dorman (1992) also provides the
+mass-to-light parameter and log Ppul. We are also concerned about parameters located in and near IS, but the amount
+of data provided by Dorman (1992) in this region is limited. Therefore, we assume that the evolutionary tracks are
+continuous and smooth (ignoring the possible loops and spikes during the evolution), and use the evolution parameters
+(mass, luminosity, and Teff) in and near the IS as the fitting objects. We use linear polynomials or exponential decay
+as fitting formulas to obtain the Mass - Teffand Luminosity - Teffrelationships of ZAHB and evolutionary tracks in
+this region. These relationship are utilized to determine the mass and luminosity, and subsequently calculate the Ppul.
+In this way, we can plot continuous evolutionary tracks in IS. Then, based on Equation (2) and the pulsation relation
+of van Albada & Baker (1971), these sequences can be plotted on the Bailey diagram.
+3.1. ZAHB in Bailey Diagram
+In the left panel of Figure 2, the solid lines display the ZAHB for different [Fe/H] on the Bailey diagram. As a
+comparison, we also provide the color density map of the Gaia DR3 RRab sample. The contour lines, marked by
+dashed lines, display isodensity levels in increments of 100. The right panel of Figure 2 shows the ZAHB HR diagram
+near the IS (rotated 90 degrees for comparison with the left panel). The solid dots were provided by Dorman (1992),
+while the solid lines represent the corresponding smooth curves. The red and blue dashed horizontal lines indicate
+theTeffof 6250 K and 6900 K, respectively. These values represent the red and blue edges of the RRab stars in the
+present paper. For a single ZAHB line, the masses decrease with an increase in Teff(i.e., with an increase in pulsation
+amplitude). However, there is a significant difference in the masses of ZAHB pulsating stars with different [Fe/H], and
+the masses decrease with the increase of [Fe/H]. The average mass of the stars with the lowest [Fe/H] in our samples
+is about 0.71 M⊙, while the average mass of the stars with the highest [Fe/H] is only 0.57 M⊙.
+It can be seen from the left panel of Figure 2 that the density map mainly reflects the distribution of OoI-type
+stars, which account for the majority of RRab stars, while the ZAHB lines follow the relationship between the period
+and amplitude of OoI stars. However, there is a slight deviation between solid lines and the highest concentration.
+2In practical operation, we first covert A(B) toA(V), and then to A(G). The formulas used are A(V) = 0.00653 + 0.75896 A(B) and
+A(G) = 0.925 A(V) - 0.012. The former is obtained by linear fitting using data from Table 6 of Liu & Janes (1990), and the latter is the
+Equation (3) of Clementini et al. (2016).Bailey Diagrams 5
+It is easy to understand that, similar to how most main sequence stars are positioned higher than the zero-age main
+sequence in the HR diagram, most OoI stars are in the ”main sequence stage” of the HB. They exhibit a slightly
+higher degree of evolution than the ZAHB, and are consequently situated to the right of the ZAHB lines in the Bailey
+diagram. In addition, it can be observed that when [Fe/H] <-1, the distribution of solid lines with different [Fe/H]
+is not significantly different. However, when [Fe/H] >-1, as the [Fe/H] increases, the lines move towards the left of
+the diagram, exhibiting the period shifting effect mentioned by A. Sandage. The reason for this phenomenon may be
+derived from the pulsation relation of van Albada & Baker (1971). In the right panel of Figure 2, it can be clearly seen
+that the luminosity of metal-poor ZAHB stars in the IS is higher than that of metal-rich stars. However, according to
+the pulsation relation of van Albada & Baker (1971), the pulsation period is not only proportional to the logarithm of
+luminosity, but also inversely proportional to the logarithm of mass. Therefore, for stars with [Fe/H] <-1, as [Fe/H]
+decreases, both their luminosities and masses increase. The impact of the two parameters is offset, and the pulsation
+periods are not significantly affected. However, for stars with [Fe/H] >-1, the luminosity difference between stars
+with different [Fe/H] increases, leading to significant differences in Ppul. Finally, Figure 2 indicates that most OoI-type
+stars are HB stars either on or just evolved from the ZAHB.
+3.2. Evolutionary tracks in Bailey Diagram
+Similarly, we present the evolutionary tracks of HB stars with different [Fe/H] in the Bailey diagrams (Figures 3 and
+4). The black dashed lines in each panel represent the ZAHB of the corresponding [Fe/H]. The solid lines with different
+colors represent the evolution of stars with varying masses. The gray background dots represent RRab samples from
+Gaia DR3, while the black solid dots represent field RRab stars with [Fe/H] similar to the values listed in individual
+panels (data provided by Liu et al. 2020). The red solid dots represent RRab stars in GCs (Clement et al. 2001; Clement
+2017). According to the [Fe/H] of their host clusters, they are plotted in the corresponding panels. Specifically, the
+samples come from M15, M53, M3, M62, M4, M107, NGC 6388, and NGC 6441. The corresponding mean [Fe/H] are
+as follow: [Fe/H] = -2.3 (Carretta et al. 2009; VandenBerg et al. 2016; Bhardwaj et al. 2021a), -2.06 (Harris 2010;
+Boberg et al. 2016; Bhardwaj et al. 2021b), -1.5 (Harris 2010; Bhardwaj et al. 2020), -1.3 (Contreras et al. 2010), -1.1
+(Braga et al. 2015; Neeley et al. 2015), -0.82 (Butler 1975), -0.60 (Armandroff & Zinn 1988), and -0.53 (Armandroff
+& Zinn 1988).
+Figures 3 and 4 show rich information and details. The several evolutionary tracks on the right side of each panel
+represent the late stage of HB (i.e., evolving toward AGBs), with the evolution direction from the top left to the
+bottom right. Their positions are consistent with those of the OoII group. In addition, it can be observed that under
+the same [Fe/H], the evolutionary tracks with lower masses tend to be more to the right, while the track with the
+highest mass tends to be more to the left, even in the Oosterhoff intermediate region (Fabrizio et al. 2019). In the
+OoI region, the evolutionary tracks are relatively complex. The evolutions of HB stars near the IS are as follow: first,
+they move slightly from ZAHB toward the red, then toward the blue (the first turning point), and finally toward
+the AGB with higher luminosity (the second turning point). The folding lines in the OoI region in Figure 3 and 4
+represent the corresponding evolutionary turning points. Taking Panel a in Figure 3 as an example, the purple upward
+curve represents the first turning point, while the right purple line represents the track after the second turning point;
+and the yellow downward curve represents the second turning point. In addition, the evolution lines between the two
+turning points are also shown in the panels (the purple line on the left in Panel b, green lines on the left in Panel c
+and d, red line on the left in Panel e, and black line on the left in Panel f), and they evolve along the ZAHB toward
+the upper left, in line with the distribution of OoI stars.
+From the above, we speculate that the vast majority of OoI stars are HB stars in the early stage of HB evolution
+(before the second turning point), while most of OoII stars are in the late stage. Some stars in the Oo Intermediate
+loci may be massive evolved targets under the same [Fe/H] conditions. From the observed results, it can be seen that
+there is indeed a significant difference in the [Fe/H] between OoI and OoII stars (Fabrizio et al. 2019, 2021; Zhang et al.
+2023, and references therein). However, in different panels, both OoI and OoII types of samples exist simultaneously,
+with varying proportions of quantities. This phenomenon of coexisting at different [Fe/H] scales suggests that the
+main mechanism leading to the Oosterhoff dichotomy should be evolutionary effect. Of course, we do not easily deny
+the influence of other factors, and we will provide a brief discussion in Section 4.
+Figure 4 shows the evolutionary tracks of RRab stars with relatively high [Fe/H]. They have features similar to that
+in Figure 3. Additionally, a rapid decrease in the sample size can be observed. But this reduction should be caused by
+observation effects and data processing strategies. The majority of the data in Liu et al. (2020) was obtained from the6 Li et al.
+LAMOST survey, focusing on halo stars rather than targets in the Galactic disk and bulge. Additionally, in their data
+processing, the matching template used also imposes limitations on [Fe/H]. It can be inferred that there are more RR
+Lyrae stars with [Fe/H] >-1, and most of them are located in the disk and bulge. Moreover, Panels c and d in Figure
+4 show that the RRab stars found in NGC 6388 and NGC 6441, which are rich in [Fe/H] and have long Ppul(known
+as the OoIII group, Pritzl et al. 2000; Catelan 2009), are stars in the late stage of HB with relatively small masses.
+3.3. Summary
+Based on the information provided, we summarize four cases of the evolution of RRab stars in the Bailey diagram.
+When the [Fe/H] is constant, HB stars with lower mass (e.g., [Fe/H]= -1.66, Mass = 0.62 M⊙, Panel d of Figure 3)
+tend to have higher Teffin the early stages of evolution, and only remain in the fundamental mode IS in the later
+stages. They only appear in the OoII region (Case I, see the black line in Panel d of Figure 3). The slightly higher
+mass stars (0.64 M⊙) are in the IS during the early stages (the first turning point) and later stages (after the second
+turning point), and are located in the OoI and OoII regions, respectively (Case II, see the red lines in Panel d of Figure
+3). The larger mass stars (0.66 M⊙) only present in the IS during the blueward and second redward stages, and are
+located in the OoI and OoII regions respectively (Case III, see the green lines in Panel d of Figure 3). The stars with
+the highest masses (0.68 M⊙) may only be in IS during the second turning point stages, and will be in the OoI or Oo
+Intermediate loci (Case IV, see the blue line in Panel d of Figure 3).
+4.DISCUSSIONS
+As mentioned in Section 1, the practice of plotting evolutionary tracks in Bailey diagrams have already appeared
+in Bono et al. (1997) and Bono et al. (2020). Compared to their results, the main difference between us and them is
+the masses. At the same metal abundance, Bono et al. (1997) systematically used a higher mass than in our study.
+The same applies to the example of metal-poor samples in Bono et al. (2020). The reason for this deviation should
+be attributed to the theoretical model. Different models have various parameters and conditions, such as [O/Fe] and
+helium abundance, leading to distinct evolutionary paths. However, the overall shapes of the tracks will not be altered.
+For example, without considering the difference in masses, the track shapes in Figures 16 and 17 of Bono et al. (1997)
+are generally consistent with our results shown in Panels a and e of Figure 3. The main difference is that the ZAHB
+line in their Figure 17 is positioned further to the right compared to ours. In the case of Z = 0.0001 ([Fe/H] = -2.3)
+as reported by Bono et al. (2020), the mass used was relatively large, is 0.75 M⊙, and the corresponding temperature
+at the ZAHB was also high, is log Teff∼3.91 (approximately 8130 K, refer to the upper-left panel of their Figure
+4). The evolutionary tracks in their Bailey diagram (middle-left panel of Figure 4 in their paper) are consistent with
+our Case I. Bono et al. (2020) provided several examples of evolution, with only one mass condition specified for each
+metal abundance. Normally, the mass distribution of RR Lyrae stars in GCs should follow a certain pattern, and
+relying on just one evolutionary track is insufficient. Similar work has been done by Sandage (2010), but they adopted
+the same approach, where each GC only has one evolutionary track. As for determining which model is better, it still
+needs to be based on the observational results in the Bailey diagram. As introduced in Section 3, Figures 3 and 4
+are sufficient to describe the evolution of RRab stars in the Bailey diagram. The theoretical tracks align well with
+observational results, and can elucidate some phenomena that were previously challenging to explain. This paper
+also introduces a new research approach. Future scholars can establish more detailed theoretical models, construct
+more accurate evolutionary trajectories, and conduct more in-depth research on the specifics in the Bailey diagram,
+such as the HASP (Stetson et al. 2014; Fiorentino et al. 2015; Belokurov et al. 2018), and the different populations
+(Pietrukowicz et al. 2015, 2020).
+One of our works is to establish the relationship between the amplitude of RRab stars and their average Teff. The
+primary analysis is also centered around this relationship. In fact, the relationship between pulsation amplitude and
+other parameters is also a topic worthy of further research. In the present paper, we simply assume that the amplitude
+is only related to the Teff. However, some scholars suggest that other factors may have an impact or correlation on
+the amplitude. Lee et al. (1990) proposed that the amplitude is not solely related to temperature, but also depends
+on [Fe/H]. The relationships depicted in literature also indicate that the amplitude is not only correlated with the
+color index, but also with [Fe/H] and/or pulsation period (Caputo & de Santis 1992; Piersimoni et al. 2002; Kunder &
+Chaboyer 2009). The amplitude is believed to be related to the Oosterhoff type (Clement & Shelton 1999), but there is
+also an opposing view (McNamara & Barnes 2014). In recent years, researches on RR Lyrae stars using spectral data
+provided by various survey projects have mostly focused on parameters such as element abundance and radial velocityBailey Diagrams 7
+(see series of papers of Fabrizio et al. 2019 and Liu et al. 2020). However, there is a lack of relevant analysis on other
+physical parameters (e.g., Teff, log g). Perhaps scholars can directly obtain these parameters in different pulsation
+phases through spectroscopy, and then obtain the average values. These averages can be compared with physical and
+pulsation parameters to identify specific statistical rules and correlations. Of course, similar work can also be done by
+using the photometric color index (Ngeow et al. 2017). However, eliminating the influence of interstellar extinction is
+a complex problem.
+The viewpoint that the Oosterhoff dichotomy is caused by evolutionary effects does not necessarily negate other
+viewpoints and discoveries. There may be complex factors and causes behind a phenomenon. As mentioned earlier, the
+evolutionary effect itself involves multiple stellar physical and evolutionary parameters, including metal abundance,
+mass, age, etc. The differences in physical and dynamic parameters between OoI and OoII RR Lyrae stars are
+understandable and have been confirmed (Fabrizio et al. 2019, 2021; Iorio & Belokurov 2021; Liu et al. 2022; Zhang
+et al. 2023). Of course, the most relevant parameters for evolution should be the two ages: the age starting from
+the ZAHB (or post-helium-flash age) and the age starting from the zero-age main sequence. The former directly
+determines the evolutionary stage of HB stars, while the latter involves the formation and evolution of stars in specific
+celestial structures such as the Galactic bulge, disk, halo, GCs, and dwarf galaxies. Different evolutionary experiences
+of the structures have also led to various scenarios in the Bailey diagram. Broadly speaking, we concur with Zhang
+et al. (2023) perspective that ”Oosterhoff dichotomy is the result of a combination of stellar and galactic evolution.”
+Conversely, a deeper understanding of the Oosterhoff phenomenon may contribute to the study of the formation and
+evolution of galactic substructures (Fiorentino et al. 2015; Pietrukowicz et al. 2015; Belokurov et al. 2018; Prudil et al.
+2019, 2020; Pietrukowicz et al. 2020; Zinn et al. 2020; Iorio & Belokurov 2021; Liu et al. 2022; Wang et al. 2022).
+5.CONCLUSION
+The mechanism behind the Oosterhoff dichotomy is an important open question in the research field of RR Lyrae
+stars, and the evolutionary effect is one of the frequently mentioned explanations. Noting the relationships between
+the pulsation parameters of pulsating stars and their evolutionary parameters, we have discovered that it is possible to
+create an ”HR diagram” with pulsation parameters as variables. This allows us to construct the evolutionary tracks
+in the Bailey diagrams. We assumed that the pulsation amplitude is a function of the average Teff, and derived their
+relationship equation from the observed data. Based on these relationships, we convert the evolutionary parameters
+presented by Dorman (1992) into corresponding pulsation parameters, and illustrate them on the Bailey diagram (see
+Figures 2, 3, 4).
+Figure 2 shows that the distributions of the ZAHB RRab stars are consistent with those of OoI stars, both decreasing
+with the increase of Ppul. When [Fe/H] <-1, there is little difference in the distribution of ZAHB lines for different
+[Fe/H]. When [Fe/H] >-1, the difference in luminosity caused by [Fe/H] becomes significant, leading to the period
+shift phenomenon in the Bailey diagram (left panel of Figure 2). The evolutionary tracks in Figures 3 and 4 suggest
+that the vast majority of OoI stars are HB stars in the early stage of HB evolution, while most of OoII stars are in the
+late stage. Some stars in the Oo Intermediate loci may be massive evolved targets under the same [Fe/H] conditions.
+These indicate that evolutionary effects are the direct cause of the Oo dichotomy. Our Bailey diagrams also intuitively
+solve the problem of the so-called OoIII groups with rich [Fe/H] and long Ppul, and have broader application prospects.
+Finally, research on the Oosterhoff phenomenon will not be interrupted. Reflecting the results of HB evolution can
+play an important role as a clue or breakthrough point in exploring the formation and evolution process of the Milky
+Way and its substructures.
+This work is supported by the International Cooperation Projects of the National Key R&D Program (No.
+2022YFE0127300), the National Natural Science Foundation of China (Nos. 11933008, 12103084), the Natural Science
+Foundation of Yunnan Province (Nos. 202201AT070187, 202301AT070352, 202401AS070046), and ”Yunnan Revital-
+ization Talent Support Program” in Yunnan Province.
+This research uses data from Dorman (1992), Clement et al. (2001), Clement (2017), Xiang et al. (2019), Liu et al.
+(2020), Gaia Collaboration (2022) and Clementini et al. (2023). We express our gratitude for their excellent work.
+Without their contributions, this paper would not have been possible to complete. This research made use of the
+cross-match service provided by CDS, Strasbourg. This work has made use of data from the European Space Agency
+(ESA) mission Gaia (https://www.cosmos.esa.int/gaia ), processed by the Gaia Data Processing and Analysis8 Li et al.
+Consortium (DPAC, https://www.cosmos.esa.int/web/gaia/dpac/consortium ). Funding for the DPAC has been
+provided by national institutions, in particular the institutions participating in the Gaia Multilateral Agreement.
+REFERENCES
+Alcock, C., Allsman, R. A., Alves, D. R., et al. 1998, ApJ,
+492, 190
+Armandroff, T. E., & Zinn, R. 1988, AJ, 96, 92
+Arp, H. C. 1955, AJ, 60, 317
+Bailey, S. I., Leland, E. F., Woods, I. E., & Pickering, E. C.
+1919, Annals of Harvard College Observatory, 78, 195
+Belokurov, V., Deason, A. J., Koposov, S. E., et al. 2018,
+MNRAS, 477, 1472
+Bhardwaj, A., Rejkuba, M., de Grijs, R., et al. 2020, AJ,
+160, 220
+Bhardwaj, A., Rejkuba, M., Sloan, G. C., Marconi, M., &
+Yang, S.-C. 2021a, ApJ, 922, 20
+Bhardwaj, A., Rejkuba, M., de Grijs, R., et al. 2021b, ApJ,
+909, 200
+Blaˇ zko, S. 1907, Astronomische Nachrichten, 175, 325
+Boberg, O. M., Friel, E. D., & Vesperini, E. 2016, ApJ, 824,
+5
+Boch, T., Pineau, F., & Derriere, S. 2012, in Astronomical
+Society of the Pacific Conference Series, Vol. 461,
+Astronomical Data Analysis Software and Systems XXI,
+ed. P. Ballester, D. Egret, & N. P. F. Lorente, 291
+Bono, G., Caputo, F., Castellani, V., & Marconi, M. 1997,
+A&AS, 121, 327
+Bono, G., Braga, V. F., Crestani, J., et al. 2020, ApJL, 896,
+L15
+Braga, V. F., Dall’Ora, M., Bono, G., et al. 2015, ApJ, 799,
+165
+Butler, D. 1975, ApJ, 200, 68
+Cabrera Garcia, J., Beers, T. C., Huang, Y., et al. 2024,
+MNRAS, 527, 8973
+Cacciari, C., Corwin, T. M., & Carney, B. W. 2005, AJ,
+129, 267
+Caputo, F., & de Santis, R. 1992, AJ, 104, 253
+Carretta, E., Bragaglia, A., Gratton, R., D’Orazi, V., &
+Lucatello, S. 2009, A&A, 508, 695
+Catelan, M. 2009, Ap&SS, 320, 261
+Clement, C. M. 2017, VizieR Online Data Catalog:
+Updated catalog of variable stars in globular clusters
+(Clement+ 2017), VizieR On-line Data Catalog: V/150.
+Originally published in: 2001AJ....122.2587C, ,
+Clement, C. M., & Shelton, I. 1999, ApJL, 515, L85
+Clement, C. M., Muzzin, A., Dufton, Q., et al. 2001, AJ,
+122, 2587
+Clementini, G., Ripepi, V., Leccia, S., et al. 2016, A&A,
+595, A133Clementini, G., Ripepi, V., Molinaro, R., et al. 2019, A&A,
+622, A60
+Clementini, G., Ripepi, V., Garofalo, A., et al. 2023, A&A,
+674, A18
+Contreras, R., Catelan, M., Smith, H. A., et al. 2010, AJ,
+140, 1766
+Cox, A. N. 1995, in Astronomical Society of the Pacific
+Conference Series, Vol. 78, Astrophysical Applications of
+Powerful New Databases, ed. S. J. Adelman & W. L.
+Wiese, 243
+Di Criscienzo, M., Marconi, M., & Caputo, F. 2004, ApJ,
+612, 1092
+Dorman, B. 1992, ApJS, 81, 221
+Duan, X.-W., Chen, X., Sun, W., et al. 2021a, ApJ, 918, 3
+Duan, X.-W., Chen, X.-D., Deng, L.-C., et al. 2021b, ApJ,
+909, 25
+Fabrizio, M., Bono, G., Braga, V. F., et al. 2019, ApJ, 882,
+169
+Fabrizio, M., Braga, V. F., Crestani, J., et al. 2021, ApJ,
+919, 118
+Fiorentino, G., Bono, G., Monelli, M., et al. 2015, ApJL,
+798, L12
+Gaia Collaboration. 2022, VizieR Online Data Catalog:
+Gaia DR3 Part 4. Variability (Gaia Collaboration, 2022),
+VizieR On-line Data Catalog: I/358. Originally published
+in: Astron. Astrophys., in prep. (2022), ,
+Gratton, R. G., Tornambe, A., & Ortolani, S. 1986, A&A,
+169, 111
+Harris, W. E. 2010, arXiv e-prints, arXiv:1012.3224
+Iorio, G., & Belokurov, V. 2021, MNRAS, 502, 5686
+Ivezi´ c, ˇZ., Goldston, J., Finlator, K., et al. 2000, AJ, 120,
+963
+Jurcsik, J., S´ odor, ´A., Hajdu, G., et al. 2012, MNRAS, 423,
+993
+Kinemuchi, K., Smith, H. A., Wo´ zniak, P. R., McKay,
+T. A., & ROTSE Collaboration. 2006, AJ, 132, 1202
+Kinman, T. D. 1959, MNRAS, 119, 538
+Kunder, A., & Chaboyer, B. 2009, AJ, 138, 1284
+Le Borgne, J. F., Paschke, A., Vandenbroere, J., et al. 2007,
+A&A, 476, 307
+Lee, J.-W., & Carney, B. W. 1999, AJ, 118, 1373
+Lee, Y.-W. 1991, ApJ, 367, 524
+Lee, Y.-W., Demarque, P., & Zinn, R. 1990, ApJ, 350, 155
+Li, L.-J., Qian, S.-B., Zhang, J., He, J.-J., & Zhu, L.-Y.
+2020, Research in Astronomy and Astrophysics, 20, 094Bailey Diagrams 9
+Liu, G., Huang, Y., Bird, S. A., et al. 2022, MNRAS, 517,
+2787
+Liu, G. C., Huang, Y., Zhang, H. W., et al. 2020, ApJS,
+247, 68
+Liu, T., & Janes, K. A. 1990, ApJ, 354, 273
+Luo, A. L., Zhao, Y. H., Zhao, G., & et al. 2019, VizieR
+Online Data Catalog: LAMOST DR5 catalogs (Luo+,
+2019), VizieR On-line Data Catalog: V/164. Originally
+published in: 2019RAA..in.prep..L, ,
+McNamara, D. H., & Barnes, J. 2014, AJ, 147, 31
+Moln´ ar, L., B´ odi, A., P´ al, A., et al. 2022, ApJS, 258, 8
+Neeley, J. R., Marengo, M., Bono, G., et al. 2015, ApJ, 808,
+11
+Ngeow, C.-C., Kanbur, S. M., Bhardwaj, A., Schrecengost,
+Z., & Singh, H. P. 2017, ApJ, 834, 160
+Oosterhoff, P. T. 1939, The Observatory, 62, 104
+Piersimoni, A. M., Bono, G., & Ripepi, V. 2002, AJ, 124,
+1528
+Pietrinferni, A., Cassisi, S., Salaris, M., & Castelli, F. 2004,
+ApJ, 612, 168
+Pietrukowicz, P., Koz lowski, S., Skowron, J., et al. 2015,
+ApJ, 811, 113
+Pietrukowicz, P., Udalski, A., Soszy´ nski, I., et al. 2020,
+AcA, 70, 121
+Pineau, F.-X., Boch, T., Derri` ere, S., & Schaaff, A. 2020, in
+Astronomical Society of the Pacific Conference Series,
+Vol. 522, Astronomical Data Analysis Software and
+Systems XXVII, ed. P. Ballester, J. Ibsen, M. Solar, &
+K. Shortridge, 125
+Pritzl, B., Smith, H. A., Catelan, M., & Sweigart, A. V.
+2000, ApJL, 530, L41
+Prudil, Z., D´ ek´ any, I., Catelan, M., et al. 2019, MNRAS,
+484, 4833
+Prudil, Z., D´ ek´ any, I., Smolec, R., et al. 2020, A&A, 635,
+A66Sandage, A. 1957, ApJ, 126, 326
+—. 1958, Ricerche Astronomiche, 5, 41
+—. 1981a, ApJ, 248, 161
+—. 1981b, ApJL, 244, L23
+—. 1982, ApJ, 252, 553
+—. 2010, ApJ, 722, 79
+Sandage, A., Katem, B., & Sandage, M. 1981, ApJS, 46, 41
+Smith, H. A. 2004, RR Lyrae Stars
+Smith, H. A., Catelan, M., & Kuehn, C. 2011, in RR Lyrae
+Stars, Metal-Poor Stars, and the Galaxy, ed.
+A. McWilliam, Vol. 5, 17
+Soszy´ nski, I., Udalski, A., Szyma´ nski, M. K., et al. 2014,
+AcA, 64, 177
+—. 2016, AcA, 66, 131
+Soszy´ nski, I., Udalski, A., Wrona, M., et al. 2019, AcA, 69,
+321
+Stetson, P. B., Fiorentino, G., Bono, G., et al. 2014, PASP,
+126, 616
+Szczygie l, D. M., & Fabrycky, D. C. 2007, MNRAS, 377,
+1263
+Szczygie l, D. M., Pojma´ nski, G., & Pilecki, B. 2009, AcA,
+59, 137
+van Albada, T. S., & Baker, N. 1971, ApJ, 169, 311
+—. 1973, ApJ, 185, 477
+VandenBerg, D. A., Denissenkov, P. A., & Catelan, M.
+2016, ApJ, 827, 2
+Vivas, A. K., Zinn, R., Abad, C., et al. 2004, AJ, 127, 1158
+Wang, F., Zhang, H. W., Xue, X. X., et al. 2022, MNRAS,
+513, 1958
+Xiang, M., Ting, Y.-S., Rix, H.-W., et al. 2019, ApJS, 245,
+34
+Zhang, S., Liu, G., Huang, Y., et al. 2023, MNRAS, 525,
+5915
+Zinn, R., Chen, X., Layden, A. C., & Casetti-Dinescu, D. I.
+2020, MNRAS, 492, 216110 Li et al.
+Figure 1. logTeffvs. Amplitude in G band. The light gray dots represent all the samples we obtained, while the black dots
+represent the corresponding arithmetic means. The red line represents the fit to the black dots. The pecked and dashed lines
+represent the relationships from Bono et al. (1997) and McNamara & Barnes (2014). TeffandA(G) are obtained from Xiang
+et al. (2019) and Clementini et al. (2023), respectively.
+Figure 2. Left panel: Density maps of the Bailey diagram for Gaia DR3 RRab stars. The solid lines of different colors show the
+ZAHB for different [Fe/H]. Right panel: HR diagram for ZAHB models near IS (Dorman 1992) constructed by different chemical
+compositions (rotated 90 degrees). The solid lines represent smooth curves, while the solid dots indicate points provided by
+models. The red and blue dashed lines represent the edges of the fundamental mode IS.Bailey Diagrams 11
+Figure 3. Bailey diagrams of different chemical compositions. In each panel, the gray background dots represent Gaia DR3
+RRab stars, the black solid dots represent field RRab stars with corresponding [Fe/H] (Liu et al. 2020), and the red solid dots
+represent RRab stars in GCs (Clement et al. 2001; Clement 2017). The black dashed line in each panel refers to the ZAHB of
+the corresponding [Fe/H]. The solid lines represent the evolutionary tracks of stars with different masses.12 Li et al.
+Figure 4. Same as Figure 3, but Bailey diagrams for those stars that are relatively metal-rich ([Fe/H] >-1).

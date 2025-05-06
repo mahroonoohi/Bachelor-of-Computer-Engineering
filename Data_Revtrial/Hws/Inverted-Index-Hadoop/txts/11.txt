@@ -1,0 +1,360 @@
+arXiv:2404.00192v1  [cs.HC]  29 Mar 2024Tools andTasks in Sensemaking:
+AVisual AccessibilityPerspective
+YichunZhao
+University ofVictoria
+Victoria BC,Canada
+yichunzhao@uvic.caMiguelA. Nacenta
+University ofVictoria
+Victoria BC,Canada
+nacenta@uvic.ca
+ABSTRACT
+Our previous interview study explores the needs and uses of d ia-
+grammatic information by the Blind and Low Vision (BLV) com-
+munity, resulting in a framework called the Ladder of Diagram
+Access. The framework outlines ﬁve levels of information access
+when interacting with a diagram. In this paper, we connect th is
+framework to include the global activity of sensemaking and dis-
+cuss its (in)accessibility to the BLV demographic. We also d iscuss
+the integration of this framework into the sensemaking proc ess
+and explore the current sensemaking practices and strategi es em-
+ployedbytheBLVcommunity,thechallengestheyfaceatdiﬀe rent
+levels of the ladder,and potential solutionsto enhance inc lusivity
+towards a data-driven workforce.
+KEYWORDS
+Sensemaking, Accessibility,Blind and Low-vision
+ACMReference Format:
+YichunZhaoandMiguelA.Nacenta.2024.ToolsandTasksinSensemaking :
+A Visual Accessibility Perspective . In Sensemaking Workshop, CHIConfer-
+ence on Human Factors in Computing Systems (CHI ’24), May 11– 16, 2024,
+Honolulu,HI,USA. ACM,NewYork, NY, USA, 4pages.
+1 INTRODUCTION
+Sensemakingistheprocessofcreatingandreﬁningundersta nding
+from complex and uncertain data and it is a crucial skill for m any
+professionaldomains[ 2].However,sensemakingoftenreliesheav-
+ilyonvisualrepresentations suchasdiagrams,charts,and graphs,
+toconveyandmanipulateinformation[ 7].Thisposesasigniﬁcant
+challengeforpeoplewithvisualdisabilities,whomayhave limited
+orno access totheserepresentations.
+In this paper, we explore the topic of sensemaking from a vi-
+sual accessibility perspective and discuss the current pra ctice in
+thisarea.Webelievediagrammaticinformationholdsauniq ueand
+compelling interest rooted in the seminal work of Larkin and Si-
+mon, who argued thatdiagrams can aid problem-solving and co g-
+nitivetasksbyreducingsearch,supportingrecognitionov errecall,
+and facilitating perceptual inference [ 3]. Diagrams, by their very
+nature, present information in a spatially organized manne r that
+allowsforeﬃcientprocessingandinterpretationtorepres entcom-
+plex relationships and structures more intuitively than te xtual or
+Permission to make digital or hard copies of part or all of thi s work for personal or
+classroomuseisgrantedwithoutfeeprovidedthatcopiesar enotmadeordistributed
+forproﬁtorcommercialadvantageandthatcopiesbearthisn oticeandthefullcitation
+ontheﬁrstpage.Copyrightsforthird-partycomponentsoft hisworkmustbehonored.
+For all other uses,contact the owner/author(s).
+CHI ’24Sensemaking Workshop,May 11–16,2024,Honolulu, HI ,USA
+© 2024 Copyrightheld by the owner/author(s).numericaldata,makingthemapowerfultoolforsensemaking .We
+delve into the insights derived from a qualitative intervie w study
+conducted by Zhao et al. [ 10,11]. The study involved 15 blind
+andlow-vision(BLV)individualswhosharedtheirexperien cesand
+challenges withaccessing and usingdiagrams invarious con texts.
+Theseinsightsareencapsulatedinthe LadderofDiagramAccess ,a
+frameworkthatcharacterizesthediﬀerentlevelsofinform ationac-
+cessthatBLVpeoplecanachievewheninteractingwithadiag ram,
+and thefactorsthatinﬂuence their access.
+Wethen applythis framework tothe sensemaking processand
+show how it can help us understand and address the accessibil ity
+barriers that BLV people face when performing complex, prof es-
+sional tasks that involve data analysis and visualization. We also
+discuss thepotential impact of ourﬁndings onthe design of t ools
+andtasksforsensemakingandtheimplicationsforcreating amore
+inclusive and diverse data-driven workforce. Finally, we a cknowl-
+edgethelimitationsofourstudyandsuggest directionsfor future
+research.Ourcontributionisnotareiterationoftheseﬁnd ings,but
+ratherareinterpretation andapplicationofthemthrought helens
+ofsensemaking. Weexplorehow the LadderofDiagramAccess in-
+tersects with the sensemaking process, providing a fresh pe rspec-
+tiveontheoriginal study.
+2 METHODS
+We revisit a qualitative interview study conducted with 15 B LV
+participants, all of whom had varying degrees of vision loss and
+experience with diagrams. This study was originally undert aken
+as part of a larger project aimed at designing and evaluating a
+novel tool for making node-link diagrams accessible to BLV i ndi-
+viduals [10,11]. The study followed a semi-structured interview
+protocol,asking participants to describe their encounter s with di-
+agrams invarious contextsand demonstratetheir preferred meth-
+ods of accessing and using diagrams. The open coding and the-
+matic analysis of the interview transcripts led to the emerg ence
+of 124codes,which were groupedinto ﬁve themes. These theme s
+collectivelyformedthe LadderofDiagramAccess framework,asig-
+niﬁcant outcomeof the study. In this paper, we further delve into
+the codebook, reanalyzing these insights to better align wi th the
+datasensemakingprocessbyadoptingestablishedmodelsan dthe-
+ories ofsensemaking.
+3 RESULTS: LADDER OF DIAGRAMACCESS
+Thisframeworkdescribestheﬁvelevelsofinformationacce ssthat
+BLVpeoplecanachieve wheninteractingwithadiagram,andt he
+factorsthatinﬂuence their access. Fromthelowest tothehi ghest:
+(1)Unaware of the Representation : This bottom level corre-
+spondstothesituationwhereBLVindividualsareunawareofCHI ’24 Sensemaking Workshop, May 11–16, 2024,Honolulu, HI ,USA Yichun Zhao and Miguel A.Nacenta
+a diagram’s existence due to it being skipped or ignored by
+their assistive technology or informants, having no access to
+thedata.
+(2)Aware of the Representation : BLV individuals know a dia-
+gramexistsbutlackfurtherinformationaboutit.Forexamp le,
+they may hear a placeholder such as “graphic” or “embedded
+object” from their screen reader, but they do not know what
+typeofdiagramitis,whatitrepresents,orwhyitisimporta nt.
+Theyknow theexistence of thedata,butnot tothedataitself
+ortheschema ofthediagram.
+(3)Single Static Perspective : BLV individuals learn about the
+diagramfromasinglestaticperspective(e.g.,alternativ etext),
+butlack control over the level of detail and granularityof t he
+information.
+(4)Multiple Perspectives :BLV individuals gain additional per-
+spectivesofthediagrambeyond astaticdescription,allow ing
+more interactive and ﬂexible query and navigation. This sup -
+portsdiﬀerenttasksandgoalsthatBLVpeoplemayhavewhen
+accessing a diagram, such as ﬁnding relations, summarizing ,
+orreﬂecting.
+(5)Comprehensive Access : The top level corresponds to the
+idealsituationwhereBLVindividualsaccessthediagramco m-
+parably to sighted individuals in terms of eﬃciency and ef-
+fectiveness, enablingtaskslikeunderstanding,analyzin g, and
+creating new knowledge fromthedata.
+3.1 Current Practices andChallenges relatedto
+Sensemaking
+Within the scope of the previous interview study, we have lea rnt
+aboutparticipants’ current experiences with accessing an d under-
+standing diagrammatic information at diﬀerent levels on th e lad-
+der. At the lower levels 1 and 2, they often struggle to know th e
+existenceofadiagram,tounderstanditspurposeandconten t,and
+togetasinglestaticperspectiveofit.Fouroutof15partic ipantsre-
+sort tousing OCR orCV toolsto scan and read diagrams tomove
+up to level 3 but accuracy and reliability cannot be ensured. Six
+seek information through alternative means but this takes t ime
+and eﬀorts. To move up to level 4 and 5, eleven participants se ek
+additionalandcomplimentaryinformationfromothersourc espro-
+vidingdiﬀerence perspectives.Many(14outof15)relyonsi ghted
+individuals to describe diagrams and can engage in a back-an d-
+forthconversation toquerythediagram.
+However, several barriers to sensemaking emerge. The succe ss
+ofsensemakingdependsonindividualneeds(n=5),andastat icrep-
+resentationislimitedasP12explains:“Sometimes,youjus twantto
+skimsomething,andyoucan’t.Youcan’tdothe“cheaty”shor t[cut]
+method of looking at the diagrams [visually]and inferring t he in-
+formation.” P6 highlights that the single perspective migh t not be
+enough for tasks which require more information: “I don’t ha ve
+enough information [from the diagram] ... I think it makes a d if-
+ference too if I actually need it for something [to perform ta sks
+on],orifit’sjustkindofsomethingthat’sjustthere.”P10 alsocon-
+ﬁrms that it is “a big challenge” to match the diﬀerent goals o f
+individuals, such as the diagram “design”, “layout”, or “st atistical
+information”.Withmultipleperspectives,therecouldbealackofconsist ency
+intheinformationaccessed from them (n=4). P11explained: “The
+challengeis...[to]workout[multipleaccessestoinforma tion]that
+are going towork universally [so that]I, the next person, an d the
+nextpersonafterwillbeabletointerpretthemallinasimil arway.”
+P10 added that if there is inconsistency, then they would “[s tart
+to]investtimeintryingtounderstandthat.”P8hadtosomet imes
+combinemultipleperspectivesfromotherpeople:“Everybo dyhas
+a diﬀerent way of explaining something, and if somebodymiss ed
+some key things, then it’s important to get an explanation fr om 2
+or 3 people, and then I can put things together better.” P14 hi gh-
+lighted that crucial information might bemissed when trans ition-
+ing between an overview of a diagram and its speciﬁc details a nd
+gaveanexampleofoccasionallymissingconnectionsbetwee nindi-
+vidualdiagramentities.Fiveparticipantsalsoreportedt heneedto
+iterativelyassesstherelevanceofinformationcurrently presented
+and switchperspectiveif necessary.
+Despite these challenges to sensemaking, participants sha red
+strategies to overcome them. One approach is to divide the in for-
+mation into digestible parts or layers (n=3): “It’s always b est to
+simplifyandbreakupthetopicintomultiplediagrams,oryo urisk
+makingituseless” [P2].Fortactilediagrams,P11usediﬀer ent tex-
+turestodistinguishvariouselementsandregions.Additio nally,14
+people recommended to consider both the overview and the de-
+tails of a diagram, as conﬁrmed by P8: “Start with a basic outl ine
+andthentryﬁllinginthedetail.”Twoparticipantswouldre arrange
+spatiallayoutsmentallytoenhancesensemaking:“Sometim esyou
+have to come up with new ways of representing things ... so tha t
+youknowthisrelatestothis,butinanalternativewayitrel atesto
+that as well” [P7]. 13 participants also annotate alongside the dia-
+grams.Participants atlevel 4or5canconductmoresensemak ing-
+relatedtaskssuchascross-referencingandcomparing(n=1 0),ﬁnd-
+ing patterns or commonalities (n=5), summarization (n=1) a nd re-
+ﬂection(n=1).
+4 DISCUSSION: SENSEMAKING AND VISUAL
+ACCESSIBILITY
+We elaborate on the implications that the challenges BLV peo ple
+facewhenaccessingdiagramshaveonsensemaking. Multiple per-
+spectives sometimes lead to inconsistencies and confusion , cause
+peopletostrugglewithreconciling theseconﬂictingdetai ls aﬀect-
+ing the audience’s understanding of the data. The Iceberg Se nse-
+making model marks the importance of considering both expli cit
+and tacit schemas when interpreting data [ 1], and any inconsis-
+tencies betweentheseschemas can obstructthesensemaking pro-
+cess. As a result, peoplemay ﬁnd themselves spending moreti me
+synthesizing information from various sources, which is al sopart
+of the iterative development and reﬁnement of knowledge str uc-
+tures[2,6].However,welearntfromtheinterview studythatthis
+costisevenmoresigniﬁcantforBLVpeople.Therefore,itis impor-
+tanttostrikea balancebetweenperspectivestomanage cogn itive
+load.Lastly,therelianceonsightedindividualsorothers ourcesfor
+additional perspectives can also be limiting, with availab ility, ex-
+pertise,andsocialdynamicsinﬂuencingthequalityandtim elinessTools and Tasks in Sensemaking:
+A VisualAccessibility Perspective CHI ’24Sensemaking Workshop, May 11–16, 2024,Honolulu, HI , USA
+of these perspectives. The Iceberg Sensemaking model ackno wl-
+edges this complexity and highlights the role of power dynam ics
+and theneed toarticulatetacitknowledge explicitly[ 1].
+Theladderofaccesscanhelpusunderstandhowthesensemak-
+ingloopandthedataframe[ 2]modelcanbeusedmoreeﬀectively
+to transform data into knowledge and insights. The sensemak ing
+processiscurtailedatthelowerlevelsintheladder,where individ-
+ualsmaystruggletoknowtheexistence ofadiagram,underst and
+its purposeand basic content and assess its relevance. By mo ving
+up the ladder, people can leverage multiple perspectives to sup-
+portandenhancetheirsensemaking process.Infact,sensem aking
+tools commonly assume that users are already at level 4 and ab le
+to access additional perspectives. The higher levels in the ladder
+alsoemphasize theiterativenatureofsensemaking, where p eople
+develop and reﬁne their mental modelsthrough activities li kefor-
+agingandsynthesis[ 2,8].Multipleandinteractiveperspectivesof
+informationalsoallowBLVpeopletoformalternativerepre senta-
+tionswhicharepartofthelearningloopcomplex[ 8].Forexample,
+a BLV projectmanager whowants tomakesense of aGantt chart
+diagrammaybeatlevel2iftheyonlyknowthatthereisagraph ic
+on the web page, but not what it represents. They may move to
+level 3 if they can access a static description of the diagram , such
+as an alt-text or an OCR output. However, this may not be suﬃ-
+cient for their sensemaking needs, as they may want to explor e
+the diagram in more detail, compare diﬀerent diagram elemen ts,
+or test diﬀerent hypotheses. To achieve level 4, they may nee d to
+accessmultipleperspectivesofthediagram,suchasasumma ry,an
+overview, or a query. This may require the help of sighted peo ple
+ortheuseofspecializedtoolsliketactilegraphics.Torea chlevel5,
+they may need to access the diagram in an eﬃcient and eﬀective
+way, without excessive cognitive or social costs, and ideal ly with
+thesame beneﬁts as sighted people.
+Representationslikediagramsarespatialinnatureandcan take
+advantage of visual processing [ 7]. We have learnt from our BLV
+participants that spatial information is crucial in making sense of
+information tounderstand the“items” in a diagram, the “rel ation-
+shipsofspaceandtheitemsthattakeupthespace”,andthe“s pace
+in between them” [P2]. Although the visual aspect of spatial in-
+formation might not be perceived successfully, one can stil l un-
+derstand spatial information by relying on other sensory in puts.
+Oneexamplegivenbyourparticipantswasthattheycouldide ntify
+salientfeaturesofatactilediagrambydistinguishing diﬀ erenttac-
+tile textures or symbols. Considering alternative represe ntations
+beyond visual ones is therefore important. At the same time, we
+also learnt that an representation should aﬀord interactio ns that
+allowstheaudiencetoﬁlterinformationindiﬀerent layers tohelp
+them construct the mental models of the information more eﬀe c-
+tively.
+The ladder of diagram access can be integrated into the sense -
+makingprocess,asitaﬀectshowBLVpeoplegather,represen t,and
+communicateinformation.Thehigherthelevelofaccess,th emore
+likelyBLVpeoplecanperformsensemaking tasks,suchasﬁnd ing
+patterns,generatinginsights,andcreatingsolutions.Ho wever,the
+level ofaccess mayalsodepend onthesensemaking context,s uch
+as the task, the domain, and the goal [ 2]. For example, a BLV per-
+son who wants to make sense of a networking diagram may only
+needlevel3accessiftheyareinterestedintheoveralldist ributionof the data, but they may need level 4 or 5 access if they want to
+compareor drilldownintothedetails.
+4.1 Towards anInclusive Data-driven
+Workforce
+Despite the diﬃculties, our interview study conﬁrmed that m any
+BLVpeopleareeagerandcapableofparticipatinginthedata -driven
+workforceandthattheyhavedevelopedavarietyofcopingst rate-
+gies and workarounds to overcome accessibility barriers to sense-
+making. These ﬁndings also have implications for the design of
+toolsandinterventionsthatcansupportsensemakingforBL Vpeo-
+ple,andcontributetoaninclusivedata-drivenworkforce. Someof
+thepotentialsolutionsand strategies foraddressing thei dentiﬁed
+challenges include:
+UniversalDesign. Thisreferstothedesignofproducts,environ-
+ments, and systems that are accessible and usable by all peop le,
+regardless of their abilities, preferences, or contexts [ 4]. Univer-
+saldesigncanhelpBLVpeopleachievelevel5accessbyprovi ding
+multiplemodalitiestorepresentandinteractwithdiagram s.Forex-
+ample,a universal designtoolcouldallowBLVuserstoswitc hbe-
+tweendiﬀerent modesofpresentation,suchastext,speech, sound
+or vibration, depending on their needs and preferences. Uni ver-
+sal design can also beneﬁt sighted people, as it can enhance t heir
+cognitive and perceptual abilities, and accommodatetheir diverse
+learning styles and situations [ 5].
+TranslationTools. Thesearetoolsthatcantranslateinformation
+fromonerepresentation toanother,suchasfromdiagrammat icto
+linear beyond the modality. Translation tools can help BLV p eo-
+ple achieve level 4 or 5 access by providing multiple perspec tives
+of information and allowing them to explore and manipulate d ia-
+grammatic information in their preferred modality. For exa mple,
+a translation tool could convert a bar chart into a series of t ones,
+where thepitch, volume, and durationof each tonecorrespon dto
+the height, width, and label of each bar. By providing altern ative
+ways of perceiving and understanding diagrams, translatio ntools
+can also potentially reveal hidden or complex patterns and r ela-
+tionships.
+SensemakingTools. Thesesupportthesensemakingprocess,such
+as ﬁnding, framing, ﬁltering, organizing, analyzing, and c ommu-
+nicating information [ 2,7–9]. Sensemaking tools can help BLV
+peopleachieve level 5 access by providing features and func tions
+that can reduce the cognitive and social costs of accessing d ia-
+grams, and enhance the beneﬁts of generating insights and so lu-
+tions. For example, a sensemaking tool could provide a summa ry,
+an overview, or a query of the diagram, as well as note-taking ,
+hypothesis-testing,oracollaborationfunction.Sensema kingtools
+caninvolvedesignprinciplesfromuniversaldesignandtra nslation
+tools to ultimately facilitate information processing and decision-
+making.
+5 LIMITATIONS AND FUTUREDIRECTIONS
+Whileourstudyprovidesvaluableinsightsintothechallen gesand
+strategies of BLV people when accessing and using diagrams, it
+alsohasseverallimitations.Ourstudyfocusedononetypeo frepre-
+sentationofinformationbeingdiagrammatic,soourﬁnding s mayCHI ’24 Sensemaking Workshop, May 11–16, 2024,Honolulu, HI ,USA Yichun Zhao and Miguel A.Nacenta
+notapplytoothertypesofrepresentations. Infutureresea rch, we
+plan to conduct more in-depth studies to investigate the spe ciﬁc
+challenges and strategies of BLV people when performing sen se-
+making tasks in a professional setting and also in a collabor ative
+setting.Webelieveourworkcancontributetotheongoingeﬀ orts
+toempowerallpeopletoparticipatefullyinthedata-drive nwork-
+force.
+REFERENCES
+[1] Charles Berret and Tamara Munzner. 2023. Iceberg Sensem aking: A Process
+ModelforCriticalDataAnalysisandVisualization.arXiv: 2204.04758(Aug.2023).
+http://arxiv.org/abs/2204.04758 arXiv:2204.04758[cs].
+[2] Sheriﬀ Jolaoso, Russ Burtner, and Alex Endert. 2015. Toward a Deeper Un-
+derstanding of Data Analysis, Sensemaking, and Signature D iscovery. Lecture
+NotesinComputerScience,Vol.9297. SpringerInternation al Publishing,Cham,
+463–478. https://doi.org/10.1007/978-3-319-22668-2_36
+[3] Jill H. Larkin and Herbert A. Simon. 1987. Why a Diagram is (Some-
+times) Worth Ten Thousand Words. Cognitive Science 11, 1 (1987), 65–100.
+https://doi.org/10.1111/j.1551-6708.1987.tb00863.x
+[4] Inger Marie Lid. 2014. Universal Design and disability: an interdisciplinary
+perspective. Disability and Rehabilitation 36, 16 (Aug. 2014), 1344–1349.https://doi.org/10.3109/09638288.2014.931472
+[5] Richard E. Mayer.2002. Multimedia learning . Vol. 41. Academic Press, 85–139.
+https://doi.org/10.1016/S0079-7421(02)80005-6
+[6] Peter Pirolliand Stuart Card.2005. The sensemakingprocessand leverage points
+for analyst technology as identiﬁed throughcognitivetask analysis.
+[7] DanielM.Russell.2003. Learningtosee,seeingtolearn :visualaspectsofsense-
+making, Bernice E. Rogowitz and Thrasyvoulos N. Pappas (Eds .). Santa Clara,
+CA, 8.https://doi.org/10.1117/12.501132
+[8] Daniel M. Russell, Mark J. Steﬁk, Peter Pirolli, and Stua rt K. Card. 1993.
+The cost structure of sensemaking. In Proceedings of the INTERACT ’93
+and CHI ’93 Conference on Human Factors in Computing Systems (CHI
+’93). Association for Computing Machinery, New York, NY, USA, 26 9–276.
+https://doi.org/10.1145/169059.169209
+[9] Karl E. Weick, Kathleen M. Sutcliﬀe, and DavidObstfeld. 2005. Organizingand
+the Process of Sensemaking. Organization Science 16, 4 (Aug. 2005), 409–421.
+https://doi.org/10.1287/orsc.1050.0133
+[10] Yichun Zhao. 2023. Designing TADA: Touch-and-Audio-based
+Diagram Access for People with Visual Impairments . Thesis.
+https://dspace.library.uvic.ca/handle/1828/15291 Accepted: 2023-08-
+25T22:58:09Z.
+[11] Yichun Zhao, Miguel A Nacenta, Mahadeo A Sukhai, and Sow mya Somanath.
+2024. TADA: Making Node-link Diagrams Accessible to Blind a nd Low-Vision
+People. In Proceedings of the CHI Conference on Human Factors in Computi ng
+Systems(CHI’24),May11–16,2024,Honolulu,HI,USA .ACM,Honolulu,HI,USA.
+https://doi.org/10.1145/3613904.3642222This figure "acm-jdslogo.png" is available in "png"
+ format from:
+http://arxiv.org/ps/2404.00192v1

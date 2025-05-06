@@ -1,0 +1,1190 @@
+A formal sp e cification of the jq language
+MICHAEL F ÄRBER
+A uthors’ addr esses: Michael Färb er , michael.faerb er@ge denkt.at.
+This w ork is license d under a Cr eativ e Commons Attribution 4.0 International License .
+© 2024 Cop yright held by the o wner/author( s).jq is a widely use d to ol that pr o vides a pr ogramming language to manipulate JSON data. Ho w e v er , the jq
+language is curr ently only sp e ciﬁe d by its implementation, making it diﬃcult to r eason ab out its b ehaviour .
+T o this end, w e pr o vide a formal syntax and denotational semantics for a large subset of the jq language . Our
+most signiﬁcant contribution is to pr o vide a ne w way to interpr et up dates that allo ws for mor e pr e dictable
+and p erformant e xe cution.
+CCS Concepts:  Softwar e and its engine ering  →  Semantics ; Functional languages .
+A dditional K e y W or ds and P hrases: jq, JSON, semantics
+1 INTRODUCTION
+UNIX has p opularise d the concept of ﬁlters  and pip es  [1] : A ﬁlter is a pr ogram that r eads fr om an
+input str eam and writes to an output str eam. Pip es ar e use d to comp ose ﬁlters.
+JSON ( JavaScript Obje ct Notation) is a widely use d data serialisation format [2] . A JSON value
+is either null, a b o olean, a numb er , a string, an array of values, or an asso ciativ e map fr om strings
+to values.
+jq is a to ol that pr o vides a language to deﬁne ﬁlters and an interpr eter to e xe cute them. Wher e
+UNIX ﬁlters op erate on str eams of characters, jq ﬁlters op erate on str eams of JSON values. This
+allo ws to manipulate JSON data with r elativ ely compact ﬁlters. For e xample , giv en as input the
+public JSON dataset of str e ets in Paris [3] , jq r etrie v es the numb er of str e ets (6528) with the ﬁl-
+ter “length ” , the names of the str e ets with the ﬁlter “ .[].nomvoie ” , and the total length of all
+str e ets (1574028 m) with the ﬁlter “ [.[].longueur] | add ” . jq pr o vides syntax to up date data; for
+e xample , to r emo v e ge ographical data obtaine d by “ .[].geo_shape ” , but leaving intact all other
+data, w e can use “ .[].geo_shape |= empty ” . This shrinks the dataset fr om ~25 MB to ~7 MB.
+jq pr o vides a T uring-complete language that is inter esting on its o wn; for e xample , “ [0, 1] |
+recurse([.[1], add])[0]"  generates the str eam of Fib onacci numb ers. This makes jq a widely
+use d to ol. W e r efer to the pr ogram jq as “jq” and to its language as “the jq language ” .
+The jq language is a dynamically typ e d, lazily e valuate d functional pr ogramming language with
+se cond-class higher-or der functions [4] . The semantics of the jq language ar e only informally
+sp e ciﬁe d, for e xample in the jq manual [5] . Ho w e v er , the do cumentation fr e quently do es not
+co v er certain cases, and historically , the implementation often contradicte d the do cumentation.
+The underlying issue is that ther e e xiste d no formally sp e ciﬁe d semantics to r ely on. Having such
+semantics allo ws to determine whether certain b ehaviour of a jq implementation is accidental or
+intende d.
+Ho w e v er , a formal sp e ciﬁcation of the b ehaviour of jq w ould b e v er y v erb ose , b e cause jq has
+many sp e cial cases whose merit is not appar ent. Ther efor e , w e hav e striv en to cr eate denotational
+semantics ( Se ction  5 ) that closely r esemble those of jq such that in most cases, their b ehaviour2 Färb er
+coincides, wher eas the y may diﬀer in mor e e xotic cases. The goals for cr eating these semantics
+w er e , in descending or der of imp ortance:
+• Simplicity: The semantics should b e easy to describ e , understand, and implement.
+• Performance: The semantics should allo w for p erformant e xe cution.
+• Compatibility: The semantics should b e consistent with jq.
+W e cr eate d these semantics e xp erimentally , by coming up with jq ﬁlters and obser ving their out-
+put for all kinds of inputs. Fr om this, w e synthesise d mathematical deﬁnitions to mo del the b e-
+haviour of jq. The most signiﬁcant impr o v ement o v er jq b ehaviour describ e d in this te xt ar e the
+ne w up date semantics ( Se ction  6 ), which ar e simpler to describ e and implement, eliminate a range
+a p otential err ors, and allo w for mor e p erformant e xe cution.
+The structur e of this te xt is as follo ws: Se ction  2  intr o duces jq by a series of e xamples that giv e
+a glimpse of actual jq syntax and b ehaviour . Fr om that p oint on, the structur e of the te xt follo ws
+the e xe cution of a jq pr ogram as sho wn in Figur e  1 . Se ction  3  formalises a subset of jq syntax and
+sho ws ho w jq syntax can b e transforme d to incr easingly lo w-le v el interme diate r epr esentations
+calle d HIR ( Se ction  3.1 ) and MIR ( Se ction  3.2 ). After this, the semantics part starts: Se ction  4  de-
+ﬁnes the typ e of JSON values and the elementar y op erations that jq pr o vides for it. Furthermor e ,
+it deﬁnes other basic data typ es such as err ors, e xceptions, and str eams. Se ction  5  sho ws ho w to
+e valuate jq ﬁlters on a giv en input value . Se ction  6  then sho ws ho w to e valuate a class of jq ﬁlters
+that up date values using a ﬁlter calle d path  that deﬁnes which parts of the input to up date , and
+a ﬁlter that deﬁnes what the values matching the path should b e r eplace d with. The semantics of
+jq and those that will b e sho wn in this te xt diﬀer most notably in the case of up dates. Finally , w e
+sho w ho w to pr o v e pr op erties of jq pr ograms by e quational r easoning in Se ction 7 .
+input value
+jq pr ogram
+output values & err orsHIR MIREvaluationUp date e valuation
+V alue op erations
+Figur e  1: Evaluation of a jq pr ogram with an input value . Solid lines indicate data ﬂo w , wher eas a
+dashe d line indicates that a comp onent is deﬁne d in terms of another .2 T OUR OF JQ
+This goal of this se ction is to conv e y an intuition ab out ho w jq functions. The oﬃcial do cumenta-
+tion of jq is its user manual [5] .
+jq pr ograms ar e calle d ﬁlters . For no w , let us consider a ﬁlter to b e a function fr om a value to
+a ( lazy , p ossibly inﬁnite) str eam of values. Furthermor e , in this se ction, let us assume a value to
+b e either a b o olean, an integer , or an array of values. (W e intr o duce the full set of JSON values in
+Se ction 4 .)A formal sp e cification of the jq language 3
+The identity ﬁlter “ . ” r eturns a str eam containing the input. ³
+³ The ﬁlters in this se ction can b e e xe cute d on most UNIX shells by echo $INPUT | jq $FILTER ,
+wher e $INPUT  is the input value in JSON format and $FILTER  is the jq pr ogram to b e e xe cute d. Often, it
+is conv enient to quote the ﬁlter; for e xample , to run the ﬁlter “ . ” with the input value 0 , w e can run
+echo 0 | jq '.' . In case wher e the input value do es not matter , w e can also use jq -n $FILTER ,
+which runs the ﬁlter with the input value null . W e use jq 1.7.Arithmetic op erations, such as addition, subtraction, multiplication, division, and r emainder ,
+ar e available in jq. For e xample , “ . + 1 ” r eturns a str eam containing the successor of the input.
+Her e , “1 ” is a ﬁlter that r eturns the value 1  for any input.
+Concatenation is an imp ortant op erator in jq: The ﬁlter “ f, g ” concatenates the outputs of the
+ﬁlters f  and g . For e xample , the ﬁlter “ ., . ” r eturns a str eam containing the input value twice .
+Comp osition is one of the most imp ortant op erators in jq: The ﬁlter “ f | g ” maps the ﬁlter g
+o v er all outputs of the ﬁlter f . For e xample , “ (1, 2, 3) | (. + 1) ” r eturns 2, 3, 4 .
+Arrays ar e cr eate d fr om a str eam pr o duce d by f  using the ﬁlter “ [f] ” . For e xample , the ﬁlter
+“[1, 2, 3] ” concatenates the output of the ﬁlters “ 1 ” , “2 ” , and “3 ” and puts it into an array , yielding
+the value [1, 2, 3] . The inv erse ﬁlter “ .[] ” r eturns a str eam containing the values of an array
+if the input is an array . For e xample , running “ .[] ” on the array [1, 2, 3]  yields the str eam 1,
+2, 3  consisting of thr e e values. W e can combine the tw o sho wn ﬁlters to map o v er arrays; for
+e xample , when giv en the input [1, 2, 3] , the ﬁlter “ [.[] | (. + 1)] ” r eturns a single value
+[2, 3, 4] . The values of an array at indices pr o duce d by f  ar e r eturne d by “ .[f] ” . For e xample ,
+giv en the input [1, 2, 3] , the ﬁlter “ .[0, 2, 0] ” r eturns the str eam 1, 3, 1 .
+Case distinctions can b e p erforme d with the ﬁlter “ if f then g else h end ” . For e v er y value
+v  pr o duce d by f , this ﬁlter r eturns the output of g  if v  is true and the output of h  other wise . For
+e xample , giv en the input 1 , the ﬁlter “ if (. < 1, . == 1, . >= 1) then . else [] end ” r eturns
+[], 1, 1 .
+W e can deﬁne ﬁlters by using the syntax “ def f(x1; ...; xn): g; ” , which deﬁnes an ﬁl-
+ter f  taking n  arguments by g , wher e g  can r efer to x1  to xn . For e xample , jq pr o vides the ﬁlter
+“recurse(f) ” to calculate ﬁx p oints, which could b e deﬁne d by “ def recurse(f): ., (f |
+recurse(f)); ” . Using this, w e can deﬁne a ﬁlter to calculate the factorial function, for e xample .
+Example 2.1  (Factorial) :  Let us deﬁne a ﬁlter fac  that should r eturn 𝑛 !  for any input numb er 𝑛 .
+W e will deﬁne fac  using the ﬁx p oint of a ﬁlter update . The input and output of update  shall b e
+an array [n, acc] , satisfying the invariant that the ﬁnal output is acc  times the factorial of n . The
+initial value passe d to update  is the array “ [., 1] ” . W e can r etrie v e n  fr om the array with “ .[0]
+” and acc  with “.[1] ” . W e can no w deﬁne update  as “if .[0] > 1 then [.[0] - 1, .[0] * .
+[1]] else empty end ” , wher e “ empty ” is a ﬁlter that r eturns an empty str eam. Giv en the input
+value 4 , the ﬁlter “ [., 1] | recurse(update) ” r eturns [4, 1], [3, 4], [2, 12], [1, 24] . W e
+ar e , ho w e v er , only inter este d in the accumulator containe d in the last value . So w e can write “ [.,
+1] | last(recurse(update)) | .[ 1] ” , wher e “ last(f) ” is a ﬁlter that outputs the last output
+of f . This then yields a single value 24  as r esult.
+Comp osition can also b e use d to bind values to variables . The ﬁlter “ f as $x | g ” p erforms the
+follo wing: Giv en an input value i , for e v er y output o  of the ﬁlter f  applie d to i , the ﬁlter binds
+the variable $x  to the value o , making it accessible to g , and yields the output of g  applie d to the
+original input value i . For e xample , the ﬁlter “ (0, 2) as $x | ((1, 2) as $y | ($x + $y)) ”
+yields the str eam 1, 2, 3, 4 . Note that in this particular case , w e could also write this as “ (0,4 Färb er
+2) + (1, 2) ” , b e cause arithmetic op erators such as “ f + g ” take as inputs the Cartesian pr o duct
+of the output of f  and g . ⁴  Ho w e v er , ther e ar e cases wher e variables ar e indisp ensable .
+⁴ Haskell users might appr e ciate the similarity of the tw o ﬁlters to their Haskell analoga “ [0, 2] >>=
+(\x -> [1, 2] >>= (\y -> return (x +y))) ” and “(+) <$> [0, 2] <*> [1, 2] ” , which b oth r eturn
+[1, 2, 3, 4] .Example 2.2  (V ariables A r e Ne cessar y ) :  jq deﬁnes a ﬁlter “ in(xs) ” that e xpands to “ . as $x | xs
+| has($x) ” . Giv en an input value i , “in(xs) ” binds it to $x , then r eturns for e v er y value pr o duce d
+by xs  whether its domain contains $x  ( and thus i ). Her e , the domain of an array is the set of its
+indices. For e xample , for the input 1 , the ﬁlter “ in([5], [42, 3], []) ” yields the str eam false,
+true, false , b e cause only [42, 3]  has a length gr eater than 1 and thus a domain that contains
+1 . The p oint of this e xample is that w e wish to pass xs  as input to has , but at the same p oint, w e
+also want to pass the input giv en to in  as an argument to has . Without variables, w e could not
+do b oth.
+Folding o v er str eams can b e done using reduce  and foreach : The ﬁlter “ reduce xs as $x (init;
+f) ” ke eps a state that is initialise d with the output of init . For e v er y element $x  yielde d by the
+ﬁlter xs , reduce  fe e ds the curr ent state to the ﬁlter f , which may r efer ence $x , then sets the state
+to the output of f . When all elements of xs  hav e b e en yielde d, reduce  r eturns the curr ent state .
+For e xample , the ﬁlter “ reduce .[] as $x (0; . + $x) ” calculates the sum o v er all elements of
+an array . Similarly , “ reduce .[] as $x (0; . + 1) ” calculates the length of an array . These tw o
+ﬁlters ar e calle d “ add ” and “length ” in jq, and the y allo w to calculate the av erage of an array by
+“add / length ” . The ﬁlter “ foreach xs as $x (init; f) ” is similar to reduce , but also yields
+all interme diate states, not only the last state . For e xample , “ foreach .[] as $x (0; . + $x) ”
+yields the cumulativ e sum o v er all array elements.
+Up dating values can b e done with the op erator “ |= ” , which has a similar function as lens setters
+in languages such as Haskell [6] – [8] : Intuitiv ely , the ﬁlter “ p |= f ” considers any value v  r eturne d
+by p  and r eplaces it by the output of f  applie d to v . W e call a ﬁlter on the left-hand side of “ |= ” a
+path e xpr ession . For e xample , when giv en the input [1, 2, 3] , the ﬁlter “ .[] |= (. + 1) ” yields
+[2, 3, 4] , and the ﬁlter “ .[1] |= (. + 1) ” yields [1, 3, 3] . W e can also nest these ﬁlters;
+for e xample , when giv en the input [[1, 2], [3, 4]] , the ﬁlter “ (.[] | .[]) |= (. + 1) ”
+yields [[2, 3], [4, 5]] . Ho w e v er , not e v er y ﬁlter is a path e xpr ession; for e xample , the ﬁlter
+“1 ” is not a path e xpr ession b e cause “ 1 ” do es not p oint to any part of the input value but cr eates
+a ne w value .
+Identities such as “ .[] |= f ” b eing e quivalent to “ [.[] | f] ” when the input value is an array ,
+or “. |= f ” b eing e quivalent to f , w ould allo w deﬁning the b ehaviour of up dates. Ho w e v er , these
+identities do not hold in jq due the way it handles ﬁlters f  that r eturn multiple values. In particular ,
+when w e pass 0  to the ﬁlter “ . |= (1, 2) ” , the output is 1 , not (1, 2)  as w e might hav e e xp e cte d.
+Similarly , when w e pass [1, 2]  to the ﬁlter “ .[] |= (., .) ” , the output is [1, 2] , not [1, 1, 2,
+2]  as e xp e cte d. This b ehaviour of jq is cumb ersome to deﬁne and to r eason ab out. This motivates
+in part the deﬁnition of mor e simple and elegant semantics that b ehav e like jq in most typical use
+cases but eliminate corner cases like the ones sho wn. W e will sho w such semantics in Se ction 6 .
+3 SYNT AX
+This se ction describ es the syntax for a subset of the jq language that will b e use d later to deﬁne
+the semantics in Se ction  5 . T o set the formal syntax apart fr om the concr ete syntax intr o duce d in
+Se ction  2 , w e use cursiv e font ( as in “ 𝑓 ” , “ 𝑣 ”) for the sp e ciﬁcation instead of the pr e viously use d
+typ e writer font ( as in “ f ” , “v ”).A formal sp e cification of the jq language 5
+W e will start by intr o ducing high-le v el interme diate r epr esentation (HIR) syntax in Se ction  3.1 .
+This syntax is v er y close to actual jq syntax. Then, w e will identify a subset of HIR as mid-le v el
+interme diate r epr esentation (MIR) in Se ction  3.2  and pr o vide a way to translate fr om HIR to MIR.
+This will simplify our semantics in Se ction  5 . Finally , in Se ction  3.3 , w e will sho w ho w HIR r elates
+to actual jq syntax.
+3.1 HIR
+A ﬁlter  𝑓  is deﬁne d by
+𝑓 ≔ 𝑛 ‖ 𝑠 ‖ .
+‖ ( 𝑓 ) ‖ 𝑓 ? ‖ [ 𝑓 ] ‖ { 𝑓 : 𝑓 , … , 𝑓 : 𝑓 } ‖ 𝑓 𝑝?… 𝑝?
+‖ 𝑓 ⋆ 𝑓 ‖ 𝑓 ⚬ 𝑓
+‖ 𝑓 as $ 𝑥 | 𝑓 ‖ 𝜙 𝑓 as $ 𝑥 ( 𝑓 ; 𝑓 ) ‖ $ 𝑥
+‖ label $ 𝑥 | 𝑓 ‖ break $ 𝑥
+‖ if 𝑓 then 𝑓 else 𝑓 ‖ try 𝑓 catch 𝑓
+‖ 𝑥 ‖ 𝑥 ( 𝑓 ; … ; 𝑓 )
+wher e 𝑝  is a path part of the shap e
+𝑝 ≔ [ ] ‖ [ 𝑓 ] ‖ [ 𝑓 : ] ‖ [ : 𝑓 ] ‖ [ 𝑓 : 𝑓 ] ,
+𝑥  is an identiﬁer ( such as “ empty”), 𝑛  is a numb er ( such as 4 2  or 3 . 1 4 ), and 𝑠  is a string ( such as
+“Hello w orld!”). W e use the sup erscript “ ? ” to denote an optional pr esence of “?”; in particular ,
+𝑓 𝑝?… 𝑝? can b e 𝑓 𝑝 , 𝑓 𝑝 ? , 𝑓 𝑝 𝑝 , 𝑓 𝑝 ? 𝑝 , 𝑓 𝑝 𝑝 ? , 𝑓 𝑝 ? 𝑝 ? , 𝑓 𝑝 𝑝 𝑝 , and so on. The p otential instances of the
+op erators ⋆  and ⚬  ar e giv en in T able  1 . All op erators ⋆  and ⚬  ar e left-asso ciativ e , e xcept for “ | ” ,
+“ = ” , “ ⊧ ” , and “ ⊙ = ” . A folding op eration 𝜙  is either “r e duce ” or “for each” .
+Name Symb ol Op erators
+Comple x ⋆ “ | ” , “ , ” , (“=” , “ ⊧ ” , “ ⊙ = ” , “ ⫽ = ”), “ ⫽ ” , “ or” , “and”
+Cartesian ⚬ ( ≟ , ≠ ), ( < , ≤ , > , ≥ ), ⊙
+Arithmetic ⊙ ( + , − ), ( × , ÷ ), %
+T able 1:  Binar y op erators, giv en in or der of incr easing pr e ce dence . Op erators surr ounde d by
+par entheses hav e e qual pr e ce dence .A ﬁlter deﬁnition  has the shap e “ 𝑓 ( 𝑥1 ; … ; 𝑥𝑛 ) ≔ 𝑔 ” . Her e , 𝑓  is an 𝑛 -ar y ﬁlter with ﬁlter argu-
+ments  𝑥𝑖 , wher e 𝑔  may r efer to 𝑥𝑖 . For e xample , this allo ws us to deﬁne ﬁlters that pr o duce the
+b o oleans, by deﬁning true() ≔ ( 0 = 0 )  and false() ≔ ( 0 ≠ 0 ) .
+W e ar e assuming a fe w pr e conditions that must b e fulﬁlle d for a ﬁlter to b e w ell-forme d. For
+this, w e consider a deﬁnition 𝑥 ( 𝑥1 ; … ; 𝑥𝑛 ) ≔ 𝜑 :
+• Arguments must b e b ound: The only ﬁlter arguments that 𝜑  can r efer to ar e 𝑥1 , … , 𝑥𝑛 .
+• Lab els must b e b ound: If 𝜑  contains a statement break $ 𝑥 , then it must o ccur as a subterm of
+𝑔 , wher e label $ 𝑥 | 𝑔  is a subterm of 𝜑 .
+• V ariables must b e b ound: If 𝜑  contains any o ccurr ence of a variable $ 𝑥 , then it must o ccur as a
+subterm of 𝑔 , wher e either 𝑓 as $ 𝑥 | 𝑔  or 𝜙 𝑥 as $ 𝑥 ( 𝑦 ; 𝑔 )  is a subterms of 𝜑 .6 Färb er
+3.2 MIR
+W e ar e no w going to identify a subset of HIR calle d MIR and sho w ho w to lo w er  a HIR ﬁlter to a
+semantically e quivalent MIR ﬁlter .
+A MIR ﬁlter 𝑓  has the shap e
+𝑓 ≔ 𝑛 ‖ 𝑠 ‖ .
+‖ [ 𝑓 ] ‖ { } ‖ { 𝑓 : 𝑓 } ‖ . 𝑝
+‖ 𝑓 ⋆ 𝑓 ‖ $ 𝑥 ⚬ $ 𝑥
+‖ 𝑓 as $ 𝑥 | 𝑓 ‖ 𝜙 𝑓 as $ 𝑥 ( . ; 𝑓 ) ‖ $ 𝑥
+‖ if $ 𝑥 then 𝑓 else 𝑓 ‖ try 𝑓 catch 𝑓
+‖ label $ 𝑥 | 𝑓 ‖ break $ 𝑥
+‖ 𝑥 ‖ 𝑥 ( 𝑓 ; … ; 𝑓 )
+wher e 𝑝  is a path part of the shap e
+𝑝 ≔ [ ] ‖ [ $ 𝑥 ] ‖ [ $ 𝑥 : $ 𝑥 ] .
+Furthermor e , the set of comple x op erators ⋆  in MIR do es not include “ = ” and “ ⊙ = ” anymor e .
+Compar e d to HIR, MIR ﬁlters hav e signiﬁcantly simpler path op erations ( . 𝑝  v ersus 𝑓 𝑝?… 𝑝?)
+and r eplace certain o ccurr ences of ﬁlters by variables ( e .g. $ 𝑥 ⚬ $ 𝑥  v ersus 𝑓 ⚬ 𝑓 ).
+T able  2  sho ws ho w to lo w er an HIR ﬁlter 𝜑  to a semantically e quivalent MIR ﬁlter ⌊ 𝜑 ⌋ . In
+particular , this desugars path op erations and makes it e xplicit which op erations ar e Cartesian
+or comple x. By conv ention, w e write $ 𝑥′ to denote a fr esh variable . Notice that for some com-
+ple x op erators ⋆ , namely “ = ” , “ ⊙ = ” , “ ⫽ = ” , “ and ” , and “ or ” , T able  2  sp e ciﬁes individual lo w erings,
+wher eas for the r emaining comple x op erators ⋆ , namely “ | ” , “ , ” , “ ⊧ ” , and “ ⫽ ” , T able  2  sp e ciﬁes a
+uniform lo w ering ⌊ 𝑓 ⋆ 𝑔 ⌋ = ⌊ 𝑓 ⌋ ⋆ ⌊ 𝑔 ⌋ .
+𝑝?⌊ 𝑝?⌋$ 𝑥
+[ ]?. [ ]?
+[ 𝑓 ]?( $ 𝑥 | ⌊ 𝑓 ⌋ ) as $ 𝑦′| . [ $ 𝑦′]?
+[ 𝑓 : ]?( $ 𝑥 | ⌊ 𝑓 ⌋ ) as $ 𝑦′| length ( )?as $ 𝑧′| . [ $ 𝑦′: $ 𝑧′]?
+[ : 𝑓 ]?( $ 𝑥 | ⌊ 𝑓 ⌋ ) as $ 𝑦′| 0 as $ 𝑧′| . [ $ 𝑧′: $ 𝑦′]?
+[ 𝑓 : 𝑔 ]?( $ 𝑥 | ⌊ 𝑓 ⌋ ) as $ 𝑦′| ( $ 𝑥 | ⌊ 𝑔 ⌋ ) as $ 𝑧′| . [ $ 𝑦′: $ 𝑧′]?
+T able 3: Lo w ering of a path part 𝑝? with input $ 𝑥  to a MIR ﬁlter .T able  3  sho ws ho w to lo w er a path part 𝑝? to MIR ﬁlters. Like in Se ction  3.1 , the meaning of
+sup erscript “ ? ” is an optional pr esence of “ ? ” . In the lo w ering of 𝑓 𝑝?
+1 … 𝑝?
+𝑛  in T able  2 , if 𝑝𝑖  in the ﬁrst
+column is dir e ctly follo w e d by “?” , then ⌊ 𝑝?
+𝑖 ⌋$ 𝑥 in the se cond column stands for ⌊ 𝑝𝑖 ? ⌋$ 𝑥, other wise
+for ⌊ 𝑝𝑖 ⌋$ 𝑥. Similarly , in T able  3 , if 𝑝  in the ﬁrst column is follo w e d by “ ? ” , then all o ccurr ences of
+sup erscript “?” in the se cond column stand for “?” , other wise for nothing.
+Example 3.2.1 :  The HIR ﬁlter ( . [ ] ? [ ] )  is lo w er e d to ( . as $ 𝑥′| . | . [ ] ? | . [ ] ) . Semantically , w e will
+se e that this is e quivalent to ( . [ ] ? | . [ ] ) .
+Example 3.2.2 :  The HIR ﬁlter 𝜇 ≡ . [ 0 ]  is lo w er e d to ⌊ 𝜇 ⌋ ≡ . as $ 𝑥 | . | ( $ 𝑥 | 0 ) as $ 𝑦 | . [ $ 𝑦 ] .
+Semantically , w e will se e that ⌊ 𝜇 ⌋  is e quivalent to 0 as $ 𝑦 | . [ $ 𝑦 ] .A formal sp e cification of the jq language 7
+𝜑 ⌊ 𝜑 ⌋
+𝑛 , 𝑠 , . , $ 𝑥 , or break $ 𝑥 𝜑
+( 𝑓 ) ⌊ 𝑓 ⌋
+𝑓 ? try ⌊ 𝑓 ⌋ catch empty ( )
+[ ] [ empty ( ) ]
+[ 𝑓 ] [ ⌊ 𝑓 ⌋ ]
+{ } { }
+{ 𝑓 : 𝑔 } ⌊ 𝑓 ⌋ as $ 𝑥′| ⌊ 𝑔 ⌋ as $ 𝑦′| { $ 𝑥′: $ 𝑦′}
+{ 𝑓1 : 𝑔1 , … , 𝑓𝑛 : 𝑔𝑛 } ⌊ ∑𝑖{ 𝑓𝑖 : 𝑔𝑖 } ⌋
+𝑓 𝑝?
+1 … 𝑝?
+𝑛 . as $ 𝑥′| ⌊ 𝑓 ⌋ | ⌊ 𝑝?
+1 ⌋$ 𝑥′| … | ⌊ 𝑝?
+𝑛 ⌋$ 𝑥′
+𝑓 = 𝑔 ⌊ 𝑔 ⌋ as $ 𝑥′| ⌊ 𝑓 ⊧ $ 𝑥′⌋
+𝑓 ⊙ = 𝑔 ⌊ 𝑓 ⊧ . ⊙ 𝑔 ⌋
+𝑓 ⫽ = 𝑔 ⌊ 𝑓 ⊧ . ⫽ 𝑔 ⌋
+𝑓 and 𝑔 ⌊ 𝑓 ⌋ as $ 𝑥′| $ 𝑥′and ⌊ 𝑔 ⌋
+𝑓 or 𝑔 ⌊ 𝑓 ⌋ as $ 𝑥′| $ 𝑥′or ⌊ 𝑔 ⌋
+𝑓 ⋆ 𝑔 ⌊ 𝑓 ⌋ ⋆ ⌊ 𝑔 ⌋
+𝑓 ⚬ 𝑔 ⌊ 𝑓 ⌋ as $ 𝑥′| ⌊ 𝑔 ⌋ as $ 𝑦′| $ 𝑥 ⚬ $ 𝑦
+𝑓 as $ 𝑥 | 𝑔 ⌊ 𝑓 ⌋ as $ 𝑥 | ⌊ 𝑔 ⌋
+𝜙 𝑓𝑥 as $ 𝑥 ( 𝑓𝑦 ; 𝑓 ) . as $ 𝑥′| ⌊ 𝑓𝑦 ⌋ | 𝜙 ⌊ $ 𝑥′| 𝑓𝑥 ⌋ as $ 𝑥 ( . ; ⌊ 𝑓 ⌋ )
+if 𝑓𝑥 then 𝑓 else 𝑔 ⌊ 𝑓𝑥 ⌋ as $ 𝑥′| if $ 𝑥′then ⌊ 𝑓 ⌋ else ⌊ 𝑔 ⌋
+try 𝑓 catch 𝑔 try ⌊ 𝑓 ⌋ catch ⌊ 𝑔 ⌋
+label $ 𝑥 | 𝑓 label $ 𝑥 | ⌊ 𝑓 ⌋
+𝑥 𝑥
+𝑥 ( 𝑓1 ; … ; 𝑓𝑛 ) 𝑥 ( ⌊ 𝑓1 ⌋ ; … ; ⌊ 𝑓𝑛 ⌋ )
+T able 2: Lo w ering of a HIR ﬁlter 𝜑  to a MIR ﬁlter ⌊ 𝜑 ⌋ .
+The HIR ﬁlter 𝜑 ≡ [ 3 ] | . [ 0 ] = ( length ( ) , 2 )  is lo w er e d to the MIR ﬁlter
+⌊ 𝜑 ⌋ ≡ [ 3 ] | ( length ( ) , 2 ) as $ 𝑧 | ⌊ 𝜇 ⌋ ⊧ $ 𝑧 . In Se ction 5 , w e will se e that its output is ⟨ [ 1 ] , [ 2 ] ⟩ .
+This lo w ering assumes the pr esence of one ﬁlter in the deﬁnitions, namely empty . This ﬁlter r e-
+turns an empty str eam. W e might b e tempte d to deﬁne it as { } | . [ ] , which constructs an empty
+obje ct, then r eturns its containe d values, which corr esp onds to an empty str eam as w ell. Ho w e v er ,
+such a deﬁnition r elies on the temp orar y construction of ne w values ( such as the empty obje ct
+her e), which is not admissible on the left-hand side of up dates ( se e Se ction  6 ). For this r eason, w e
+hav e to deﬁne it in a mor e complicate d way , for e xample
+empty ( ) ≔ ( { } | . [ ] ) as $ 𝑥 | .
+This deﬁnition ensur es that empty  can b e emplo y e d also as a path e xpr ession.8 Färb er
+The lo w ering in T able  2  is compatible with the semantics of the jq implementa-
+tion, with one notable e xception: In jq, Cartesian op erations 𝑓 ⚬ 𝑔  w ould b e lo w er e d to
+⌊ 𝑔 ⌋ as $ 𝑦′| ⌊ 𝑓 ⌋ as $ 𝑥′| $ 𝑥 ⚬ $ 𝑦 , wher eas w e lo w er it to ⌊ 𝑓 ⌋ as $ 𝑥′| ⌊ 𝑔 ⌋ as $ 𝑦′| $ 𝑥 ⚬ $ 𝑦 , thus
+inv erting the binding or der . Note that the diﬀer ence only sho ws when b oth 𝑓  and 𝑔  r eturn multiple
+values. W e div erge her e fr om jq to make the lo w ering of Cartesian op erations consistent with that
+of other op erators, such as { 𝑓 : 𝑔 } , wher e the leftmost ﬁlter ( 𝑓 ) is b ound ﬁrst and the rightmost ﬁl-
+ter ( 𝑔 ) is b ound last. That also makes it easier to describ e other ﬁlters, such as { 𝑓1 : 𝑔1 , … , 𝑓𝑛 : 𝑔𝑛 } ,
+which w e can lo w er to ⌊ ∑𝑖{ 𝑓𝑖 : 𝑔𝑖 } ⌋ , wher eas its lo w ering assuming the jq lo w ering of Cartesian
+op erations w ould b e ⌊ { 𝑓1 : 𝑔1 } ⌋ as $ 𝑥′
+1 | … | ⌊ { 𝑓𝑛 : 𝑔𝑛 } ⌋ as $ 𝑥′
+𝑛 | ∑𝑖$ 𝑥′
+𝑖 .
+Example 3.2.3 :  The ﬁlter ( 0 , 2 ) + ( 0 , 1 )  yields ⟨ 0 , 1 , 2 , 3 ⟩  using our lo w ering, and ⟨ 0 , 2 , 1 , 3 ⟩  in jq.
+3.3 CONCRETE JQ SYNT AX
+Let us no w go a le v el ab o v e HIR, namely a subset of actual jq syntax ⁵  of which w e hav e se en
+e xamples in Se ction 2 , and sho w ho w to transform jq pr ograms to HIR and to MIR.
+⁵ A ctual jq syntax has a fe w mor e constructions to oﬀer , including neste d deﬁnitions, variable
+arguments, string interp olation, mo dules, etc. Ho w e v er , these constructions can b e transforme d into
+semantically e quivalent syntax as tr eate d in this te xt.A pr ogram  is a (p ossibly empty ) se quence of deﬁnitions, follo w e d by a main ﬁlter  f . A deﬁni-
+tion  has the shap e def x(x1; ...; xn): g;  or def x: g ; wher e x  is an identiﬁer , x1  to xn  is
+a non-empty se quence of semicolon-separate d identiﬁers, and g  is a ﬁlter . In HIR, w e write the
+corr esp onding deﬁnition as 𝑥 ( 𝑥1 ; … ; 𝑥𝑛 ) ≔ 𝑔 .
+The syntax of ﬁlters in concr ete jq syntax is nearly the same as in HIR. T o translate b etw e en
+the op erators in T able  1 , se e T able  4 . The arithmetic up date op erators in jq, namely += , -= , *= , /
+= , and %= , corr esp ond to the op erators ⊙ =  in HIR, namely + = , − = , × = , ÷ = , and % = . Filters of
+the shap e if f then g else h end  corr esp ond to the ﬁlter if 𝑓 then 𝑔 else ℎ  in HIR; that is, in
+HIR, the ﬁnal end  is omitte d.
+In jq, it is invalid syntax to call a nullar y ﬁlter as x()  instead of x , or to deﬁne a nullar y ﬁlter
+as def x(): f;  instead of def x: f; . On the other hand, on the right-hand side of a deﬁnition,
+x  may r efer either to a ﬁlter argument x  or a nullar y ﬁlter x . T o ease our liv es when deﬁning
+the semantics, w e allo w the syntax 𝑥 ( )  in HIR. W e unambiguously interpr et 𝑥  as call to a ﬁlter
+argument and 𝑥 ( )  as call to a ﬁlter that was deﬁne d as 𝑥 ( ) ≔ 𝑓 .
+jq|,=|=//=//==!=<<=>>=+-*/%
+HIR | , = ⊧ ⫽ = ⫽ ≟ ≠ < ≤ > ≥ + − × ÷ %
+T able 4: Op erators in concr ete jq syntax and their corr esp onding HIR op erators.T o conv ert a jq pr ogram to MIR, w e do the follo wing:
+1. For each deﬁnition, conv ert it to a HIR deﬁnition.
+2. Conv ert the main ﬁlter f  to a HIR ﬁlter 𝑓 .
+3. Replace the right-hand sides of HIR deﬁnitions and 𝑓  by their lo w er e d MIR counterparts, us-
+ing T able 2 .
+Example 3.3.1 :  Consider the jq pr ogram def recurse(f): ., (f | recurse(f)); recurse(.
++ 1) , which r eturns the inﬁnite str eam of output values 𝑛 , 𝑛 + 1 , …  when pr o vide d with
+an input numb er 𝑛 . The deﬁnition in this e xample can b e conv erte d to the HIR deﬁni-
+tion recurse ( 𝑓 ) ≔ . , ( 𝑓 | recurse ( 𝑓 ) )  and the main ﬁlter can b e conv erte d to the HIR ﬁlterA formal sp e cification of the jq language 9
+recurse ( . + 1 ) . The lo w ering of the deﬁnition to MIR yields the same as the HIR deﬁnition, and
+the lo w ering of the main ﬁlter to MIR yields recurse ( . as $ 𝑥′| 1 as $ 𝑦′| $ 𝑥′+ $ 𝑦′) .
+Example 3.3.2 :  Consider the jq pr ogram def select(f): if f then . else empty end;
+def negative : . < 0; .[] | select(negative) . When giv en an array as an input, it yields
+those elements of the array that ar e smaller than 0 . Her e , the deﬁnitions in the e xample ar e
+conv erte d to the HIR deﬁnitions select ( 𝑓 ) ≔ if 𝑓 then . else empty ( )  and negative ( ) ≔ . < 0 ,
+and the main ﬁlter is conv erte d to the HIR ﬁlter . [ ] | select ( negative ( ) ) . Both the deﬁnition of
+select ( 𝑓 )  and the main ﬁlter ar e alr eady in MIR; the MIR v ersion of the r emaining deﬁnition is
+negative ( ) ≔ . as $ 𝑥′| 0 as $ 𝑦′| $ 𝑥′< $ 𝑦′.
+W e will sho w in Se ction  5  ho w to run the r esulting MIR ﬁlter 𝑓  in the pr esence of a set of MIR
+deﬁnitions. For a giv en input value 𝑣 , the output of 𝑓  will b e giv en by 𝑓 |{ }
+𝑣 .
+4 V ALUES
+In this se ction, w e will deﬁne JSON values, err ors, e xceptions, and str eams. Furthermor e , w e will
+deﬁne se v eral functions and op erations on values.
+A JSON value 𝑣  has the shap e
+𝑣 ≔ null ‖ false ‖ true ‖ 𝑛 ‖ 𝑠 ‖ [ 𝑣0 , … , 𝑣𝑛 ] ‖ { 𝑘0 ↦ 𝑣0 , … , 𝑘𝑛 ↦ 𝑣𝑛 } ,
+wher e 𝑛  is a numb er and 𝑠  is a string. W e write a string 𝑠  as 𝑐0 … 𝑐𝑛 , wher e 𝑐  is a character . A
+value of the shap e [ 𝑣0 , … , 𝑣𝑛 ]  is calle d an array  and a value of the shap e { 𝑘0 ↦ 𝑣0 , … , 𝑘𝑛 ↦ 𝑣𝑛 }
+is an unor der e d map fr om ke ys  𝑘  to values that w e call an obje ct . ⁶  In JSON, obje ct ke ys ar e
+⁶ The JSON syntax uses { 𝑘0 : 𝑣0 , … , 𝑘𝑛 : 𝑣𝑛 }  instead of { 𝑘0 ↦ 𝑣0 , … , 𝑘𝑛 ↦ 𝑣𝑛 } . Ho w e v er , in this
+te xt, w e will use the { 𝑘0 : 𝑣0 , … , 𝑘𝑛 : 𝑣𝑛 }  syntax to denote the construction  of obje cts, and use
+{ 𝑘0 ↦ 𝑣0 , … , 𝑘𝑛 ↦ 𝑣𝑛 }  syntax to denote actual obje cts.strings. ⁷  W e assume that the union of tw o obje cts is right-biase d ; i.e ., if w e hav e tw o obje cts 𝑙  and
+𝑟 = { 𝑘 ↦ 𝑣 , … } , then ( 𝑙 ∪ 𝑟 ) ( 𝑘 ) = 𝑣  (r egar dless of what 𝑙 ( 𝑘 )  might yield).
+⁷ Y AML is a data format similar to JSON. While Y AML can enco de any JSON value , it additionally
+allo ws any Y AML values to b e use d as obje ct ke ys, wher e JSON allo ws only strings to b e use d as obje ct
+ke ys. This te xt delib erately distinguishes b etw e en obje ct ke ys and strings. That way , e xtending the
+giv en semantics to use Y AML values should b e r elativ ely easy .By conv ention, w e will write in the r emainder of this te xt 𝑣  for values, 𝑛  for numb ers, 𝑐  for
+characters, and 𝑘  for obje ct ke ys. W e will sometimes write arrays as [ 𝑣0 , … , 𝑣𝑛 ]  and sometimes as
+[ 𝑣1 , … , 𝑣𝑛 ] : The former case is useful to e xpr ess that 𝑛  is the maximal inde x of the array ( having
+length 𝑛 + 1 ), and the latter case is useful to e xpr ess that the array has length 𝑛 . The same idea
+applies also to strings, obje cts, and str eams.
+A numb er can b e an integer or a de cimal, optionally follo w e d by an integer e xp onent. For e x-
+ample , 0 , − 4 2 , 3 . 1 4 , 3 × 1 08 ar e valid JSON numb ers. This te xt do es not ﬁx ho w numb ers ar e to
+b e r epr esente d, just like the JSON standar d do es not imp ose any r epr esentation. ⁸  Instead, it just
+⁸ jq uses ﬂoating-p oint numb ers to enco de b oth integers and de cimals. Ho w e v er , se v eral op erations
+in this te xt (for e xample those in Se ction 4.4 ) make only sense for natural numb ers ℕ  or integers ℤ . In
+situations wher e integer values ar e e xp e cte d and a numb er 𝑛  is pr o vide d, jq generally substitutes 𝑛  by
+⌊ 𝑛 ⌋  if 𝑛 ≥ 0  and ⌈ 𝑛 ⌉  if 𝑛 < 0 . For e xample , accessing the 0 . 5 -th element of an array yields its 0 -th
+element. In this te xt, w e use do not do cument this r ounding b ehaviour for each function.assumes that the typ e of numb ers has a total or der ( se e Se ction  4.6 ) and supp orts the arithmetic
+op erations + , − , × , ÷ , and %  (mo dulo).10 Färb er
+An err or  can b e constructe d fr om a value by the function error ( 𝑣 ) . The error  function is bije ctiv e;
+that is, if w e hav e an err or 𝑒 , then ther e is a unique value 𝑣  with 𝑒 = error ( 𝑣 ) . In the r emainder
+of this te xt, w e will write just “ err or” to denote calling error ( 𝑣 )  with some value 𝑣 . This is done
+such that this sp e ciﬁcation do es not ne e d to ﬁx the pr e cise err or value that is r eturne d when an
+op eration fails.
+An e xception  either is an err or or has the shap e break ( $ 𝑥 ) . The latter will b e come r ele vant
+starting fr om Se ction 5 .
+A value r esult  is either a value or an e xception.
+A str eam  ( or lazy list) is written as ⟨ 𝑣0 , … , 𝑣𝑛 ⟩ . The concatenation of tw o str eams 𝑠1 ,
+𝑠2  is written as 𝑠1 + 𝑠2 . Giv en some str eam 𝑙 = ⟨ 𝑥0 , … , 𝑥𝑛 ⟩ , w e write ∑𝑥 ∈ 𝑙𝑓 ( 𝑥 )  to denote
+𝑓 ( 𝑥0 ) + … + 𝑓 ( 𝑥𝑛 ) . W e use this fr e quently to map a function o v er a str eam, by having 𝑓 ( 𝑥 )  r e-
+turn a str eam itself.
+In this te xt, w e will se e many functions that take values as arguments. By conv ention, for any
+of these functions 𝑓 ( 𝑣1 , … , 𝑣𝑛 ) , w e e xtend their domain to value r esults such that 𝑓 ( 𝑣1 , … , 𝑣𝑛 )
+yields 𝑣𝑖  ( or rather ⟨ 𝑣𝑖 ⟩  if 𝑓  r eturns str eams) if 𝑣𝑖  is an e xception and for all 𝑗 < 𝑖 , 𝑣𝑗  is a value . For
+e xample , in Se ction  4.3 , w e will deﬁne 𝑙 + 𝑟  for values 𝑙  and 𝑟 , and by our conv ention, w e e xtend
+the domain of addition to value r esults such that if 𝑙  is an e xception, then 𝑙 + 𝑟  r eturns just 𝑙 , and
+if 𝑙  is a value , but 𝑟  is an e xception, then 𝑙 + 𝑟  r eturns just 𝑟 .
+4.1 CONSTRUCTION
+In this subse ction, w e will intr o duce op erators to construct arrays and obje cts.
+The function [ ⋅ ]  transforms a str eam into an array if all str eam elements ar e values, or into the
+ﬁrst e xception in the str eam other wise:
+[ ⟨ 𝑣0 , … , 𝑣𝑛 ⟩ ] ≔ {𝑣𝑖 if 𝑣𝑖 is an exception and for all 𝑗 < 𝑖 , 𝑣𝑗 is a value
+[ 𝑣0 , … , 𝑣𝑛 ] otherwise
+Giv en tw o values 𝑘  and 𝑣 , w e can make an obje ct out of them:
+{ 𝑘 : 𝑣 } ≔ {{ 𝑘 ↦ 𝑣 } if 𝑘 is a string and 𝑣 is a value
+error otherwise
+W e can construct obje cts with multiple ke ys by adding obje cts, se e Se ction 4.3 .
+4.2 SIMPLE F UNCTIONS
+W e ar e no w going to deﬁne se v eral functions that take a value and r eturn a value .
+The ke ys  of a value ar e deﬁne d as follo ws:
+keys ( 𝑣 ) ≔
+⎩{{{{{⎨{{{{{⎧ ⟨ 0 , … , 𝑛 ⟩ if 𝑣 = [ 𝑣0 , … , 𝑣𝑛 ]
+⟨ 𝑘0 ⟩ + keys ( 𝑣′ ) if 𝑣 = { 𝑘0 ↦ 𝑣0 } ∪ 𝑣′ and 𝑘0 = min ( dom ( 𝑣 ) )
+⟨ ⟩ if 𝑣 = { }
+⟨ error ⟩ otherwise
+For an obje ct 𝑣 , keys ( 𝑣 )  r eturns the domain of the obje ct sorte d by ascending or der . For the use d
+or dering, se e Se ction 4.6 .
+W e deﬁne the length  of a value as follo ws:A formal sp e cification of the jq language 11
+| 𝑣 | ≔
+⎩{{{{{{{⎨{{{{{{{⎧0 if 𝑣 = null
+| 𝑛 | if 𝑣 is a number 𝑛
+𝑛 if 𝑣 = 𝑐1 … 𝑐𝑛
+𝑛 if 𝑣 = [ 𝑣1 , … , 𝑣𝑛 ]
+𝑛 if 𝑣 = { 𝑘1 ↦ 𝑣1 , … , 𝑘𝑛 ↦ 𝑣𝑛 }
+error otherwise (if 𝑣 ∈ { true , false } )
+The b o olean value  of a value 𝑣  is deﬁne d as follo ws:
+bool ( 𝑣 ) ≔ {false if 𝑣 = null or 𝑣 = false
+true otherwise
+W e can draw a link b etw e en the functions her e and jq: When calle d with the input value 𝑣 , the jq
+ﬁlter keys  yields ⟨ [ keys ( 𝑣 ) ] ⟩ , the jq ﬁlter length  yields ⟨ | 𝑣 | ⟩ , and the jq ﬁlter true and .  yields
+⟨ bool ( 𝑣 ) ⟩ .
+4.3 ARITHMETIC OPERA TIONS
+W e will no w deﬁne a set of arithmetic op erations on values. W e will link these later dir e ctly to
+their counterparts in jq: Supp ose that the jq ﬁlters f  and g  yield ⟨ 𝑙 ⟩  and ⟨ 𝑟 ⟩ , r esp e ctiv ely . Then the
+jq ﬁlters f + g , f - g , f * g , f / g , and f % g  yield ⟨ 𝑙 + 𝑟 ⟩ , ⟨ 𝑙 − 𝑟 ⟩ , ⟨ 𝑙 × 𝑟 ⟩ , ⟨ 𝑙 ÷ 𝑟 ⟩ , and ⟨ 𝑙 % 𝑟 ⟩ ,
+r esp e ctiv ely .
+4.3.1 ADDITION
+W e deﬁne addition of tw o values 𝑙  and 𝑟  as follo ws:
+𝑙 + 𝑟 ≔
+⎩{{{{{⎨{{{{{⎧𝑣 if 𝑙 = null and 𝑟 = 𝑣 , or 𝑙 = 𝑣 and 𝑟 = null
+𝑛1 + 𝑛2 if 𝑙 is a number 𝑛1 and 𝑟 is a number 𝑛2
+𝑐𝑙 , 1 … 𝑐𝑙 , 𝑚 𝑐𝑟 , 1 … 𝑐𝑟 , 𝑛 if 𝑙 = 𝑐𝑙 , 1 … 𝑐𝑙 , 𝑚 and 𝑟 = 𝑐𝑟 , 1 … 𝑐𝑟 , 𝑛
+[ ⟨ 𝑙1 , … , 𝑙𝑚 , 𝑟1 , … , 𝑟𝑛 ⟩ ] if 𝑙 = [ 𝑙1 , … , 𝑙𝑚 ] and 𝑟 = [ 𝑟1 , … , 𝑟𝑛 ]
+𝑙 ∪ 𝑟 if 𝑙 = { … } and 𝑟 = { … }
+error otherwise
+Her e , w e can se e that null  ser v es as a neutral element for addition. For strings and arrays, addition
+corr esp onds to their concatenation, and for obje cts, it corr esp onds to their union.
+4.3.2 MULTIPLICA TION
+Giv en tw o obje cts 𝑙  and 𝑟 , w e deﬁne their r e cursiv e merge  𝑙 ⋓ 𝑟  as:
+𝑙 ⋓ 𝑟 ≔
+⎩{{{⎨{{{⎧ { 𝑘 ↦ 𝑣𝑙 ⋓ 𝑣𝑟 } ∪ 𝑙′ ⋓ 𝑟′ if 𝑙 = { 𝑘 ↦ 𝑣𝑙 } ∪ 𝑙′ , 𝑟 = { 𝑘 ↦ 𝑣𝑟 } ∪ 𝑟′ , and 𝑣𝑙 , 𝑣𝑟 are objects
+{ 𝑘 ↦ 𝑣𝑟 } ∪ 𝑙′ ⋓ 𝑟′ if 𝑙 = { 𝑘 ↦ 𝑣𝑙 } ∪ 𝑙′ , 𝑟 = { 𝑘 ↦ 𝑣𝑟 } ∪ 𝑟′ , and 𝑣𝑙 or 𝑣𝑟 is not an object
+{ 𝑘 ↦ 𝑣𝑟 } ∪ 𝑙 ⋓ 𝑟′ if 𝑘 ∉ dom ( 𝑙 ) and 𝑟 = { 𝑘 ↦ 𝑣𝑟 } ∪ 𝑟′
+𝑙 otherwise (if 𝑟 = { } )
+W e use this in the follo wing deﬁnition of multiplication of tw o values 𝑙  and 𝑟 :12 Färb er
+𝑙 × 𝑟 ≔
+⎩{{{{⎨{{{{⎧𝑛1 × 𝑛2 if 𝑙 is a number 𝑛1 and 𝑟 is a number 𝑛2
+𝑙 + 𝑙 × ( 𝑟 − 1 ) if 𝑙 is a string and 𝑟 ∈ ℕ ∖ { 0 }
+null if 𝑙 is a string and 𝑟 = 0
+𝑟 × 𝑙 if 𝑟 is a string and 𝑙 ∈ ℕ
+𝑙 ⋓ 𝑟 if 𝑙 and 𝑟 are objects
+error otherwise
+W e can se e that multiplication of a string 𝑠  with a natural numb er 𝑛 > 0  r eturns ∑𝑛
+𝑖 = 1𝑠 ; that is,
+the concatenation of 𝑛  times the string 𝑠 . The multiplication of tw o obje cts corr esp onds to their
+r e cursiv e merge as deﬁne d ab o v e .
+4.3.3 SUBTRA CTION
+W e no w deﬁne subtraction of tw o values 𝑙  and 𝑟 :
+𝑙 − 𝑟 ≔
+⎩{{⎨{{⎧ 𝑛1 − 𝑛2 if 𝑙 is a number 𝑛1 and 𝑟 is a number 𝑛2
+[ ∑𝑖 , 𝑙𝑖 ∈ { 𝑟0 , … , 𝑟𝑛 }⟨ 𝑙𝑖 ⟩ ] if 𝑙 = [ 𝑙0 , … , 𝑙𝑛 ] and 𝑟 = [ 𝑟0 , … , 𝑟𝑛 ]
+error otherwise
+When b oth 𝑙  and 𝑟  ar e arrays, then 𝑙 − 𝑟  r eturns an array containing those values of 𝑙  that ar e not
+containe d in 𝑟 .
+4.3.4 DI VISION
+W e will no w deﬁne a function that splits a string 𝑦 + 𝑥  by some non-empty separator string 𝑠 .
+The function pr eser v es the invariant that 𝑦  do es not contain 𝑠 :
+split ( 𝑥 , 𝑠 , 𝑦 ) ≔
+⎩{{⎨{{⎧ split ( 𝑐1 … 𝑐𝑛 , 𝑠 , 𝑦 + 𝑐0 ) if 𝑥 = 𝑐0 … 𝑐𝑛 and 𝑐0 … 𝑐| 𝑠 | − 1 ≠ 𝑠
+[ ⟨ 𝑦 ⟩ ] + split ( 𝑐| 𝑠 | … 𝑐𝑛 , 𝑠 , " " ) if 𝑥 = 𝑐0 … 𝑐𝑛 and 𝑐0 … 𝑐| 𝑠 | − 1 = 𝑠
+[ ⟨ 𝑦 ⟩ ] otherwise ( | 𝑥 | = 0 )
+W e use this splitting function to deﬁne division of tw o values:
+𝑙 ÷ 𝑟 ≔
+⎩{{{{⎨{{{{⎧𝑛1 ÷ 𝑛2 if 𝑙 is a number 𝑛1 and 𝑟 is a number 𝑛2
+[ ] if 𝑙 and 𝑟 are strings and | 𝑙 | = 0
+[ ∑𝑖⟨ 𝑐𝑖 ⟩ ] if 𝑙 = 𝑐0 … 𝑐𝑛 , 𝑟 is a string, | 𝑙 | > 0 , and | 𝑟 | = 0
+split ( 𝑙 , 𝑟 , " " ) if 𝑙 and 𝑟 are strings, | 𝑙 | > 0 , and | 𝑟 | > 0
+error otherwise
+Example 4.3.4.1 :  Let 𝑠 = " ab " . W e hav e that 𝑠 ÷ 𝑠 = [ " " , " " ] . Furthermor e , " 𝑐 " ÷ 𝑠 = [ " 𝑐 " ] ,
+( 𝑠 + " 𝑐 " + 𝑠 ) ÷ 𝑠 = [ " " , " 𝑐 " , " " ]  and ( 𝑠 + " 𝑐 " + 𝑠 + " de " ) ÷ 𝑠 = [ " " , " 𝑐 " , " de " ] .
+Fr om this e xample , w e can infer the follo wing lemma.
+Lemma 4.3.4.1 :  Let 𝑙  and 𝑟  strings with | 𝑙 | > 0  and | 𝑟 | > 0 . Then 𝑙 ÷ 𝑟 = [ 𝑙0 , … , 𝑙𝑛 ]  for some 𝑛 > 0
+such that 𝑙 = ( ∑𝑛 − 1
+𝑖 = 0( 𝑙𝑖 + 𝑟 ) ) + 𝑙𝑛  and for all 𝑖 , 𝑙𝑖  is a string that do es not contain 𝑟  as substring.A formal sp e cification of the jq language 13
+4.3.5 REMAINDER
+For tw o values 𝑙  and 𝑟 , the arithmetic op eration 𝑙 % 𝑟  (mo dulo) yields 𝑚 % 𝑛  if 𝑙  and 𝑟  ar e numb ers
+𝑚  and 𝑛 , other wise it yields an err or .
+4.4 A CCESSING
+W e will no w deﬁne thr e e access op erators . These ser v e to e xtract values that ar e containe d within
+other values.
+The value 𝑣 [ 𝑖 ]  of a value 𝑣  at inde x 𝑖  is deﬁne d as follo ws:
+𝑣 [ 𝑖 ] ≔
+⎩{{{{{⎨{{{{{⎧𝑣𝑖 if 𝑣 = [ 𝑣0 , … , 𝑣𝑛 ] , 𝑖 ∈ ℕ , and 𝑖 ≤ 𝑛
+null if 𝑣 = [ 𝑣0 , … , 𝑣𝑛 ] , 𝑖 ∈ ℕ , and 𝑖 > 𝑛
+𝑣 [ 𝑛 + 𝑖 ] if 𝑣 = [ 𝑣0 , … , 𝑣𝑛 ] , 𝑖 ∈ ℤ ∖ ℕ , and 0 ≤ 𝑛 + 𝑖
+𝑣𝑗 if 𝑣 = { 𝑘0 ↦ 𝑣0 , … , 𝑘𝑛 ↦ 𝑣𝑛 } , 𝑖 is a string, and 𝑘𝑗 = 𝑖
+null if 𝑣 = { 𝑘0 ↦ 𝑣0 , … , 𝑘𝑛 ↦ 𝑣𝑛 } , 𝑖 is a string, and 𝑖 ∉ { 𝑘0 , … , 𝑘𝑛 }
+error otherwise
+The idea b ehind this inde x op erator is as follo ws: It r eturns null  if the value 𝑣  do es not contain a
+value at inde x 𝑖 , but 𝑣  could b e e xtende d  to contain one . Mor e formally , 𝑣 [ 𝑖 ]  is null  if 𝑣 ≠ null  and
+ther e e xists some value 𝑣′= 𝑣 + 𝛿  such that 𝑣′[ 𝑖 ] ≠ null .
+The b ehaviour of this op erator for 𝑖 < 0  is that 𝑣 [ 𝑖 ]  e quals 𝑣 [ | 𝑣 | + 𝑖 ] .
+Example 4.4.1 :  If 𝑣 = [ 0 , 1 , 2 ] , then 𝑣 [ 1 ] = 1  and 𝑣 [ − 1 ] = 𝑣 [ 3 − 1 ] = 2 .
+Using the inde x op erator , w e can deﬁne the values 𝑣 [ ]  in a value 𝑣  as follo ws:
+𝑣 [ ] ≔ ∑
+𝑖 ∈ keys ( 𝑣 )⟨ 𝑣 [ 𝑖 ] ⟩
+When pr o vide d with an array 𝑣 = [ 𝑣0 , … , 𝑣𝑛 ]  or an obje ct 𝑣 = { 𝑘0 ↦ 𝑣0 , … , 𝑘𝑛 ↦ 𝑣𝑛 }  ( wher e
+𝑘0 < … < 𝑘𝑛 ), 𝑣 [ ]  r eturns the str eam ⟨ 𝑣0 , … , 𝑣𝑛 ⟩ .
+The last op erator that w e deﬁne her e is a slice op erator:
+𝑣 [ 𝑖 : 𝑗 ] ≔
+⎩{{{{⎨{{{{⎧[ ∑𝑗 − 1
+𝑘 = 𝑖⟨ 𝑣𝑘 ⟩ ] if 𝑣 = [ 𝑣0 , … , 𝑣𝑛 ] and 𝑖 , 𝑗 ∈ ℕ
+∑𝑗 − 1
+𝑘 = 𝑖𝑐𝑘 if 𝑣 = 𝑐0 … 𝑐𝑛 and 𝑖 , 𝑗 ∈ ℕ
+𝑣 [ ( 𝑛 + 𝑖 ) : 𝑗 ] if | 𝑣 | = 𝑛 , 𝑖 ∈ ℤ ∖ ℕ , and 0 ≤ 𝑛 + 𝑖
+𝑣 [ 𝑖 : ( 𝑛 + 𝑗 ) ] if | 𝑣 | = 𝑛 , 𝑗 ∈ ℤ ∖ ℕ , and 0 ≤ 𝑛 + 𝑗
+error otherwise
+Note that unlike 𝑣 [ ]  and 𝑣 [ 𝑖 ] , 𝑣 [ 𝑖 : 𝑗 ]  may yield a value if 𝑣  is a string. If w e hav e that 𝑖 , 𝑗 ∈ ℕ  and
+either 𝑖 > 𝑛  or 𝑖 ≥ 𝑗 , then 𝑣 [ 𝑖 : 𝑗 ]  yields an empty array if 𝑣  is an array , and an empty string if 𝑣
+is a string.
+Example 4.4.2 :  If 𝑣 = [ 0 , 1 , 2 , 3 ] , then 𝑣 [ 1 : 3 ] = [ 1 , 2 ] .
+The op erator 𝑣 [ ]  is the only op erator in this subse ction that r eturns a str eam  of value r esults in-
+stead of only a value r esult.14 Färb er
+4.5 UPD A TING
+For each access op erator in Se ction  4.4 , w e will no w deﬁne an up dating  counterpart. Intuitiv ely ,
+wher e an access op erator yields some elements containe d in a value 𝑣 , its corr esp onding up date
+op erator r eplaces  these elements in 𝑣  by the output of a function. The access op erators will b e use d
+in Se ction 5 , and the up date op erators will b e use d in Se ction 6 .
+All up date op erators take at least a value 𝑣  and a function 𝑓  fr om a value to a str eam of value
+r esults. W e e xtend the domain of 𝑓  to value r esults such that 𝑓 ( 𝑒 ) = ⟨ 𝑒 ⟩  if 𝑒  is an e xception.
+The ﬁrst up date op erator will b e a counterpart to 𝑣 [ ] . For all elements 𝑥  that ar e yielde d by 𝑣 [ ] ,
+𝑣 [ ] ⊧ 𝑓  r eplaces 𝑥  by 𝑓 ( 𝑥 ) :
+𝑣 [ ] ⊧ 𝑓 ≔
+⎩{{⎨{{⎧[ ∑𝑖𝑓 ( 𝑣𝑖 ) ] if 𝑣 = [ 𝑣0 , … , 𝑣𝑛 ]
+⋃𝑖{{ 𝑘𝑖 : ℎ } if 𝑓 ( 𝑣𝑖 ) = ⟨ ℎ ⟩ + 𝑡
+{ } otherwiseif 𝑣 = { 𝑘0 ↦ 𝑣0 , … , 𝑘𝑛 ↦ 𝑣𝑛 }
+error otherwise
+For an input array 𝑣 = [ 𝑣0 , … , 𝑣𝑛 ] , 𝑣 [ ] ⊧ 𝑓  r eplaces each 𝑣𝑖  by the output of 𝑓 ( 𝑣𝑖 ) , yielding
+[ 𝑓 ( 𝑣0 ) + … + 𝑓 ( 𝑣𝑛 ) ] . For an input obje ct 𝑣 = { 𝑘0 ↦ 𝑣0 , … , 𝑘𝑛 ↦ 𝑣𝑛 } , 𝑣 [ ] ⊧ 𝑓  r eplaces each 𝑣𝑖
+by the ﬁrst output yielde d by 𝑓 ( 𝑣𝑖 )  if such an output e xists, other wise it deletes { 𝑘𝑖 ↦ 𝑣𝑖 }  fr om
+the obje ct. Note that up dating arrays div erges fr om jq, b e cause jq only considers the ﬁrst value
+yielde d by 𝑓 .
+For the ne xt op erators, w e will use the follo wing function head ( 𝑙 , 𝑒 ) , which r eturns the head of
+a list 𝑙  if it is not empty , other wise 𝑒 :
+head ( 𝑙 , 𝑒 ) ≔ {ℎ if 𝑙 = ⟨ ℎ ⟩ + 𝑡
+𝑒 otherwise
+The ne xt function takes a value 𝑣  and r eplaces its 𝑖 -th element by the ﬁrst output of 𝑓 , or deletes
+it if 𝑓  yields no output:
+𝑣 [ 𝑖 ] ⊧ 𝑓 ≔
+⎩{{{{⎨{{{{⎧𝑣 [ 0 : 𝑖 ] + [ head ( 𝑓 ( 𝑣 [ 𝑖 ] ) , ⟨ ⟩ ) ] + 𝑣 [ ( 𝑖 + 1 ) : 𝑛 ] if 𝑣 = [ 𝑣0 , … , 𝑣𝑛 ] , 𝑖 ∈ ℕ , and 𝑖 ≤ 𝑛
+𝑣 [ 𝑛 + 𝑖 ] ⊧ 𝑓 if 𝑣 = [ 𝑣0 , … , 𝑣𝑛 ] , 𝑖 ∈ ℤ ∖ ℕ , and 0 ≤ 𝑛 + 𝑖
+𝑣 + { 𝑖 : ℎ } if 𝑣 = { … } and 𝑓 ( 𝑣 [ 𝑖 ] ) = ⟨ ℎ ⟩ + 𝑡
+⋃𝑘 ∈ dom ( 𝑣 ) ∖ { 𝑖 }{ 𝑘 ↦ 𝑣 [ 𝑘 ] } if 𝑣 = { … } and 𝑓 ( 𝑣 [ 𝑖 ] ) = ⟨ ⟩
+error otherwise
+Note that this div erges fr om jq if 𝑣 = [ 𝑣0 , … , 𝑣𝑛 ]  and 𝑖 > 𝑛 , b e cause jq ﬁlls up the array with null .
+The ﬁnal function her e is the up date counterpart of the op erator 𝑣 [ 𝑖 : 𝑗 ] . It r eplaces the slice
+𝑣 [ 𝑖 : 𝑗 ]  by the ﬁrst output of 𝑓  on 𝑣 [ 𝑖 : 𝑗 ] , or by the empty array if 𝑓  yields no output.
+𝑣 [ 𝑖 : 𝑗 ] ⊧ 𝑓 ≔
+⎩{{{{⎨{{{{⎧𝑣 [ 0 : 𝑖 ] + head ( 𝑓 ( 𝑣 [ 𝑖 : 𝑗 ] ) , [ ] ) + 𝑣 [ 𝑗 : 𝑛 ] if 𝑣 = [ 𝑣0 , … , 𝑣𝑛 ] , 𝑖 , 𝑗 ∈ ℕ , and 𝑖 ≤ 𝑗
+𝑣 if 𝑣 = [ 𝑣0 , … , 𝑣𝑛 ] , 𝑖 , 𝑗 ∈ ℕ , and 𝑖 > 𝑗
+𝑣 [ ( 𝑛 + 𝑖 ) : 𝑗 ] ⊧ 𝑓 if | 𝑣 | = 𝑛 , 𝑖 ∈ ℤ ∖ ℕ , and 0 ≤ 𝑛 + 𝑖
+𝑣 [ 𝑖 : ( 𝑛 + 𝑗 ) ] ⊧ 𝑓 if | 𝑣 | = 𝑛 , 𝑗 ∈ ℤ ∖ ℕ , and 0 ≤ 𝑛 + 𝑗
+error otherwise
+Unlike its corr esp onding access op erator 𝑣 [ 𝑖 : 𝑗 ] , this op erator unconditionally fails when 𝑣  is a
+string. This op erator div erges fr om jq if 𝑓  yields null , in which case jq r eturns an err or , wher eas
+this op erator tr eats this as e quivalent to 𝑓  r eturning [ ] .A formal sp e cification of the jq language 15
+Example 4.5.1 :  If 𝑣 = [ 0 , 1 , 2 , 3 ]  and 𝑓 ( 𝑣 ) = [ 4 , 5 , 6 ] , then 𝑣 [ 1 : 3 ] ⊧ 𝑓 = [ 0 , 4 , 5 , 6 , 3 ] .
+4.6 ORDERING
+In this subse ction, w e establish a total or der on values. ⁹
+⁹ Note that jq do es not  implement a strict  total or der on values; in particular , its or der on (ﬂoating-
+p oint) numb ers sp e ciﬁes nan < nan , fr om which follo ws that nan ≠ nan  and nan ≯ nan .W e hav e that
+null < false < true < 𝑛 < 𝑠 < 𝑎 < 𝑜 ,
+wher e 𝑛  is a numb er , 𝑠  is a string, 𝑎  is an array , and 𝑜  is an obje ct. W e assume that ther e is a total
+or der on numb ers and characters. Strings and arrays ar e or der e d le xicographically .
+T w o obje cts 𝑜1  and 𝑜2  ar e or der e d as follo ws: For b oth obje cts 𝑜𝑖  ( 𝑖 ∈ { 1 , 2 } ), w e sort the array
+[ keys ( 𝑜𝑖 ) ]  by ascending or der to obtain the or der e d array of ke ys 𝑘𝑖 = [ 𝑘1 , … , 𝑘𝑛 ] , fr om which w e
+obtain 𝑣𝑖 = [ 𝑜 [ 𝑘1 ] , … , 𝑜 [ 𝑘𝑛 ] ] . W e then hav e
+𝑜1 < 𝑜2 ⟺ {𝑘1 < 𝑘2 if 𝑘1 < 𝑘2 or 𝑘1 > 𝑘2
+𝑣1 < 𝑣2 otherwise ( 𝑘1 = 𝑘2 )
+5 EV ALU A TION SEMANTICS
+In this se ction, w e will deﬁne a function 𝜑 |𝑐
+𝑣  that r eturns the output of the ﬁlter 𝜑  in the conte xt
+𝑐  on the input value 𝑣 .
+Let us start with a fe w deﬁnitions. A conte xt  𝑐  is a mapping fr om variables $ 𝑥  to values and fr om
+identiﬁers 𝑥  to pairs ( 𝑓 , 𝑐 ) , wher e 𝑓  is a ﬁlter and 𝑐  is a conte xt. Conte xts stor e what variables
+and ﬁlter arguments ar e b ound to .
+W e ar e no w going to intr o duce a fe w help er functions. The ﬁrst function helps deﬁne ﬁlters
+such as if-then-else and alternation ( 𝑓 ⫽ 𝑔 ):
+ite ( 𝑣 , 𝑖 , 𝑡 , 𝑒 ) = {𝑡 if 𝑣 = 𝑖
+𝑒 otherwise
+Ne xt, w e deﬁne a function that is use d to deﬁne alternation. trues ( 𝑙 )  r eturns those elements of 𝑙
+whose b o olean values ar e not false . Note that in our conte xt, “not false ” is not  the same as “true ” ,
+b e cause the former includes e xceptions, wher eas the latter e xcludes them, and bool ( 𝑥 )  can  r eturn
+e xceptions, in particular if 𝑥  is an e xception.
+trues ( 𝑙 ) ≔ ∑
+𝑥 ∈ 𝑙 , bool ( 𝑥 ) ≠ false⟨ 𝑥 ⟩
+The e valuation semantics ar e giv en in T able 5 . Let us discuss its diﬀer ent cases:
+• “ . ”: Returns its input value . This is the identity ﬁlter .
+• 𝑛  or 𝑠 : Returns the value corr esp onding to the numb er 𝑛  or string 𝑠 .
+• $ 𝑥 : Returns the value curr ently b ound to the variable $ 𝑥 , by lo oking it up in the conte xt. W ell-
+forme dness of the ﬁlter ( as deﬁne d in Se ction 3.1 ) ensur es that such a value always e xists.
+• [ 𝑓 ] : Cr eates an array fr om the output of 𝑓 , using the op erator deﬁne d in Se ction 4.1 .
+• { } : Cr eates an empty obje ct.
+• { $ 𝑥 : $ 𝑦 } : Cr eates an obje ct fr om the values b ound to $ 𝑥  and $ 𝑦 , using the op erator deﬁne d in
+Se ction 4.1 .
+• 𝑓 , 𝑔 : Concatenates the outputs of 𝑓  and 𝑔 .
+• 𝑓 | 𝑔 : Comp oses 𝑓  and 𝑔 , r eturning the outputs of 𝑔  applie d to all outputs of 𝑓 .16 Färb er
+𝜑 𝜑 |𝑐
+𝑣
+. ⟨ 𝑣 ⟩
+𝑛 or 𝑠 ⟨ 𝜑 ⟩
+$ 𝑥 ⟨ 𝑐 ( $ 𝑥 ) ⟩
+[ 𝑓 ] ⟨ [ 𝑓 |𝑐
+𝑣 ] ⟩
+{ } ⟨ { } ⟩
+{ $ 𝑥 : $ 𝑦 } ⟨ { 𝑐 ( $ 𝑥 ) : 𝑐 ( $ 𝑦 ) } ⟩
+𝑓 , 𝑔 𝑓 |𝑐
+𝑣 + 𝑔 |𝑐
+𝑣
+𝑓 | 𝑔 ∑𝑥 ∈ 𝑓 |𝑐𝑣𝑔 |𝑐
+𝑥
+𝑓 ⫽ 𝑔 ite ( trues ( 𝑓 |𝑐
+𝑣 ) , ⟨ ⟩ , 𝑔 |𝑐
+𝑣 , trues ( 𝑓 |𝑐
+𝑣 ) )
+𝑓 as $ 𝑥 | 𝑔 ∑𝑥 ∈ 𝑓 |𝑐𝑣𝑔 |𝑐 { $ 𝑥 ↦ 𝑥 }
+𝑣
+$ 𝑥 ⚬ $ 𝑦 ⟨ 𝑐 ( $ 𝑥 ) ⚬ 𝑐 ( $ 𝑦 ) ⟩
+try 𝑓 catch 𝑔 ∑𝑥 ∈ 𝑓 |𝑐𝑣{𝑔 |𝑐𝑒 if 𝑥 = error ( 𝑒 )
+⟨ 𝑥 ⟩ otherwise
+label $ 𝑥 | 𝑓 label ( 𝑓 |𝑐
+𝑣 , $ 𝑥 )
+break $ 𝑥 ⟨ break ( $ 𝑥 ) ⟩
+$ 𝑥 and 𝑓 junction ( 𝑐 ( $ 𝑥 ) , false , 𝑓 |𝑐
+𝑣 )
+$ 𝑥 or 𝑓 junction ( 𝑐 ( $ 𝑥 ) , true , 𝑓 |𝑐
+𝑣 )
+if $ 𝑥 then 𝑓 else 𝑔 ite ( bool ( 𝑐 ( $ 𝑥 ) ) , true , 𝑓 |𝑐
+𝑣 , 𝑔 |𝑐
+𝑣 )
+. [ ] 𝑣 [ ]
+. [ $ 𝑥 ] ⟨ 𝑣 [ 𝑐 ( $ 𝑥 ) ] ⟩
+. [ $ 𝑥 : $ 𝑦 ] ⟨ 𝑣 [ 𝑐 ( $ 𝑥 ) : 𝑐 ( $ 𝑦 ) ] ⟩
+𝜙 𝑥 as $ 𝑥 ( . ; 𝑓 ) 𝜙𝑐
+𝑣 ( 𝑥 |𝑐
+𝑣 , $ 𝑥 , 𝑓 )
+𝑥 ( 𝑓1 ; … ; 𝑓𝑛 ) 𝑓 |𝑐 ∪ ⋃𝑖{ 𝑥𝑖 ↦ ( 𝑓𝑖 , 𝑐 ) }
+𝑣 if 𝑥 ( 𝑥1 ; … ; 𝑥𝑛 ) ≔ 𝑓
+𝑥 𝑓 |𝑐′
+𝑣 if 𝑐 ( 𝑥 ) = ( 𝑓 , 𝑐′)
+𝑓 ⊧ 𝑔 se e Se ction 6
+T able 5: Evaluation semantics.A formal sp e cification of the jq language 17
+• 𝑓 ⫽ 𝑔 : Returns 𝑙  if 𝑙  is not empty , else the outputs of 𝑔 , wher e 𝑙  ar e the outputs of 𝑓  whose
+b o olean values ar e not false .
+• 𝑓 as $ 𝑥 | 𝑔 : For e v er y output of 𝑓 , binds it to the variable $ 𝑥  and r eturns the output of 𝑔 , wher e
+𝑔  may r efer ence $ 𝑥 . Unlike 𝑓 | 𝑔 , this runs 𝑔  with the original input value instead of an output
+of 𝑓 . W e can sho w that the e valuation of 𝑓 | 𝑔  is e quivalent to that of 𝑓 as $ 𝑥′| $ 𝑥′| 𝑔 , wher e
+$ 𝑥′ is a fr esh variable . Ther efor e , w e could b e tempte d to lo w er 𝑓 | 𝑔  to ⌊ 𝑓 ⌋ as $ 𝑥′| $ 𝑥′| ⌊ 𝑔 ⌋
+in T able  2 . Ho w e v er , w e cannot do this b e cause w e will se e in Se ction  6  that this e quivalence
+do es not  hold for up dates; that is, ( 𝑓 | 𝑔 ) ⊧ 𝜎  is not  e qual to ( 𝑓 as $ 𝑥′| $ 𝑥′| 𝑔 ) ⊧ 𝜎 .
+• $ 𝑥 ⚬ $ 𝑦 : Returns the output of a Cartesian op eration “ ⚬ ” ( any of ≟ , ≠ , < , ≤ , > , ≥ , + , − , × , ÷ ,
+and % , as giv en in T able  1 ) on the values b ound to $ 𝑥  and $ 𝑦 . The semantics of the arithmetic
+op erators ar e giv en in Se ction  4.3 , the comparison op erators ar e deﬁne d by the or dering giv en
+in Se ction 4.6 , 𝑙 ≟ 𝑟  r eturns whether 𝑙  e quals 𝑟 , and 𝑙 ≠ 𝑟  r eturns its negation.
+• try 𝑓 catch 𝑔 : Replaces all outputs of 𝑓  that e qual error ( 𝑒 )  for some 𝑒  by the output of 𝑔
+on the input 𝑒 . Note that this div erges fr om jq, which ab orts the e valuation of 𝑓  after the
+ﬁrst err or . This b ehaviour can b e simulate d in our semantics, by r eplacing try 𝑓 catch 𝑔  with
+label $ 𝑥′| try 𝑓 catch ( 𝑔 , break $ 𝑥′) .
+• label $ 𝑥 | 𝑓 : Returns all values yielde d by 𝑓  until 𝑓  yields an e xception break ( $ 𝑥 ) . This uses the
+function label ( 𝑙 , $ 𝑥 ) , which r eturns all elements of 𝑙  until the curr ent element is an e xception
+of the form break ( $ 𝑥 ) :
+label ( 𝑙 , $ 𝑥 ) ≔ {⟨ ℎ ⟩ + label ( 𝑡 , $ 𝑥 ) if 𝑙 = ⟨ ℎ ⟩ + 𝑡 and ℎ ≠ break ( $ 𝑥 )
+⟨ ⟩ otherwise
+• break $ 𝑥 : Returns a value break ( $ 𝑥 ) . Similarly to the e valuation of variables $ 𝑥  describ e d
+ab o v e , w ellforme dness of the ﬁlter ( as deﬁne d in Se ction  3.1 ) ensur es that the r eturne d value
+break ( $ 𝑥 )  will b e e v entually handle d by a corr esp onding ﬁlter label $ 𝑥 | 𝑓 . That means that
+the e valuation of a w ellforme d ﬁlter can only yield values and err ors, but ne v er break ( $ 𝑥 ) .
+• $ 𝑥 and 𝑓 : Returns false if $ 𝑥  is b ound to either null or false , else r eturns the output of 𝑓  mapp e d
+to b o olean values. This uses the function junction ( 𝑥 , 𝑣 , 𝑙 ) , which r eturns just 𝑣  if the b o olean
+value of 𝑥  is 𝑣  ( wher e 𝑣  will b e true or false), other wise the b o olean values of the values in 𝑙 .
+Her e , bool ( 𝑣 )  r eturns the b o olean value as giv en in Se ction 4.2 .
+junction ( 𝑥 , 𝑣 , 𝑙 ) ≔ ite ( bool ( 𝑥 ) , 𝑣 , ⟨ 𝑣 ⟩ , ∑
+𝑦 ∈ 𝑙⟨ bool ( 𝑦 ) ⟩ )
+• $ 𝑥 or 𝑓 : Similar to its “and” counterpart ab o v e .
+• if $ 𝑥 then 𝑓 else 𝑔 : Returns the output of 𝑓  if $ 𝑥  is b ound to either null or false , else r eturns
+the output of 𝑔 .
+• . [ ] , . [ $ 𝑥 ] , or . [ $ 𝑥 : $ 𝑦 ] : A ccesses parts of the input value; se e Se ction  4.4  for the deﬁnitions of the
+op erators.
+• 𝜙 𝑥 as $ 𝑥 ( . ; 𝑓 ) : Folds 𝑓  o v er the values r eturne d by 𝑥 , starting with the curr ent input as accu-
+mulator . The curr ent accumulator value is pr o vide d to 𝑓  as input value and 𝑓  can access the
+curr ent value of 𝑥  by $ 𝑥 . If 𝜙 = reduce , this r eturns only the ﬁnal values of the accumulator ,
+wher eas if 𝜙 = foreach , this r eturns also the interme diate values of the accumulator . W e will
+deﬁne the functions reduce𝑐
+𝑣 ( 𝑙 , $ 𝑥 , 𝑓 )  and foreach𝑐
+𝑣 ( 𝑙 , $ 𝑥 , 𝑓 )  in Se ction 5.1 .
+• 𝑥 ( 𝑓1 ; … ; 𝑓𝑛 ) : Calls an 𝑛 -ar y ﬁlter 𝑥  that is deﬁne d by 𝑥 ( 𝑥1 ; … ; 𝑥𝑛 ) ≔ 𝑓 . The output is that of
+the ﬁlter 𝑓 , wher e each ﬁlter argument 𝑥𝑖  is b ound to ( 𝑓𝑖 , 𝑐 ) . This also handles the case of calling
+nullar y ﬁlters such as empty .
+• 𝑥 : Calls a ﬁlter argument. By the w ell-forme dness r e quir ements giv en in Se ction  3.1 , this must
+o ccur within the right-hand side of a deﬁnition whose arguments include 𝑥 . This r e quir ement18 Färb er
+also ensur es that 𝑥 ∈ dom ( 𝑐 ) , b e cause an 𝑥  can only b e e valuate d as part of a call to the ﬁlter
+wher e it was b ound, and by the semantics of ﬁlter calls ab o v e , this adds a binding for 𝑥  to the
+conte xt.
+• 𝑓 ⊧ 𝑔 : Up dates the input at p ositions r eturne d by 𝑓  by 𝑔 . W e will discuss this in Se ction 6 .
+An implementation may also deﬁne custom semantics for name d ﬁlters. For e xample , an imple-
+mentation may deﬁne error |𝑐
+𝑣 ≔ error ( 𝑣 ) , keys |𝑐
+𝑣 ≔ keys ( 𝑣 ) , and length |𝑐
+𝑣 ≔ | 𝑣 | , se e Se ction  4.2 .
+In the case of keys , for e xample , ther e is no obvious way to implement it by deﬁnition, in par-
+ticular b e cause ther e is no simple way to obtain the domain of an obje ct { … }  using only the
+ﬁlters for which w e gav e semantics in T able  5 . For length , w e could giv e a deﬁnition, using
+reduce . [ ] as $ 𝑥 ( 0 ; . + 1 )  to obtain the length of arrays and obje cts, but this w ould inher ently
+r e quir e linear time to yield a r esult, instead of constant time that can b e achie v e d by a pr op er jq
+implementation.
+5.1 FOLDING
+In this subse ction, w e will deﬁne the functions 𝜙𝑐
+𝑣 ( 𝑙 , $ 𝑥 , 𝑓 )  ( wher e 𝜙  is either foreach  or reduce ),
+which underlie the semantics for the folding op erators 𝜙 𝑥 as $ 𝑥 ( . ; 𝑓 ) .
+Let us start by deﬁning a general folding function fold𝑐
+𝑣 ( 𝑙 , $ 𝑥 , 𝑓 , 𝑜 ) : It takes a str eam of value
+r esults 𝑙 , a variable $ 𝑥 , a ﬁlter 𝑓 , and a function 𝑜 ( 𝑥 )  fr om a value 𝑥  to a str eam of values. This
+function folds o v er the elements in 𝑙 , starting fr om the accumulator value 𝑣 . It yields the ne xt
+accumulator value( s) by e valuating 𝑓  with the curr ent accumulator value as input and with the
+variable $ 𝑥  b ound to the ﬁrst element in 𝑙 . If 𝑙  is empty , then 𝑣  is calle d a ﬁnal  accumulator value
+and is r eturne d, other wise 𝑣  is calle d an interme diate  accumulator value and 𝑜 ( 𝑣 )  is r eturne d.
+fold𝑐
+𝑣 ( 𝑙 , $ 𝑥 , 𝑓 , 𝑜 ) ≔
+⎩{⎨{⎧ 𝑜 ( 𝑣 ) + ∑𝑥 ∈ 𝑓 |𝑐 { $ 𝑥 ↦ ℎ }
+𝑣fold𝑐𝑥 ( 𝑡 , $ 𝑥 , 𝑓 , 𝑜 ) if 𝑙 = ⟨ ℎ ⟩ + 𝑡
+⟨ 𝑣 ⟩ otherwise ( 𝑙 = ⟨ ⟩ )
+W e use tw o diﬀer ent functions for 𝑜 ( 𝑣 ) ; the ﬁrst r eturns nothing, corr esp onding to reduce  which
+do es not r eturn interme diate values, and the other r eturns just 𝑣 , corr esp onding to foreach  which
+r eturns interme diate values. Instantiating fold  with these tw o functions, w e obtain the follo wing:
+reduce𝑐
+𝑣 ( 𝑙 , $ 𝑥 , 𝑓 ) ≔ fold𝑐
+𝑣 ( 𝑙 , $ 𝑥 , 𝑓 , 𝑜 ) where 𝑜 ( 𝑣 ) = ⟨ ⟩
+for𝑐
+𝑣 ( 𝑙 , $ 𝑥 , 𝑓 ) ≔ fold𝑐
+𝑣 ( 𝑙 , $ 𝑥 , 𝑓 , 𝑜 ) where 𝑜 ( 𝑣 ) = ⟨ 𝑣 ⟩
+Her e , reduce𝑐
+𝑣 ( 𝑙 , $ 𝑥 , 𝑓 )  is the function that is use d in T able  5 . Ho w e v er , for𝑐
+𝑣 ( 𝑙 , $ 𝑥 , 𝑓 )  do es not  im-
+plement the semantics of foreach , b e cause it yields the initial accumulator value , wher eas foreach
+omits it.
+Example 5.1.1 :  If w e w ould set foreach𝑐
+𝑣 ( 𝑙 , $ 𝑥 , 𝑓 ) ≔ for𝑐
+𝑣 ( 𝑙 , $ 𝑥 , 𝑓 ) , then e valuating
+foreach ( 1 , 2 , 3 ) as $ 𝑥 ( 0 ; . + $ 𝑥 )  w ould yield ⟨ 0 , 1 , 3 , 6 ⟩ , but jq e valuates it to ⟨ 1 , 3 , 6 ⟩ .
+For that r eason, w e deﬁne foreach  in terms of for , but with a sp e cial tr eatment for the initial ac-
+cumulator:
+foreach𝑐
+𝑣 ( 𝑙 , $ 𝑥 , 𝑓 ) ≔
+⎩{⎨{⎧ ∑𝑥 ∈ 𝑓 |𝑐 { $ 𝑥 ↦ ℎ }
+𝑣for𝑐𝑥 ( 𝑡 , $ 𝑥 , 𝑓 ) if 𝑙 = ⟨ ℎ ⟩ + 𝑡
+⟨ ⟩ otherwise
+W e will no w lo ok at what the e valuation of the various folding ﬁlters e xpands to . Apart fr om
+reduce  and foreach , w e will also consider a hyp othetical ﬁlter for 𝑥 as $ 𝑥 ( . ; 𝑓 )  that is deﬁne d by
+the function for𝑐
+𝑣 ( 𝑙 , $ 𝑥 , 𝑓 ) , analogously to the other folding ﬁlters.
+A ssuming that the ﬁlter 𝑥  e valuates to ⟨ 𝑥0 , … , 𝑥𝑛 ⟩ , then reduce  and for  e xpand toA formal sp e cification of the jq language 19
+reduce 𝑥 as $ 𝑥 ( . ; 𝑓 ) = 𝑥0 as $ 𝑥 | 𝑓 for 𝑥 as $ 𝑥 ( . ; 𝑓 ) = . , ( 𝑥0 as $ 𝑥 | 𝑓
+| … | …
+| 𝑥𝑛 as $ 𝑥 | 𝑓 | . , ( 𝑥𝑛 as $ 𝑥 | 𝑓 ) … )
+and foreach  e xpands to
+foreach 𝑥 as $ 𝑥 ( . ; 𝑓 ) = 𝑥0 as $ 𝑥 | 𝑓
+| . , ( 𝑥1 as $ 𝑥 | 𝑓
+| …
+| . , ( 𝑥𝑛 as $ 𝑥 | 𝑓 ) … ) .
+W e can se e that the sp e cial tr eatment of the initial accumulator value also sho ws up in the e xpan-
+sion of foreach . In contrast, the hyp othetical for  ﬁlter lo oks mor e symmetrical to reduce .
+Note that jq implements only a r estricte d v ersion of these folding op erators that discar ds all
+output values of 𝑓  after the ﬁrst output. That means that in jq, 𝜙 𝑥 as $ 𝑥 ( . ; 𝑓 )  is e quivalent to
+𝜙 𝑥 as $ 𝑥 ( . ; first ( 𝑓 ) ) . Her e , w e assume the deﬁnition first ( 𝑓 ) ≔ label $ 𝑥 | 𝑓 | ( . , break $ 𝑥 ) . This
+r eturns the ﬁrst output of 𝑓  if 𝑓  yields any output, else nothing.
+6 UPD A TE SEMANTICS
+In this se ction, w e will discuss ho w to e valuate up dates 𝑓 ⊧ 𝑔 . First, w e will sho w ho w the original
+jq implementation e xe cutes such up dates, and sho w which pr oblems this appr oach entails. Then,
+w e will giv e alternativ e semantics for up dates that av oids these pr oblems, while enabling faster
+p erformance by forgoing the construction of temp orar y path data.
+6.1 JQ UPD A TES VIA P A THS
+jq’s up date me chanism w orks with paths . A path is a se quence of indices 𝑖𝑗  that can b e written as
+. [ 𝑖1 ] … [ 𝑖𝑛 ] . It r efers to a value that can b e r etrie v e d by the ﬁlter “ . [ 𝑖1 ] | … | . [ 𝑖𝑛 ] ” . Note that “ . ” is
+a valid path, r eferring to the input value .
+The up date op eration “ 𝑓 ⊧ 𝑔 ” attempts to ﬁrst obtain the paths of all values r eturne d by 𝑓 , then
+for each path, it r eplaces the value at the path by 𝑔  applie d to it. Note that 𝑓  is not allo w e d to
+pr o duce ne w values; it may only r eturn paths.
+Example 6.1.1 :  Consider the input value [ [ 1 , 2 ] , [ 3 , 4 ] ] . W e can r etrie v e the arrays [ 1 , 2 ]  and [ 3 , 4 ]
+fr om the input with the ﬁlter “ . [ ] ” , and w e can r etrie v e the numb ers 1, 2, 3, 4 fr om the input with
+the ﬁlter “ . [ ] | . [ ] ” . T o r eplace each numb er with its successor , w e run “ ( . [ ] | . [ ] ) ⊧ . + 1 ” , obtaining
+[ [ 2 , 3 ] , [ 4 , 5 ] ] . Internally , in jq, this ﬁrst builds the paths . [ 0 ] [ 0 ] , . [ 0 ] [ 1 ] , . [ 1 ] [ 0 ] , . [ 1 ] [ 1 ] , then up dates
+the value at each of these paths with 𝑔 .
+This appr oach can yield surprising r esults when the e xe cution of the ﬁlter 𝑔  changes the input
+value in a way that the set of paths changes midway . In such cases, only the paths constructe d
+fr om the initial input ar e consider e d. This can lead to paths p ointing to the wr ong data, paths
+p ointing to non-e xistent data, and missing paths.
+Example 6.1.2 :  Consider the input value { " 𝑎 " ↦ { " 𝑏 " ↦ 1 } }  and the ﬁlter ( . [ ] , . [ ] [ ] ) ⊧ 𝑔 , wher e
+𝑔  is [ ] . Exe cuting this ﬁlter in jq ﬁrst builds the path . [ " 𝑎 " ]  stemming fr om “ . [ ] ” , then . [ " 𝑎 " ] [ " 𝑏 " ]
+stemming fr om “ . [ ] [ ] ” . Ne xt, jq folds o v er the paths, using the input value as initial accumula-
+tor and up dating the accumulator at each path with 𝑔 . The ﬁnal output is thus the output of
+( . [ " 𝑎 " ] ⊧ 𝑔 ) | ( . [ " 𝑎 " ] [ " 𝑏 " ] ⊧ 𝑔 ) . The output of the ﬁrst step . [ " 𝑎 " ] ⊧ 𝑔  is { " 𝑎 " ↦ [ ] } . This value is the
+input to the se cond step . [ " 𝑎 " ] [ " 𝑏 " ] ⊧ 𝑔 , which yields an err or b e cause w e cannot inde x the array
+[ ]  at the path . [ " 𝑎 " ]  by . [ " 𝑏 " ] .20 Färb er
+W e can also hav e surprising b ehaviour that do es not manifest any err or .
+Example 6.1.3 :  Consider the same input value and ﬁlter as in Example  6.1.2 , but no w with 𝑔  set to
+{ " 𝑐 " : 2 } . The output of the ﬁrst step . [ " 𝑎 " ] ⊧ 𝑔  is { " 𝑎 " ↦ { " 𝑐 " ↦ 2 } } . This value is the input to the
+se cond step . [ " 𝑎 " ] [ " 𝑏 " ] ⊧ 𝑔 , which yields { " 𝑎 " ↦ { " 𝑐 " ↦ 2 , " 𝑏 " ↦ { " 𝑐 " ↦ 2 } } } . Her e , the r emain-
+ing path ( . [ " 𝑎 " ] [ " 𝑏 " ] ) p ointe d to data that was r emo v e d by the up date on the ﬁrst path, so this data
+gets r eintr o duce d by the up date . On the other hand, the data intr o duce d by the ﬁrst up date step
+( at the path . [ " 𝑎 " ] [ " 𝑐 " ] ) is not part of the original path, so it is not  up date d.
+W e found that w e can interpr et many up date ﬁlters by simpler ﬁlters, yielding the same output
+as jq in most common cases, but av oiding the pr oblems sho wn ab o v e . T o se e this, let us se e what
+w ould happ en if w e w ould interpr et ( 𝑓1 , 𝑓2 ) ⊧ 𝑔  as ( 𝑓1 ⊧ 𝑔 ) | ( 𝑓2 ⊧ 𝑔 ) . That way , the paths of 𝑓2
+w ould p oint pr e cisely to the data r eturne d by 𝑓1 ⊧ 𝑔 , thus av oiding the pr oblems depicte d by the
+e xamples ab o v e . In particular , with such an appr oach, Example  6.1.2  w ould yield { " 𝑎 " ↦ [ ] }  in-
+stead of an err or , and Example 6.1.3  w ould yield { " 𝑎 " ↦ { " 𝑐 " ↦ { " 𝑐 " ↦ 2 } } } .
+In the r emainder of this se ction, w e will sho w semantics that e xtend this idea to all up date op-
+erations. The r esulting up date semantics can b e understo o d to interleav e  calls to 𝑓  and 𝑔 . By doing
+so , these semantics can abandon the construction of paths altogether , which r esults in higher p er-
+formance when e valuating up dates.
+6.2 PROPERTIES OF NEW SEMANTICS
+𝜇 𝜇 ⊧ 𝜎
+empty ( ) .
+. 𝜎
+𝑓 | 𝑔 𝑓 ⊧ ( 𝑔 ⊧ 𝜎 )
+𝑓 , 𝑔 ( 𝑓 ⊧ 𝜎 ) | ( 𝑔 ⊧ 𝜎 )
+if $ 𝑥 then 𝑓 else 𝑔 if $ 𝑥 then 𝑓 ⊧ 𝜎 else 𝑔 ⊧ 𝜎
+𝑓 ⫽ 𝑔 if first ( 𝑓 ⫽ null ) then 𝑓 ⊧ 𝜎 else 𝑔 ⊧ 𝜎
+T able 6: Up date semantics pr op erties.T able  6  giv es a fe w pr op erties that w e want to hold for up dates 𝜇 ⊧ 𝜎 . Let us discuss these for the
+diﬀer ent ﬁlters 𝜇 :
+• empty ( ) : Returns the input unchange d.
+• “ . ”: Returns the output of the up date ﬁlter 𝜎  applie d to the curr ent input. Note that while jq only
+r eturns at most one output of 𝜎 , these semantics r eturn an arbitrar y numb er of outputs.
+• 𝑓 | 𝑔 : Up dates at 𝑓  with the up date of 𝜎  at 𝑔 . This allo ws us to interpr et ( . [ ] | . [ ] ) ⊧ 𝜎  in
+Example 6.1.1  by . [ ] ⊧ ( . [ ] ⊧ 𝜎 ) , yielding the same output as in the e xample .
+• 𝑓 , 𝑔 : Applies the up date of 𝜎  at 𝑔  to the output of the up date of 𝜎  at 𝑓 . W e hav e alr eady se en
+this at the end of Se ction 6.1 .
+• if $ 𝑥 then 𝑓 else 𝑔 : Applies 𝜎  at 𝑓  if $ 𝑥  holds, else at 𝑔 .
+• 𝑓 ⫽ 𝑔 : Applies 𝜎  at 𝑓  if 𝑓  yields some output whose b o olean value ( se e Se ction  4.2 ) is not false ,
+else applies 𝜎  at 𝑔 . Se e Se ction 5.1  for the deﬁnition of first .
+While T able  6  allo ws us to deﬁne the b ehaviour of se v eral ﬁlters by r e ducing them to mor e prim-
+itiv e ﬁlters, ther e ar e se v eral ﬁlters 𝜇  which cannot b e deﬁne d this way . W e will ther efor e giv eA formal sp e cification of the jq language 21
+the actual up date semantics of 𝜇 ⊧ 𝜎  in Se ction  6.4  by deﬁning ( 𝜇 ⊧ 𝜎 ) |𝑐
+𝑣 , not by translating 𝜇 ⊧ 𝜎
+to e quivalent ﬁlters.
+6.3 LIMITING INTERA CTIONS
+T o deﬁne ( 𝜇 ⊧ 𝜎 ) |𝑐
+𝑣 , w e ﬁrst hav e to understand ho w to pr e v ent unwante d interactions b etw e en
+𝜇  and 𝜎 . In particular , w e hav e to lo ok at variable bindings and err or catching.
+6.3.1 V ARIABLE BINDINGS
+W e can bind variables in 𝜇 ; that is, 𝜇  can hav e the shap e 𝑓 as $ 𝑥 | 𝑔 . Her e , the intent is that 𝑔
+has access to $ 𝑥 , wher eas 𝜎  do es not! This is to ensur e compatibility with jq’s original semantics,
+which e xe cute 𝜇  and 𝜎  indep endently , so 𝜎  should not b e able to access variables b ound in 𝜇 .
+Example 6.3.1.1 :  Consider the ﬁlter 0 as $ 𝑥 | 𝜇 ⊧ 𝜎 , wher e 𝜇  is ( 1 as $ 𝑥 | . [ $ 𝑥 ] )  and 𝜎  is $ 𝑥 . This
+up dates the input array at inde x 1 . If 𝜎  had access to variables b ound in 𝜇 , then the array element
+w ould b e r eplace d by 1 , b e cause the variable binding 0 as $ 𝑥  w ould b e shado w e d by 1 as $ 𝑥 .
+Ho w e v er , in jq, 𝜎  do es not hav e access to variables b ound in 𝜇 , so the array element is r eplace d
+by 0 , which is the value originally b ound to $ 𝑥 . Giv en the input array [ 1 , 2 , 3 ] , the ﬁlter yields the
+ﬁnal r esult [ 1 , 0 , 3 ] .
+W e take the follo wing appr oach to pr e v ent variables b ound in 𝜇  to “leak” into 𝜎 : When e valuating
+( 𝜇 ⊧ 𝜎 ) |𝑐
+𝑣 , w e want 𝜎  to always b e e xe cute d with the same 𝑐 . That is, e valuating ( 𝜇 ⊧ 𝜎 ) |𝑐
+𝑣  should
+ne v er e valuate 𝜎  with any conte xt other than 𝑐 . In or der to ensur e that, w e will deﬁne ( 𝜇 ⊧ 𝜎 ) |𝑐
+𝑣
+not for a ﬁlter  𝜎 , but for a function  𝜎 ( 𝑥 ) , wher e 𝜎 ( 𝑥 )  r eturns the output of the ﬁlter 𝜎 |𝑐
+𝑥 . This allo ws
+us to e xtend the conte xt 𝑐  with bindings on the left-hand side of the up date , while e xe cuting the
+up date ﬁlter 𝜎  always with the same original conte xt 𝑐 .
+6.3.2 ERROR CA T CHING
+W e can catch err ors in 𝜇 ; that is, 𝜇  can hav e the shap e try 𝑓 catch 𝑔 . Ho w e v er , this should catch
+only err ors that o ccur in 𝜇 , not  err ors that ar e r eturne d by 𝜎 .
+Example 6.3.2.1 :  Consider the ﬁlter 𝜇 ⊧ 𝜎 , wher e 𝜇  is . [ ] ?  and 𝜎  is . + 1 . The ﬁlter 𝜇  is lo w er e d
+to the MIR ﬁlter try . [ ] catch empty ( ) . The intention of 𝜇 ⊧ 𝜎  is to up date all elements . [ ]  of the
+input value , and if . [ ]  r eturns an err or ( which o ccurs when the input is neither an array nor an
+obje ct, se e Se ction  4.4 ), to just r eturn the input value unchange d. When w e run 𝜇 ⊧ 𝜎  with the
+input 0 , the ﬁlter . [ ]  fails with an err or , but b e cause the err or is caught imme diately after war ds,
+𝜇 ⊧ 𝜎  conse quently just r eturns the original input value 0 . The inter esting part is what happ ens
+when 𝜎  thr o ws an err or: This o ccurs for e xample when running the ﬁlter with the input [ { } ] . This
+w ould run . + 1  with the input { } , which yields an err or ( se e Se ction  4.3 ). This err or is  r eturne d
+by 𝜇 ⊧ 𝜎 .
+This raises the question: Ho w can w e e xe cute ( try 𝑓 catch 𝑔 ) ⊧ 𝜎  and distinguish err ors stem-
+ming fr om 𝑓  fr om err ors stemming fr om 𝜎 ?
+W e came up with the solution of p olarise d e xceptions . In a nutshell, w e want e v er y e xception
+that is r eturne d by 𝜎  to b e marke d in a sp e cial way such that it can b e ignor e d by a tr y-catch
+in 𝜇 . For this, w e assume the e xistence of tw o functions polarise ( 𝑥 )  and depolarise ( 𝑥 )  fr om a
+value r esult 𝑥  to a value r esult. If 𝑥  is an e xception, then polarise ( 𝑥 )  should r eturn a p olarise d v er-
+sion of it, wher eas depolarise ( 𝑥 )  should r eturn an unp olarise d v ersion of it, i.e . it should r emo v e
+any p olarisation fr om an e xception. Ev er y e xception cr eate d by error ( 𝑒 )  is unp olarise d. With this
+metho d, when w e e valuate an e xpr ession try 𝑓 catch 𝑔  in 𝜇 , w e can analyse the output of 𝑓 ⊧ 𝜎 ,22 Färb er
+and only catch unp olarise d  err ors. That way , err ors stemming fr om 𝜇  ar e pr opagate d, wher eas
+err ors stemming fr om 𝑓  ar e caught.
+6.4 NEW SEMANTICS
+W e will no w giv e semantics that deﬁne the output of ( 𝑓 ⊧ 𝑔 ) |𝑐
+𝑣  as r eferr e d to in Se ction 5 .
+W e will ﬁrst combine the te chniques in Se ction  6.3  to deﬁne ( 𝑓 ⊧ 𝑔 ) |𝑐
+𝑣  for tw o ﬁlters  𝑓  and 𝑔  by
+( 𝑓 ⊧ 𝜎 ) |𝑐
+𝑣 , wher e 𝜎  no w is a function  fr om a value to a str eam of value r esults:
+( 𝑓 ⊧ 𝑔 ) |𝑐
+𝑣 ≔ ∑
+𝑦 ∈ ( 𝑓 ⊧ 𝜎 ) |𝑐𝑣depolarise ( 𝑦 ) , where 𝜎 ( 𝑥 ) = ∑
+𝑦 ∈ 𝑔 |𝑐𝑥polarise ( 𝑦 ) .
+W e use a function instead of a ﬁlter on the right-hand side to limit the scop e of variable bindings
+as e xplaine d in Se ction  6.3.1 , and w e use polarise  to r estrict the scop e of caught e xceptions, as
+discusse d in Se ction  6.3.2 . Note that w e depolarise  the ﬁnal outputs of 𝑓 ⊧ 𝑔  in or der to pr e v ent
+leaking p olarisation information outside the up date .
+𝜇 ( 𝜇 ⊧ 𝜎 ) |𝑐
+𝑣
+. 𝜎 ( 𝑣 )
+𝑓 | 𝑔 ( 𝑓 ⊧ 𝜎′) |𝑐
+𝑣 where 𝜎′( 𝑥 ) = ( 𝑔 ⊧ 𝜎 ) |𝑐
+𝑥
+𝑓 , 𝑔 ∑𝑥 ∈ ( 𝑓 ⊧ 𝜎 ) |𝑐𝑣( 𝑔 ⊧ 𝜎 ) |𝑐
+𝑥
+𝑓 ⫽ 𝑔 ite ( trues ( 𝑓 |𝑐
+𝑣 ) , ⟨ ⟩ , ( 𝑔 ⊧ 𝜎 ) |𝑐
+𝑣 , ( 𝑓 ⊧ 𝜎 ) |𝑐
+𝑣 )
+. [ ] ⟨ 𝑣 [ ] ⊧ 𝜎 ( 𝑣 ) ⟩
+. [ $ 𝑥 ] ⟨ 𝑣 [ 𝑐 ( $ 𝑥 ) ] ⊧ 𝜎 ( 𝑣 ) ⟩
+. [ $ 𝑥 : $ 𝑦 ] ⟨ 𝑣 [ 𝑐 ( $ 𝑥 ) : 𝑐 ( $ 𝑦 ) ] ⊧ 𝜎 ( 𝑣 ) ⟩
+𝑓 as $ 𝑥 | 𝑔 reduce𝑐
+𝑣 ( 𝑓 |𝑐
+𝑣 , $ 𝑥 , ( 𝑔 ⊧ 𝜎 ) )
+if $ 𝑥 then 𝑓 else 𝑔 ite ( 𝑐 ( $ 𝑥 ) , true , ( 𝑓 ⊧ 𝜎 ) |𝑐
+𝑣 , ( 𝑔 ⊧ 𝜎 ) |𝑐
+𝑣 )
+try 𝑓 catch 𝑔 ∑𝑥 ∈ ( 𝑓 ⊧ 𝜎 ) |𝑐𝑣catch ( 𝑥 , 𝑔 , 𝑐 , 𝑣 )
+break $ 𝑥 ⟨ break ( $ 𝑥 ) ⟩
+𝜙 𝑥 as $ 𝑥 ( . ; 𝑓 ) 𝜙𝑐
+𝑣 ( 𝑥 |𝑐
+𝑣 , $ 𝑥 , 𝑓 , 𝜎 )
+𝑥 ( 𝑓1 ; … ; 𝑓𝑛 ) ( 𝑓 ⊧ 𝜎 ) |𝑐 ∪ ⋃𝑖{ 𝑥𝑖 ↦ ( 𝑓𝑖 , 𝑐 ) }
+𝑣 if 𝑥 ( 𝑥1 ; … ; 𝑥𝑛 ) ≔ 𝑓
+𝑥 ( 𝑓 ⊧ 𝜎 ) |𝑐′
+𝑣 if 𝑐 ( 𝑥 ) = ( 𝑓 , 𝑐′)
+T able 7: Up date semantics. Her e , 𝜇  is a ﬁlter and 𝜎 ( 𝑣 )  is a function fr om a value 𝑣  to a str eam of
+value r esults.T able  7  sho ws the deﬁnition of ( 𝜇 ⊧ 𝜎 ) |𝑐
+𝑣 . Se v eral of the cases for 𝜇 , like “ . ” , “ 𝑓 | 𝑔 ” , “ 𝑓 , 𝑔 ” ,
+and “ if $ 𝑥 then 𝑓 else 𝑔 ” ar e simply r elativ ely straightfor war d conse quences of the pr op erties in
+T able 6 . W e discuss the r emaining cases for 𝜇 :
+• 𝑓 ⫽ 𝑔 : Up dates using 𝑓  if 𝑓  yields some non-false value , else up dates using 𝑔 . Her e , 𝑓  is calle d
+as a “pr ob e ” ﬁrst. If it yields at least one output that is consider e d “true ” ( se e Se ction  5  for the
+deﬁnition of trues ), then w e up date at 𝑓 , else at 𝑔 . This ﬁlter is unusual b e cause is the only kind
+wher e a sub e xpr ession is b oth up date d with ( ( 𝑓 ⊧ 𝜎 ) |𝑐
+𝑣 ) and e valuate d ( 𝑓 |𝑐
+𝑣 ).
+• . [ ] , . [ $ 𝑥 ] , . [ $ 𝑥 : $ 𝑦 ] : Applies 𝜎  to the curr ent value using the op erators deﬁne d in Se ction 4.5 .A formal sp e cification of the jq language 23
+• 𝑓 as $ 𝑥 | 𝑔 : Folds o v er all outputs of 𝑓 , using the input value 𝑣  as initial accumulator and up-
+dating the accumulator by 𝑔 ⊧ 𝜎 , wher e $ 𝑥  is b ound to the curr ent output of 𝑓 . The deﬁnition
+of reduce  is giv en in Se ction 5.1 .
+• try 𝑓 catch 𝑔 : Returns the output of 𝑓 ⊧ 𝜎 , mapping err ors o ccurring in 𝑓  to 𝑔 . The deﬁnition
+of the function catch  is
+catch ( 𝑥 , 𝑔 , 𝑐 , 𝑣 ) ≔
+⎩{{⎨{{⎧ ∑𝑦 ∈ 𝑔 |𝑐𝑒⟨ error ( 𝑦 ) ⟩ if 𝑥 = error ( 𝑒 ) , 𝑥 is unpolarised, and 𝑔 |𝑐𝑥 ≠ ⟨ ⟩
+⟨ 𝑣 ⟩ if 𝑥 = error ( 𝑒 ) , 𝑥 is unpolarised, and 𝑔 |𝑐𝑥 = ⟨ ⟩
+⟨ 𝑥 ⟩ otherwise
+The function catch ( 𝑥 , 𝑔 , 𝑐 , 𝑣 )  analyses 𝑥  (the curr ent output of 𝑓 ): If 𝑥  is no unp olarise d err or , 𝑥
+is r eturne d. For e xample , that is the case if the original right-hand side of the up date r eturns an
+err or , in which case w e do not want this err or to b e caught her e . Ho w e v er , if 𝑥  is an unp olarise d
+err or , that is, an err or that was cause d on the left-hand side of the up date , it has to b e caught
+her e . In that case , catch  analyses the output of 𝑔  with input 𝑥 : If 𝑔  yields no output, then it
+r eturns the original input value 𝑣 , and if 𝑔  yields output, all its output is mapp e d to err ors! This
+b ehaviour might se em p e culiar , but it makes sense when w e consider the jq way of implement-
+ing up dates via paths: When e valuating some up date 𝜇 ⊧ 𝜎  with an input value 𝑣 , the ﬁlter 𝜇
+may only r eturn paths to data containe d within 𝑣 . When 𝜇  is try 𝑓 catch 𝑔 , the ﬁlter 𝑔  only
+r e ceiv es inputs that stem fr om err ors, and b e cause 𝑣  cannot contain err ors, these inputs cannot
+b e containe d in 𝑣 . Conse quentially , 𝑔  can ne v er r eturn any path p ointing to 𝑣 . The only way ,
+ther efor e , to get out aliv e fr om a catch  is for 𝑔  to r eturn … nothing.
+• break ( $ 𝑥 ) : Br eaks out fr om the up date . ¹⁰
+• 𝜙 𝑥 as $ 𝑥 ( . ; 𝑓 ) : Folds 𝑓  o v er the values r eturne d by $ 𝑥 . W e will discuss this in Se ction 6.5 .
+• 𝑥 ( 𝑓1 ; … ; 𝑓𝑛 ) , 𝑥 : Calls ﬁlters. This is deﬁne d analogously to T able 5 .
+¹⁰ Note that unlike in Se ction 5 , w e do not deﬁne the up date semantics of label $ 𝑥 | 𝑓 , which could
+b e use d to r esume an up date after a break . The r eason for this is that this r e quir es an additional typ e of
+break  e xceptions that carries the curr ent value alongside the variable , as w ell as variants of the value
+up date op erators in Se ction 4.5  that can handle unp olarise d br eaks. Be cause making up date op erators
+handle unp olarise d br eaks r enders them considerably mor e comple x and w e estimate that lab el
+e xpr essions ar e rar ely use d in the left-hand side of up dates any way , w e think it mor e b eneﬁcial for the
+pr esentation to forgo lab el e xpr essions her e .Ther e ar e many ﬁlters 𝜇  for which ( 𝜇 ⊧ 𝜎 ) |𝑐
+𝑣  is not deﬁne d, for e xample $ 𝑥 , [ 𝑓 ] , and { } . In such
+cases, w e assume that ( 𝜇 ⊧ 𝜎 ) |𝑐
+𝑣  r eturns an err or just like jq, b e cause these ﬁlters do not r eturn
+paths to their input data. Our semantics supp ort all kinds of ﬁlters 𝜇  that ar e supp orte d by jq,
+e xcept for label $ 𝑥 | 𝑔 .
+Example 6.4.1  (The Curious Case of Alternation) :  The semantics of ( 𝑓 ⫽ 𝑔 ) ⊧ 𝜎  can b e rather sur-
+prising: For the input { " 𝑎 " ↦ true } , the ﬁlter ( . [ " 𝑎 " ] ⫽ . [ " 𝑏 " ] ) ⊧ 1  yields { " 𝑎 " ↦ 1 } . This is what
+w e might e xp e ct, b e cause the input has an entr y for " 𝑎 " . No w let us e valuate the same ﬁlter on
+the input { " 𝑎 " ↦ false } , which yields { " 𝑎 " ↦ false , " 𝑏 " ↦ 1 } . Her e , while the input still has an
+entr y for " 𝑎 "  like ab o v e , its b o olean value is not  true , so . [ " 𝑏 " ] ⊧ 1  is e xe cute d. In the same spirit,
+for the input { }  the ﬁlter yields { " 𝑏 " ↦ 1 } , b e cause . [ " 𝑎 " ]  yields null  for the input, which also has
+the b o olean value false , ther efor e . [ " 𝑏 " ] ⊧ 1  is e xe cute d.
+For the input { } , the ﬁlter ( false ⫽ . [ " 𝑏 " ] ) ⊧ 1  yields { " 𝑏 " ↦ 1 } . This is r emarkable insofar as
+false  is not a valid path e xpr ession b e cause it r eturns a value that do es not r efer to any part of
+the original input, y et the ﬁlter do es not r eturn an err or . This is b e cause false  triggers . [ " 𝑏 " ] ⊧ 1 ,24 Färb er
+so false  is ne v er use d as path e xpr ession. Ho w e v er , running the ﬁlter ( true ⫽ . [ " 𝑏 " ] ) ⊧ 1  do es  yield
+an err or , b e cause true  triggers true ⊧ 1 , and true  is not a valid path e xpr ession.
+Finally , on the input [ ] , the ﬁlter ( . [ ] ⫽ error ) ⊧ 1  yields error ( [ ] ) . That is b e cause . [ ]  do es not
+yield any value for the input, so error ⊧ 1  is e xe cute d, which yields an err or .
+6.5 FOLDING
+In Se ction  5.1 , w e hav e se en ho w to e valuate folding ﬁlters of the shap e 𝜙 𝑥 as $ 𝑥 ( . ; 𝑓 ) , wher e 𝜙
+is either reduce  or foreach . Her e , w e will deﬁne up date semantics for these ﬁlters. These up date
+op erations ar e not  supp orte d in jq 1.7; ho w e v er , w e will sho w that the y arise quite naturally fr om
+pr e vious deﬁnitions.
+Let us start with an e xample to understand folding on the left-hand side of an up date .
+Example 6.5.1 :  Let 𝑣 = [ [ [ 2 ] , 1 ] , 0 ]  b e our input value and 𝜇  b e the ﬁlter 𝜙 ( 0 , 0 ) as $ 𝑥 ( . ; . [ $ 𝑥 ] ) . The
+r egular e valuation of 𝜇  with the input value as describ e d in Se ction 5  yields
+𝜇 |{ }
+𝑣 =
+⎩{⎨{⎧ ⟨ [ 2 ] ⟩ if 𝜙 = reduce
+⟨ 𝑣 , [ [ 2 ] , 1 ] , [ 2 ] ⟩ if 𝜙 = for
+⟨ [ [ 2 ] , 1 ] , [ 2 ] ⟩ if 𝜙 = foreach
+When 𝜙 = for , the paths corr esp onding to the output ar e . , . [ 0 ] , and . [ 0 ] [ 0 ] , and when 𝜙 = reduce ,
+the paths ar e just . [ 0 ] [ 0 ] . Giv en that all outputs hav e corr esp onding paths, w e can up date o v er
+them. For e xample , taking . + [ 3 ]  as ﬁlter 𝜎 , w e should obtain the output
+( 𝜇 ⊧ 𝜎 ){ }
+𝑣=
+⎩{⎨{⎧ ⟨ [ [ [ 2 , 3 ] , 1 ] , 0 ] ⟩ if 𝜙 = reduce
+⟨ [ [ [ 2 , 3 ] , 1 , 3 ] , 0 , 3 ] ⟩ if 𝜙 = for
+⟨ [ [ [ 2 , 3 ] , 1 , 3 ] , 0 ] ⟩ if 𝜙 = foreach
+First, note that for folding ﬁlters, the lo w ering in T able  2  and the deﬁning e quations in Se ction  5.1
+only make use of ﬁlters for which w e hav e alr eady intr o duce d up date semantics in T able  7 . This
+should not b e taken for grante d; for e xample , w e originally lo w er e d 𝜙 𝑓𝑥 as $ 𝑥 ( 𝑓𝑦 ; 𝑓 )  to
+⌊ 𝑓𝑦 ⌋ as $ 𝑦 | 𝜙 ⌊ 𝑓𝑥 ⌋ as $ 𝑥 ( $ 𝑦 ; ⌊ 𝑓 ⌋ )
+instead of the mor e complicate d lo w ering found in T able 2 , namely
+. as $ 𝑥′| ⌊ 𝑓𝑦 ⌋ | 𝜙 ⌊ $ 𝑥′| 𝑓𝑥 ⌋ as $ 𝑥 ( . ; ⌊ 𝑓 ⌋ ) .
+While b oth lo w erings pr o duce the same output for r egular e valuation, w e cannot use the original
+lo w ering for up dates, b e cause the deﬁning e quations for 𝜙 𝑥 as $ 𝑥 ( $ 𝑦 ; 𝑓 )  w ould hav e the shap e
+$ 𝑦 | … , which is undeﬁne d on the left-hand side of an up date . Ho w e v er , the lo w ering in T able  2
+av oids this issue by not binding the output of 𝑓𝑦  to a variable , so it can b e use d on the left-hand
+side of up dates.
+T o obtain an intuition ab out ho w the up date e valuation of a fold lo oks like , w e can take
+𝜙 𝑥 as $ 𝑥 ( . ; 𝑓 ) ⊧ 𝜎 , substitute the left-hand side by the deﬁning e quations in Se ction  5.1  and e x-
+pand e v er ything using the pr op erties in Se ction 6.2 . This yields
+reduce 𝑥 as $ 𝑥 ( . ; 𝑓 ) ⊧ 𝜎 = ( ( 𝑥0 as $ 𝑥 | 𝑓 ) for 𝑥 as $ 𝑥 ( . ; 𝑓 ) ⊧ 𝜎 = 𝜎 | ( ( 𝑥0 as $ 𝑥 | 𝑓 )
+⊧ … ⊧ …
+⊧ ( ( 𝑥𝑛 as $ 𝑥 | 𝑓 ) ⊧ 𝜎 | ( ( 𝑥𝑛 as $ 𝑥 | 𝑓 )
+⊧ 𝜎 ) … ) ⊧ 𝜎 ) … )
+and foreach  steps out of line again by not applying 𝜎  initially:A formal sp e cification of the jq language 25
+foreach 𝑥 as $ 𝑥 ( . ; 𝑓 ) ⊧ 𝜎 = ( ( 𝑥0 as $ 𝑥 | 𝑓 )
+⊧ 𝜎 | ( ( 𝑥1 as $ 𝑥 | 𝑓 )
+⊧ …
+⊧ 𝜎 | ( ( 𝑥𝑛 as $ 𝑥 | 𝑓 )
+⊧ 𝜎 ) … ) .
+Example 6.5.2 :  T o se e the eﬀe ct of ab o v e e quations, let us r e consider the input value and the ﬁlters
+fr om Example 6.5.1 . Using some lib erty to write . [ 0 ]  instead of 0 as $ 𝑥 | . [ $ 𝑥 ] , w e hav e:
+𝜇 ⊧ 𝜎 =
+⎩{⎨{⎧ . [ 0 ] ⊧ . [ 0 ] ⊧ 𝜎 if 𝜙 = reduce
+𝜎 | ( . [ 0 ] ⊧ 𝜎 | ( . [ 0 ] ⊧ 𝜎 ) ) if 𝜙 = for
+. [ 0 ] ⊧ 𝜎 | ( . [ 0 ] ⊧ 𝜎 ) if 𝜙 = foreach
+W e will no w formally deﬁne the functions 𝜙𝑐
+𝑣 ( 𝑙 , $ 𝑥 , 𝑓 , 𝜎 )  use d in T able  7 . For this, w e ﬁrst intr o-
+duce a function fold𝑐
+𝑣 ( 𝑙 , $ 𝑥 , 𝑓 , 𝜎 , 𝑜 ) , which r esembles its corr esp onding function in Se ction  5.1 ,
+but which adds an argument for the up date ﬁlter 𝜎 :
+fold𝑐
+𝑣 ( 𝑙 , $ 𝑥 , 𝑓 , 𝜎 , 𝑜 ) ≔
+⎩{⎨{⎧∑𝑦 ∈ 𝑜 ( 𝑣 )( 𝑓 ⊧ 𝜎′ ) |𝑐 { $ 𝑥 ↦ ℎ }
+𝑦 if 𝑙 = ⟨ ℎ ⟩ + 𝑡 and 𝜎′ ( 𝑥 ) = fold𝑐𝑥 ( 𝑡 , $ 𝑥 , 𝑓 , 𝜎 , 𝑜 )
+𝜎 ( 𝑣 ) otherwise ( 𝑙 = ⟨ ⟩ )
+Using this function, w e can no w deﬁne
+reduce𝑐
+𝑣 ( 𝑙 , $ 𝑥 , 𝑓 , 𝜎 ) ≔ fold𝑐
+𝑣 ( 𝑙 , $ 𝑥 , 𝑓 , 𝜎 , 𝑜 ) where 𝑜 ( 𝑣 ) = ⟨ 𝑣 ⟩
+for𝑐
+𝑣 ( 𝑙 , $ 𝑥 , 𝑓 , 𝜎 ) ≔ fold𝑐
+𝑣 ( 𝑙 , $ 𝑥 , 𝑓 , 𝜎 , 𝑜 ) where 𝑜 ( 𝑣 ) = 𝜎 ( 𝑣 )
+as w ell as
+foreach𝑐
+𝑣 ( 𝑙 , $ 𝑥 , 𝑓 , 𝜎 ) ≔ {( 𝑓 ⊧ 𝜎′ ) |𝑐 { $ 𝑥 ↦ ℎ }
+𝑣 if 𝑙 = ⟨ ℎ ⟩ + 𝑡 and 𝜎′ ( 𝑥 ) = for𝑐𝑥 ( 𝑡 , $ 𝑥 , 𝑓 , 𝜎 )
+⟨ 𝑣 ⟩ otherwise
+7 EQU A TIONAL REASONING SHO W CASE: OBJECT CONSTRUCTION
+W e will no w sho w ho w to pr o v e pr op erties ab out HIR ﬁlters by e quational r easoning. For this,
+w e use the lo w ering in Se ction  3.2  and the semantics deﬁne d in Se ction  5 . A s an e xample , w e will
+sho w a fe w pr op erties of obje ct construction.
+Let us start by pr o ving a fe w help er lemmas, wher e 𝑐  and 𝑣  always denote some arbitrar y con-
+te xt and value , r esp e ctiv ely .
+Lemma 7.1 :  For any HIR ﬁlters 𝑓  and 𝑔  and any Cartesian op erator ⚬  ( such as addition, se e T able  1 ),
+w e hav e ⌊ 𝑓 ⚬ 𝑔 ⌋ |𝑐
+𝑣 = ∑𝑥 ∈ ⌊ 𝑓 ⌋ |𝑐𝑣∑𝑦 ∈ ⌊ 𝑔 ⌋ |𝑐𝑣⟨ 𝑥 ⚬ 𝑦 ⟩ .
+Pr o of :  The lo w ering in T able  2  yields ⌊ 𝑓 ⚬ 𝑔 ⌋ |𝑐
+𝑣 = ( ⌊ 𝑓 ⌋ as $ 𝑥′| ⌊ 𝑔 ⌋ as $ 𝑦′| $ 𝑥′⚬ $ 𝑦′) |𝑐
+𝑣 .
+Using the e valuation semantics in T able  5 , w e can further e xpand this to
+∑𝑥 ∈ ⌊ 𝑓 ⌋ |𝑐𝑣∑𝑦 ∈ ⌊ 𝑔 ⌋𝑐 { $ 𝑥 ′ ↦ 𝑥 }
+𝑣( $ 𝑥′⚬ $ 𝑦′) |𝑐 { $ 𝑥′↦ 𝑥 , $ 𝑦′↦ 𝑦 }
+𝑣 . Be cause $ 𝑥′ and $ 𝑦′ ar e fr esh variables, w e
+kno w that the y cannot o ccur in ⌊ 𝑔 ⌋ , so ⌊ 𝑔 ⌋𝑐 { $ 𝑥′↦ 𝑥 }
+𝑣= ⌊ 𝑔 ⌋𝑐
+𝑣. Furthermor e , by the e valuation se-
+mantics, w e hav e ( $ 𝑥′⚬ $ 𝑦′) |𝑐 { $ 𝑥′↦ 𝑥 , $ 𝑦′↦ 𝑦 }
+𝑣 = ⟨ 𝑥 ⚬ 𝑦 ⟩ . Fr om these tw o obser vations, the conclu-
+sion imme diately follo ws. □
+Lemma 7.2 :  For any HIR ﬁlters 𝑓  and 𝑔 , w e hav e ⌊ { 𝑓 : 𝑔 } ⌋ |𝑐
+𝑣 = ∑𝑥 ∈ ⌊ 𝑓 ⌋ |𝑐𝑣∑𝑦 ∈ ⌊ 𝑔 ⌋ |𝑐𝑣⟨ { 𝑥 : 𝑦 } ⟩ .26 Färb er
+Pr o of :  Analogously to the pr o of of Lemma 7.1 . □
+W e can no w pr o ce e d by stating a central pr op erty of obje ct construction.
+The or em 7.3 :  For any 𝑛 ∈ ℕ  with 𝑛 > 0 , w e hav e that ⌊ { 𝑘1 : 𝑣1 , … , 𝑘𝑛 : 𝑣𝑛 } ⌋ |𝑐
+𝑣  is e quivalent to
+∑
+𝑘1 ∈ ⌊ 𝑘1 ⌋ |𝑐𝑣∑
+𝑣1 ∈ ⌊ 𝑣1 ⌋ |𝑐𝑣… ∑
+𝑘𝑛 ∈ ⌊ 𝑘𝑛 ⌋ |𝑐𝑣∑
+𝑣𝑛 ∈ ⌊ 𝑣𝑛 ⌋ |𝑐𝑣⟨ ∑
+𝑖{ 𝑘𝑖 : 𝑣𝑖 } ⟩ .
+Pr o of :  W e will pr o v e by induction on 𝑛 . The base case 𝑛 = 1  dir e ctly follo ws fr om Lemma  7.2 . For
+the induction step , w e hav e to sho w that ⌊ { 𝑘1 : 𝑣1 , … , 𝑘𝑛 + 1 : 𝑣𝑛 + 1 } ⌋ |𝑐
+𝑣  is e quivalent to
+∑
+𝑘1 ∈ ⌊ 𝑘1 ⌋ |𝑐𝑣∑
+𝑣1 ∈ ⌊ 𝑣1 ⌋ |𝑐𝑣… ∑
+𝑘𝑛 + 1 ∈ ⌊ 𝑘𝑛 + 1 ⌋ |𝑐𝑣∑
+𝑣𝑛 + 1 ∈ ⌊ 𝑣𝑛 + 1 ⌋ |𝑐𝑣⟨ ∑𝑛 + 1
+𝑖{ 𝑘𝑖 : 𝑣𝑖 } ⟩ .
+W e start by
+⌊ { 𝑘1 : 𝑣1 , … , 𝑘𝑛 + 1 : 𝑣𝑛 + 1 } ⌋ |𝑐
+𝑣 =(lowering)
+= ⌊ ∑
+𝑖{ 𝑘𝑖 : 𝑣𝑖 } ⌋ |𝑐
+𝑣 =
+= ⌊ ∑𝑛
+𝑖 = 1{ 𝑘𝑖 : 𝑣𝑖 } + { 𝑘𝑛 + 1 : 𝑣𝑛 + 1 } ⌋ |𝑐
+𝑣 =( Lemma   7 . 1 )
+= ∑
+𝑥 ∈ ⌊ ∑𝑛
+𝑖 = 1{ 𝑘𝑖 : 𝑣𝑖 } ⌋ |𝑐𝑣∑
+𝑦 ∈ ⌊ { 𝑘𝑛 + 1 : 𝑣𝑛 + 1 } ⌋ |𝑐𝑣⟨ 𝑥 + 𝑦 ⟩ .
+Her e , w e obser v e that ⌊ ∑𝑛
+𝑖 = 1{ 𝑘𝑖 : 𝑣𝑖 } ⌋ |𝑐
+𝑣 = ⌊ { 𝑘1 : 𝑣1 , … , 𝑘𝑛 : 𝑣𝑛 } ⌋ |𝑐
+𝑣 , which by the induction hy-
+p othesis e quals
+∑
+𝑘1 ∈ ⌊ 𝑘1 ⌋ |𝑐𝑣∑
+𝑣1 ∈ ⌊ 𝑣1 ⌋ |𝑐𝑣… ∑
+𝑘𝑛 ∈ ⌊ 𝑘𝑛 ⌋ |𝑐𝑣∑
+𝑣𝑛 ∈ ⌊ 𝑣𝑛 ⌋ |𝑐𝑣⟨ ∑𝑛
+𝑖{ 𝑘𝑖 : 𝑣𝑖 } ⟩ .
+W e can use this to r esume the simpliﬁcation of ⌊ { 𝑘1 : 𝑣1 , … , 𝑘𝑛 + 1 : 𝑣𝑛 + 1 } ⌋ |𝑐
+𝑣  to
+∑
+𝑘1 ∈ ⌊ 𝑘1 ⌋ |𝑐𝑣∑
+𝑣1 ∈ ⌊ 𝑣1 ⌋ |𝑐𝑣… ∑
+𝑘𝑛 ∈ ⌊ 𝑘𝑛 ⌋ |𝑐𝑣∑
+𝑣𝑛 ∈ ⌊ 𝑣𝑛 ⌋ |𝑐𝑣∑
+𝑦 ∈ ⌊ { 𝑘𝑛 + 1 : 𝑣𝑛 + 1 } ⌋ |𝑐𝑣⟨ ∑𝑛
+𝑖{ 𝑘𝑖 : 𝑣𝑖 } + 𝑦 ⟩
+Finally , applying Lemma 7.2  to ⌊ { 𝑘𝑛 + 1 : 𝑣𝑛 + 1 } ⌋ |𝑐
+𝑣  pr o v es the induction step . □
+W e can use this the or em to simplify the e valuation of ﬁlters such as the follo wing one .
+Example 7.1 :  The e valuation of { " 𝑎 " : ( 1 , 2 ) , ( " 𝑏 " , " 𝑐 " ) : 3 , " 𝑑 " : 4 }  yields ⟨ 𝑣0 , 𝑣1 , 𝑣2 , 𝑣3 ⟩ , wher e
+𝑣0 = { " 𝑎 " ↦ 1 , " 𝑏 " ↦ 3 , " 𝑑 " ↦ 4 } ,
+𝑣1 = { " 𝑎 " ↦ 1 , " 𝑐 " ↦ 3 , " 𝑑 " ↦ 4 } ,
+𝑣2 = { " 𝑎 " ↦ 2 , " 𝑏 " ↦ 3 , " 𝑑 " ↦ 4 } ,
+𝑣3 = { " 𝑎 " ↦ 2 , " 𝑐 " ↦ 3 , " 𝑑 " ↦ 4 } .
+8 CONCLUSION
+W e hav e sho wn formal syntax and semantics of a large subset of the jq pr ogramming language .
+On the syntax side , w e ﬁrst deﬁne d formal syntax (HIR) that closely corr esp onds to actual jq
+syntax. W e then gav e a lo w ering that r e duces HIR to a simpler subset (MIR), in or der to simplifyA formal sp e cification of the jq language 27
+the semantics later . W e ﬁnally sho w e d ho w a subset of actual jq syntax can b e translate d into HIR
+and thus MIR.
+On the semantics side , w e gav e formal semantics base d on MIR. First, w e deﬁne d values and
+basic op erations on them. Then, w e use d this to deﬁne the semantics of jq pr ograms, by sp e cifying
+the outcome of the e xe cution of a jq pr ogram. A large part of this was de dicate d to the e valuation
+of up dates: In particular , w e sho w e d a ne w appr oach to e valuate up dates. This appr oach, unlike
+the appr oach implemente d in jq, do es not dep end on separating path building and up dating, but
+inter w eav es them. This allo ws up date op erations to cleanly handle multiple output values in cases
+wher e this was not p ossible b efor e . Furthermor e , in practice , this av oids cr eating temp orar y data
+to stor e paths, thus impr o ving p erformance . This appr oach is also mostly compatible with the
+original jq b ehaviour , y et it is unav oidable that it div erges in some corner cases.
+W e hop e that our w ork is useful in se v eral ways: For users of the jq pr ogramming language , it
+pr o vides a succinct r efer ence that pr e cisely do cuments the language . Our w ork should also b en-
+eﬁt implementers of to ols that pr o cess jq pr ograms, such as compilers, interpr eters, or linters. In
+particular , this sp e ciﬁcation should b e suﬃcient to implement the cor e of a jq compiler or inter-
+pr eter . Finally , our w ork enables e quational r easoning ab out jq pr ograms. This makes it p ossible to
+pr o v e corr e ctness of jq pr ograms or to implement pr o vably corr e ct optimisations in jq compilers/
+interpr eters.
+BIBLIOGRAPH Y
+[1] D . M. Ritchie , “The UNIX system: The e v olution of the UNIX time-sharing system” , A T&T Bell
+Lab . T e ch. J. , v ol. 63, no . 8, pp . 1577–1593, 1984, doi: 10.1002/j.1538-7305.1984.tb00054.x .
+[2] T . Bray , “The JavaScript Obje ct Notation ( JSON) Data Inter change Format” . A ccesse d: Feb . 22,
+2023. [ Online]. A vailable: https://w w w .rfc-e ditor .org/info/rfc8259
+[3] Paris Data, “Dénominations des emprises des v oies actuelles” . A ccesse d: Feb . 22,
+2023. [ Online]. A vailable: https://op endata.paris.fr/e xplor e/dataset/denominations-emprises-
+v oies-actuelles/
+[4] N. Williams and jqlang contributors, “jq language description” . A ccesse d: Feb . 20, 2023. [ On-
+line]. A vailable: https://github .com/jqlang/jq/wiki/jq-Language-Description
+[5] S. Dolan and jqlang contributors, “jq 1.7 manual” . A ccesse d: Feb . 20, 2023. [ Online]. A vailable:
+https://jqlang.github .io/jq/manual/v1.7/
+[6] J. N. Foster , A. Pilkie wicz, and B. C. Pier ce , “Quotient lenses” , in Pr o ce e ding of the 13th
+A CM SIGPLAN international confer ence on Functional pr ogramming, ICFP 2008, Victoria, BC,
+Canada, Septemb er 20-28, 2008 , J. Ho ok and P . Thiemann, Eds., A CM,  2008, pp . 383–396. doi:
+10.1145/1411204.1411257 .
+[7] J. N. Foster , M. B. Gr e enwald, J. T . Mo or e , B. C. Pier ce , and A. Schmitt, “Combinators for bi-di-
+r e ctional tr e e transformations: a linguistic appr oach to the vie w up date pr oblem” , in Pr o ce e d-
+ings of the 32nd A CM SIGPLAN-SIGA CT Symp osium on Principles of Pr ogramming Languages,
+POPL 2005, Long Beach, California, USA, Januar y 12-14, 2005 , J. Palsb erg and M. Abadi, Eds.,
+A CM,  2005, pp . 233–246. doi: 10.1145/1040305.1040325 .
+[8] M. Pickering, J. Gibb ons, and N. W u, “Pr ofunctor Optics: Mo dular Data A ccessors” , A rt Sci.
+Eng. Pr ogram. , v ol. 1, no . 2, p . 7, 2017, doi: 10.22152/pr ogramming-journal.org/2017/1/7 .

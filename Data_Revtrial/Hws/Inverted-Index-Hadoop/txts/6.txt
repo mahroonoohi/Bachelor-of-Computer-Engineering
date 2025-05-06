@@ -1,0 +1,435 @@
+  
+Journal of Chemical Education  9/18/22  Page 1 of 15 Synthesis and Characterization of Superparamagnetic Iron Oxide 
+Nanoparticles: A Series of Laboratory Experiments  
+Armando D. Urbina1+, Hari Sridhara1+, Alexis Scholtz2+, Andrea M. Armani1,2,3 * 
+1 Mork Family Department of Chemical Engineering and Materials Science, University of Southern 
+California, Los Angeles, CA 90089, US A 
+2 Alfred E. Mann Department of Biomedical Engineering, University of Southern California, Los Angeles, 
+CA 90089, US A 
+3 Ellison Institute of Technology , Los Angeles, CA 90064, USA  
++ These authors contributed equally.  
+*aarmani@eit.org  
+ 
+ABSTRACT  
+The following laboratory procedure provides students with a hands -on experience in nanomaterials 
+chemistry and characterization. This three -day protocol is easy to follow for undergraduates with basic 
+chemistry or materials science backgrounds and is suita ble for inclusion in upper division courses in 
+inorganic chemistry or materials science. Students use air -free chemistry procedures to synthesize 
+and separate iron oxide magnetic nanoparticles and subsequently modify the nanoparticle surface 
+using a chemic al stripping agent. The morphology and chemical composition of the nanoparticles are 
+characterized using electron microscopy and dynamic light scattering measurements. Additionally, 
+magnetic characterization  of the particles is performed  using a n open -source  (3D-printed), inexpensive 
+magnetophotometer. Possible modifications to the synthe sis procedure including the incorporation of 
+dopants to modify the magnetic response and alternative characterization techniques  are discussed . 
+The three -day synthesis, pur ification, and characterization laboratory will prepare students with 
+crucial skills for advanced technology industries such as semiconductor manufacturing, 
+nanomedicine, and green chemistry.    
+Journal of Chemical Education  9/18/22  Page 2 of 15 GRAPHICAL ABSTRACT  
+ 
+KEYWORDS:  
+Upper -Division Undergraduate, Inorganic Chemistry, Laboratory Instruction, Hands -On learning, 
+Inquiry -Based Learning, Magnetic Properties, Physical Properties, Materials Science, Metals, 
+Nanotechnology  
+ 
+INTRODUCTION  AND BACKGROUND  
+In 2000, the National Nanotechnology Initiative was launched in the United States with four 
+objectives designed to advance workforce training and technology development .1 Since then, the 
+research community has made significant discoveries in nanotechnology research (first objective ). 
+However, the development and sustainment of educational resources to support the creation of a 
+skilled workforce (third objective ) has not received similar attention .2 As discussed in several 
+longitudinal studies dating back to the mid -2000’s, many undergraduate and graduate chemistry and 
+chemical engineering laboratory experiments have not been updated to include recent technical 
+advances and modern instrumentation .3–5 In addition to decreasing the utility of the degrees, this also 
+has resulted in increased attrition from Science , Technology , Engineering , and Mathematics ( STEM ) 
+degree programs .6 In this context, the development of nanomaterial synthesis laboratories provides a 
+clear strategy to  increase  engage ment and retention in a wide range of degree programs.7 
+There are several examples of inquiry -based undergraduate teaching laboratories exploring 
+fundamental nanoengineering concepts8–11 and training students in various nano -characterization 
+techniques.12,13 One family of nanomaterials commonly incorporated into teaching laboratories are 
+optically -responsive nanoparticles , including gold nanoparticles14–18 and fluorescent quantum 
+dots.11,19,20  While these materials serve as an ideal platform for exploring complex quantum concepts, 
+  
+Journal of Chemical Education  9/18/22  Page 3 of 15 such as the discretization of energy states21,22 and manipulation of light at the nanoscale ,23,24the 
+notable  properties of these nanoparticles are limited to geometry and optical response. In contrast, 
+nanomaterials can demonstrate a plethora of behaviors, including mechanical ,25optical ,2,23,24  
+electrical ,26 chemical ,27 and more .28–31One unique nanomaterial is iron oxid e nanoparticles. Unlike 
+quantum dots or metal nanoparticles, iron oxide nanoparticles exhibit size - and shape -tunable 
+magnetic behavior.27,32 –34 As a result of their magnetic response and low biotoxicity, this nanomaterial  
+show s promise in a wide range of applications and fields , including biomedical devices and imaging, 
+energy storage and generation, and chemical processing .28,31,35 –37 Thus, given their synergistic 
+relationship to existing undergraduate nanoparticle laboratories  and their emerging real -world  
+applications , the synthesis and characterization of iron oxide nanop articles  provide a rich foundation 
+for integration into an academic laboratory course .38 
+Iron oxide nanoparticles fall under a larger class of materials known as paramagnetic materials. 
+Unlike many commonly available magnetic materials which rely on collective, long -range magnetic order 
+to achieve an intrinsic magnetic response, paramagnetic and diamagnetic materials are considered 
+nonmagnetic in the absence of an external magnetic field .39 However, in the presence of a field, their 
+magnetic domains  align  in a single direction  (Figure 1 ), and the particle exhibits a magnetic response. The 
+electron pairing determines if a material is diamagnetic or paramagnetic, which governs the sign of the 
+magnetic susceptibility.  Symmetric or spherical iron oxide nanoparticles demonstrate a paramagnetic 
+response due to their unpaired electrons and have a positive magnetic susceptibility .33 This response is 
+governed by the material composition, crystallographic uniformity, and size. Indirectly, it is also 
+controlled by the sample preparation, as clusters of particles behave differently from well -dispersed 
+particles. Given the diversity of applications for paramagnetic iron oxide nanoparticles, it is useful to 
+measure their size, composition, and magnetic response  before pursuing an application .40–42    
+Journal of Chemical Education  9/18/22  Page 4 of 15  
+Figure 1 . A paramagnetic nanoparticle ( a) before and ( b) during exposure to an external magnetic field . This figure was prepared using 
+Biorender.  
+In prior work, several methods have been used to characterize these properties in iron oxide 
+nanoparticles specifically. The methods and the ir generated data  are presented in Table 1. As can be 
+observed, there are several options for measuring each parameter, depending on the availability of 
+instrumentation. Additionally, depending on the method(s) selected, the results will be provided at 
+either the single particle level or at the population level. This provides a unique opportunity to 
+compare the differen ce between single particle and population -level data.  
+ 
+Table 1. Parameters of Interest and Characterization Methods  
+Parameter Measured Measurement Method  Data 
+Visualization  Type of Data  
+Particle size  Dynamic Light Scattering (DLS)43 Histogram  Population level  
+Particle size  Transmission Electron Microscope (TEM)44 Image  Particle level  
+Particle size  Scanning Electron Microscope (SEM)45 Image  Particle level  
+Particle size  Atomic Force Microscopy (AFM)46 2.5D image  Particle level 
+Dopant concentration  Energy Dispersive X -ray Spectroscopy 
+(EDX/EDS)47 Spectra  Population level  
+Dopant concentration  X-Ray Diffractometry (XRD )48 Spectra  Population level  
+Magnetic response  Magnetophotometry (MAP)49 Graph  Population level  
+Magnetic response  SQUID50 Graph  Population level  
+Magnetic response  Magnetic Resonance Imaging (MRI)51 Image  Population level  
+ 
+EXPERIMENTAL DETAILS  
+The laboratory protocol is broken into 3 days: nanoparticle synthesis on Day 1, sample preparation 
+and nanoparticle surface treatment on Day 2, and nanoparticle characterization on Day 3. A general 
+  
+Journal of Chemical Education  9/18/22  Page 5 of 15 overview is illustrated in Figure 2, and the detailed protocol is contained in the supplementary 
+Instructor and Student  Manuals.  
+ 
+Figure 2 . Overview of the full laboratory procedure. ( a-c) Day 1 consists of nanoparticle synthesis including ( a) the Fe 3O4 synthesis reaction, 
+(b) isolating the iron oxide particles by centrifuge, and ( c) drying the iron oxide nanoparticles coated with oleylamine ligands. ( d-f) Day 2 
+includes ( d) the stripping of nanoparticles by iodomethane ( MeI), (e) centrifugation to isolate the stripped iron oxide nanoparticles and ( f) 
+drying the stripped Fe 3O4 nanoparticles.  (g-i) Characterization techniques used in Day 3 include ( g) magnetophotometry (MAP) using stripped 
+nanoparticles, (h) Scanning Electron Microscopy (SEM) using oleylamine coated nanoparticles, and (i) Dynamic Light Scattering (DLS) using 
+oleylamine coated nanoparticles . This figure was prepared using BioRender.  
+ 
+Single -crystal metal nanoparticles formed via a two -part synthesis of nucleation and growth steps 
+are well understood to produce monodisperse size distributions with strong shape control.52–56 The 
+one-pot two -part synthesis used here follows a previously published procedure  with slight 
+modifications to align with undergraduate laboratory expectations.57,58 Briefly, solid and liquid 
+reagents are combined with the reaction solvent in an air -free environment (Figure 2a).59 Holding the 
+reagents at an initial temperature of 200 C cleaves the acetylacetone bonds in Fe(acac) 3, allowing for 
+nucleation of iron oxide sites. Further increasing the temperature until reflux, when particle growth is 
+thermodynamically preferential, for a predetermined time leads to single crystal and highly 
+monodisperse particles (Figure 2b).  
+  
+Journal of Chemical Education  9/18/22  Page 6 of 15 After purification, a subset of particles is further treated with iodomethane (MeI) to remove or 
+‘strip’ the oleylamine ligands attached to the particle surface (Figure 2c). Samples are then prepared 
+with the untreated and stripped particles (Figure 2d -f) to conduct size, shape, and magnetic response 
+characterization (Figure 2g -i). This student cohort used dynamic light scattering (DLS), scanning 
+electron microscopy (SEM), and a n open -source m agnetophotometer (MAP)49 to analyze the particle 
+size, shape, and magnetic response. Possible variations to the synthesis and alternative 
+characterization methods are listed in Table 1 and are discussed  in more depth in the Instructor 
+Manual.  
+ 
+ 
+Hazards and Safety  
+A concrete understanding of laboratory safety is essential for pursuit of modern careers in science 
+and engineering. This laboratory procedure involves use of numerous hazardous chemicals and 
+requires the use of appropriate mitigation measures . Before the start of the laboratory, all students 
+received general laboratory safety training, which included instruction in proper handling of 
+chemicals, personal protective equipment (PPE), mitigation measures (location and use of eye -wash 
+stations, chemi cal showers , and fire extinguishers), and identification of chemicals by hazard type. 
+During the laboratory, proper  PPE (high -temperature lab coat, goggles, and nitrile or heat -resistant 
+gloves) was used in accordance with standard chemistry practices. All chemistry procedures were 
+conducted in a fume hood to limit airborne exposure, and a trained laboratory  assistant was present 
+throughout the procedure to assist when necessary.  Additional hazard information is included in the 
+Instructor and Manual s. 
+RESULTS AND DISCUSSION  
+Educational cohort  
+A cohort of students from the University of Southern California Viterbi School of Engineering with 
+a minimum requirement of at least one semester equivalent of general chemistry volunteered to 
+complete the lab to increase the diversity of their undergraduate research experiences. The students   
+Journal of Chemical Education  9/18/22  Page 7 of 15 ranged from first -year through fourth -year undergraduates  pursuing a range of degree programs. All 
+students had completed general laboratory safety training.  
+Under the supervision of the  laboratory  assistant, the students worked in groups of 2 -3 over the 
+course of the three -day lab, and each day was typically 3-4 hours. The experiments were designed to 
+support inquiry -based learning by encouraging the students to discover the answers to a series of 
+scientific questions each day as well as expand  their technical capabilities. These learning objectives 
+can be summarized  as follows : 
+1. Calculating the amount of reagents required using stoichiometric principles.  
+2. Practicing commonly used  chemistry skills, including centrifugation.  
+3. Introducing students to laboratory techniques related to air -sensitive chemistry, such as 
+using a glove box and Schlenk line.  
+4. Executing various sample preparation protocols.  
+5. Learning and practicing nanomaterial characterization techniques.  
+6. Applying theoretical knowledge of characterization techniques and assessing the 
+characteristics of the synthesized nanoparticles.  
+7. Developing data visualization and scientific communication skills.  
+Because this laboratory introduced new techniques and skills, the students were instructed in the 
+principles behind each  piece of equipment and executed the protocol themselves but were still closely 
+monitored by a  laboratory  assistant at each step of the procedure (objectives 1 -3). After carrying out 
+the synthesis, students prepared samples for characterization according to the instructions listed in 
+the Student Manual  (objectives 4 -5). Students performed all data analysis  for subsequent discussion 
+(object ives 6 -7). 
+To assess if these learning objectives were achieved , the s tudent s’ understanding of the 
+experimental  and scientific  principles was evaluated throughout the three days using diagnostic 
+assessment, including pre -tests, and formative assessment, including passive and active observational 
+techniques. For example, throughout the experiments, the  laboratory  assistant asked questions to 
+assess understanding. The pre -tests and solutions as well as example questions are included in the 
+supplementary documentation .   
+Journal of Chemical Education  9/18/22  Page 8 of 15 Immediately following the conclusion  of the laboratory , a summative assessment was performed, 
+which included both qualitative and quantitative components. Notably, 100% of the students felt that 
+the lab experiment should be integrated as a required element into the undergraduate curriculum, 
+and 100%  felt that they gained valuable skills and/or knowledge applicable outside of this lab session . 
+This strong, positive response is notable given the students’ diverse academic backgrounds. However, 
+the cohort had a mixed response when asked about the level of the rigor of the lab. Given the wide 
+range in course preparation and academic levels, this response is not surprising. To address this 
+possible shortcoming, several variations are included in the Instructor Ma nual to increase the 
+complexity.  
+In addition, a secondary reflective assessment was performed six months later. Upon reflection, the 
+primary skills and knowledge imparted are the new data analysis methods and visualization 
+techniques and the instrumentation methods. The students indicated  the value of these as they relate 
+to their ongoing coursework and their intended future career paths. It is notable that this group of 
+students have already found value in this new knowledge and anticipate or are already applying it 
+across a diverse range  of fields, spanning from machine learning to therapeutics and biomedical 
+engineering. This rapid impact highlights the relevance of this lab to an undergraduate engineering 
+degree program. The entire assessment i s included in the Instructor Manual.  
+ 
+Nanoparticle Characterization  
+To confirm the suitability of the synthetic protocols and the proposed characterization methods for 
+an undergraduate laboratory setting,  Figure 3 presents a series of results from nanoparticles prepared 
+by the laboratory assistant and from particles prepared by a single student group . Both sets of 
+particles are synthesized following the procedure  included in the Student Manual . Due to limitations 
+in equipment access, the laboratory  assistant performed the DLS measurements, but the students 
+took SEM images and performed magnetic response testing with a MAP themselves. The students 
+performed all sample preparation and data analysis . For all data sets in Figure 3, the results from the 
+student group agreed with those from the laboratory assistant, demonstrating the robustness of the 
+synthetic method.    
+Journal of Chemical Education  9/18/22  Page 9 of 15 The combination of SEM and DLS data provide s an opportunity to analyze particle size at both the 
+single particle and ensemble level. Based on published work by Sun  et al. , we anticipate the particle 
+size to be between 10 -15 nm.57 Each group prepared samples and acquired SEM images of their own 
+batch of nanoparticles as seen in Figure 3 a. Notably, the image  show s particle clumps in the 100  nm 
+range and individual particles are not clearly resolved  (Figure 3a) . For the particles  synthesized by the 
+laboratory assistant , the diameter determined from SEM images is in the 15 nm range  (Figure 3 b). The 
+DLS data reveals similar particle sizes, diameters of 12 nm, for both the  student and the  laboratory 
+assistant samples (Figure 3 c-d). Lastly , students  confirmed the paramagnetic response of the particles  
+using a custom Magnetophotometer (MAP) system  (Figure 3 e-f). As can be observed  in Figure 3 e and 
+3f, the particles synthesized by either the students or the laboratory assistant exhibit a clear positive 
+magnetic response when in the presence of the permanent magnetic, indicating a positive magnetic 
+susceptibility value.    
+Journal of Chemical Education  9/18/22  Page 10 of 15  
+Figure 3 . Iron oxide nanoparticle (a-b) SEM image, (c-d) DLS data, (e-f) magnetic response data from the  MAP system  and ethanol control . 
+Data taken with p articles  made by the student  volunteers  following the procedure are shown in pane ls (a), (c), and (e). Data taken with 
+particles made by graduate assistant are shown in panes ( b), (d), and (f). 
+ 
+SUMMARY AND CONCLUSION  
+In summary, we have detailed a research -based, three -day, advanced undergraduate laboratory 
+protocol which includes the synthesis of iron oxide magnetic nanoparticles, modification of the surface 
+coating, and characterization of the  particle properties . The experiments can easily be modified based 
+on available equipment . They are designed to combine principles from chemistry, materials science, 
+and physics to expose students to interdisciplinary research and modern instrumentation  while 
+utilizing inexpensive reagents  and commonly accessible characterization techniques . They also serve 
+as a bridge, connecting seemingly disparate coursework. While this 3 -day laboratory experiment was 
+  
+Journal of Chemical Education  9/18/22  Page 11 of 15 piloted with a cohort of undergraduate students, it could also be suitable for a graduate student 
+experimental methods course.  
+ 
+ASSOCIATED CONTENT  
+Supporting Information  
+The Supporting Information is available on the ACS Publications website at DOI: 
+10.1021/acs.jchemed. XXXXXXX .  
+Instructor Manual (PDF, DOCX): Detailed protocols , trouble -shooting  suggestions , materials and 
+equipment tables , and educational assessment . 
+Student Manual (PDF, DOCX): Step-by-step protocols and materials and equipment tables  
+Student Assessment (PDF, DOCX)  and Solutions (PDF, DOCX) : Suggested pre -laboratory exercise s 
+to enrich student learning  and solutions . 
+AUTHOR INFORMATION  
+Corresponding Author : Andrea M. Armani  
+Email: aarmani @eit.org  
+Armando Urbina: 0000 -0003 -3036 -4991  
+Hari Sridhara: 0000 -0001 -8548 -0581  
+Alexis Scholtz: 0000 -0001 -6275 -0622  
+Andrea M. Armani: 0000 -0001 -9890 -5104  
+ACKNOWLEDGMENTS  
+The authors would like to thank Jack G. Paulson, Kylie J. Trettner, Marko Lilić, Patrick Saris, Sydney 
+Fiorentino, Victoria Nuñez  (University of Southern California) for contributions to the refinement of the 
+iron oxide nanoparticle protocol. This work was supported by the Office of Naval Research (N00014 -
+22-1-2466, N00014 -21-1-2044) , the National Science Foundation (DBI -2222206) , and the Ellison 
+Institute of Technology, LLC . A. D. Urbina is supported by a National Science Foundation Graduate 
+Research Fellowship. H. Sridhara is supported by the University of Southern California Center for 
+Undergraduate Research in Viterbi Engineering and Provost  Undergraduate Research  Fellowships.    
+Journal of Chemical Education  9/18/22  Page 12 of 15 A.M.A. serves as the Senior Director of Engineering and Physical Sciences for the Ellison Institute of 
+Technology , LLC (paid).  
+REFERENCES  
+(1) National Academies of Sciences, Engineering, and Medicine; Division on Engineering and Physical 
+Sciences; National Materials and Manufacturing Board; Committee on National Nanotechnology 
+Initiative: A Quadrennial Review. A Quadrennial Review of the National Nanotechnology Initiative: 
+Nanoscience, Applications, and Commercialization ; National Academies Press (US): Washington 
+(DC), 2020.  
+(2) Gottfried, D. S. Review of Nanotechnology in Undergraduate Education. J. Chem. Educ.  2011 , 88 
+(5), 544 –545. https://doi.org/10.1021/ed2001126.  
+(3) Sheppard, S. D.; Macatangay, K.; Colby, A.; Sullivan, W. M. Educating Engineers: Designing for the 
+Future of the Field. Book Highlights ; Carnegie Foundation for the Advancement of Teaching, 2008. 
+https://eric.ed.gov/?id=ED504076 (accessed 2023 -08-10). 
+(4) National Academies of Sciences, Engineering; Medicine. Integrating Discovery -Based Research into 
+the Undergraduate Curriculum: Report of a Convocation ; The National Academies Press: 
+Washington, DC, 2015. https://doi.org/10.17226/21851.  
+(5) New Directions for Chemical Engineering ; National Academies Press: Washington, D.C., 2022. 
+https://doi.org/10.17226/26342.  
+(6) Hallinen, J. STEM". Encyclopedia Britannica ; 2023.  
+(7) Weaver, G. C.; Russell, C. B.; Wink, D. J. Inquiry -Based and Research -Based Laboratory 
+Pedagogies in Undergraduate Science. Nat Chem Biol  2008 , 4 (10), 577 –580. 
+https://doi.org/10.1038/nchembio1008 -577. 
+(8) Bentley, A. K.; Skrabalak, S. E. A Primer on Lattice Planes, Crystal Facets, and Nanoparticle 
+Shape Control. J. Chem. Educ.  2023 , 100 (9), 3425 –3433. 
+https://doi.org/10.1021/acs.jchemed.3c00371.  
+(9) Nanda, S.; Nanda, K. K. Identifying the Accuracy of Various Approaches for Determining the 
+Fraction of Surface Atoms in a Nanoparticle to Deepen Students’ Understanding of Size -Dependent 
+Properties. J. Chem. Educ.  2021 , 98 (6), 1982 –1987. 
+https://doi.org/10.1021/acs.jchemed.0c01247.  
+(10) Vinnacombe -Willson, G. A.; Chiang, N.; Weiss, P. S.; Tolbert, S. H.; Scarabelli, L. Seeded -Growth 
+Experiment Demonstrating Size - and Shape -Dependence on Gold Nanoparticle –Light Interactions. 
+J. Chem. Educ.  2021 , 98 (2), 546 –552. https://doi.org/10.1021/acs.jchemed.0c01150.  
+(11) Nordell, K. J.; Boatman, E. M.; Lisensky, G. C. A Safer, Easier, Faster Synthesis for CdSe 
+Quantum Dot Nanocrystals. J. Chem. Educ.  2005 , 82 (11), 1697. 
+https://doi.org/10.1021/ed082p1697.  
+(12) Lam, M.; Schwarz, C.; Sharma, R.; Donnelly, J. An Introduction to Scanning Electron Microscopy 
+and Science Communication Skills for Undergraduate Chemistry Students. J. Chem. Educ.  2023 , 
+100 (7), 2802 –2808. https://doi.org/10.1021/acs.jchemed.3c00076.  
+(13) Vahedi, A.; Farnoud, A. M. Novel Experimental Modules To Introduce Students to Nanoparticle 
+Characterization in a Chemical Engineering Course. J. Chem. Educ.  2019 , 96 (9), 2029 –2035. 
+https://doi.org/10.1021/acs.jchemed.9b00423.  
+(14) Aftenieva, O.; Schletz, D.; Meyer, A.; Kühne, T.; Schmalzriedt, S.; Niethammer, M.; König, T. A. F. 
+Development of a Teaching Platform about Plasmonics Based on the Color Perception of Colloidal 
+Gold. J. Chem. Educ.  2021 , 98 (8), 2566 –2573. https://doi.org/10.1021/acs.jchemed.1c00183.  
+(15) Cionti, C.; Stucchi, M.; Meroni, D. Mimicking Stained Glass: A Hands -On Activity for the 
+Preparation and Characterization of Silica Films Colored with Noble Metal Ions and Nanoparticles. 
+J. Chem. Educ.  2022 , 99 (3), 1516 –1522. https://doi.org/10.1021/acs.jchemed.1c01141.  
+(16) Jenkins, J. A.; Wax, T. J.; Zhao, J. Seed -Mediated Synthesis of Gold Nanoparticles of Controlled 
+Sizes To Demonstrate the Impact of Size on Optical Properties. J. Chem. Educ.  2017 , 94 (8), 1090 –
+1093. https://doi.org/10.1021/acs.jchemed.6b00941.    
+Journal of Chemical Education  9/18/22  Page 13 of 15 (17) Larm, N. E.; Essner, J. B.; Thon, J. A.; Bhawawet, N.; Adhikari, L.; St. Angelo, S. K.; Baker, G. A. 
+Single Laboratory Experiment Integrating the Synthesis, Optical Characterization, and 
+Nanocatalytic Assessment of Gold Nanoparticles. J. Chem. Educ.  2020 , 97 (5), 1454 –1459. 
+https://doi.org/10.1021/acs.jchemed.9b00819.  
+(18) Quinson, J. Room Temperature Surfactant -Free Syntheses of Gold Nanoparticles in Alkaline 
+Mixtures of Water and Alcohols: A Model System to Introduce Nanotechnology and Green 
+Chemistry to Future Chemists and Engineers. J. Chem. Educ.  2023 , 100 (9), 3612 –3619. 
+https://doi.org/10.1021/acs.jchemed.3c00492.  
+(19) Lisensky, G.; McFarland -Porter, R.; Paquin, W.; Liu, K. Synthesis and Analysis of Zinc Copper 
+Indium Sulfide Quantum Dot Nanoparticles. J. Chem. Educ.  2020 , 97 (3), 806 –812. 
+https://doi.org/10.1021/acs.jchemed.9b00642.  
+(20) Dhawan, G.; Singh, I.; Dhawan, U.; Kumar, P. Synthesis and Characterization of Nanoselenium: A 
+Step-by-Step Guide for Undergraduate Students. J. Chem. Educ.  2021 , 98 (9), 2982 –2989. 
+https://doi.org/10.1021/acs.jchemed.0c01467.  
+(21) Winkler, L. D.; Arceo, J. F.; Hughes, W. C.; DeGraff, B. A.; Augustine, B. H. Quantum Dots: An 
+Experiment for Physical or Materials Chemistry. J. Chem. Educ.  2005 , 82 (11), 1700. 
+https://doi.org/10.1021/ed082p1700.  
+(22) Winkelmann, K.; Noviello, T.; Brooks, S. Preparation of CdS Nanoparticles by First -Year 
+Undergraduates. J. Chem. Educ.  2007 , 84 (4), 709. https://doi.org/10.1021/ed084p709.  
+(23) Halas, N. J.; Lal, S.; Chang, W. -S.; Link, S.; Nordlander, P. Plasmons in Strongly Coupled Metallic 
+Nanostructures. Chem. Rev.  2011 , 111 (6), 3913 –3961. https://doi.org/10.1021/cr200061k.  
+(24) Hartland, G. V. Optical Studies of Dynamics in Noble Metal Nanostructures. Chem. Rev.  2011 , 
+111 (6), 3858 –3887. https://doi.org/10.1021/cr1002547.  
+(25) Ramos, M.; Ortiz -Jordan, L.; Hurtado -Macias, A.; Flores, S.; Elizalde -Galindo, J. T.; Rocha, C.; 
+Torres, B.; Zarei -Chaleshtori, M.; Chianelli, R. R. Hardness and Elastic Modulus on Six -Fold 
+Symmetry Gold Nanoparticles. Materials  2013 , 6 (1), 198 –205. 
+https://doi.org/10.3390/ma6010198.  
+(26) Fischer, J. E.; Johnson, A. T. Electronic Properties of Carbon Nanotubes. Current Opinion in Solid 
+State and Materials Science  1999 , 4 (1), 28 –33. https://doi.org/10.1016/S1359 -0286(99)80007 -2. 
+(27) Wu, L.; Mendoza -Garcia, A.; Li, Q.; Sun, S. Organic Phase Syntheses of Magnetic Nanoparticles 
+and Their Applications. Chem. Rev.  2016 , 116 (18), 10473 –10512. 
+https://doi.org/10.1021/acs.chemrev.5b00687.  
+(28) Tanaka, S.; Kaneti, Y. V.; Septiani, N. L. W.; Dou, S. X.; Bando, Y.; Hossain, Md. S. A.; Kim, J.; 
+Yamauchi, Y. A Review on Iron Oxide -Based Nanoarchitectures for Biomedical, Energy Storage, 
+and Environmental Applications. Small Methods  2019 , 3 (5), 1800512. 
+https://doi.org/10.1002/smtd.201800512.  
+(29) Baabu, P. R. S.; Kumar, H. K.; Gumpu, M. B.; Babu K, J.; Kulandaisamy, A. J.; Rayappan, J. B. B. 
+Iron Oxide Nanoparticles: A Review on the Province of Its Compounds, Properties and Biological 
+Applications. Materials  2022 , 16 (1), 59. https://doi.org/10.3390/ma16010059.  
+(30) Salih, S. J.; Mahmood, W. M. Review on Magnetic Spinel Ferrite (MFe2O4) Nanoparticles: From 
+Synthesis to Application. Heliyon  2023 , 9 (6), e16601. 
+https://doi.org/10.1016/j.heliyon.2023.e16601.  
+(31) Lee, N.; Yoo, D.; Ling, D.; Cho, M. H.; Hyeon, T.; Cheon, J. Iron Oxide Based Nanoparticles for 
+Multimodal Imaging and Magnetoresponsive Therapy. Chem. Rev.  2015 , 115 (19), 10637 –10689. 
+https://doi.org/10.1021/acs.chemrev.5b00112.  
+(32) Delgado, T.; Villard, M. Spin Crossover Nanoparticles. J. Chem. Educ.  2022 , 99 (2), 1026 –1035. 
+https://doi.org/10.1021/acs.jchemed.1c00990.  
+(33) Kim, D. K.; Zhang, Y.; Voit, W.; Rao, K. V.; Muhammed, M. Synthesis and Characterization of 
+Surfactant -Coated Superparamagnetic Monodispersed Iron Oxide Nanoparticles. Journal of 
+Magnetism and Magnetic Materials  2001 , 225 (1), 30 –36. https://doi.org/10.1016/S0304 -
+8853(00)01224 -5. 
+(34) Chi, Y.; Yuan, Q.; Li, Y.; Tu, J.; Zhao, L.; Li, N.; Li, X. Synthesis of Fe3O4@SiO2 –Ag Magnetic 
+Nanocomposite Based on Small -Sized and Highly Dispersed Silver Nanoparticles for Catalytic   
+Journal of Chemical Education  9/18/22  Page 14 of 15 Reduction of 4 -Nitrophenol. Journal of Colloid and Interface Science  2012 , 383 (1), 96 –102. 
+https://doi.org/10.1016/j.jcis.2012.06.027.  
+(35) Fruntke, A.; Behnke, M.; Stafast, L. M.; Träder, T.; Dietel, E.; Vollrath, A.; Weber, C.; Schubert, U. 
+S.; Wilke, T. Targeted Drug Delivery: Synthesis of Smart Nanocarriers for School Chemistry 
+Education. J. Chem. Educ.  2023 , 100 (2), 751 –759. 
+https://doi.org/10.1021/acs.jchemed.2c00422.  
+(36) Rattanakit, P. Open Inquiry -Based Laboratory Project on Plant -Mediated Green Synthesis of Metal 
+Nanoparticles and Their Potential Applications. J. Chem. Educ.  2021 , 98 (12), 3984 –3991. 
+https://doi.org/10.1021/acs.jchemed.1c00300.  
+(37) Reddy, L. H.; Arias, J. L.; Nicolas, J.; Couvreur, P. Magnetic Nanoparticles: Design and 
+Characterization, Toxicity and Biocompatibility, Pharmaceutical and Biomedical Applications. 
+Chem. Rev.  2012 , 112 (11), 5818 –5878. https://doi.org/10.1021/cr300068p.  
+(38) Ahlburg, J. V.; Menhinnitt, Z.; Thomas -Hunt, J.; Saura -Múzquiz, M.; Christensen, M. Synthesis 
+and Characterization of a Magnetic Ceramic Using an Easily Accessible Scale Setup. J. Chem. 
+Educ.  2021 , 98 (8), 2632 –2637. https://doi.org/10.1021/acs.jchemed.1c00143.  
+(39) Young, H. D.; Freedman, R. A.; Ford, A. L. (Albert L.; Sears, F. W. Sears and Zemansky’s University 
+Physics : With Modern Physics. , 12th ed. / Hugh D. Young, Roger A. Freedman ; contributing 
+author, A. Lewis Ford.; University physics; Pearson Addison Wesley: San Francisco, 2008.  
+(40) Chi, Y.; Yuan, Q.; Li, Y.; Tu, J.; Zhao, L.; Li, N.; Li, X. Synthesis of Fe3O4@SiO2 –Ag Magnetic 
+Nanocomposite Based on Small -Sized and Highly Dispersed Silver Nanoparticles for Catalytic 
+Reduction of 4 -Nitrophenol. Journal of Colloid and Interface Science  2012 , 383 (1), 96 –102. 
+https://doi.org/10.1016/j.jcis.2012.06.027.  
+(41) Sun, W.; Li, Q.; Gao, S.; Shang, J. K. Monometallic Pd/Fe3O4 Catalyst for Denitrification of Water. 
+Applied Catalysis B: Environmental  2012 , 125, 1–9. 
+https://doi.org/10.1016/j.apcatb.2012.05.014.  
+(42) Tan, H.; Xue, J. M.; Shuter, B.; Li, X.; Wang, J. Synthesis of PEOlated Fe 3 O 4 @SiO 2 
+Nanoparticles via Bioinspired Silification for Magnetic Resonance Imaging. Adv Funct Materials  
+2010 , 20 (5), 722 –731. https://doi.org/10.1002/adfm.200901820.  
+(43) Biganzoli, D.; Ferri, F. Statistical Analysis of Dynamic Light Scattering Data: Revisiting and beyond 
+the Schätzel Formulas. Opt. Express, OE  2018 , 26 (22), 29375 –29392. 
+https://doi.org/10.1364/OE.26.029375.  
+(44) Transmission Electron Microscopy | Nanoscience Instruments . 
+https://www.nanoscience.com/techniques/transmission -electron -microscopy/ (accessed 2024 -
+01-30). 
+(45) Scanning Electron Microscopy | Nanoscience Instruments . 
+https://www.nanoscience.com/techniques/scanning -electron -microscopy/ (accessed 2024 -01-
+30). 
+(46) Atomic Force Microscopy | Nanoscience Instruments . 
+https://www.nanoscience.com/techniques/atomic -force-microscopy/ (accessed 2024 -01-30). 
+(47) Materials Science form - US. https://www.thermofisher.com/us/en/reference -components/MSD -
+reference -components/instruments -reference -components/materials -science -form.html (accessed 
+2024 -01-30). 
+(48) Holder, C. F.; Schaak, R. E. Tutorial on Powder X -Ray Diffraction for Characterizing Nanoscale 
+Materials. ACS Nano  2019 , 13 (7), 7359 –7365. https://doi.org/10.1021/acsnano.9b05157.  
+(49) Scholtz, A.; Paulson, J.; Nunez, V.; Armani, A. M. Open -Source Magnetophotometer (MAP) for 
+Nanoparticle Characterization, 2023.  
+(50) Vettoliere, A.; Silvestrini, P.; Granata, C. 3 - Superconducting Quantum Magnetic Sensing. In 
+Quantum Materials, Devices, and Applications ; Henini, M., Rodrigues, M. O., Eds.; Elsevier, 2023; 
+pp 43 –85. https://doi.org/10.1016/B978 -0-12-820566 -2.00001 -6. 
+(51) Estelrich, J.; Sánchez -Martín, M. J.; Busquets, M. A. Nanoparticles in Magnetic Resonance 
+Imaging: From Simple to Dual Contrast Agents. International Journal of Nanomedicine  2015 , 10, 
+1727 –1741. https://doi.org/10.2147/IJN.S76501.    
+Journal of Chemical Education  9/18/22  Page 15 of 15 (52) Xia, Y.; Gilroy, K. D.; Peng, H. -C.; Xia, X. Seed -Mediated Growth of Colloidal Metal Nanocrystals. 
+Angewandte Chemie International Edition  2017 , 56 (1), 60 –95. 
+https://doi.org/10.1002/anie.201604731.  
+(53) Tao, A. R.; Habas, S.; Yang, P. Shape Control of Colloidal Metal Nanocrystals. Small  2008 , 4 (3), 
+310–325. https://doi.org/10.1002/smll.200701295.  
+(54) Sun, W.; Li, Q.; Gao, S.; Shang, J. K. Monometallic Pd/Fe3O4 Catalyst for Denitrification of Water. 
+Applied Catalysis B: Environmental  2012 , 125, 1–9. 
+https://doi.org/10.1016/j.apcatb.2012.05.014.  
+(55) Skrabalak, S. E. Symmetry in Seeded Metal Nanocrystal Growth. Acc. Mater. Res.  2021 , 2 (8), 
+621–629. https://doi.org/10.1021/accountsmr.1c00077.  
+(56) Personick, M. L.; Mirkin, C. A. Making Sense of the Mayhem behind Shape Control in the 
+Synthesis of Gold Nanoparticles. J. Am. Chem. Soc.  2013 , 135 (49), 18238 –18247. 
+https://doi.org/10.1021/ja408645b.  
+(57) Sun, S.; Zeng, H.; Robinson, D. B.; Raoux, S.; Rice, P. M.; Wang, S. X.; Li, G. Monodisperse MFe 2 
+O 4 (M = Fe, Co, Mn) Nanoparticles. J. Am. Chem. Soc.  2004 , 126 (1), 273 –279. 
+https://doi.org/10.1021/ja0380852.  
+(58) Ren, Y.; Li, Y.; Xu, N.; Guo, K.; Xu, Z.; Chen, X.; Liu, H.; Gao, J. Regulation of Saturation 
+Magnetization of Magnetite by Doping with Group III Elements. Phys. Chem. Chem. Phys.  2023 , 25 
+(48), 33152 –33158. https://doi.org/10.1039/D3CP03789D.  
+(59) Borys, A. M. An Illustrated Guide to Schlenk Line Techniques. Organometallics  2023 , 42 (3), 182 –
+196. https://doi.org/10.1021/acs.organomet.2c00535.  
+ 

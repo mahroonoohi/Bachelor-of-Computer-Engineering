@@ -1,0 +1,480 @@
+arXiv:2404.01130v1  [cond-mat.stat-mech]  1 Apr 2024Thermodynamic dissipation does not bound replicator growt h and decay rates
+Artemy Kolchinsky∗
+ICREA-Complex Systems Lab, Universitat Pompeu Fabra, 0800 3 Barcelona, Spain and
+Universal Biology Institute, The University of Tokyo, 7-3- 1 Hongo, Bunkyo-ku, Tokyo 113-0033, Japan
+In a well-known paper, Jeremy England derived a bound on the f ree energy dissipated by a self-replicating
+system [England, “Statistical physics of self-replicatio n”,The Journal of Chemical Physics , 2013]. This bound is
+usually interpreted as a universal relationship that links thermodynamic dissipation to the replicator’s per-capita
+decay and growth rates. Contrary to this interpretation, we argue from thermodynamic principles that such a
+relationship cannot exist. In particular, we show that it is impossible for a system to undergo both replication
+and per-capita decay back into reactants. While it is possib le for a system to undergo replication and decay into
+separate waste products, in that case replication and decay are two independent physical processes, and there is
+no universal relationship between their thermodynamic and dynamical properties.
+I. INTRODUCTION
+Research in thermodynamics has shown that there are uni-
+versal relationships between the thermodynamic and dynami c
+properties of nonequilibrium processes. The most famous re -
+lationship, termed local detailed balance (LDB), says that the
+temporal irreversibility of a stochastic physical process is re-
+lated to the amount of entropy produced in the system and the
+environment during that process [2]. The generality of LDB
+suggests that it may imply universal bounds on the thermody-
+namic properties of living systems.
+This idea inspired a 2013 paper by England on the thermody-
+namics of self-replicating systems [1]. In this paper, Engl and
+considered a population of replicators that evolves accord ing
+to a stochastic master equation [Eq. (9) in Ref. [1]],
+˙pn(t)≈ng(pn−1(t)−pn(t))−δn(pn(t)−pn+1(t)),(1)
+wherepn(t)is the probability of nreplicators, gis the per-
+capita replication rate, and δis the per-capita decay rate, de-
+ﬁned as the “reversion of the replicator back into the exact s et
+of reactants in its environment out of which it was made”. For
+large population sizes, ﬂuctuations can be neglected and n(t),
+the population at time t, will grow exponentially as
+n(t)≈n(0)e(g−δ)t. (2)
+This shows how the per-capita replication and decay rates in the
+master equation are related to long-term population dynami cs.
+We will refer to replication and decay with per-capita rates g
+andδasﬁrst-order replication andﬁrst-order decay .
+The main result of England’s paper is a thermodynamic
+bound on the ratio of growth and decay rates [Eq. (10) in
+Ref. [1]],
+∆stot≥lng
+δ, (3)
+where∆stotis the entropy production incurred when a sin-
+gle replicator makes a copy of itself. As we explain below,
+the quantity ∆stotis proportional to the free energy dissipated
+∗artemyk@gmail.comduring replication. England illustrates the bound using tw o
+real-world systems of interest: an RNA-based molecular rep li-
+cator constructed by Lincoln and Joyce [3] and an E. coli
+bacterium.
+The bound (3) appears to bridge two diﬀerent worlds: the
+physical world of thermodynamic dissipation and the biolog -
+ical world of replicator dynamics. From an intellectual per -
+spective, we ﬁnd England’s proposal stimulating and elegan t.
+However, by studying the thermodynamics of simple molec-
+ular replicators [4], we have come to ﬁnd that the bound (3)
+must be interpreted with great care.
+In this paper, we argue that, contrary to standard interpret a-
+tions of this result, inequality (3) does not provide a therm o-
+dynamic bound on the growth and decay rates of replicators.
+In fact, we argue that there cannot be a bound of this type. We
+begin by proving a general “impossibility theorem” that sho ws
+that it is thermodynamically infeasible for a ﬁrst-order re plica-
+tor to undergo ﬁrst-order decay back into reactants. Instea d, a
+replicator can decay either by undergoing the reverse proce ss
+of autocatalysis, in which case decay is not ﬁrst-order, or b y
+decaying into a diﬀerent set of waste products, in which case
+there cannot be a universal relationship between propertie s of
+the two independent processes of replication and decay.
+Nonetheless, we emphasize that the bound (3) is valid as
+long as∆stot,gandδare appropriately interpreted. Speciﬁ-
+cally, the bound applies to the forward and reverse transiti ons
+between two ﬁxed macrostates of an arbitrary physical syste m,
+which may or may not be a replicator. However, as we show
+below, considering transitions between two ﬁxed macrostat es
+is not enough to capture the kinetics and thermodynamics of
+replication.
+II. BACKGROUND
+We begin with a high-level summary of the derivation of
+England’s bound (3). For details, we refer the reader to Ref. [1].
+England considers an undriven system coupled to a heat
+bath at temperature T. The system is associated with two
+arbitrary macrostates IandII, i.e., two subsets of microstates.
+Macrostate Iis associated with a probability distribution over
+microstates, pI(i), whose support is restricted to I. Macrostate
+IIis also associated with a probability distribution pII(i)with2
+support restricted to II, deﬁned by propagatingthe distribution
+pIunder the microscopic stochastic dynamics over time dtand
+then conditioning on membership in macrostate II.
+The entropy produced when going from macrostate Ito
+macrostate IIis
+∆stot(I→II) =/angbracketleftQ/angbracketright/kBT+∆sint. (4)
+Here,/angbracketleftQ/angbracketrightis the expected amount of heat released to the bath
+during the transition I→II,kBis Boltzmann constant, and
+∆sint=S(pII)−S(pI)
+is the increase of the internal Shannon entropy in going from
+macrostate ItoII. We may also write the entropy production
+in terms of the dissipated free energy,
+∆stot(I→II) = (FI−FII)/kBT, (5)
+whereFI=/angbracketleftE/angbracketrightpI−kBT S(pI)is the free energy of
+macrostate Igiven energy function E, and similarly for FII.
+Eqs. (4) and (5) are equivalent since /angbracketleftQ/angbracketright=/angbracketleftE/angbracketrightpI−/angbracketleftE/angbracketrightpIIby
+the ﬁrst law of thermodynamics.
+To derive a bound on the entropy production, England cal-
+culates the (conditional) transition probability π(I→II)that
+the ﬁnal microstate belongs to macrostate II, given that the
+initial microstate is drawn from pI. He also calculates the
+transition probability π(II→I)that the ﬁnal microstate be-
+longs to macrostate I, given that the initial microstate is drawn
+frompII. England shows that the entropy production involved
+in going from ItoIIis bounded by the log ratio of these two
+transition probabilities,
+∆stot(I→II)≥lnπ(I→II)
+π(II→I). (6)
+This result is derived by assuming overdamped dynamics and
+invoking the principle of LDB, along with some mathematical
+manipulation. It is a useful and general inequality that app lies
+to many types of physical processes.
+To make the connection to self-replication, England deﬁnes
+macrostate Ias the set of microstates that contain a single
+replicator, plus reactants needed for successful replicat ion.
+Macrostate IIis deﬁned as the set of microstates that contain
+two replicators: the parent replicator found in microstate I
+and its new oﬀspring. We emphasize that although the overall
+system is undriven,macrostate Imay nonetheless contain high-
+energy reactants that drive the replication transition I→II
+forward. The transition probability π(I→II)of replication
+is approximated using a ﬁrst-order replication rate gasπ(I→
+II)≈gdt. The transition probability π(II→I), which
+corresponds to the reversion of the oﬀspring replicator bac k
+into “the exact set of reactants in its environment out of whi ch
+it was made”, is approximated using a ﬁrst-order decay rate δ
+asπ(II→I)≈δdt(see also [5]).
+III. IMPOSSIBILITY THEOREM
+We now point out an issue with the above analysis which
+arises from the fact that it is not possible for a system toundergo both ﬁrst-order replication and ﬁrst-order decay b ack
+into reactants.
+To introduce our argument, we consider another macrostate
+0whose microstates do not contain any replicator but only
+the reactants needed for replication. The transition proba bility
+π(I→0)refers to the reversion of the single replicator in I
+back into reactants, while the transition probability π(0→I)
+refers to the spontaneous (uncatalyzed) formation of repli -
+cator from reactants. Applying the inequality (6) to these
+macrostates yields a bound on the entropy produced during
+the transition I→0:
+∆stot(I→0) = (FI−F0)/kBT≥lnπ(I→0)
+π(0→I),(7)
+whereF0is the free energy of macrostate 0.
+At the same time, the deﬁning property of self-replication i s
+autocatalysis , meaning that the formation of a new replicator
+in the presence of an existing replicator should be much fast er
+than spontaneous formation directly from reactants. Thus, we
+may say that a system is self-replicating only if
+π(0→I)≪π(I→II). (8)
+If this condition did not hold, we should not interpret the
+transition I→IIas “replication”, since the new oﬀspring can
+arise due to spontaneous formation from reactants. Also, we
+could not describe replication with a ﬁrst-order rate const ant
+gas in the master equation (1), since the growth term would
+not be linear in population size.
+Suppose that each replicator undergoes ﬁrst-order decay
+with rate δ, as in the master equation (1). Then, the tran-
+sition probability of ending in macrostate 0after starting in
+macrostate Ishould be approximately δdt, the same as the
+transition probability of ending in Iafter starting in II:
+π(I→0)≈δdt≈π(II→I). (9)
+Observe also that FI−F0, the decrease of free energy when
+a replicator undergoes reversion back into reactants, shou ld be
+the opposite of FI− FII, the decrease of free energy when
+reactants are converted into a new replicator during a repli -
+cation event. This implies that the entropy production for t he
+two transitions should be related as
+∆stot(I→0)≈ −∆stot(I→II) (10)
+Plugging (9) and (10) into (7) gives
+∆stot(I→II)≤lnπ(0→I)
+π(II→I).
+This can be combined with (6) and simpliﬁed to give
+π(0→I)≥π(I→II). (11)
+However, we have arrived at a contradiction with the necessa ry
+condition for self-replication (8).
+The idea behind this argument can also be illustrated using a
+simple but concrete model. Consider an autocatalytic chemi cal
+reaction such as
+X+Aκ1⇋
+κ−
+12X, (12)3
+whereXis a replicator molecule and Ais a substrate reactant.
+For simplicity, we assume that the reaction is elementary wi th
+mass-action kinetics, and that the molecular counts are suﬃ -
+ciently large such that the system can be described in terms o f
+deterministic number concentrations, n= [X]anda= [A].
+Reaction (12) exhibits forward ﬂux κ1nawith forward rate
+constantκ1, and reverse ﬂux κ−
+1n2with backward rate con-
+stantκ−
+1. We note that the reverse ﬂux is second-order in
+n. For convenience, we will sometimes use the term uncopy-
+ingto refer to the reverse direction of autocatalysis, that is
+the catalyzed reversion of the replicator back into substra te
+(2X→X+A).
+Suppose that Xcan also decay back into reactant in an
+uncatalyzed fashion,
+Xκ2⇋
+κ−
+2A. (13)
+This decay reaction will have forward ﬂux κ2nand reverse
+ﬂuxκ−
+2a. The two reactions (12) and (13) have opposite
+stoichiometry and therefore opposite free energy of reacti on
+−∆G. The principle of LDB states that −∆G(in units of J
+per reaction) can be expressed as the log ratio of forward and
+backward ﬂuxes [6],
+−∆G/kBT= lnκ1na
+κ−
+1n2= lnκ−
+2a
+κ2n. (14)
+Now, in order for the system to exhibit ﬁrst-order replicati on
+rather than uncatalyzed formation, it must be that κ1na≫
+κ−
+2a, such that the creation of replicators is dominated by
+autocatalysis, not the reverse of the decay reaction. In ord er
+for the system to undergo ﬁrst-order decay, rather than seco nd-
+order uncopying, it must be that κ2n≫κ−
+1n2. It can be seen
+that these two inequalities are incompatible with Eq. (14),
+highlighting the thermodynamic inconsistency.
+In essence, replication ( X+A→2X) is thermodynam-
+ically favored over uncopying ( 2X→X+A) to the same
+extent that uncatalyzed formation ( A→X) is favored over
+ﬁrst-order decay ( X→A). Thus, if ﬁrst-order decay is the
+dominant pathway for destruction, uncatalyzed formationm ust
+be the dominant pathway for formation.
+Of course, if the ﬁrst-order decay reaction (13) occurs at
+negligible rates, then the system would exhibit ﬁrst-order repli-
+cation via the forward direction of (12). In addition, decay
+back into reactants would occur due to uncopying, the revers e
+direction of the catalyzed reaction (12). In terms of the tra n-
+sition probabilities between macrostates, π(II→I)would be
+non-zero due to uncopying, while π(I→0)would be negli-
+gible since decay would only occur if two or more replicators
+are present. Equality would no longer hold in (9), thereby
+avoiding the undesirable conclusion that replicators must form
+spontaneously from reactants.
+However, in the case of uncopying (catalyzed decay), the
+decay rate of any particular replicator will depend on how ma ny
+other replicators it encounters, and so decay cannot be ﬁrst -
+order (e.g., the elementary autocatalytic reaction (12) le ads to
+second-order decay, κ−
+1n2). This kind of decay is inconsistent
+with the master equation (1), which has the ﬁrst-order termδn, as well as the exponential growth equation (2), which only
+holds for ﬁrst-order replication and ﬁrst-order decay.
+To summarize, a thermodynamically consistent replicator
+cannot simultaneously exhibit ﬁrst-order replication and ﬁrst-
+order decay back into reactants. Of course, many replicator s
+do exhibit both ﬁrst-order replication and ﬁrst-order deca y. As
+we discuss in the next section, they do so by decaying into
+diﬀerent waste products, not reverting back into their orig inal
+reactants.
+IV. ALTERNATIVE DEGRADATION PATHWAYS
+Until now, we followed England in assuming that the de-
+cay transition II→Iinvolves “reversion of the replicator
+back into the exact set of reactants in its environment out of
+which it was made”. However, in most replicators of interest ,
+the decay process that is actually observed is not reversion
+back into reactants, but rather degradation into diﬀerent w aste
+products. Such a system can exhibit both ﬁrst-order replica tion
+and decay. However, as we argue here, if there is no general
+relationship between the processes of replication and deca y,
+then there cannot be a universal relationship between therm o-
+dynamics of replication and decay rates. We note that some
+related issues were raised in an insightful paper by Saakian
+and Qian [7].
+As a concrete example, consider again the autocatalytic
+replicator discussed in the previous section. Imagine that
+the dominant decay process is neither uncatalyzed reversio n
+back to reactants, as in reaction (13), nor uncopying, as in
+the reverse of reaction (12). Rather, decay involves a separ ate
+reaction
+Xκ3⇋
+κ−
+3W, (15)
+whereWis a waste product diﬀerent from the substrate reac-
+tantA. Let us consider the RNA replicator [3][8] discussed
+in England’s paper [1]. In this system, the replication reac -
+tion consumes a reactant RNA molecule with a triphosphate
+group and releases an inorganic pyrophosphate as a side prod -
+uct. Decay can proceed in one of two ways. The ﬁrst is
+the reverse of replication, known as pyrophosphorolysis in
+the literature [9–11], in which a pyrophosphate is consumed
+and a triphosphate-charged RNA molecule is produced. The
+second is spontaneous hydrolysis of the RNA phosphodiester
+bond. Hydrolysis is a separate reaction that does not involv e
+pyrophosphate and it produces a “waste” RNA molecule, with
+the triphosphate group replaced by a monophosphate group.
+We use the term degradation to refer to the decay of the
+replicator into diﬀerent waste products, as opposed to reve r-
+sion into the initial reactants. Because replication and de gra-
+dation are independent processes, not reverse directions o f
+the same process, in general they have independent thermody -
+namic properties. For this reason, Eq. (10) does not apply, a nd
+both replication and degradation may be thermodynamically
+favored in the forward direction, allowing simultaneous ﬁr st-
+order replication and ﬁrst-order degradation. For instanc e,
+for an autocatalytic replicator with reactions (12) and (15 ),4
+the per-capita replication rate may be taken as g=κ1a(over
+timescales where the reactant concentration ais approximately
+constant) and the per-capita degradation rate may be taken a s
+δ=κ3.
+Notably, when considering actual examples [1], England
+calculates the decay rate as the rate of degradation into was te
+products, rather than the rate of reversion back into reacta nts.
+For example, for the RNA replicator, it is estimated as the ra te
+of RNA hydrolysis, not pyrophosphorolysis. For the E. coli, it
+is estimated in terms of the time required for all peptide bon ds
+in a single cell to undergo hydrolysis. This diﬀers from the
+rate of reversion back into reactants, which would involve t he
+reverse reaction of protein bond formation, de-respiratio n of
+released carbon dioxide into glucose and oxygen, etc.
+In the original LDB-type bound (6), the reverse transition
+probability π(II→I)refers to reversion back into original
+reactants, not degradation into other waste products. In or der
+to connect this bound to degradation, England assumes that
+reversion is slower than degradation, so
+π(II→I)≤δ′dt. (16)
+whereδ′is the degradation rate. The result (3) then follows
+from (6), with δtaken to be the degradation rate δ′. However,
+there are some problems with this approach.
+For one, there is no a priori reason that reversion must be
+slower than degradation. For example, for the RNA replicato r,
+England assumes that hydrolysis (degradation) is faster th an
+pyrophosphorolysis (reversion), but this is questionable since
+there is no universal relationship between these the rates o f two
+processes. Moreover, the rate of pyrophosphorolysis depen ds
+on the concentration of pyrophosphate [9–11], while that of
+hydrolysis does not. At increased pyrophosphate concentra -
+tions, pyrophosphorolysis can proceed as fast as a minute pe r
+nucleotide, at least in the context of the bacterial polymer ase
+system where it has been studied [10]. This can be order of
+magnitude faster than hydrolysis, which is on the order of 4
+years per nucleotide [1].
+Even for the E. coli bacterium, it seems debatable whether
+degradation is always faster than reversion of an oﬀspring c ell
+into starting reactants. There are various scenarios that c an be
+imagined that accelerate reversion, for instance the paren t cell
+might run its Krebs cycle in reverse. Of course, reversion is
+a hyper-astronomically unlikely, but one may ask whether it is
+necessarily more unlikely than hydrolysis of all peptide bo nds,
+whose probability England estimates at e−6.7×1010per 20
+minute generation time (in decimal notation, this number ha s
+billions of zeros after the decimal point) [1]. Common-sens e
+intuitions about the relative likelihood of such astronomi cally-
+unlikely events should be treated with caution.
+The best way to demonstrate that degradation is faster than
+reversion is to observe how a replicator actually decays. In
+many cases, degradation will be the dominant decay process
+and (16) is mathematically valid. However, even in such case s,
+there is no meaningful thermodynamic relationship between
+dissipation and growth and degradation rates, because the t wo
+sides of (16) refer to two independent physical processes an d
+their diﬀerence is completely uncontrolled. Consider agai n
+theE. coli . Bacteria are never observed to undergo hydrolysisof all peptide bonds, but are instead observed to die at the ra te
+of≈5×10−4per generation [12]. This death rate can be
+related to England’s estimate of the entropy produced durin g
+replication, ∆stot(I→II)≈3.3×1011[1]. Plugging these
+numbers into (3) gives
+∆stot(I→II) = 3.3×1011≥7.6≈ −ln(5×10−4).(17)
+This inequality is not biologically or physically meaningf ul
+because the two sides diﬀer by a factor of about 50 billion.
+To put things in perspective, the inequality predicts that n o
+less than 7.6kBTof free energy must be dissipated in order
+to replicate a bacterium. This is a tiny amount, less than
+the dissipation produced by the hydrolysis of a single ATP
+molecule ( ≈20kBT).
+Above, we argued that the inequality (16) between the prob-
+ability of reversion π(II→I)and degradation δ′dtmay be
+violated, or it may hold but be so weak that it is irrelevant.
+One may wonder if the transition probability π(II→I)may
+be deﬁned to also account for degradation, such that (16) ap-
+proaches equality. In fact, whether π(II→I)does or does
+not account for degradation depends in a subtle way on the
+deﬁnition of macrostates IandII. Consider a replicator that
+undergoes degradation into waste species W, and imagine two
+diﬀerent ways of deﬁning these macrostates. Under the ﬁrst
+deﬁnition, the microstates in IandIIall contain the same ﬁxed
+number of waste molecules. Since degradation increases the
+number of waste molecules, the transition II→Iwill not in-
+clude degradation and, as assumed by England, the transitio n
+probability π(II→I)will only account for reversion back
+to reactants. Under the second, and arguably more realistic ,
+deﬁnition, the precise number of waste molecules ﬂuctuates
+among diﬀerent microstates in Iand/orII. Then, the transi-
+tion probability π(II→I)will account for both reversion and
+degradation.
+Now suppose that degradation is many orders of magnitude
+more likely than reversion,as in the E. coli that undergoes death
+at the rate of δ′= 5×10−4per generation. Under the ﬁrst
+deﬁnition of the macrostates, π(II→I)will be tiny compared
+toδ′dt, so the inequalities (16) and (17) will be incredibly
+weak. This is the case considered above. Under the second
+deﬁnition of the macrostates, π(II→I)will be much larger,
+and the inequality (16) may be nearly tight. However, the
+entropy production ∆stot(I→II)and transition probability
+π(I→II)associated with replication do not depend much
+on whether the waste products are allowed to ﬂuctuate or not,
+since they are not involved in replication. Therefore, to th e
+extent that π(II→I)becomes much larger and (16) tighter,
+LDB-type bound (6) must become much looser. At the end of
+the day, we end up with the same very weak thermodynamic
+bound (17). Thus, our general conclusions are not aﬀected by
+the particular way that macrostates are deﬁned.
+V. CONCLUSION
+In this paper, we considered England’s proposed bound on
+the thermodynamics of replication, ∆stot≥ln(g/δ). As we
+showed, this bound has physical meaning if the decay rate δ5
+refers to the reverse of replication, in which the oﬀspring r epli-
+cator reverts back to its original reactants due to interact ions
+with the parent replicator. However, this reverse process c an-
+not be ﬁrst-order, hence δcannot be interpreted as a per-capita
+decay rate. In fact, in general, a thermodynamically consis -
+tent replicator cannot exhibit both ﬁrst-order replicatio n and
+ﬁrst-order replication back to reactants.
+Alternatively, the decay rate may be deﬁned in terms of
+the per-capita rate of degradation into waste products δ′. In
+this case, however, there is no universal physical relation ship
+between the degradation rate δ′and properties of replication,such asgand∆stot(I→II). Therefore, the resulting bound
+(3) is not physically meaningful and can be violated.
+ACKNOWLEDGMENTS
+I thank Jeremy Owen and Jordi Piñero for useful discussions.
+This project has received funding from the European Union’s
+Horizon 2020 research and innovation programme under the
+Marie Skłodowska-Curie Grant Agreement No. 101068029.
+[1] J. L. England, “Statistical physics of self-replicatio n,”The Jour-
+nal of chemical physics , vol. 139, no. 12, p. 121923, 2013.
+[2] C. Maes, “Local detailed balance,” SciPost Physics Lecture
+Notes , p. 032, 2021.
+[3] T. A. Lincoln and G. F. Joyce, “Self-sustained replicati on of
+an RNA enzyme,” Science , vol. 323, no. 5918, pp. 1229–1232,
+2009.
+[4] A. Kolchinsky, “Thermodynamics of Darwinian evolution in
+molecular replicators,” arXiv preprint arXiv:2112.02809 , 2024.
+[5] In England’s analysis, π(II→I)≈δdtbecause the transition
+II→Iaccounts only for the decay of the new oﬀspring, not
+the parent. It seems, however, that this does not necessaril y have
+to be the case: if the microstates in IIdo not distinguish parent
+from newborn oﬀspring, then π(II→I)should account for the
+decay of either replicator, giving π(II→I)≈2δdt. However,
+this minor diﬀerence in the calculation of π(II→I)is not
+important for our analysis.
+[6] D. Kondepudi and I. Prigogine, Modern Thermodynamics:
+From Heat Engines to Dissipative Structures , 2nd ed., 2015.
+[7] D. B. Saakian and H. Qian, “Nonlinear Stochastic Dynamic s
+of Complex Systems, III: Nonequilibrium Thermodynamics of
+Self-Replication Kinetics,” IEEE Transactions on Molecular,
+Biological and Multi-Scale Communications , vol. 2, no. 1, pp.
+40–51, 2016, publisher: IEEE.
+[8] The RNA replicator studied by Lincoln and Joyce [3] is som e-
+what more complex than elementary reaction (12). It involve s
+two substrate species (corresponding to two parts of the tem -
+plate), involves several elementary steps, and produces an ad-
+ditional pyrophosphate side product. These details do not a ﬀect
+our main point, which is that degradation by RNA hydrolysis
+is not the reverse of replication, involving diﬀerent chemi cal
+species and independent thermodynamic properties.
+[9] U. Maitra and J. Hurwitz, “The role of deoxyribonucleic a cid
+in ribonucleic acid synthesis: XIII. Modiﬁed puriﬁcation p ro-
+cedure and additional properties of ribonucleic acid polym erase
+from Escherichia coli w,”Journal of Biological Chemistry , vol.
+242, no. 21, pp. 4897–4907, Nov. 1967.
+[10] T. Rozovskaya, A. Chenchik, and R. S. Beabealashvilli, “Pro-
+cessive pyrophosphorolysis of RNA by Escherichia coli RNA
+polymerase,” FEBS letters , vol. 137, no. 1, pp. 100–104, 1982.
+[11] J. D. Kahn and J. E. Hearst, “Reversibility of nucleotid e incor-
+poration by Escherichia coli RNA polymerase, and its eﬀect
+on ﬁdelity,” Journal of molecular biology , vol. 205, no. 2, pp.
+291–314, 1989.
+[12] P. Wang, L. Robert, J. Pelletier, W. L. Dang, F. Taddei,
+A. Wright, and S. Jun, “Robust growth of Escherichia coli ,”
+Current biology , vol. 20, no. 12, pp. 1099–1103, 2010.

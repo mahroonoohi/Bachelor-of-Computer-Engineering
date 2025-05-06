@@ -1,0 +1,423 @@
+C-XGB OOST : A TREE BOOSTING MODEL FOR CAUSAL EFFECT
+ESTIMATION
+A P REPRINT
+Niki Kiriakidou
+Department of Informatics and Telematics,
+Harokopio University of Athens,
+Athens, GR 177-78.
+kiriakidou@hua.gr
+Ioannis E. Livieris∗
+Department of Statistics and Insurance,
+University of Piraeus,
+Piraeus, GR 185-34.
+livieris@unipi.gr
+Christos Diou
+Department of Informatics and Telematics,
+Harokopio University of Athens,
+Athens, GR 177-78.
+cdiou@hua.gr
+ABSTRACT
+Causal effect estimation aims at estimating the Average Treatment Effect as well as the Conditional
+Average Treatment Effect of a treatment to an outcome from the available data. This knowledge
+is important in many safety-critical domains, where it often needs to be extracted from observa-
+tional data. In this work, we propose a new causal inference model, named C-XGBoost, for the
+prediction of potential outcomes. The motivation of our approach is to exploit the superiority of
+tree-based models for handling tabular data together with the notable property of causal inference
+neural network-based models to learn representations that are useful for estimating the outcome
+for both the treatment and non-treatment cases. The proposed model also inherits the considerable
+advantages of XGBoost model such as efficiently handling features with missing values requiring
+minimum preprocessing effort, as well as it is equipped with regularization techniques to avoid over-
+fitting/bias. Furthermore, we propose a new loss function for efficiently training the proposed causal
+inference model. The experimental analysis, which is based on the performance profiles of Dolan
+and Moré as well as on post-hoc and non-parametric statistical tests, provide strong evidence about
+the effectiveness of the proposed approach.
+** This paper has been accepted for presentation at IFIP International Conference on Artificial In-
+telligence Applications and Innovations . Cite: Kiriakidou, N., Livieris I.E. & Diou, Ch. (2024).
+C-XGBoost: A tree boosting model for causal effect estimation. IFIP International Conference on
+Artificial Intelligence Applications and Innovations .***
+Keywords Causal inference ·XGBoost ·treatment effect estimation ·potential outcomes
+1 Introduction
+Over the past decade, the growing availability of large datasets and the growing advances in artificial intelligence
+highlighted the estimation of causal effect as a fundamental research objective. The primary goal of causal effect
+estimation (also known as treatment effect estimation) is the identification of the effect of an intervention, which is
+often called “ treatment ” to an outcome. The evaluation process of intervention decisions constitutes a major challenge
+in many diverse fields, from economics and medicine to education and engineering [1]. This process requires the
+∗Corresponding authorarXiv:2404.00751v1  [stat.ML]  31 Mar 2024C-XGBoost: A tree boosting model for causal effect estimation A P REPRINT
+study of the difference between alternative choices of intervention, which is not possible to study directly, since the
+only available observed outcome is the one of the action actually taken, while the rest remain unknown (counterfactual
+outcomes).
+Therefore, the prediction of the potential outcomes of unexplored interventions are considered essential for the suc-
+cessful estimation of the causal effects [2]. Quite frequently, the outcome is influenced by a variety of factors inclusive
+of confounders, mediators as well as the treatment itself; hence, rendering its accurate estimation an even more com-
+plex task in case of the absence of meticulous adjustment of the identified factors [3]. As a result, the ML models
+dedicated for estimating causal effects must deal with issues related to confounding factors and sampling biases, which
+are usually present in these data. Therefore, these challenges underscore the significance of developing sophisticated
+methodologies and advanced techniques to exploit and leverage observational data for extracting meaningful insights
+from them.
+The rise and advances of deep learning revolutionized the development of prediction models in many scientific fields
+[4, 5]. Along this line, a variety of neural network-based models such as Dragonnet [6], TARnet [7] and NEDnet [6] as
+well as their modifications [8, 9] have been proposed for estimating causal effects, providing promising performance.
+A considerable advantage of these models is the lack of requirement of any information about the treatment value
+for the estimation of the potential outcomes due to their sophisticated architecture design. Therefore, they are able
+to implicitly handle confounding variables and capture their influence on the outcomes without requiring explicit
+adjustment. As a result, they are less sensitive to misspecification, as they focus solely on capturing the underlying
+relationships and patterns within the data, rather than explicitly accounting for the treatment.
+Although, deep learning has enabled significant progress, its superiority over tree-based models on tabular data is under
+question for the following reasons: Firstly, neural network-based models are usually biased to overly smooth solutions
+and toward low-frequency functions, while decision tree-based models are better at handling irregular patterns in the
+data (non-smooth target functions) since they acquire knowledge of piece-wise constant functions [10]; and secondly,
+neural networks are considerably affected by uninformative features in contrast to tree-based models [11]. In addition,
+a research evaluation study [12] compared the performance of the most efficient neural network-based and tree-based
+causal inference models of several collections of benchmarks and highlighted that in many cases the latter exhibited
+superior performance. By taking these into consideration, we are able to conclude that a new approach focusing on
+exploiting the advantages of both tree-based and neural network-based approaches may leed to the development of
+powerful causal inference models.
+In this work, motivated by the superiority of tree-based models for handling tabular-based problems, we proposed
+a new model, named Causal eXtreme Gradient Boosting (C-XGBoost), for causal effect estimation. The main idea
+behind the proposed approach is to exploit the strong prediction abilities of XGBoost algorithm together with the
+remarkable property to learn representations that are useful for estimating the outcome for both the treatment and non-
+treatment cases. The advantages of the proposed causal inference model is that it is able to efficiently handle features
+with missing values requiring minimum processing effort as well as it is equipped with regularization techniques to
+avoid overfitting/bias. Furthermore, a new loss function is proposed in order to train the C-XGBoost model. The
+proposed causal inference model was evaluated against the most efficient and widely used tree-based and neural
+network-based models on two popular causal inference collections of datasets. The presented experimental analysis
+demonstrates that the proposed model is able to outperform traditional causal inference models, while simultaneously
+exhibit state-of-the-art performance for the estimation of average treatment effect (ATE). Summarizing, the main
+contributions of this research are:
+• we propose a new causal inference model, named C-XGBoost, for the prediction of potential outcomes.
+• we propose a new loss function for training the proposed C-XGBoost model.
+• we provide strong empirical and statistical evidence about the prediction effectiveness and accuracy of the
+proposed model.
+The remainder of this work is organized as follows: Section 2 provides a brief discussion of state-of-the-art models on
+treatment effect estimation. Section 3 presents in detail the proposed causal inference model, while Section 4 presents
+the used datasets in this research. Section 5 demonstrates the numerical experiments, highlighting the evaluation of
+causal inference models. Finally, Section 6 discusses the proposed research, summarizes its conclusions and provides
+some interesting ideas for future work.
+2C-XGBoost: A tree boosting model for causal effect estimation A P REPRINT
+2 Related work
+Causal effect estimation constitutes a complex and long-studied problem, which has recently drawn considerable
+attention from the machine learning community. During the last decade, a growing number of data-driven, models
+have been proposed for causal effect estimation, providing promising outcomes. Next, we provide a brief description
+of the most elegant and efficient tree-based and neural network-based causal inference models.
+Kunzel et al. [13] proposed a new class of model for predicting treatment effects. The main idea is to estimate the
+outcome by using all of the features together with the treatment indicator, without proving the latter any special role.
+In simple words, the treatment indicator is included and processed by the based learner like any other feature. R-
+Forest is probably the most efficient model of this class, which utilized Random-Forest [14] as base learner. However,
+this approach has two disadvantages; (i) in case the treatment and control groups are very different in covariates, a
+single model is probably not sufficient to encode the different relevant dimensions and smoothness of features for both
+groups [15]; (ii) a tree-based base learner may completely ignore the treatment assignment by not choosing/splitting
+on it [13].
+Wager and Athey [16] proposed Causal Forest (C-Forest), a non-parametric ensemble tree-based model, which extends
+the widely used R-Forest for the estimation of heterogeneous treatment effect. Specifically, C-Forest is composed by
+causal trees, which estimate the effect of the intervention at the trees’ leaves. A considerable advantage of C-Forest is
+that its performance is not affected by the number of covariates such as other causal inference models and it is able to
+exhibit notable performance even in case where the number of covariates is relative small [16].
+Shi et al. [6] proposed a novel neural network model, named Dragonnet, for estimating causal effects using observa-
+tional data. The proposed model focuses on accurate estimations of both population and individual causal effects, by
+exploiting the sufficiency of propensity score (i.e., the probability for a sample to be assigned to the treatment group
+given its characteristics). Finally, the authors proposed the integration of a procedure based on non-parametric estima-
+tion theory, called targeted regularization and as experimentally proved that it is able further improve the estimation
+of treatment effects.
+Kiriakidou and Diou [9] developed a new methodology for causal effect estimation, named Nearest Neighboring
+Information for Causal Inference (NNCI). Their main objective was to improve the performance of neural network-
+based models for causal inference. The advantage of NNCI methodology is that it enriches the neural network model’s
+inputs with information from neighboring outcomes in both control and treatment groups, contained in the training
+dataset along with the covariates. Furthermore, the authors integrated NNCI methodology on the state-of-the-art
+models, TARnet [7], NEDnet [6] and Dragonnet [6]. The numerical experiments demonstrated that the adoption of
+the proposed methodology lead to more accurate estimations of treatment effects from the models kNN-Dragonnet,
+kNN-TARnet and kNN-NEDnet compared to their corresponding state-of-the-art models.
+In this research, we propose a new model for the prediction of potential outcomes, named C-XGBoost. The rationale
+behind our approach is to exploit both the superiority of tree-based models for handling tabular data and the significant
+property of causal inference neural network-based models to learn representations that are useful for estimating the
+outcome for both the treatment and non-treatment cases. Additional advantages of the proposed model are that (i) it is
+able to efficiently handle features with missing values requiring minimum pre-processing effort and (ii) it is equipped
+with regularization techniques to avoid overfitting/bias. Moreover, a new loss function was proposed for efficiently
+training the proposed causal inference model. The comprehensive experimental analysis provides strong empirical
+and statistical evidence, which secure the effectiveness of proposed approach.
+3 C-XGBoost model for treatment effect estimation
+In this section, we provide a detailed description of the proposed tree-based C-XGBoost model for causal effect
+estimation. The main idea behind the proposed approach is to exploit the strong prediction abilities of eXtreme
+Gradient Boosting (XGBoost) algorithm together with the notable property of causal inference neural networks to
+learn representations that are useful for estimating the outcome for both the treatment and non-treatment cases.
+It is worth mentioning that XGBoost [17] is a powerful ensemble tree-based algorithm, which employs a gradient
+boosting framework for sequentially building a series of decision trees, each one attempting to correct the errors of the
+previous one. This iterative process allows XGBoost to gradually refine its predictions, making it particularly effective
+in handling complex relationships within the data.
+A remarkable advantage of XGBoost is that it is able to build multi-output trees with multiple outputs in contrast to
+many traditional tree-based models. Therefore, by exploiting this ability though the proper modification of the loss
+3C-XGBoost: A tree boosting model for causal effect estimation A P REPRINT
+function, we are able to develop a powerful tree-based ensemble model, which is able to learn representations and
+estimating the potential outcomes for both the treatment and non-treatment cases.
+Figure 1 presented a high-level description of C-XGBoost’s architecture, which takes as input an instance xiand
+calculates the prediction of the conditional outcomes Q(0,xi;θ)andQ(1,xi;θ)for control and treatment groups,
+respectively, where θis the vector with the model’s parameters. More specifically, at each iteration the C-XGBoost
+builds a multi-output tree with the size of leaf equals to the number of targets.
+Figure 1: Proposed C-XGBoost architecture
+For training C-XGBoost model, we define the following loss function, which constitutes a modification of mean square
+loss:
+L(X;θ) =1
+nX
+iL1(xi;θ) +L2(xi;θ), (1)
+where
+L1(xi;θ) = (1 −ti)(Q(0,xi;θ)−yi)2, (2)
+L2(xi;θ) = ti(Q(1,xi;θ)−yi)2. (3)
+Notice that since C-XGBoost does not provide automatic differentiation the gradient of Lis calculated by
+∂L
+∂Q(ti,xi;θ)=
+
+2(1−ti)(Q(0,xi;θ)−yi), t i= 0;
+2ti(Q(1,xi;θ)−yi)), t i= 1.
+while all the elements of the Hessian matrix are equal to 2.
+Finally, it is worth mentioning that some additional advantages of the proposed model, inherited by the traditional
+XGBoost algorithm, are that (i) it is able to efficiently handle features with missing values, which allows it to han-
+dle real-world causal inference data with missing values without requiring considerable preprocessing effort, (ii) it
+possesses built-in support for parallel processing, making it possible to train models on large datasets in a reasonable
+amount of time, (iii) it includes regularization procedures to avoid overfitting/bias.
+4 Data
+The evaluation of robustness and effectiveness of causal inference models is generally regarded as a challenging task
+due to the inherent absence of the counterfactual outcomes [18]. In order to mitigate this issue, we employed two
+collections of semi-synthetic datasets:
+•Synthetic consists of a collection of toy causal-inference classification datasets which was originally intro-
+duced by Louizos et al. [19]. Its generation is based on the hidden confounder variable Wusing the following
+4C-XGBoost: A tree boosting model for causal effect estimation A P REPRINT
+process:
+wi∼Bern(0.5), (4)
+ti|wi∼Bern(0.75wi+ 0.25(1−wi)), (5)
+xi|wi∼ N (wi, σ2
+z1wi+σ2
+z0(1−wi)), (6)
+yi|ti, wi∼Bern(f(3(wi+ 2(2 ti−1))), (7)
+where fis the logistic sigmoid function, σz0= 3 andσz1= 5., while the proxy to xiand the treatment ti
+consist of a mixture of Gaussian and Bernoulli distribution, respectively. In our experiments, the number of
+covariates was set to 1000, while each dataset contain 5000 samples as in [9, 19].
+•ACIC consists of a collection of semi-synthetic datasets, which was developed for the 2018 Atlantic Causal
+Inference Conference competition data [20]. Each dataset was received from the linked birth and infant death
+data [21] and constitutes a sample from a distinct distribution. The instances in each dataset are produced
+through a generating process, based in different treatment selection and outcome functions. For each setting
+in the data generation process, we randomly selected 5 and 11 datasets of size 5000 and 10000, respectively.
+Notice that all datasets in this collection were partitioned into training/testing sets based on the scheme 80/20
+as in [9].
+5 Numerical experiments
+In this section, we provide an extensive experimental analysis and compare the performance of the proposed C-
+XGBoost model with that of the state-of-the-art causal inference models: R-Forest [13] C-Forest [16], Dragonnet [6]
+andkNN-Dragonnet [9].
+All evaluated models were compared as estimators (ATE within the same dataset) and as predictors (ATE across
+datasets) by using the following performance metrics: absolute error in ATE
+|ϵATE|=1
+nnX
+i=1(y(xi,1)−y(xi,0))−1
+nnX
+i=1(ˆy(xi,1)−ˆy(xi,0)),
+and expected Precision in Estimation of Heterogeneous Effect
+PEHE =1
+nnX
+i=1
+(y(xi,1)−y(xi,0))−(ˆy(xi,1)−ˆy(xi,0))2
+.
+Notice that these metrics constitute the most widely utilized metrics for measuring the performance of causal inference
+models [22, 12, 19, 7, 6].
+For mitigating the influence of specific simulations on the evaluation process, we employed the performance profiles
+of Dolan and Moré [23]. The scope is to provide the robustness and efficiency of each evaluated model in compact
+form [24]. It is worth mentioning that x-axis displays the performance ratio, which represents a measure of how close
+the performance of a causal inference model is to the optimal performance and y-axis shows the percentage of datasets
+for which a given model exhibits a certain performance ratio on the x-axis [25].
+Furthermore, we conducted a statistical analysis employing non-parametric Friedman Aligned-Ranks (FAR) [26] and
+the post-hoc Finner [27] tests for ranking the evaluated models as well as examining the existence of important differ-
+ences in their performance [28]. A comprehensive description of the evaluation process methodology as well as the
+employed mathematical tools can be found in [12].
+In the sequel, we compare the performance of:
+• “R-F OREST ”, which follows S-learner” methodology [13] using Random-Forest [14] as base model.
+• “C-F OREST ”, which stands for C-Forest model [16].
+• “D RAGONNET ”, which stands for Dragonnet model [6].
+• “kNN-D RAGONNET ”, which stands for kNN-Dragonnet [8, 9].
+• “C-XGB OOST ”, which stands for the proposed C-XGBoost model.
+C-XGBoost was applied using the following hyperparameters: n_estimator = 100 ,max_depth = 5,reg_lambda =
+1.0,tree_method = ” hist”and multi_strategy = ” multi_output_tree ”, while the rest parameters were set as
+default. The state-of-the-art causal inference models were used with their original optimized settings and hyper-
+parameters.
+5C-XGBoost: A tree boosting model for causal effect estimation A P REPRINT
+5.1 Synthetic collection of datasets
+Figure 2 presents the performance profiles for Synthetic collection of datasets as regards to both performance met-
+rics. Clearly, the proposed C-XGB OOST model highlights the best performance in terms of |ϵATE|and PEHE. In
+more detail, C-XGB OOST exhibits 76% of datasets with the best (lowest) |ϵATE|score, followed by R-F OREST ,
+which presents 36% in the same situation. The neural network-based models along with C-F OREST perform simi-
+larly, reporting the worst performance. Relative to PEHE C-XGB OOST presents the best performance in terms of
+both efficiency and robustness. C-XGB OOST reports 58% of datasets with the best (lowest) PEHE score, while
+kNN-D RAGONNET reports 30% of datasets and the rest causal inference models less than 17%. Summarizing the per-
+formance profiles indicate that the proposed C-XGB OOST model highlights the best overall performance as estimator
+as well as predictor.
+(a) |ϵATE|
+ (b)ϵPEHE
+Figure 2: Log 10performance profiles of all evaluated models based on |ϵATE|and PEHE for Synthetic collection of
+datasets
+Table 1 summarizes the FAR and Finner post-hoc tests’ results as regards both performance metrics for Synthetic
+collection of datasets. The Friedman statistic Ffwith 5 degrees of freedom are equal to 289.369 and 252.494 relative
+to|ϵATE|and PEHE metrics, respectively, while the p-values are equal to 0 in both cases, which suggests the existence
+of significant differences among the performance of the causal inference models. C-XGB OOST model reports the
+highest probability-based ranking, considerably outperforming all the state-of-the-art causal inference models, while
+Finner post-hoc test suggests the existence of statistically considerable differences among the performance of the
+proposed and the traditional causal inference models.5.2 ACIC collection of datasets
+Figures 3(a) and 3(b) present the performance profiles for ACIC collection of datasets, relative to |ϵATE|and PEHE,
+respectively. The interpretation of Figure 3(a) presents that C-XGB OOST and R-F OREST report the best performance,
+exhibiting 31% of the datasets with the lowest (best) |ϵATE|score, followed by kNN-D RAGONNET , which exhibits
+the best performance among the neural network based models. As regards PEHE, C-XGB OOST present the top
+performance in terms of robustness, since its curve lie on the top. Furthermore, it exhibits 62.5% of datasets with the
+best (lowest) PEHE score, which implies that it illustrates the best performance in terms of efficiency. It is also worth
+mentioning that the neural network-based models as well as C-F OREST report the worst overall performance.
+Table 2 presents the statistical analysis of all causal inference models for ACIC collection of datasets. The Friedman
+statistic Ffwith 5 degrees of freedom are equal to 16.76 and 24.54 relative to |ϵATE|and PEHE metrics, respectively.
+Thep-values are equal to 0.00215 and 0.00006, respectively, which suggests the hypothesis that the evaluated causal
+inference models perform similarly is rejected. In terms of |ϵATE|, the statistical analysis suggests that R-F OREST and
+C-XGB OOST report the highest probability ranking, followed by kNN-D RAGONNET while Finner post-hoc test indi-
+cates that there exists no signficant differences between their performances. As regards PEHE metric, C-XGB OOST
+presents the highest FAR ranking score, followed by R-F OREST andkNN-D RAGONNET models.
+6C-XGBoost: A tree boosting model for causal effect estimation A P REPRINT
+Model FARFinner post-hoc test
+pF-value H0
+C-XGB OOST 86.41 - -
+R-F OREST 125.85 0.053579 Failed to reject
+kNN-
+DRAGONNET303.41 0.000000 Reject
+DRAGONNET 350.82 0.000000 Reject
+C-F OREST 386.02 0.000000 Reject
+(a)|ϵATE|
+Model FARFinner post-hoc test
+pF-value H0
+C-XGB OOST 139.96 - -
+kNN-
+DRAGONNET187.66 0.019582 Reject
+DRAGONNET 219.24 0.000139 Reject
+C-F OREST 255.28 0.000000 Reject
+R-F OREST 450.37 0.000000 Reject
+(b) PEHE
+Table 1: FAR test and Finner post-hoc test based on (a) |ϵATE|and (b) PEHE for Synthetic collection of datasets
+(a) |ϵATE|
+ (b)ϵPEHE
+Figure 3: Log 10performance profiles of all evaluated models based on |ϵATE|and PEHE for ACIC collection of
+datasets
+6 Discussion & conclusions
+The main contribution of this research is a new tree-based model, named C-XGBoost, for the prediction of potential
+outcomes for causal effect estimation. The key idea behind the proposed approach is to exploit the strong prediction
+abilities of XGBoost algorithm together with the remarkable property of causal inference neural network-based models
+to learn representations that are useful for estimating the outcome for both the treatment and non-treatment cases.
+Additional advantages of the proposed C-XGBoost model are that it is able to efficiently handle features with missing
+values requiring minimum pre-processing effort as well as it is equipped with regularization techniques to avoid
+overfitting/bias. Furthermore, a new loss function was proposed for efficiently training the proposed causal inference
+model.
+7C-XGBoost: A tree boosting model for causal effect estimation A P REPRINT
+Model FARFinner post-hoc test
+pF-value H0
+R-F OREST 24.26 - -
+C-XGB OOST 26.86 0.743890 Failed to reject
+kNN-
+DRAGONNET39.13 0.081474 Failed to reject
+DRAGONNET 47.93 0.005873 Reject
+C-F OREST 51.80 0.002161 Reject
+(a)|ϵATE|
+Model FARFinner post-hoc test
+pF-value H0
+C-XGB OOST 23.06 - -
+R-F OREST 23.13 0.993316 Failed to reject
+kNN-
+DRAGONNET41.53 0.026997 Reject
+C-F OREST 49.46 0.001817 Reject
+DRAGONNET 52.80 0.000747 Reject
+(b) PEHE
+Table 2: FAR test and Finner post-hoc test based on (a) |ϵATE|and (b) PEHE for Synthetic collection of datasets
+C-XGBoost model was evaluated against state-of-the-art tree-based and neural network-based models on two semi-
+synthetic collections of datasets. The comprehensive experimental analysis illustrated that the proposed C-XGBoost
+model outperformed traditional models as an estimator and predictor. In addition, we highlighted empirical and
+statistical evidence about the efficiency and effectiveness of the proposed model, which was theoretical secured by the
+performance profiles of Dolan and Moré [23] as well as by non-parametric Friedman Aligned-Ranks (FAR) [26] and
+the post-hoc Finner [27] tests.
+Nevertheless, a limitation of this work can be considered the potential influence of hyperparameters settings to the
+efficiency of proposed model since its sensitivity to different configuration settings is unclear. Possibly, efficient
+hyperparameter tuning procedures may increase the effectiveness and robustness of the proposed model; hence, a
+comparison study using various hyperparameter settings is considered as a priority in our research tasks. It is worth
+mentioning that addressing this limitation through thorough experimentation not only contributes to the understanding
+of the C-XGBoost’s behavior, but also may provide insights for future research and the development of improved
+causal inference models. Another limitation could be considered the fact that the evaluation process was performed
+on two collections of datasets. Therefore, the application of C-XGBoost on real-world datasets is certainly included
+in our future work. Our primary aim is to study C-XGBoost’s performance and fully capture the diverse range of
+scenarios and complexities present in as much as possible causal inference application domains.
+Our future work is concentrated on further enhancing the robustness and predictive accuracy of the proposed C-
+XGBoost model by incorporating a regularization procedure for inducing bias. More specifically, an interesting idea
+is the employment of targeted regularization [6], which consists a modification to the loss function based on non-
+parametric estimation theory. Through experimentation and empirical evaluations, the primary aim is to gain insights
+into the implications of this regularization approach on the overall performance and robustness of our predictive model.
+Finally, another promising approach for research is the employment of an intelligent framework [29] for providing
+explainability functionalities and tools and provide insights into the decision-making process.
+6.0.1 Acknowledgements
+The work leading to these results has received funding from the European Union’s Horizon 2020 research and in-
+novation programme under Grant Agreement No. 965231, project REBECCA (REsearch on BrEast Cancer induced
+chronic conditions supported by Causal Analysis of multi-source data).
+8C-XGBoost: A tree boosting model for causal effect estimation A P REPRINT
+References
+[1] Fredrik D Johansson, Uri Shalit, Nathan Kallus, and David Sontag. Generalization bounds and representation
+learning for estimation of potential outcomes and causal effects. The Journal of Machine Learning Research , 23
+(1):7489–7538, 2022.
+[2] Donald B Rubin. Causal inference using potential outcomes: Design, modeling, decisions. Journal of the
+American Statistical Association , 100(469):322–331, 2005.
+[3] Judea Pearl. Causality . Cambridge university press, 2009.
+[4] Samira Pouyanfar, Saad Sadiq, Yilin Yan, Haiman Tian, Yudong Tao, Maria Presa Reyes, Mei-Ling Shyu, Shu-
+Ching Chen, and Sundaraja S Iyengar. A survey on deep learning: Algorithms, techniques, and applications.
+ACM Computing Surveys (CSUR) , 51(5):1–36, 2018.
+[5] Pramila P Shinde and Seema Shah. A review of machine learning and deep learning applications. In 2018 Fourth
+international conference on computing communication control and automation (ICCUBEA) , pages 1–6. IEEE,
+2018.
+[6] Claudia Shi, David Blei, and Victor Veitch. Adapting neural networks for the estimation of treatment effects.
+Advances in neural information processing systems , 32, 2019.
+[7] Uri Shalit, Fredrik D Johansson, and David Sontag. Estimating individual treatment effect: generalization bounds
+and algorithms. In International Conference on Machine Learning , pages 3076–3085. PMLR, 2017.
+[8] Niki Kiriakidou and Christos Diou. An improved neural network model for treatment effect estimation. In
+IFIP International Conference on Artificial Intelligence Applications and Innovations , pages 147–158. Springer,
+2022.
+[9] Niki Kiriakidou and Christos Diou. Integrating nearest neighbors with neural network models for treatment
+effect estimation. International Journal of Neural Systems , 2023.
+[10] Léo Grinsztajn, Edouard Oyallon, and Gaël Varoquaux. Why do tree-based models still outperform deep learning
+on typical tabular data? Advances in Neural Information Processing Systems , 35:507–520, 2022.
+[11] Zahra Atashgahi, Xuhao Zhang, Neil Kichler, Shiwei Liu, Lu Yin, Mykola Pechenizkiy, Raymond NJ Veldhuis,
+and Decebal Constantin Mocanu. Supervised feature selection with neuron evolution in sparse neural networks.
+Transactions on Machine Learning Research , 2023, 2023.
+[12] Niki Kiriakidou and Christos Diou. An evaluation framework for comparing causal inference models. In Pro-
+ceedings of the 12th Hellenic Conference on Artificial Intelligence , pages 1–9, 2022.
+[13] Sören R Künzel, Jasjeet S Sekhon, Peter J Bickel, and Bin Yu. Metalearners for estimating heterogeneous
+treatment effects using machine learning. Proceedings of the national academy of sciences , 116(10):4156–4165,
+2019.
+[14] Leo Breiman. Random forests. Machine learning , 45:5–32, 2001.
+[15] Ahmed Alaa and Mihaela Schaar. Limits of estimating heterogeneous treatment effects: Guidelines for practical
+algorithm design. In International Conference on Machine Learning , pages 129–138. PMLR, 2018.
+[16] Stefan Wager and Susan Athey. Estimation and inference of heterogeneous treatment effects using random
+forests. Journal of the American Statistical Association , 113(523):1228–1242, 2018.
+[17] Tianqi Chen and Carlos Guestrin. Xgboost: A scalable tree boosting system. In Proceedings of the 22nd acm
+sigkdd international conference on knowledge discovery and data mining , pages 785–794, 2016.
+[18] Guanglin Zhou, Lina Yao, Xiwei Xu, Chen Wang, and Liming Zhu. Cycle-balanced representation learning for
+counterfactual inference. In Proceedings of the 2022 SIAM International Conference on Data Mining (SDM) ,
+pages 442–450. SIAM, 2022.
+[19] Christos Louizos, Uri Shalit, Joris M Mooij, David Sontag, Richard Zemel, and Max Welling. Causal effect
+inference with deep latent-variable models. Advances in neural information processing systems , 30, 2017.
+[20] Yishai Shimoni, Chen Yanover, Ehud Karavani, and Yaara Goldschmnidt. Benchmarking framework for
+performance-evaluation of causal inference analysis. arXiv preprint arXiv:1802.05046 , 2018.
+[21] Marian F MacDorman and Jonnae O Atkinson. Infant mortality statistics from the 1996 period linked birth/infant
+death data set. Monthly Vital Statistics Report , 46(12), 1998.
+[22] Fredrik Johansson, Uri Shalit, and David Sontag. Learning representations for counterfactual inference. In
+International conference on machine learning , pages 3020–3029. PMLR, 2016.
+9C-XGBoost: A tree boosting model for causal effect estimation A P REPRINT
+[23] Elizabeth D Dolan and Jorge J Moré. Benchmarking optimization software with performance profiles. Mathe-
+matical programming , 91(2):201–213, 2002.
+[24] Ioannis E Livieris and Panagiotis Pintelas. A new class of spectral conjugate gradient methods based on a
+modified secant equation for unconstrained optimization. Journal of computational and applied mathematics ,
+239:396–405, 2013.
+[25] Ioannis E Livieris, Stavros Stavroyiannis, Lazaros Iliadis, and Panagiotis Pintelas. Smoothing and stationarity
+enforcement framework for deep learning time-series forecasting. Neural Computing and Applications , 33(20):
+14021–14035, 2021.
+[26] JL Hodges and Erich L Lehmann. Rank methods for combination of independent experiments in analysis of
+variance. In Selected Works of EL Lehmann , pages 403–418. Springer, 2012.
+[27] Helmut Finner. On a monotonicity problem in step-down multiple test procedures. Journal of the American
+Statistical Association , 88(423):920–923, 1993.
+[28] Niki Kiriakidou, Ioannis E Livieris, and Panagiotis Pintelas. Mutual information-based neighbor selection
+method for causal effect estimation. Neural Computing and Applications , pages 1–15, 2024.
+[29] Ioannis E Livieris, Nikos Karacapilidis, Georgios Domalis, and Dimitris Tsakalidis. An advanced explainable
+and interpretable ML-based framework for educational data mining. In International Conference in Methodolo-
+gies and intelligent Systems for Techhnology Enhanced Learning , pages 87–96. Springer, 2023.
+10

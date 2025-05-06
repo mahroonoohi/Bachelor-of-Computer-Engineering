@@ -1,0 +1,818 @@
+Strongly interacting Bose-Fermi mixtures in 4−ϵdimensions
+V. Pastukhov∗1
+1Professor Ivan Vakarchuk Department for Theoretical Physics,
+Ivan Franko National University of Lviv, 12 Drahomanov Street, Lviv, Ukraine
+(Dated: April 1, 2024)
+Thermodynamically stable low-temperature phases of the Bose-Fermi mixtures composed of
+bosons and spinless fermions close to four dimensions are considered. In the regime, where the
+only boson-fermion two-body interaction is present and tuned to unitary limit, the properties of a
+system solely depend on the mass and number ratios of constituent atoms. In addition to the phase
+with the dimers (boson-fermion shallow bound states), we identified one more state of the mixture
+with the coexistence of fermionic dimers and trimers. The universal physics of these phases, the
+characteristic feature of is absence of the Bose-Einstein condensate, is discussed.
+PACS numbers: 67.85.-d
+Keywords: Bose-Fermi mixture, unitary interaction, ϵexpansion, three-body problem
+I. INTRODUCTION
+In contrast to the condensed matter systems, where
+the collective effects are dominative in forming of their
+behaviors, dilute gases (both classical and quantum) with
+the short-ranged interaction between particles can be de-
+scribed by the sequential inclusion of the few-body ef-
+fects. In this context, the realization of ultracold Bose
+and Fermi gases in weakly [1–3] and strongly interacting
+[4, 5] regimes opened new possibilities for the experimen-
+tal detection of the few-body physics and elucidation of
+its impact on the macroscopic properties. An extreme di-
+luteness of quantum gases together with the short-range
+character of the two-body potential among particles make
+these systems a very convenient playground for testing
+effective field theories [6, 7]. In such conditions, any
+specific details of the microscopic potential are irrele-
+vant allowing one to consider theories with contact inter-
+actions. The Galilean-invariant Lagrangians with a lo-
+cal two-body coupling are non-renormalizable above two
+spatial dimensions. However, the intrinsic U(1) symme-
+try, which guarantees the particle number conservation,
+provides a possibility to treat two-, three- and generally
+few-body sectors separately. The ultraviolet (UV) di-
+vergences appearing in every next sector can be cured
+by introducing new higher-order local interactions with
+the cutoff-dependent coupling constant. Then, the UV
+dependence of couplings is fixed by requiring the ob-
+servables to be cutoff-independent. This renormalization
+procedure which is reminiscent of the Wilson-Polchinski
+[8, 9] renormalization group (RG) scheme, allows to intro-
+duce a set of finite ‘observable’ few-body couplings con-
+trolling the universal behavior of a system in the many-
+body limit.
+The Bose-Fermi mixtures of bosons and spinless (spin-
+polarized) fermions are excellent candidates for observing
+[10, 11] composite particles in macroscopic systems. The
+∗e-mail: volodyapastukhov@gmail.comPauli exclusion principle stabilizes the fermionic mixture
+against collapse while numerous Fermi surfaces minimize
+its total energy. Even at weak contact boson-fermion
+interaction, except a metastable phase [12, 13] with al-
+most degenerated Fermi gas and almost undepleted Bose
+condensate, there is a lower energy state [14–16] with
+coexistence of bosons, atomic and molecular fermions.
+If the densities of bosonic atoms are lower than those
+of fermionic ones, the Fermi-Fermi (fermion-molecular)
+mixture remains stable without boson-boson repulsion.
+The Bose-Einstein condensation (BEC) transition in this
+system at weak boson-fermion coupling both at zero
+[17, 18] and finite [19, 20] temperatures realizes simul-
+taneously with the collapse instability. Inclusion of the
+repulsive boson-boson interaction provides [21] stabiliza-
+tion of the Bose condensate. Recently, the quantum
+phase transition [22, 23] from the Fermi-polaron state
+to the molecular phase was observed [24] experimentally.
+Taking into account a weak induced interaction between
+fermions and molecules necessarily leads to superfluidity
+characterized [25] by crossover from atomic to molecular
+pairing mechanisms.
+So far, only degenerated Fermi gases of fermions
+and diatomic molecules were mostly prepared [26–29]
+in the Bose-Fermi mixtures. In Ref. [30] the forma-
+tion of triatomic molecules in these systems was ob-
+served. However, an important feature of the Bose-Fermi
+mixtures less discussed in the literature is the forma-
+tion of fermionic trimers at macroscopic atomic popu-
+lations. In three dimensions, this problem is complicated
+by the emergence of the Efimov physics [31, 32]. Depend-
+ing on the set of parameters: densities of constituents,
+the boson-fermion s-wave scattering length, and intrinsic
+length-scale determining an infinite tower of the three-
+body bound states, the system may include an arbitrary
+number of coexisting macroscopically-populated univer-
+sal trimer states. The richest composition is reached at
+high densities. Since all trimer levels are ‘distinguishable’
+fermions, it is energetically preferable to have as many as
+possible Fermi surfaces in this limit. In the present paper,
+we focus on a different and somewhat simpler situationarXiv:2403.20203v1  [cond-mat.quant-gas]  29 Mar 20242
+in the non-physical fractional dimensions and for mass
+ratios of the resonantly-coupled bosons and fermions out-
+side the Efimov window [18, 33]. When the only parame-
+ter characterizing interaction –the boson-fermion s-wave
+scattering length– diverges, the thermodynamic proper-
+ties and stability condition for the mixtured state are uni-
+versal functions of densities and masses of bosonic and
+fermionic atoms. Generally, there are no simple ways
+to calculate these universal functions, but close to four
+dimensions, the ϵ-expansion can be utilized.
+II. MODEL AND REVIEW OF ϵ-EXPANSION
+The discussed model describes spinless bosons and
+spin-polarized fermions in the d-dimensional volume Ld
+with periodic boundary conditions. The interaction be-
+tween bosonic atoms is neglected, while we assume pres-
+ence of a contact boson-fermion (pseudo)potential char-
+acterized by a bare coupling constant gΛthat depends
+on the ultraviolet cutoff Λ
+g−1
+Λ=g−1−1
+LdX
+|p|<Λ2mbf
+p2. (2.1)
+For a positive renormalized (‘observable’) couplings
+g−1=−Γ(1−d/2)
+(2π)d/2md/2
+bf|εc|d/2−1. (2.2)
+this model supports a single two-body bound state in
+a vacuum with the energy εc=−1
+2mbfa2(we adopt
+notation for the boson-fermion reduced mass m−1
+bf=
+m−1
+b+m−1
+f, with mbandmfbeing masses of bosonic
+and fermionic atoms, respectively; in the following, all ms
+with a single index stand for mass of atoms or compos-
+ite particles, while the ones with double indices for the
+reduced masses). The Euclidean action that explicitly
+incorporates the composite fermions can be obtained by
+the Hubbard-Stratonovich transformation of the original
+boson-fermion interaction introducing auxiliary Grass-
+mann fields
+S=Z
+xb†{∂τ−ξb}b+Z
+xf†{∂τ−ξf}f
++g−1
+ΛZ
+xc†c−Z
+x
+c†fb+b†f†c	
+, (2.3)
+(withR
+xdenoting integration over the ( d+1)-dimensional
+Euclidean space-time) where ξb(f)=−∇2
+2mb(f)−µb(f)are
+the vacuum dispersions shifted on the chemical potentials
+µb(f)referring to bosons (fermions). The complex-valued
+fields b(x), and the Grassmannian fields f(x) and c(x)
+describe bosons, and two types of fermions: atoms and
+composite fermions (dimers). As it was first mentioned
+by Nussinov and Nussinov [34], exactly in d= 4 dimers
+do not interact mutually and with other particles. Thisis most easily demonstrated by calculating the vacuum c-
+particle propagator in ( d+1)-momentum space [35]. The
+only self-energy contribution is given by a single diagram
+depicted in Fig. 1
+FIG. 1: Self-energy insertion in the dimer propagator (dou-
+ble solid line). Solid and dotted lines denote fermionic and
+bosonic propagators, respectively.
+⟨c†
+PcP⟩=g|εc|d/2−1
+|εc|d/2−1−h
+p2
+2mc−iνpid/2−1, (2.4)
+with mc=mb+mf. Exactly in d= 4, the above denom-
+inator reproduces the inverse propagator of a free com-
+posite particle with binding energy εc. More importantly
+that arbitrarily close to four dimensions, the residue of
+the dimer propagator disappears linearly in ϵ= 4−d(see
+2.2). This fact allows to build the perturbation theory
+even for strongly interacting systems ( g−1= 0) using ϵ
+as a small parameter. Indeed, every diagram containing
+one dimer propagator and free of UV divergences car-
+ries a small parameter. Therefore, all diagrams can be
+classified by the number of ⟨c†c⟩-lines, or equivalently, by
+rescaling the c-fields, we can associate the factor√ϵwith
+every interaction vertices in action (2.3). All observables
+then are calculated as a power series in√ϵ. This was
+shown [36] to be an extremely effective analytical tool
+for the calculation of thermodynamic and spectral prop-
+erties of spin-1 /2 fermions at unitarity. In the rest of
+the paper, the ϵ-expansion will be used for examining
+properties of Bose-Fermi mixtures mainly in the limit of
+infinite boson-fermion coupling. In the two-body sector,
+this limit of our model is characterized by the scale (and
+even conformal) invariance. If the three-body sector is
+also trivial, i.e. there is no Efimov effect in the consid-
+ered system, all the above symmetries are preserved.
+III. DIMER-FERMION MIXTURE
+By neglecting boson-boson interaction we restrict our
+consideration to a case of the non-Bose-condensed ground
+states of the system, i.e. no single-particle energy level is
+macroscopically occupied by the Bose atoms. The pres-
+ence of BEC necessarily leads to the collapse of the mix-
+ture. This means that all bosons should be bound to
+fermionic atoms forming dimers. It is easy to show that
+there is always a region in the parameter space, where the
+mixture state of the system close to d= 4 at unitarity
+is stable. Indeed, in this limit, we are dealing with two
+ideal Fermi gases of fermions and dimers. The number of3
+dimers is equal to the number of bosons, while all other
+fermions are free
+nb=1
+LdX
+pθ(−ξc(p)), (3.5)
+nf−nb=1
+LdX
+pθ(−ξf(p)), (3.6)
+where θ(x) is the Heaviside step function and ξc(p) =
+p2
+2mc−µcwith µc=µb+µfbeing the chemical potential
+of composite particles. By finding µfandµbone can
+demonstrate the thermodynamic stability of mixture, i.e.
+∂µf
+∂nf>0,∂µb
+∂nb>0 and∂µf
+∂nf∂µb
+∂nb−∂µf
+∂nb∂µb
+∂nf>0 for all
+nf
+nb≥1 +mf
+mcd/2
+. (3.7)
+For lower densities of fermions, the chemical potential of
+bosons crosses zero ( µb<0 in the thermodynamically
+stable region) signaling the BEC transition. Recall that
+the above conclusions are true only for dextremely close
+to four. At small but non-zero ϵwe can elucidate prop-
+erties of the system perturbatively. Since there are no
+free bosons, the system is a weakly interacting Fermi-
+Fermi mixture. Because of the fermionic statistics, this
+interaction is repulsive in the s-way channel and one can
+apply the Fermi liquid paradigm to calculate the parti-
+cle distribution and thermodynamics of the system. The
+interaction in such a system only deforms the form of
+the momentum distribution but does not the position of
+its discontinuity point. By computing the self-energies of
+the unbound fermion (Fig. 2, b) and dimer propagators,
+a b
+FIG. 2: Bosonic (a) and fermionic (b) self-energies of order ϵ.
+therefore, we can identify the chemical potentials µfand
+µc, while correction to the bosonic correlator (Fig. 2, a)
+modifies the BEC transition condition (3.7). Lengthy,
+nonetheless straightforward calculations lead to inequal-
+ity (up to order ϵ)
+nf
+nb≥1 +mf
+mcd/2
++ϵmf
+mb"
+mc
+mb+mf
+mc−mc
+2mf−m2
+f
+2m2c#
+,(3.8)
+for the thermodynamic stability. Note that for a strong
+imbalance between masses of bosonic and fermionic
+atoms mb≪mf, the correction can be arbitrarily large
+shifting the stability condition towards larger fermion
+densities.It is well-known that a macroscopic number of fermions
+are unstable towards the Cooper pairing at attractive in-
+teraction of any magnitude. In our case, when two sorts
+of Fermi particles (unbound fermions and dimers) are
+built of the same fermionic atom, the only possible pair-
+ing channel is the p-wave one. There are, however, a few
+possible scenarios of the Cooper pairing compositions,
+namely, atom-dimer f−c, atom-atom f−f, and dimer-
+dimer c−c(and all possible phases with the coexistence
+of different pairings). The latter two are less energetically
+preferable since the appropriate interactions are of order
+ϵ2(see, Fig. 3). The atom-dimer effective interaction is
+f − c f − f c − c
+FIG. 3: Leading-order effective fermion-dimer ( f−c),
+fermion-fermion ( f−f) and dimer-dimer ( c−c) interactions.
+of order ϵ, and moving from the normal phase towards
+lower temperatures, the p-wave f−csuperfluidity should
+be observed. In order to study the peculiarities of this
+pairing mechanism to leading order in ϵ, one needs to
+sum up an infinite series of ladder diagrams presented in
+Fig. 4. The series summation is equivalent to solving an
+= + +...
+FIG. 4: A sum of the ladder diagrams determining the exact
+fermion-dimer vertex.
+integral equation for the two-body fermion-dimer vertex
+function [37, 38]. Being interested in the f−cbound
+states we only need to find a non-trivial solution to the
+homogeneous part of this vertex
+Zfc(P) =1
+βLdX
+Q⟨b†
+P+Q+KbP+Q+K⟩⟨f†
+QfQ⟩
+×⟨c†
+Q+KcQ+K⟩Zfc(Q),(3.9)
+where iωkafter analytic continuation should be identified
+with binding energy and kwith the d-dimensional wave-
+vector of the fermion-dimer Cooper pair. In general, the
+solution is complicated but close to 4D, where the dimer
+propagator (2.4) acquires a pole structure with vanish-
+ingly small residue, Eq. (3.9) formalizes in the system
+of coupled linear integral equations for functions ψp=
+Zfc(P)iνp→−ξf(p)and ϕp=Zfc(P)iνp→ξc(|p+k|)−iωk.
+The first one is determined for all |p|> pf, while the
+second one is only non-zero for all |p+k|< pc. Con-
+sidering for simplicity only case of pf=pc(otherwise,
+the Cooper pairing requires a finite fermion-dimer mo-
+mentum) and k= 0, one can argue that ψp=npψpand
+ϕp=npϕp. It is possible to find the large- pbehavior4
+(scaling limit) of ψp∼1/pσin arbitrary dimension with
+exponent σgiven by equation
+mc
+mf=σ−2
+dsin(πd/2)
+sin(πσ/2)
+×2F1 
+1 +d−σ
+2,d+σ
+2−1;2 +d
+2;m2
+f
+m2c!
+,(3.10)
+[here 2F1(. . .) is the hypergeometric function [39]] which
+is nothing but the scaling dimension of the appropriate
+p-wave channel ( fc) composite operator [35]. Note that
+the solutions to Eq. 3.10 go in pairs σand 4 −σ. In the
+limit ϵ→0 exponent σlinearly decreases to zero. For
+small enough masses of bosons, there is a region with
+complex conjugated exponents σ= 2±iσ0of the p-wave
+Efimov effect emergence at arbitrary d. Extremely close
+tod= 4, the effective fermion-dimer interaction almost
+vanishes, which allows to approximate functions ψp≈
+ψpfandϕp≈ϕpfby their values at Fermi surface (recall
+that here we only discuss the limit of equal fermion and
+dimer populations). This simplification transforms two
+integral equations (for ψpandϕp) into a single algebraic
+one with the non-trivial solution determining with the
+exponential precision, the fermion-dimer binding energy
+(and consequently gap in the quasi-particle spectrum)
+∆fc∼p2
+f
+mfcexp
+−2
+ϵmb
+mfc
+. (3.11)
+For the precise numerical prefactor, one needs to go be-
+yond the leading-order ϵ-expansion.
+IV. VACUUM TRIMER
+The correct formulation of the trimer ( b−c) prob-
+lem suggests [18, 40–43] the modification of the original
+action (2.3) with an extra term describing the boson-
+composite fermion interaction
+∆S=−gcb,ΛZ
+xb†c†cb. (4.12)
+For later convenience let us introduce another complex
+Grassmann auxiliary fields that decouple composite cb
+andb†c†operators
+∆S=g−1
+t,ΛZ
+xt†t−hΛZ
+x
+t†cb+b†c†t	
+.(4.13)
+Clearly that gcb,Λ=gt,Λh2
+Λ, but one cannot set hΛ= 1
+because this vertex gets non-trivial scaling through the
+RG flow. A naive one-loop calculations yield
+ΛdhΛ
+dΛ=−ηRGhΛ, (4.14)
+ηRG=sin (π[d/2−1])
+π/2m2
+c
+mfmtd/2−1
+,(4.15)with mt=mc+mbbeing mass of trimer. The solution
+hΛ=h0
+Λ
+Λ0−ηRG
+(with ηRGalways positive-definite)
+reflects the UV irrelevance of the appropriate coupling.
+Note that the above simple one-loop result is valid only
+in close vicinity of d= 4, where ηRG=m2
+c
+mfmtϵ+. . .. The
+exact dependence of hΛon UV cutoff can be extracted
+from the full consideration of the boson-dimer problem.
+Within the action, S+∆S, the possible trimer states are
+encoded in the vertex given by the diagrammatic equality
+in Fig. 5. The appropriate integral equation for the on-
++ =
+FIG. 5: The renormalized vacuum vertex function determin-
+ingb+c→tprocess (triple line refers to trimer).
+shell vertex Tbc(q) in the center-of-mass frame (where
+momenta of colliding boson and composite fermion are
+mb
+mtp−qandmc
+mtp+q, respectively) with total momentum
+p, reads
+Tbc(q) =hΛ
++1
+LdX
+kTc(k)Tbc(k)
+(k+q)2
+2mf+k2+q2
+2mb+p2
+2mt−iνp,(4.16)
+with the shorthand notations for function Tc(k) =
+−⟨c†
+KcK⟩|iνk→iνp−p2
+2mt−k2
+2mb. Note that vertex function
+Tbc(q) also depends (although not explicitly noted) on
+(d+1)-momentum P, but only in combinationp2
+2mt−iνp,
+which is consistent with the Galilean invariance of the
+three-body system. Before proceeding with the analysis
+of solutions to Eq. (4.16), let us calculate the trimer prop-
+agator. It is easy to do when the on-shell vertex function
+Tbc(q) is known. Then, the only self-energy contribution
+to the trimer propagator is determined by the Feynman
+graph shown in Fig. 6. With the Matsubara frequency in
+FIG. 6: The vacuum self-energy of trimer propagator.
+the self-energy being explicitly integrated out, the inverse
+trimer propagator
+⟨t†
+PtP⟩−1=g−1
+t,Λ+hΛ
+LdX
+kTc(k)Tbc(k), (4.17)
+is only affected by the s-wave channel of the boson-dimer
+scattering amplitude. In what follows, one needs to con-
+sider only spherically-symmetric solutions to Eq. (4.16).5
+In arbitrary d, the function Tbc(q) can be found only nu-
+merically, but the scaling limit q≫1/awith q≪Λ is ac-
+cessible analytically. Keeping in mind that hΛ→∞→0,
+and that the cutoff is imposed on summation over the
+wave-vector in the r.h.s of (4.16), we can reduce this
+equation to the homogeneous one. Then, the scale in-
+variance fixes the asymptotic form of the on-shell vertex
+Tbc(q)∝1/qη. Plugging this ansatz back into the inte-
+gral equation and calculating integrals in arbitrary d, we
+arrive at the condition for allowed ηs [18]
+1 =−sin(πd/2)
+sin(πη/2)2F1d−η
+2,d+η
+2−1;d
+2;m2
+b
+m2c
+.(4.18)
+All solutions always go in pairs ηand 2 −η. Conse-
+quently, function Tbc(q) =Aq−η+Bqη−2is a linear com-
+bination of two partial solutions. Close to d= 4 we
+have η≈2F1
+2,1; 2;m2
+b
+m2c
+ϵ=m2
+c
+mfmtϵ, i.e. consistent
+with the above predictions ηRGof the one-loop RG in
+theϵ→0 limit. At any particular mass ratios mb/mf,
+there is always range of d∈[dmin, dmax] (see [18]), where
+two mutually complex-conjugated solutions η= 1±iη0
+occur. The latter is a signal for emergence of the Efi-
+mov effect in the three-body system. This is most easily
+seen by analyzing Tbc(q)∼sin(η0ln(qr0))
+q(here r0is arbi-
+trary length scale) at complex ηs. Being solution to ho-
+mogeneous integral equation, this vertex coincides with
+the three-body zero-energy wave-function. The number
+of its nodes, therefore, determines the number of three-
+body bound states. Consequently, in the Efimov region
+we have an infinite tower of trimers with the character-
+istic ratio εt,n/εt,n+1=e2π/η0(n≫1) between binding
+energies of two nearest ones. Of course, the calculations
+of propagators for the Efimov trimers is interesting prob-
+lem, which cannot be solved to the very end in the con-
+sidered model. The correct formulation requires to go
+beyond the zero-range boson-fermion pairwise interaction
+by adopting, for instance, the two-channel model describ-
+ing narrow Feshbach resonance. The existence of the ex-
+act solution [44, 45] to the three-body problem within
+this model in 3D inspires confidence in the calculations
+of propagators for the universal Efimov trimers. Apart
+from the interval [ dmin, dmax], there could be at most
+two bound states. However, when the mass of bosonic
+atoms is infinite an exact solution [46] (although only 3D
+case is analyzed there, the general picture is same [47]
+for any 2 < d < 4) of the three-body problem suggests a
+single bound state that satisfies bosonic statistics. Note
+thatmb≫mflimit is the most favorable for the trimer
+emergence. Therefore, one concludes about an existence
+of a single trimer state with energy εt∼ −1
+2mbca2outside
+the interval [ dmin, dmax]. With the numerically obtained
+vertex Tbc(q) we can calculate the trimer propagator. It
+is readily seen, taking into account the UV dependence
+of both functions Tc(k)Tbc(k), that the sum in (4.17) is
+divergent and should be renormalized. The latter is real-
+ized by absorbing the leading-order large-Λ term in the
+definition of the bare coupling gt,Λ. Recalling that thetrimer propagator should have a simple pole in the three-
+body bound states, one obtains
+⟨t†
+PtP⟩−1=hΛ
+LdX
+k{Tc(k)Tbc(k)
+−[Tc(k)Tbc(k)]p2
+2mt−iνp→|εt|
+. (4.19)
+The leading contribution to the above integral can be
+calculated for small ϵutilizing an asymptotic power-law
+solution for the vertex Tbc(k)
+⟨t†
+PtP⟩−1∝ |εt|1−η/2−p2
+2mt−iνp1−η/2
+,(4.20)
+where the prefactor contains hΛtimes constant of order
+unity (note that here small ϵcoming from ⟨c†
+PcP⟩propa-
+gator is compensated by the UV divergence of the above
+integral). Far below d= 4, one needs a full solution to
+Eq. (4.16) to obtain the trimer propagator. Again, ex-
+actly in d= 4 the above expression for ⟨t†
+PtP⟩reproduces
+the propagator of a free particle with the binding energy
+εtand mass mtof the trimer.
+V. TRIMER-DIMER-FERMION MIXTURE
+The existence of shallow trimers changes the above-
+described phase diagram of the Bose-Fermi mixture. In
+particular, one should expect the emergence of the ther-
+modynamically stable phase at densities below (3.7). The
+coexistence of trimers, dimers, and unbound fermionic
+atoms characterizes this phase. A simple analysis in di-
+mensions close to d= 4 relying on the combinations of
+bosonic and fermionic chemical potentials leads to the
+conclusion that there can be no trimers without dimers
+at least in the leading order of ϵexpansion. The ground
+state energy of this three-component Fermi mixture of
+almost non-interacting species can be written (up to an
+unimportant overall dimensionless coefficient) as follows
+E
+Ld∝(nf−nc−nt)2/d+1
+2mf+n2/d+1
+c
+2mc+n2/d+1
+t
+2mt,(5.21)
+with ncandntbeing densities of dimers and trimers, re-
+spectively. Their equilibrium values are subject to mini-
+mization of Ewith the natural constraint nb=nc+ 2nt
+(all bosons gone for the formation of either dimers or
+trimers). Thus, only one density (say nt) is unknown in
+E, and solving equation ∂E/∂n t= 0 we find both ntand
+nc. Then, it is easy to demonstrate that any of the so-
+lutions realize a minimum of E(because ∂2E/∂n2
+t>0).
+Our calculations revealed that the trimers arise below
+(i.e. for smaller densities of fermions nf)
+nf
+nb= 1 +2mf
+mcd/2
+, (5.22)6
+and their number monotonically increases up to the BEC
+transition point, which in this case realizes at
+nf
+nb=md/2
+f+md/2
+c+md/2
+t
+md/2
+c+ 2md/2
+t, (5.23)
+and for lower fermionic densities, the system becomes
+unstable towards collapse. The latter expression is found
+by writing down equations similar to (3.5) but with the
+inclusion of trimers. A maximal ntreached at (5.23),
+reads
+nt
+nb=md/2
+t
+md/2
+c+ 2md/2
+t. (5.24)
+It is worth stressing that the above analysis is valid only
+close to four dimensions. The phase diagram of the mix-
+ture exactly at d= 4 is presented in Fig. 7. To re-
+01 2 3 012345u
+nstable (tetramers, pentamers,...?)fermions+dimers+trimersnf /nbm
+b/mffermions+dimers
+FIG. 7: The phase diagram of the four-dimensional Bose-
+Fermi mixture with resonant two-body interaction. Upper
+and lower solid lines correspond to Eq. (5.22) and Eq. (5.23),
+respectively. The dashed line indicates the stability condition
+(3.7) without the possibility for trimers to emerge.
+veal an order of the quantum phase transition between
+trimer and dimer phases (upper solid line), it is neces-
+sary to calculate the dependence of order parameter nt
+on the deviation of the density of fermions from critical
+magnitude ncr
+fgiven by Eq. (5.22). Fortunately, for the
+considered system in the d→4 limit, it is easy to do
+nt∼(ncr
+f−nf)d/2(asnf→ncr
+f). Exactly at four dimen-
+sions, therefore, the system experiences a true third-order
+quantum phase transition (in the sense that ∂3E/∂n3
+fis
+discontinuous although finite from both sides of the crit-
+ical point). In lower dimensions, the third derivative of
+the thermodynamic potential with respect to a control
+parameter is power-law divergent with a small exponent
+−ϵ/2.
+Slightly below four dimensions our system in the nor-
+mal (non-superfluid) phase is a three-component weakly
+interacting Fermi gas. At order ϵonly bosonic self-energy
+a bFIG. 8: Bosonic (a) and dimer (b) self-energy contributions
+of order ϵdue to trimers.
+(see Fig. 8, a) gets corrections due to interactions with
+trimers. Formally, there is also a similar bubble (Fig. 8,
+b) of order ϵ0renormalizing ⟨c†
+PcP⟩propagator, but ef-
+fectively it contributes only to order ϵ2to the observ-
+ables. It is understood, that additional contribution to
+Σc(P) modifies, up to order ϵ, the ratio between a num-
+ber of dimers and trimers in the mixture, while Σ b(K)
+shifts the BEC transition (coinciding with the system’s
+collapse) line. The latter effect can be incorporated by
+using very similar formulas as in the case of dimers but
+with the replacement mf→mc,mc→mtandµf→µc,
+µc→µt. More importantly to consider the momentum
+distribution Nb(k) of bosons, in particular, its large- k
+tail. The leading term (of order 1 /k4) is a famous Tan’s
+contribution [48], while the trimers provide next to the
+leading-order term
+Nb(k)∼ϵ
+4pc
+k4
++η
+4mbmc
+m2
+tη/2pt
+k4−ϵ+η
+→ϵ
+4pc
+k4
++ϵ
+4m2
+c
+mfmtpt
+k4+ϵ
+m2
+c
+mfmt−1
+,(5.25)
+where pcandptare the Fermi momenta of dimers and
+trimers, respectively. Note thatm2
+c
+mfmt−1>0, meaning
+the trimers impact is always subleading in the k→ ∞
+limit and is different [49] from the three-dimensional case
+with the intrinsic Efimov physics. Equation (5.25) identi-
+fies a linear in ϵterms of the two- and three-body contact
+parameters. Finally, moving from high temperatures (of
+course, T≪µf,c,t, but T > 0) we should expect, based
+on previous analysis, the formation of the p-wave dimer-
+trimer ( c−t) Cooper pairs (in addition to the above-
+discussed fermion-dimer f−cones). Such a mixture then
+is the two-component fermionic superfluid. To reveal the
+variety of ground states of the system, however, one is
+required to perform a more detailed investigation.
+VI. SUMMARY AND OPEN QUESTIONS
+In conclusion, we have studied the equilibrium prop-
+erties of the strongly interacting Bose-Fermi mixture at
+low temperatures close to four dimensions. Assuming no
+interaction between bosonic atoms, we have argued that
+there are several thermodynamically stable states of the
+system without Bose-Einstein condensate. All bosons
+in these states are coupled to fermions, and depending
+on the density ratios of immersed fermions and bosons,7
+form a macroscopic number of either dimers or dimers
+and trimers at once (see Fig. 7). The latter two phases
+are shown to be separated by the third-order quantum
+phase transition. At lower densities of fermionic atoms,
+the BEC transition occurs signaling the instability of the
+fermion-dimer-trimer mixture. Once one can prove the
+existence of the four-body (tetramers), five-body (pen-
+tamers), and higher-order many-body bound states with
+the binding energies ∼1
+ma2, the system remains thermo-
+dynamic at arbitrary compositions. Although it is impos-
+sible to test these predictions experimentally, the Monte
+Carlo simulations can resolve many of the problems set.
+Slightly below d= 4, the thermodynamics of a sys-
+tem can be calculated by means of the ϵ= 4−dex-
+pansion. In particular, properties of the normal phase
+were calculated (up to order ϵ) by utilizing the Fermi liq-
+uid theory. At lower temperatures, the first superfluid
+phase transition should be associated with the formationof the p-wave Cooper pairs of fermions and dimers. In
+the same temperature scales the fermion-trimer pairs are
+also predicted constituting the considered system as a
+two-component superfluid. The peculiarities of the zero-
+temperature phase diagram, even at small ϵs, are still
+unknown and require further study.
+Finally, we expect that much of the presented re-
+sults concerning the behavior of this unrealistic near-
+four-dimensional unitary Bose-Fermi mixtures should be
+retained in two dimensions [50], especially at high densi-
+ties.
+Acknowledgements
+This work was partly supported by Project
+No. 0122U001514 from the Ministry of Education
+and Science of Ukraine.
+[1] M. H. Anderson, J. R. Ensher, M. R. Matthews, C. E.
+Wieman and E. A. Cornell, Science 269, 198 (1995).
+[2] K. B. Davis, M. O. Mewes, M. R. Andrews, N. J. van
+Druten, D. S. Durfee, D. M. Kurn and W. Ketterle, Phys.
+Rev. Lett. 75, 3969 (1995).
+[3] B. DeMarco and D. S. Jin, Science 285, 1703 (1999).
+[4] K. M. O’Hara, S. L. Hemmer, M. E. Gehm, S. R. Granade
+and J. E. Thomas, Science 298, 2179 (2002).
+[5] N. Navon, S. Piatecki, K. Gunter, B. Rem, T. C. Nguyen,
+F. Chevy, W. Krauth, and C. Salomon, Phys. Rev. Lett.
+107, 135301 (2011).
+[6] P. F. Bedaque U. van Kolck, Annu. Rev. Nucl. Part. Sci.
+52, 339 (2002).
+[7] E. Braaten, H. W. Hammer, Phys. Rept. 428, 259 (2006).
+[8] K. G. Wilson, Phys. Rev. B 4, 3174 (1971); Phys. Rev.
+B4, 3184 (1971).
+[9] J. Polchinski, Nucl. Phys. B 231, 269 (1984).
+[10] C. A. Stan, M. W. Zwierlein, C. H. Schunck, S. M. F.
+Raupach, and W. Ketterle, Phys. Rev. Lett. 93, 143001
+(2004).
+[11] S. Inouye, J. Goldwin, M. L. Olsen, C. Ticknor, J. L.
+Bohn, and D. S. Jin, Phys. Rev. Lett. 93, 183201 (2004).
+[12] W. F. Saam, Ann. Phys. 53, 239 (1969).
+[13] L. Viverit, C. J. Pethick, and H. Smith,, Phys. Rev. A
+61, 053605 (2000).
+[14] S. Powell, S. Sachdev, and H. P. B¨ uchler, Phys. Rev. B
+72, 024534 (2005).
+[15] T. Watanabe, T. Suzuki, and P. Schuck, Phys. Rev. A
+78, 033601 (2008).
+[16] F. M. Marchetti, C. J. M. Mathy, David A. Huse, and
+M. M. Parish, Phys. Rev. B 78, 134517 (2008).
+[17] E. Fratini and P. Pieri, Phys. Rev. A 85, 063618 (2012).
+[18] O. Hryhorchak, V. Pastukhov, J. Phys. A: Math. Theor.
+56, 205003 (2023).
+[19] E. Fratini and P. Pieri, Phys. Rev. A 81, 051605(R)
+(2010).
+[20] K. Manabe, D. Inotani, and Y. Ohashi, Phys. Rev. A
+100, 063609 (2019).
+[21] A. Guidini, G. Bertaina, D. E. Galli, and P. Pieri, Phys.
+Rev. A 91, 023603 (2015).[22] D. Ludwig, S. Floerchinger, S. Moroz, and C. Wetterich,
+Phys. Rev. A 84, 033629 (2011).
+[23] G. Bertaina, E. Fratini, S. Giorgini, and P. Pieri, Phys.
+Rev. Lett. 110, 115303 (2013).
+[24] M. Duda, X.-Y. Chen, A. Schindewolf, R. Bause, J. von
+Milczewski, R. Schmidt, I. Bloch, and X.-Y. Luo, Nat.
+Phys. 19, 720 (2023).
+[25] Y. Guo, H. Tajima, T. Hatsuda, and H. Liang, Phys.
+Rev. A 108, 023304 (2023).
+[26] J. W. Park, C.-H. Wu, I. Santiago, T. G. Tiecke, S.
+Will, P. Ahmadi, and M. W. Zwierlein, Phys. Rev. A
+85, 051602(R) (2012).
+[27] M.-S. Heo, T. T. Wang, C. A. Christensen, T. M. Rva-
+chov, D. A. Cotta, J.-H. Choi, Y.-R. Lee, and W. Ket-
+terle, Phys. Rev. A 86, 021602(R) (2012).
+[28] T. D. Cumby, R. A. Shewmon, M.-G. Hu, J. D. Perreault,
+and D. S. Jin, Phys. Rev. A 87, 012703 (2013).
+[29] J. Cao, H. Yang, Z. Su, X.-Y. Wang, J. Rui, B. Zhao,
+and J.-W. Pan, Phys. Rev. A 107, 013307 (2023).
+[30] H. Yang, J. Cao, Z. Su, J. Rui, B. Zhao, J.-W. Pan,
+Science 378, 1009 (2022).
+[31] V. Efimov, Phys. Lett. B 33, 563 (1970).
+[32] P. Naidon and S. Endo, Rep. Prog. Phys. 80, 056001
+(2017).
+[33] D. S. Rosa, T. Frederico, G. Krein, and M. T. Yamashita,
+Phys. Rev. A 97, 050701(R) (2018).
+[34] Z. Nussinov and S. Nussinov, Phys. Rev. A 74, 053622
+(2006).
+[35] Y. Nishida, D.T. Son, Unitary Fermi Gas, Expansion,
+and Nonrelativistic Conformal Field Theories. In: W.
+Zwerger,(eds) The BCS-BEC Crossover and the Unitary
+Fermi Gas. Lecture Notes in Physics, vol 836. Springer,
+Berlin, Heidelberg (2012).
+[36] Y. Nishida and D. T. Son, Phys. Rev. Lett. 97, 050403
+(2006).
+[37] I. V. Brodsky, M. Yu. Kagan, A. V. Klaptsov, R.
+Combescot, and X. Leyronas, Phys. Rev. A 73, 032724
+(2006).
+[38] J. Levinsen, D. S. Petrov, Eur. Phys. J. D 65, 67 (2011).
+[39] M. Abramowitz and I. Stegun, Handbook of Mathematical8
+Functions with Formulas, Graphs, and Mathematical Ta-
+bles(United States Department of Commerce, National
+Bureau of Standards 1964).
+[40] P. F. Bedaque, H.-W. Hammer, and U. van Kolck, Phys.
+Rev. Lett. 82, 463 (1999).
+[41] P. F. Bedaque, H.-W. Hammer, and U. van Kolck, Nucl.
+Phys. A 646, 444 (1999).
+[42] A. Mohapatra and E. Braaten Phys. Rev. A 98, 013633
+(2018).
+[43] Y. Nakayama and Y. Nishida, Phys. Rev. E 103, 012117
+(2021).
+[44] A. O. Gogolin, C. Mora, and R. Egger, Phys. Rev. Lett.100, 140404 (2008).
+[45] M. Valiente, and N. T. Zinner, Strongly Interacting
+Quantum Systems , Volume 1 (IOP Publishing 2023).
+[46] G. Panochko and V. Pastukhov, J. Phys. A: Math. Theor.
+54, 085001 (2021).
+[47] G. Panochko and V. Pastukhov, Atoms 10, 19 (2022).
+[48] S. Tan, Ann. Phys. 323, 2971 (2008).
+[49] E. Braaten, D. Kang, and L. Platter, Phys. Rev. Lett.
+106, 153005 (2011).
+[50] J. von Milczewski, F. Rose, R. Schmidt, Phys. Rev. A
+105, 013317 (2022).

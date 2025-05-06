@@ -1,0 +1,481 @@
+arXiv:2404.01201v1  [gr-qc]  1 Apr 2024Search for gravitationally lensed interstellar transmiss ions
+Slava G. Turyshev
+Jet Propulsion Laboratory, California Institute of Techno logy,
+4800 Oak Grove Drive, Pasadena, CA 91109-0899, USA
+(Dated: April 2, 2024)
+We consider interstellar light transmission aided by a grav itational lens. We ﬁnd that optimal
+reception eﬃciency occurs in lensing geometries where the t ransmitter, lens, and receiver are nearly
+aligned. We explore various signal detection strategies, e mploying both existing and emerging
+technologies. With this study, our understanding of inters tellar power transmission via gravitational
+lensing has signiﬁcantly progressed. We observe that detec tion signals from nearby stars, may
+leverage established photonics and optical engineering te chnologies, and networks of collaborative
+astronomical facilities. Our ﬁndings support the feasibil ity of interstellar power transmission via
+gravitational lensing, directly contributing to the ongoi ng optical SETI eﬀorts.
+I. INTRODUCTION
+Interstellar power transmission is very challenging. Even for a collima ted laser beam, the large distances involved
+result in a very small energy received. Consider, a diﬀraction-limited telescope with aperture dtyielding the beam
+divergence of θ0≃λ/dt= 1.00×10−6(λ/1µm)(1m/dt). When the signal reaches the receiver at distance z, the
+beam is expanded to a spot with the radius of ρ∗≃z(λ/dt)≃3.09×1011m (z/10pc)(λ/1µm)(1m/dt). As a result,
+in the case of a free-space laser power transmission in the vacuum, a telescope with the aperture drreceives only a
+small fraction of the transmit power PTgiven asPR=PTπ(1
+2dr)2/πρ2
+∗or
+PR=PTπ(1
+2dr)2
+πz2/parenleftBigdt
+λ/parenrightBig2
+≃2.63×10−24/parenleftBigPT
+1 W/parenrightBig/parenleftBig1µm
+λ/parenrightBig2/parenleftBigdt
+1 m/parenrightBig2/parenleftBigdr
+1 m/parenrightBig2/parenleftBig10 pc
+z/parenrightBig2
+W, (1)
+which yieldsphoton ﬂuxofonly QR= (λ/hc)PR≃1.32×10−5phot/sforλ= 1µm. Thesesignalsareweakandrequire
+both 1) precise and stable transmitter pointing toward us to within ρL/z≃fewµrad and 2) us having instruments
+capable of detecting such signals against the challenging optical bac kgrounds present in our stellar neighborhood.
+Therefore, unless there is a signiﬁcant eﬀort to send us a message using a powerful, focused beam directly aimed
+at us, detecting faint and transient signals with optical SETI1remains extremely challenging.
+The situation changes if a transmitter is placed in the focal region of a stellar gravitational lens to beneﬁt from the
+lens’ signiﬁcant light ampliﬁcation. Lensing geometries where the light source, the lens, and the receiver are in an
+approximatealignmentmaximize eﬃciency ofthe interstellarcommunic ationlinks [1]. Given ourcurrenttechnological
+maturity, we cannot yet position a transmitter in the focal region o f the solar gravitational lens. However, we now
+begun to understand the physics of the interstellar power transm ission facilitated by gravitational lensing and are in
+a position to devise practical strategies to search for the signals o riginated around nearby stars. These eﬀorts can rely
+on the already existing technologies, bringing this topic in the realm of advanced photonics and optical engineering.
+This paper is organized as follows: In Section II, we present the wav e-theoretical tools to describe light propagation
+in a gravity ﬁeld. We discuss power transmission via a gravitational len s, introduce major noise sources, and evaluate
+detection sensitivity. In Section IV we discuss detection strategie s. Our conclusions are presented in Section V.
+II. EM WAVES IN A GRAVITATIONAL FIELD
+We consider a nearby star with mass ML, radiusRL, and its Schwarzschild radius of rg= 2GML/c2. We assume
+that an optical transmitter is placed in the focal region of this stella r gravitational lens at a distance z0>R2
+L/2rg=
+547.8(RL/R⊙)2(M⊙/ML) AU from it.
+We further assume that a CW laser optical transmitter is facing the lens and is capable of coherently illuminating
+an annular area around the lens with the radius of b=/radicalbig2rgz0> RL(see details in [1]). To do that, a diﬀraction-
+limited transmitter will have to form an annular beam of light with the me an diverging angle of b/z0=/radicalbig
+2rg/z0≃
+7.16×10−6(b/RL)(RL/R⊙)(650AU/z0) rad and pointed toward the receiver behind the lens (see Fig.1).
+1See details on the ongoing SETI eﬀorts at https://en.wikipedia.org/wiki/Search_for_extraterre strial_intelligence2
+FIG. 1: Beam propagation in a thin lens approximation showin g transmitter, lens, annulus, and receiver plane.
+When electromagnetic (EM) waves travel in the vicinity of the lens, it s gravity causes the waves to scatter and
+diﬀract [2, 3]. As a result, after passing by the lens and at a larger dis tance from it, z≫z0, the beam will be
+compressed and nearly collimated by the lens’ spherical aberration . If properly designed, the transmitted light will
+be deposited in the solar system. A solar system observer, looking b ack at the lensing star, will see the transmitted
+signal in the form of the Einstein ring. This focusing results in a major increase in the power density of the EM ﬁeld
+deposited at the observer’s telescope (see discussion in [1]). Below w e consider the physics of this eﬀect.
+A. Light ampliﬁcation
+We introduce a lens-centric cylindrical coordinate system ( ρ,φ,z) with itsz-axis oriented along the unperturbed
+direction of the incident wave’s propagation (see Fig. 2), given by a u nit vector k. We also introduce a light ray’s
+impact parameter, b, withb⊥k. In this coordinate system, the transmitter is positioned at (0 ,−z0), while the
+receiver is on the plane with coordinates ( x,z) and
+b=b(cosφξ,sinφξ,0),x=ρ(cosφ,sinφ,0). (2)
+Assuming validity of the eikonal and the thin lens approximations, and considering a uniform surface brightness of
+the source, the Fresnel-Kirchhoﬀ diﬀraction formula [4, 5] yields t he following expression for the wave’s amplitude at
+the observer (receiver) location
+A(x) =E0k
+iz0z1
+2π/integraldisplay/integraldisplay
+d2beikS(b,x), (3)
+wherek= 2π/λis the wavenumber and S(b,x) is the eﬀective path length (eikonal) along the path from the sourc e
+at (0,−z0) to the observer’s position at ( x,z) via a point ( b,0) on the lens plane (see Fig. 2) [1]
+S(b,x) =z0+z+x2
+2(z0+z)+z0+z
+2z0z/parenleftBig
+b−z0
+z0+zx/parenrightBig2
++ψ(b)+O(b4), (4)
+whereψ(b) is the gravitational phase shift that is acquired by the wave as it mo ves along its geodetic path from the
+source to the observer. For a monopole lens it has the form [6, 7]:
+ψ(b) =2
+c2/integraldisplayz
+z0dzU(b,z) =krgln4k2zz0−2rglnkb. (5)
+As a result, the wave amplitude on the receiver plane (3) can be writt en as
+A(x) =E0
+z0+zexp/bracketleftBig
+ik/parenleftBig
+z0+z+x2
+2(z0+z)/parenrightBig/bracketrightBig
+·F(x), (6)
+whereF(x) is the ampliﬁcation factor that is given by the following diﬀraction inte gral [1, 6]
+F(x) =keikrgln4k2zz0
+i˜z1
+2π/integraldisplay/integraldisplay
+d2bexp/bracketleftBig
+ik/parenleftBig1
+2˜z/parenleftBig
+b−˜z
+zx/parenrightBig2
+−2rglnkb/parenrightBig/bracketrightBig
+,˜z=z0z
+z0+z. (7)
+Note that the phase factor under the integral is the Fermat pote ntial along the light path.3
+transmitter
+lensreceiverb
+x
+z0 zk
+FIG. 2: A lens-centric geometry for interstellar power tran smission via gravitational lensing showing transmitter, l ens, and
+receiver. Also shown is the distance from the lens to the tran smitter plane, z0, and that from the lens to the receiver plane, z.
+Beneﬁting from the axial-symmetry, we integrate over dφξ. Then, using the method of stationary phase [3], we
+integrate over db, and present (7) as below (see details in [1])
+F(x) =/radicalbig
+2πkrgeiϕJ0/parenleftBig
+k/radicalbig
+2rg˜z
+zρ/parenrightBig
+, (8)
+whereϕ=σ0+krgln2k(z0+z) withσ0=−krgln(krg/e)−π
+4, see [3], and where J0is the Bessel function of the
+ﬁrst kind [8].
+To consider the light ampliﬁcation, we determine the point-spread fu nction (PSF), which, in this case, is just the
+square of the ampliﬁcation factor (8) [3], namely
+PSF(ρ) = 2πkrgJ2
+0/parenleftBig
+k/radicalbig2rg˜z
+zρ/parenrightBig
+≃1.17×1011J2
+0/parenleftBig
+k/radicalbig2rg˜z
+zρ/parenrightBig/parenleftBigML
+M⊙/parenrightBig/parenleftBig1µm
+λ/parenrightBig
+. (9)
+Fig. 3 shows the resulting Airy pattern of the transmitting lens proj ected on the solar system.
+Note that an observer, positioned on the optical axis at z≫z0from the gravitational lens, will see an Einstein
+ring around the lens with the radius θERgiven as:
+θER=/radicalbig2rg˜z
+z≃/radicalbig2rgz0
+z= 2.46×10−9/parenleftBigML
+M⊙/parenrightBig1
+2/parenleftBigz0
+650AU/parenrightBig1
+2/parenleftBig10pc
+z/parenrightBig
+rad. (10)
+We observe that the ﬁrst zero of the projected PSF pattern (9) occurs at the distance of
+ρGL=2.40483
+kθER≃155.84m/parenleftBigλ
+1µm/parenrightBig/parenleftBigM⊙
+ML/parenrightBig1
+2/parenleftBig650 AU
+z0/parenrightBig1
+2/parenleftBigz
+10pc/parenrightBig
+, (11)
+from the optical axis, which is much larger than any modern optical t elescope [9]. (Note that this PSF broadening is
+consistent with the eﬀect of a lens with spherical aberration.) Thus , (9) is good for very small separations, ρ≃ρGL.
+However, in realistic cases, assuming that the signal is pointed at th e Sun, receiver’s misalignment may be as much
+asρ∼1AU≫ρGL. In this case, we use the approximation for the Bessel functions f or large arguments [8, 10]:
+J2
+0/parenleftBig
+k/radicalbig2rg˜z
+zρ/parenrightBig
+≃1+sin/parenleftbig
+2kθERρ/parenrightbig
+πkθERρ≃20.59m
+ρ/parenleftBigλ
+1µm/parenrightBig/parenleftBigM⊙
+ML/parenrightBig1
+2/parenleftBig650AU
+z0/parenrightBig1
+2/parenleftBigz
+10pc/parenrightBig
+, (12)
+were we used the fact that for large arguments ρ≫ρGLthe function sin(2 kθERρ) is rapidly oscillating; thus, it averages
+to 0. Using this in (9), the PSF for ρ≫ρGLtakes the form
+PSF(ρ)≃2.40×1012/parenleftBig1m
+ρ/parenrightBig/parenleftBigML
+M⊙/parenrightBig1
+2/parenleftBig650AU
+z0/parenrightBig1
+2/parenleftBigz
+10pc/parenrightBig
+. (13)
+As a result, the spatial distribution characteristic to the PSF of th e transmitting lens (9) and (13) will be encoded
+in the structure of the transmitted signal [1], guiding our search.
+B. Power transmission
+To assess the eﬀectiveness of the interstellar power transmission with a stellar gravitational lens, we con-
+sider the same energy transmission scenario used to derive (1). We again assume that transmission is charac-
+terized by the beam divergence set by the telescope’s aperture dtyielding angular resolution of θ0≃λ/dt=4Ampliﬁcation ( ×1010)
+-1000 -500 0 500 1000024681012
+Distance from the optical axis, ρ[m]
+FIG. 3: Left: ampliﬁcation and PSF pattern of the transmitti ng lens (9) projected on the solar system plotted for two
+wavelengths. The solid line represents λ= 1.0µm, the dotted line is for λ= 2.0µm. Right: a three-dimensional representation
+of the PSF in the image plane for λ= 1.0µm with the peak corresponding to direction along the transmi tter-lens line.
+1.00×10−6(λ/1µm)(1m/dt)rad. When the signal reaches the receiver at the distance of ( zt+zr) from the trans-
+mitter, the beam is expanded to a large spot with the radius of ρ∗= (zt+zr)(λ/dt). However, in this case, we need
+account for the fact that while passing by the lens, the light intensit y is ampliﬁed according to (9). This is due to
+the fact that the lens collimates the otherwise diverging beam of light , thus delivering a larger power density to the
+receiver (see Fig.1). As a result, a receiver telescope gets a large r fraction of the transmitted power
+PGL
+R=PTπ(1
+2dr)2
+πρ2∗PSF(ρ) =PTπ(1
+2dr)2
+π(z0+z)2/parenleftBigdt
+λ/parenrightBig2
+2πkrgJ2
+0/parenleftbig
+kθERρ/parenrightbig
+≃
+≃3.06×10−13J2
+0/parenleftbig
+kθERρ/parenrightbig/parenleftBigPT
+1 W/parenrightBig/parenleftBig1µm
+λ/parenrightBig2/parenleftBigdt
+1 m/parenrightBig2/parenleftBigdr
+1 m/parenrightBig2/parenleftBig10 pc
+z/parenrightBig2/parenleftBigML
+M⊙/parenrightBig
+W. (14)
+Comparing (14) and (1), we see that power transmission link aided by a gravitationallens ampliﬁes the received power
+byPGL
+R/Pfree
+R≃1.17×1011J2
+0/parenleftbig
+kθERρ/parenrightbig
+, as given by (9).
+Assuming that the receiver is near the optical axis, ρ≃ρGL, to estimate the maximum photon ﬂux at the receiver,
+we compute QGL= (λ/hc)PGL
+Rfrom (14), yielding
+QGL(ρ)≃1.54×106J2
+0/parenleftbig
+kθERρ/parenrightbig/parenleftBigPT
+1 W/parenrightBig/parenleftBig1µm
+λ/parenrightBig/parenleftBigdt
+1 m/parenrightBig2/parenleftBigdr
+1 m/parenrightBig2/parenleftBig10 pc
+z/parenrightBig2/parenleftBigML
+M⊙/parenrightBig
+phot/s. (15)
+For large separations, ρ≫ρGL, we use (12) to transform (15) as below:
+QGL(ρ)≃3.18×104/parenleftBig1m
+ρ/parenrightBig/parenleftBigPT
+1 W/parenrightBig/parenleftBigdt
+1 m/parenrightBig2/parenleftBigdr
+1 m/parenrightBig2/parenleftBig10 pc
+z/parenrightBig/parenleftBig650AU
+z0/parenrightBig1
+2/parenleftBigML
+M⊙/parenrightBig1
+2phot/s. (16)
+Therefore, thanks to gravitationallensing, there is a signiﬁcant p hoton ﬂux at the receiver. Now we need to consider
+the feasibility of such a transmission link. For this, we have to evaluat e the contribution of major noise sources to the
+overall detection sensitivity.
+C. Major noise source
+The angular radius of a stellar lens is RL/z= 2.26×10−9(RL/R⊙)(10pc/z)rad, which is similar to that of the size
+of the Einstein ring formed by the transmitted beam of light (10). As the angular resolution of the largest telescopes
+today [9] is λ/dr≃1×10−7(λ/1µm)(10m/dt), they will not be able to resolve neither the star nor the ring, ther efore,
+the use of a coronagraph is out of the question. Thus, the brightn ess of that lensing star received by the telescope
+will be the noise that must be dealt with.
+To estimate the relevant photon ﬂux, we consider our Sun. When de aling with laser light propagatingin its vicinity,
+we need to be concern with the ﬂux within some bandwidth ∆ λaround the laser wavelength λ, assuming we can ﬁlter
+the light that falls outside ∆ λ. Taking the Sun’s temperature to be T⊙= 5772 K, we estimate the solar brightness
+from the Planck’s radiation law and derive the luminosity of the Sun with in a narrow bandwidth:
+L⊙(λ,∆λ) = 4π2R2
+⊙2hc2
+λ5/parenleftbig
+ehc/λk BT⊙−1/parenrightbig∆λ≃2.05×1024/parenleftBig1µm
+λ/parenrightBig5/parenleftBig∆λ
+10nm/parenrightBig
+W, (17)5
+whereσandkBare the Stefan-Boltzmann and the Boltzmann constants. For a giv en lens’ brightness, LL,
+we use (17), to derive the photon ﬂux from the lensing star receive d by a telescope that is given by Q⋆=
+(λ/hc)LL(λ,∆λ)π(1
+2dr)2/πz2, yeilding:
+Q⋆= 2.71×107/parenleftBigLL
+L⊙/parenrightBig/parenleftBig1µm
+λ/parenrightBig4/parenleftBig∆λ
+10nm/parenrightBig/parenleftBigdr
+1 m/parenrightBig2/parenleftBig10 pc
+z/parenrightBig2
+phot/s. (18)
+Thus, although the stellar ﬂux is very strong (17), it can be signiﬁca ntly reduced by using a narrow bandpass ﬁlter
+at the receiver, centering it at the transmission wavelength (18).
+III. DETECTION SENSITIVITY
+Quantitativeassessmentofthesignal-to-noiseratio(SNR), isake ytoidentifyingandcharacterizingreceivedsignals.
+We use results (15) and (18) and estimate the SNR as usual
+SNR =QGL√QGL+Q⋆. (19)
+Below, we will consider the detection sensitivity in the noise- and signa l-dominated regimes.
+A. Noise-dominated regime
+When noise dominates the signal, Q⋆≫QGL, for a receiver close to the optical axis, ρ≃ρGL, the maximal value of
+the SNR is given as
+SNRnd(ρ)≈QER√Q⋆≃287.43J2
+0/parenleftbig
+kθERρ/parenrightbig/parenleftBigPT
+1 W/parenrightBig/parenleftBigλ
+1µm/parenrightBig/parenleftBig10nm
+∆λ/parenrightBig1
+2/parenleftBigdt
+1 m/parenrightBig2/parenleftBigdr
+1 m/parenrightBig/parenleftBig10 pc
+z/parenrightBig/parenleftBigML
+M⊙/parenrightBig/parenleftBigL⊙
+LL/parenrightBig1
+2/radicalbigg
+t
+1s.(20)
+Note that (20) was obtained using a modest transmitted power of 1 W. However, that power may be much higher.
+In fact, modern commercially-available industrial lasers already fea ture powers of 1–50 kW. Furthermore, coherent
+beam combination of multiple transmitting laser beams may result in the total transmitted power of up to a few
+GW and more. In addition, both transmit and receive apertures may be much larger than ∼1m which was used in
+estimates above. In these cases, the signal may be much stronge r than the noise, outshining the star, requiring a
+diﬀerent evaluation of (19), which will be done next.
+B. Signal-dominated regime
+When signal dominates the noise, QGL≫QL, (19) yields
+SNRsd(ρ)≈/radicalbig
+QGL≃3.92×104/vextendsingle/vextendsingle/vextendsingleJ0/parenleftbig
+kθERρ/parenrightbig/vextendsingle/vextendsingle/vextendsingle/parenleftBigPT
+1 kW/parenrightBig1
+2/parenleftBig1µm
+λ/parenrightBig1
+2/parenleftBigdt
+1 m/parenrightBig/parenleftBigdr
+1 m/parenrightBig/parenleftBig10 pc
+z/parenrightBig/parenleftBigML
+M⊙/parenrightBig1
+2/radicalbigg
+t
+1s.(21)
+Clearly, in a search for transmitted laser signals understanding the SNR is essential. We observe that both esti-
+mates (20) and (21) represent handsome levels of detection sens itivity demonstrating feasibility of interstellar power
+transmission aided by gravitational lensing.
+IV. DETECTION STRATEGIES
+Detection of laser signals encounters several diﬃculties. The initial challenge is the highly monochromatic nature
+of lasers emitting light at a speciﬁc wavelength. This unique attribute requires ﬁnding the exact λmatching that
+of an extraterrestrial signal. This also relates to choosing an appr opriate width of the narrow band-pass ﬁlter, ∆ λ,
+to improve the SNR, especially in the case of the noise-dominated reg ime (20). There is also directionality of laser
+transmissions. Contrary to radio waves that can disperse omnidire ctionally, laser beams are highly focused and
+narrow. While interstellar gas and dust are largely permeable to near -IR light interstellar laser signals require precise
+alignment toward Earth to fall within the detection threshold. As a r esult: although, stellar brightness (18) and6
+optical background noise are rather well known for each star to b e surveyed, the link parameters of the transmitted
+signal (power, aperture, wavelength, pointing, etc.) used (15) a re not available a priory.
+Gravitational lensing makes the challenges above less critical, provid ing a good guidance: The signal that we are
+looking for has the spatial structure of the PSF of the transmittin g lens (9). As such, its structure is known: At
+typical wavelengths, in the image plane, the spatial frequency of t his pattern is on the scale of 100s of meters (as
+given by (10) and shown in Fig.3), while its amplitude is proportional to the inverse of the radial distance from the
+center of the pattern, as seen in (13) as well as in (15)–(16). This is useful for the search.
+A. Considering a search campaign
+For an interstellar transmission via gravitation lensing, delivery of a t ransmitter to the focal region of a stellar
+lens is critical. If that technology is available, then supplying the tran smitter with enough propulsion capabilities
+is similarly plausible. Thus, we may assume that the transmitter is capa ble of compensating for the relative proper
+motion between the lens and the Sun, simply directing the signal at th e Sun.
+The duration over which such lensing event can be observed depend s on the width of the received beam and Earth’s
+orbital velocity. To model the dynamics of the event, we assume a v anishing impact parameter and consider the
+parallactic motion of an Earth-bound observer, µrel=v⊕/z. Under such conditions, the duration of a lensing event,
+∆tER, or the time for the receiver to cross the entire diameter of the Ein stein ring (occurring twice a year) is
+∆tER=2θER
+µrel=2/radicalbig2rgz0
+v⊕≃14.03/parenleftBigML
+M⊙/parenrightBig1
+2/parenleftBigz0
+650 AU/parenrightBig1
+2/parenleftBig30 km/s
+v⊕/parenrightBig
+hr. (22)
+Note that this is the duration of the entire lensing event. A full Einst ein ring would only be visible if the impact
+parameter is very small, and even then, only brieﬂy. In that time, th e lens will brighten featuring the ampliﬁed laser
+signal in accord with (9). The actual duration of the appearance o f the full Einstein ring depends also on the size of
+the received the beam, since it corresponds to the observer trav ersing its width. The spatial structure of the received
+beam is that of the PSF of the transmitted lens projected on the so lar system, with the width of its main lobe given
+byρGLfrom (11), which is crossed by Earth in just
+τER=2ρGL
+v⊕≃0.02/parenleftBigλ
+1µm/parenrightBig/parenleftBigM⊙
+ML/parenrightBig1
+2/parenleftBig650 AU
+z0/parenrightBig1
+2/parenleftBigz
+10pc/parenrightBig
+s. (23)
+The region ±ρGLwhere the lensing reaches its maximal value of (9) and detection sen sitivities (20) and (21). This is
+a short but very bright event that can be detected with current t echnology.
+What can be observed a photometric campaign is the varying light amp liﬁcation as the Earth moves relative to
+direction to the lensing star with angular separation between them in units of the Einstein ring, u=θ/θER, withθER
+from (10), which may be expressed as
+u(t,t0,u0,∆tER) =/radicalBig
+u2
+0+(t−t0)2/∆t2
+ER, (24)
+wheret0is the time of closest alignment and u0is the impact parameter of the event, i.e., the angular separation of
+the source from the lens at t0expressed in units of θER. The quantity ∆ tERrepresents the characteristic time scale
+of the event and is given by (22). The objective is to monitor the brig htness of the nearby stars for a signature of a
+microlensing event. The relevant light ampliﬁcation factor is charact eristicfor the lensing within the weak interference
+region of the lens [9, 11, 12], which is given as below:
+Aweak.int=u2+2
+u√
+u2+4. (25)
+What is actually observed is the change in the ﬂux of the transmitting lens given as
+∆F(t,t0,u0,tE) =/parenleftBig
+Aweak.int(t,t0,u0,tE)−1/parenrightBig
+F0, (26)
+whereAweak.intis from (25) and F0is the nominal ﬂux of the nearby star. In the transmission scenario considered
+above, the ﬂux ∆ Fchanges twice a year and is correlated with the Earth’s orbital motio n.7
+B. Plausible detection strategies
+To optimize observations of such transient events, a cooperative telescope network is essential. This network would
+scan the sky to detect repeatable microlensing events originating a t nearby stars with no stellar background that
+could be responsible. Integrating multiple facilities could enhance spa tial resolution, crucial for conﬁdent detection
+and increasing the probability of capturing transmitted signals.
+Although photometric measurement capabilities vary among telesco pes, any single telescope in the network can
+perform a broad spectrum of measurements. As a result, a synch ronized network of telescopes will be capable of
+generating detailed imagery of the beam, conducting thorough ana lyses of its brightness variability.
+Although resolving the Einstein rings with the current generation of optical instruments will be challenging, a
+collaborative network of the astronomical facilities may yield valuable information. With each facility recording
+brightness measurements and providing its heliocentric position info rmation as a function time, one can use analytical
+tools available to monitor and study properties of the microlensing ev ent as it unfolds.
+We envision using both large telescopes and constellations of small te lescopes to capture the photometric data
+produced by lensing events using the already established photonics and optical engineering technologies. These
+systems will work in tandem, mutually supplementing observations an d oﬀering vital data for predicting events.
+Several telescopes either in space or both in space and on the grou nd can be combined in a network to observe the
+evolving morphology of the Einstein rings as lensing events unfold [9].
+As a result, coordinating ground- and space-based telescope obs ervations is important to detect the structure of the
+PSF of the transmitting lens as the receiver traverses the projec ted light ﬁeld. To do that, evaluating the capabilities
+of current and upcoming astronomical facilities (see [9]) including the James Webb Space Telescope, the Nancy
+Grace Roman Space Telescope, Euclid, the Vera C. Rubin Observato ry’s LSST, the Thirty Meter Telescope, and the
+Extremely Large Telescope, complemented by a network of smaller t elescopes is timely, as these facilities may be able
+to facilitate the search for the faint transient signals transmitted to us by our galactic neighbors.
+V. DISCUSSION
+Every star is destined to form an Einstein ring. This ring may form nat urally with distant sources or through
+advanced technology, deliberately deployed to send us a message. The position of an Einstein ring around a star,
+as detailed in (10), depends on our distance to the star, the star’s mass, and the transmitter’s location. With this
+information, we can initiate our search for the laser transmissions e nabled by gravitational lensing.
+Through a synergistic eﬀort, we will soon travel to the focal regio n of the solar gravitational lens (SGL), enabling
+direct high-resolution imaging and spectroscopy of exoplanets in ou r galactic neighborhood [13, 14]. However, before
+this, we must also survey nearby stars for potential signs of signa ls sent through gravitational lensing-enabled trans-
+mission links. Upon the mission’s arrival at the focal region of the SGL , we will have the capacity to observe the
+surface of exoplanets and initiate meaningful information exchang es with any inhabitants.
+To advance such a moment, we considered the propagation of EM wa ves in the vicinity of a monopole gravitational
+lens. We explored a scenario with near-perfect alignment among the transmitter, the lens, and the receiver. In this
+axially-symmetric case, we successfully solved the relevant diﬀract ion integrals analytically, yielding valuable insights.
+We explored the case where a transmitter lies in the focal regionof a nearby star, with the receiverpositioned within
+our solar system. Although one must account for other light sourc es near the lens, their impact on the achievable
+SNRs is expected to be minimal. Given the high sensitivities, we consider the strategies in the search for transmitted
+signals using existing astronomical facilities or involving development o f new facilities dedicated for this purpose.
+Our ﬁndings reveal that microlensing events, corresponding to las er signals transmitted through nearby gravi-
+tational lenses, are transient but notably bright, making them det ectable with current instruments. Given their
+brightness, these microlensing events can be detected and analyz ed through a dedicated campaign of photometric
+observations. Deploying a network of astronomical facilities can en hance detection sensitivity. Consequently, we have
+demonstrated the feasibility of establishing interstellar power tran smission links via gravitational lensing and also
+our technological readiness to receive those signal—a ﬁnding with pr ofound implications in the search for interstellar
+power transmissions. Now is the right time to design, develop and initia te an appropriate search campaign.8
+Acknowledgments
+This work was performed at the Jet Propulsion Laboratory, Califor nia Institute of Technology, under a contract
+with the National Aeronautics and Space Administration.
+[1] S. G. Turyshev, Phys. Rev. D 109, 064029 (2024), arXiv:2310.17578 [gr-qc].
+[2] S. G. Turyshev, Phys. Rev. D 95, 084041 (2017), arXiv:1703.05783 [gr-qc].
+[3] S. G. Turyshev and V. T. Toth, Phys. Rev. D 96, 024008 (2017), arXiv:1704.06824 [gr-qc].
+[4] L. D. Landau and E. M. Lifshitz, The Classical Theory of Fields. (7th edition. Nauka: Moscow (in Russian), 1988).
+[5] M. Born and E. Wolf, Principles of Optics: Electromagnetic Theory of Propagati on, Interference and Diﬀraction of Light
+(Cambridge University Press; 7th edition, October 13, 1999 ).
+[6] S. G. Turyshev and V. T. Toth, Phys. Rev. D 103, 064076 (2021), arXiv:2102.03891 [gr-qc].
+[7] S. G. Turyshev and V. T. Toth, Phys. Rev. D 105, 024022 (2022), arXiv:2107.13126 [gr-qc].
+[8] M. Abramowitz and I. A. Stegun, Handbook of Mathematical Functions: with Formulas, Graphs , and Mathematical Tables.
+(Dover Publications, New York; revised edition, 1965).
+[9] S. G. Turyshev and V. T. Toth, ApJ 944, 25 (2023), arXiv:2209.09534 [astro-ph.IM].
+[10] S. G. Turyshev and V. T. Toth, Phys. Rev. D 101, 044025 (2020), arXiv:1909.03116 [gr-qc].
+[11] P. S. Schneider, J. Ehlers, and E. Falco, Gravitational Lenses (Springer-Verlag Berlin Heidelberg, 1992).
+[12] B. S. Gaudi, Annual Rev. Astron. Astrophys. 50, 411 (2012).
+[13] H. Helvajian, A. Rosenthal, J. Poklemba, T. A. Battista , M. D. DiPrinzio, J. M. Neﬀ, J. P. McVey, V. T. Toth, and S. G.
+Turyshev, J. Spacecraft & Rockets 60, 829 (2023), arXiv:2207.03005 [astro-ph.IM].
+[14] L. D. Friedman, D. Garber, S. G. Turyshev, H. Helvajian, T. Heinshiemer, J. McVey, and A. R. Davoyan, Experimental
+Astronomy 57, 1 (2024), arXiv:2107.11473 [astro-ph.IM].

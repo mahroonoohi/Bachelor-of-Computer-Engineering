@@ -1,0 +1,3 @@
+﻿  Mafia.cpp
+C:\Users\NOOHI\source\repos\Mafia\Mafia\Mafia.cpp(268): warning C4715: 'find': not all control paths return a value
+  Mafia.vcxproj -> C:\Users\NOOHI\source\repos\Mafia\x64\Debug\Mafia.exe

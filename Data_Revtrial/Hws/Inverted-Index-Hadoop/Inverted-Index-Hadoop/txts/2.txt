@@ -1,0 +1,406 @@
+arXiv:2403.13453v1  [physics.hist-ph]  20 Mar 2024Memories of Abdus Salam and the early days of supersymmetry †
+Peter West
+Mathematical Institute, University of Oxford, Woodstock R oad, Oxford, OX2 6GG, UK
+Department of Mathematics, King’s College, London WC2R 2LS , UK
+Abstract
+I give an account of what it was like to be a PhD student of Abdus Salam and also
+to take part during the early stages of the development of sup ersymmetry.
+email: peter.west540@gmail.com
+†Invited contribution to the second edition of The Supersymm etric World, The begin-
+nings of the Theory ed. by M. Shifman, World Scientiﬁc.
+1I thank Misha Shifman for the suggestion to write this articl e. Its purpose is not
+to give an account of the life of Abdus Salam or a systematic ac count of the early years
+of supersymmetry. Rather it is to give an impression of what i t was like to be a PhD
+student of Abdus Salam and also to take part during the early s tages of the development
+of supersymmetry.
+After an enjoyable undergraduate degree at Imperial colleg e I was accepted for PhD
+studies at Imperial in 1973 but who would be my supervisor was not speciﬁed. I had
+a choice of two possible supervisors, Tom Kibble or Abdus Sal am, or Professor Kibble
+and Professor Salam as us students referred to them. It was a m easure of the strength
+of Imperial College in theoretical physics at that time that a student could have a choice
+between two professors who had both already laid the corners tones of the standard model
+and who had also made other very important contributions. Al though at that time there
+was not much talk of the standard model, at least among us stud ents or in our lectures.
+Professor Kibble was very friendly and polite but he was rath er reserved and did not say
+anything he had not thought carefully about. Indeed he did no t say very much at all. His
+deep understanding of physics was obvious during the lectur e course that he gave us.
+In contrast Professor Salam was very lively, had charisma an d an enthusiasm for
+physics but he also had a friendly disposition which made one feel at home, at least that
+was the case for me. As he explained some point of physics he us ually had a faint playful
+smile on his face and one could not help wanting to understand what he was saying and
+join in. I got the sense that studying under Professor Salam w ould be very exciting and
+one might ﬁnd results of interest. Being keen to make my way in theoretical physics I
+choose Professor Salam despite the fact that I was warned tha t many PhD students of
+Professor Salam did not prosper. Ali Chamseddine also began with Professor Salam at the
+same time.
+For my ﬁrst year I did not see much of Professor Salam as I was ta kingmy preparatory
+courses, but once the summer came I had ﬁnished my courses and so I went to see Professor
+Salam to ﬁnd out what I would work on. At that time Professor Sa lam had an oﬃce on the
+ﬁfth ﬂoor of the physics building but later on he moved oﬃce to the newly built Huxley
+Building. In the former oﬃce his door would be open but a large screen had been placed
+near to the door which blocked the view of his desk where he wor ked. While in the latter
+oﬃce the door would be only slightly ajar and it did not permit a view of this desk. A
+knock at the door resulted in a soft voice beckoning you in.
+To my surprise he asked me what I wanted to do. I said that the in ﬁnities in quantum
+ﬁeld theory were very ugly and so I would like to work on genera l relativitywhich was more
+aesthetically pleasing. Rather than explain the ﬂaws in thi s naive approach, he suggested
+that there would not be so much to do in general relativity and that I might like to look
+at his very recent paper with John Strathdee in which they had discovered superspace
+and also super-Feynman rules [1]. With this he handed me the I CTP preprint with its
+characteristic pale blue boarder. As he sometimes did on lat er occasions he did not say I
+might like to look at this humble paper. I do not remember that he said much about the
+paper but only that I should look at it. Professor Salam had pr eviously written papers
+on constructing spacetimes from cosets, for example the one with Mack [2] on viewing
+the conformal group from the viewpoint of a coset. As such it w as natural that he and
+2Strathdee should construct superspace as the coset of the su per Poincar´ e group modulo the
+Lorentz group. Within days I was captured by the ideas in this paper and began working
+on inﬁnities in supersymmetric theories. From the perspect ive of today I realise that I had
+been subject to his great charm and diplomacy, a skill which h e had used to such great
+eﬀect all over the world.
+Professor Salam was not often at Imperial as he spent most of h is time at the centre
+he had created in Trieste. Little did I, as a student, know of t he many endeavours for the
+good of science in the third world that he was undertaking. Us students never knew when
+we would next see Professor Salam. He would come about once a m onth and the ﬁrst we
+realised that he was in was that the door of his room was slight ly ajar as we came into
+work. I would knock and he would welcome me in. Remarkably he w as usually sitting at
+his desk studying some document by himself. He was always ver y cheerful, friendly and
+seemed to have time to talk as if he had all the time in the world . Since he was away most
+of the time we had no one to watch over us and as a result we did no t work very hard
+unless we really thought something was going to work out in a v ery good way.
+Supersymmetry had been discovered in 1971 in the very remark able paper of Golfand
+and Liktman [3] and a non-linear realisation was later found by Volkov and Akulov [4].
+These papers went essentially unnoticed even though the for mer paper did contain a four
+dimensional model of supersymmetry. Supersymmetry also ap peared in the superstring
+whose fermionic sector was found by Ramond [5] and the bosoni c sector in the later paper
+of Neveu and Schwarz [6]. Hidden in these papers was the two di mensional supersymmetry
+algebra and this was extracted by Gervais and Sakita [7]. Wes s and Zumino generalised
+this algebra to four dimensions and constructed the invaria nt Wess-Zumino model [8].
+Itwasonlywiththislastpaperthatafewphysiciststookani nterestinsupersymmetry.
+They were located at a only a few institutions including CERN in Geneva, the Ecole
+Normale Sup´ erieur in Paris, Karlsruhe and the two institut es to which Salam belonged,
+namely Imperial College and the International Centre for Th eoretical Physics in Trieste.
+Thus in 1973 there were only a few people working on supersymm etry. Being a student
+of Salam I was one of them as were indeed a number of other young people who were the
+PhD students of those few who thought that supersymmetry was of interest.
+In trying to read the paper of Salam and Strathdee it quickly b ecame clear that
+supersymmetry required very advanced manipulations in the matrix algebra associated
+with fermions. There were no courses on supersymmetry in 197 3, at least not at Imperial
+College,norwerethereanypaperswhereonecouldlookthis, andanumberofotherdiﬃcult
+matters, up. Fortunately Professor Salam’s long term colla borator Bob Delbourgo had an
+oﬃce nearby and he provided me with all the technical help I ne eded. He even had a
+problem I might work on involving the calculation of supersp ace Feynman diagrams in
+the Wess-Zumino model. Understandably he was unable to resi st the temptation do this
+himself and in a matter of days he had found the result [9] befo re I had even begun to think
+about the problem. Using the superspace Feynman rules he fou nd that the Wess-Zumino
+model only needed a wavefunction renormalisation as had pre viously been found using the
+component formalism by Wess and Zumino [8] and Iliopoulos an d Zumino [10].
+At that time the big problem was to spontaneously break super symmetry and so
+hopefully ﬁnd a realistic model of nature that was supersymm etric. Particles in a su-
+3persymmetric theory had the same mass and although one could spontaneously break
+supersymmetry at the classical level [11,12], the pattern o f masses this lead to was not
+consistent with nature. Professor Salam thought that radia tive corrections would break
+supersymmetry and lead to more promising results. Such corr ections had been used to
+good eﬀect in a paper of Coleman and Weinberg [13] in the very d iﬀerent context, namely
+scalar electrodynamics.
+Professor Salam and his long term collaborator John Strathd ee, who was in Trieste,
+produced aseries ofmodelsanditwasmyjob tocomputetheir o ne-loopeﬀectivepotentials
+and see if supersymmetry was spontaneously broken and what p attern of masses they lead
+to. The ﬁrst models did not work and as time went on the models b ecame more and more
+complicated involving very many ﬁelds. If I had not complete ly ﬁnished computing with
+a given model by the time I next meet with Professor Salam it wa s not a problem, there
+was always a much better model to look at instead.
+Eventually Bob Delbourgo and I looked at one of the proposed m odels that required
+us to diagonalise a 26 by 26 matrix. After much work we did do th is but the entires were
+not real numbers meaning that the minimum of the potential wh ich we had also given was
+not actually a minimum. When I told Professor Salam about thi s result he was not at
+all perturbed and quickly produced another model which he mu st have brought with him
+from Trieste. Fearing the same fate for this model I suggeste d there was a problem with
+the model to which Salam gave a quick reply. It was not clear wh o was giving the worst
+argument. Shortly afterwards Salam spoke to Bob Delbourgo a nd ask him to tell me that
+all was well.
+Eventually I realised that if supersymmetry was preserved a t the classical level then
+the eﬀective potential vanished in the most general N= 1 theory invariant under rigid
+supersymmetry [14]. This meant that one could not spontaneo usly break supersymmetry
+using perturbative quantum corrections, although one coul d still hope that it was sponta-
+neously broken by non-perturbative corrections. The probl em of breaking supersymmetry
+in a natural way is still largely unsolved. Unlike in most the ories the minimum of poten-
+tials in supersymmetric theories do not generically ﬁx all t he values of the ﬁelds and so
+there is a degeneracy. Since the quantum corrections to the p otential vanish if supersym-
+metry was preserved this degeneracy was not determined by qu antum corrections. Thus
+supersymmetric theories have moduli.
+The result had another more favourable consequence, as was p ointed out by others
+[15], namely that supersymmetry did solve the hierarchy pro blem, at least technically. In
+a supersymmetric version of the standard model the Higgs mas s would not be swept up
+to some large uniﬁed scale by quantum corrections as long as s upersymmetry was not
+broken much above the weak scale. This in turn lead to the hope that supersymmetry
+might be found at the LHC (Large Hadron Collider at CERN). My a rticle in this volume
+gives a more complete account of these developments. As we no w know the LHC did not
+ﬁnd supersymmetry, at least not so far. While the above argum ent was plausible there is
+nothing wrong with supersymmetry being broken at a very high scale and the problem of
+naturalness in the standard model is resolved in some other, as yet unknown, way. A more
+general non-renormalisation theorem was later found by Gri saru, W. Siegel and M. Rocek
+[16] using some reformulated superFeynman rules.
+4In those days there was no internet and so no arXiv. Once a resu lt was written up the
+paper was sent to the journal but it was usually a long time bef ore it would be published
+even if the referees were favourable. To enable more speedy a ccess to the paper copies
+of it, called preprints, were produced and these were sent ou t by mail to those institutes
+whose members might be interested in it. Since there were not many people who were
+working on supersymmetry this did not involve much eﬀort. Pe ople who had heard of the
+result and who did not have access to the preprint would send a post card requesting a
+copy which was then sent directly to them. Each week the prepr ints that had arrived at
+Imperial would be placed on some racks in the corridor. Each p aper had a piece of paper
+attached to it on which one could write ones name which result ed in it being passed to you
+but only after the others who were higher up the list had read i t. The consequence was
+that people working on supersymmetry were not always aware o f what every one else was
+doing. One advantage was that people could pursue lines of in dependent research without
+too much inﬂuence of what others were doing.
+After three years I wrote up my results in a thesis and the time came for my PhD
+examination. Professor Salam had enrolled Professor John T aylor from Cambridge Uni-
+versity to be the external examiner. He was rather softly spo ken, very polite and had
+found important results in how symmetries were realised in q uantum ﬁeld theory. They
+assembled in Salam’soﬃce and I was called in. Professor Sala m indicated that John Taylor
+should ask me some questions on my thesis which he then did, wh ereupon Professor Salam
+began working at his desk on some no doubt important task. Thi s lasted half an hour
+at most and then there was silence which Professor Salam even tually noticed. He turned
+to me and said I should explain to Professor Taylor some resul ts on gauging the super
+Poincar´ e group I had found with Ali Chamseddine. With this P rofessor Salam resumed
+the study of the document he was reading and I began writing on the board. This lasted
+at most twenty minutes whereupon silence returned which Pro fessor Salam again noticed.
+At this point the exam was declared over and, after a glance be tween them, they told me
+I had passed.
+After theWess-Zumino paper anobviousproblem wastoﬁnda th eoryofgravitywhich
+was supersymmetric, that is, a generalisation of Einstein’ s theory to contain spin two as
+well as a spin three-halves particle. There was an attempt [1 7] to construct supergravity by
+generalising the geometry of Einstein’s theory but it was no t clear how to do this. After
+about two years the ﬁrst supergravity theory was found by Fer rara, Freedman and van
+Nieuwenhuizen [18]. They used the low key, but very powerful Noether technique that had
+been discussed in the context of gravity by others. The advan tage of this approach was
+that it did not require any preconceived geometrical notion s, the disadvantage was that
+it required a lot of diﬃcult algebra. Indeed they were only ab le to show that the super-
+gravity theory they had found was invariant under supersymm etry by using a computer.
+The problem was that the result could not be reproduced by oth ers. Deser and Zumino
+then showed that the spin three-halves particle did, unlike in other theories, propagate
+in a causal manner and they also discussed the theory from the viewpoint of ﬁrst order
+formalism [19].
+There then followed two papers coupling the new supergravit y theory to the matter
+supermultiplet containing spin one and spin one half partic les [20]. The next paper on
+5supergravity was the result of Ali Chamseddine and myself [2 1] which Salam had asked
+me to explain to Professor Taylor. We had taken it into our hea ds to gauge the super
+Poincar´ e group in the style of Yang and Mills. Of course even Einstein’s gravity is not a
+Yang-Mills theory but we were students who did not know any be tter. After only a few
+lines many of the features of the new supergravity theory eme rged. Indeed one could write
+down an action which was just that found in the paper of Ferrar a, Freedman and van
+Nieuwenhuizen. One great advantage was that one could prove using the usual algebraic
+manipulations, and in a relatively few lines, that the super gravity action was invariant
+underthesupersymmetrytransformations. Inthiswaythedi scoveryofsupergravitytheory
+was completed and it was in this way that the all subsequent su pergravity theories were
+shown to be invariant. Our approach had a signiﬁcant draw bac k, it required one to
+adopt a condition that broke the gauge symmetry, but miracul ously once one took this
+unconventional step everything worked very well and the des ired result emerged. Professor
+Kibble suggested in his understated way that we should under stand this step better. Our
+proof of the invariance of the action was further elucidated in a paper by Paul Townsend
+and van Niewenhuizen [22].
+Of course we had also derived Einstein gravity as a gauge theo ry of the Poincar´ e
+group. The gauging technique was used to ﬁnd the conformal su pergravity theories [23]
+and higher spin theories emerge if one took a much bigger gaug e group. Ali Chamseddine
+and myself also gauged the OSp(1,4) group and found the trans formations of the vierbein,
+spin connection and gravitino. The results were reported in thesis of Ali Chamseddine [24].
+An action was later found by MacDowel and Mansouri [25] which agreed with the then
+known supergravity theory with a cosmological constant [26 ]. One problem was that our
+paper was rejected by Nuclear Physics B and being students we did not know what to do
+next. As a result it took quite some time to resubmit it after r emoving some of the ﬁbre
+bundle language which really had no proper place in the paper . An account of previous
+work on gauge symmetry and gravity by Sciama, Kibble, Trautm an and others and the
+connection to our work is explained in detail in reference [2 7].
+The time came to get a job. I applied to the research council of the UK for a post
+doctoral fellowship. The resulting interview did not go wel l. The panel did not think much
+of the new fangled idea of supersymmetry and wanted to know ho w it would aﬀect current
+particle physics experiments. I, nor anyone else, had any re al idea of what was the answer
+to this question and I did not get a fellowship. The Royal Soci ety did oﬀer me a fellowship
+to take to the Ecole Normale Superieur. No doubt I had Salam an d others at Imperial to
+thank for this. Most of the young people who worked on supersy mmetry had to wait a
+long time to gain a permanent job although I had better luck.
+There was another problem with the original supergravity th eory found by Ferrara,
+Freedman and van Nieuwenhuizen. It had a supersymmetry alge bra which was tied to
+the supergravity theory rather than being an independent al gebra. Until this point a
+symmetry of a theory existed in a way that was dependent of tha t theory. In other words
+the transformations formed a group which had an independent life. For example, the
+Poincar´ e transformations exist independent of Maxwell’s theory and so can be used as a
+guide to construct other Poincar´ e invariant theories. As s uch to construct the coupling
+of super matter to the original supergravity was very diﬃcul t since this required a new
+6supersymmetry algebra and this was only achieved for a few ve ry speciﬁc models [20,28].
+What to do was not clear for about two years. The key step was th e observation that
+the ﬁelds of a supergravity theory were in a one to one corresp ondence with the currents
+in a supersymmetric theory and this had already been worked o ut by Ferrara and Zumino
+[29]. This supermultiplet contained the energy momentum te nsor and the supercurrent but
+there were other objects which had to correspond to addition al ﬁelds in the supergravity
+theory. To ﬁnd the theory we used the same Noether procedure. It was a very long but
+enjoyable calculation. The extension of the original super gravity theory which did have
+a supersymmetry algebra that was independent of the supergr avity theory was found by
+Kelly Stelle and myself [30] and independently by Ferrara an d van Nieuwenhuizen [31].
+This theory had additional ﬁelds that did not lead to physica l degrees of freedom. It
+was then possible to construct a tensor calculus for supergr avity [32] [33] and then it was
+relatively easy to ﬁnd the most general coupling of matter to supergravity [34,35,36] which
+played such a key role in the construction of realistic model s of supersymmetry using the
+ideas of Chamseddine, Arnowitt and Nath [34, 37]. Other ways to ﬁnd the most general
+coupling of matter to supergravity have proliferated but th ey perhaps lack the simplicity
+and eﬃciency of the original approach.
+Perhaps on the basis of these results Professor Salam invite d me to visit him in Trieste
+for sometime. When I arrive at the centre in the morning I woul d ﬁnd Professor Salam
+sitting at his desk studying what I thought were the latest pa pers. Talking to Professor
+Salam you could not escape his great enthusiasm for physics; you came to understand that
+it was a lot of fun to do physics and that it was good to work in a v ery relaxed and free
+thinking way. Once we began our discussion he would think of a vast number of ways to
+proceed in the quest to ﬁnd new things. He was always most inte rested in very new ideas
+and while not all of his ideas worked they included many of the deepest ideas that have
+come to dominate the subject. As one of his students I was, per haps, able to absorb some
+of these qualities. Certainly, it was due to him that I began w orking on supersymmetry
+rather than on some uninteresting direction.
+At the end of my visit to Trieste the time came for me to leave fo r the airport. Salam
+realised that I would be travelling at the same time as the Ita lian Minister for Science, who
+was visiting the centre, and so he suggested we could share th e same car to the airport.
+This was met with a frown by the organiser of the visit who, no d oubt correctly, thought
+that a scruﬀy post-doc with a rucksack might dent the careful ly created image that the
+centre wanted to portray. Salam’s suggestion was quietly sh elved and I went by train to
+the airport.
+I did not meet Julius Wess or Bruno Zumino during my doctorate studies but their
+presence was always with me and, I suspect, the other young ph ysicists working on su-
+persymmetry. Their results and the clarity of their papers w as a benchmark to which we
+could but try to attain. When we did meet they were very friend ly and encouraging. One
+aspect of there being so few working on supersymmetry was tha t there was a feeling of a
+common purpose and being enguaged in an exciting endeavour. Of course supersymmetry
+was great to work on. The calculations were usually diﬃcult b ut often worked out in a
+spectacular manner and this encouraged us to continue despi te the lack of support from
+the community at large.
+7The superspace formulation of supergravity using geometri cal concepts analogous to
+those used in Einstein’s theory was found by Wess and Zumino i n [38]. It turned out
+that the curvatures and torsion were subject to very strong c onstraints which were allowed
+by the fact that the tangent space group was only the Lorentz g roup under which they
+formed a very reducible representation. We suspected that t hey had used the fact that it
+must lead, when expressed in components, to above formulati on of supergravity to guide
+them to this result. There then appeared a paper by Warren Sie gel claiming that their
+constraints were so strong that there were no physical degre es of freedom left [39]. Wess
+and Zumino explained that this paper was wrong but they had a w orried look. Of course
+we found it very amusing that a young unknown, at least to us, p ost doc had dared to
+contradict a paper of the gods. Eventually it was clear that t he paper of Warren Siegel
+was indeed wrong but he then wrote a paper [40] solving the con straints on the torsions
+and curvatures. A pedagogical and further elucidation of th is work was given in a paper
+by Gates and Siegel [41]. It was a very considerable feat invo lving technical leaps of such
+diﬃculty that I suspect few have worked through it.
+The last time I meet Bruno Zumino was in the Newton Centre at th e University
+of Cambridge in 1997. David Olive and I were puzzled by a point to do with a coset
+construction and we discussed it with Bruno late in the after noon. It was not a crucial
+point but it would have been good to understand it. The next da y when I arrive quite
+early I found a hand written note on my desk from Bruno which ha d worked it all out in
+great detail and in a very clearly way. David also found a note on his desk.
+I end with an account of two meetings with Abdus Salam that dis play his warmth
+and humanity.
+I met Abdus Salam in his oﬃce in London a few days after he had wo n the Nobel
+prize. I asked him what was it like to win such a prize, he reass ured me that he was just
+the same. He then suggested that we go for coﬀee in the common r oom in the old physics
+building at Imperial. To get there we had to go through a numbe r of doors and he insisted
+that I go ﬁrst through each door despite my protests.
+During thetimethatSalamwasveryilltherewasaconference inhishonour atTrieste,
+but he was not well enough to go to all the talks. I saw him sitti ng at the very back of the
+big auditorium. I asked if it would be alright to say hello, bu t I was told that he might
+not recognise me. Since this might be the last time I would see him I went anyway. I said
+hello, he put up his hand and I shook it. He then immediately sa id how was Sue. Sue is
+my wife’s name who he had meet only once many years before.
+Acknowledgements
+I want to thank Misha Shifman for suggesting I write this arti cle. I also thank Ali
+Chamseddine for comments.
+References
+[1] A. Salam and J. Strathdee, On Superﬁelds and Fermi-Bose Symmetry , Phys. Rev.
+D11(1975) 1521.
+[2] G. Mack and A. Salam, Finite-Component Field Representations of the Conformal
+Group, Annals of Physics 53, (1969), 174-202.
+8[3] Y.A. Golfand and E.S. Likhtman, Extension of the Algebra of Poincar´ e Group Gen-
+erators and Violation of P Invariance ,JETP Lett. 13, 323 (1971).
+[4] D.V. Volkov and V.P. Akulov, Possible universal neutrino interaction ,Pis’ma Zh.
+Eksp. Teor. Fiz. 16, 621 (1972); Phys. Lett. 46B, 109 (1973).
+[5] P. Ramond, Dual theory for free fermions , Phys. Rev. D3(1971) 2415.
+[6] A. Neveu and J.H. Schwarz, Factorizable dual model of pions , Nucl. Phys. B31(1971)
+86; A. Neveu and J.H. Schwarz, Quark Model of Dual Pions , Phys. Rev. D4(1971)
+1109.
+[7] J. L. Gervais and B. Sakita, Field Theory Interpretation Of Supergauges In Dual
+Models, Nucl. Phys. B34(1971) 632.
+[8] J. Wess and B. Zumino, Supergauge transformations in four dimensions , Nucl. Phys.
+B70(1974) 139; A Lagrangian Model Invariant Under Supergauge T ransformations,
+Phys. Lett. 49B(1974) 52.
+[9] R. Delbourgo, Superﬁeld Perturbation Theory and Renormalization , Nuovo Cim. A
+25(1975) 646.
+[10] J. Iliopoulos and B. Zumino, Broken supergauge symmetry and renormalization , Nucl.
+Phys. B76 (1974) 310.
+[11] L.O’Raifeartaigh, Spontaneous Symmetry Breakingfor ChiralScalar Superﬁeld s,Nucl.
+Phys.B96(1975) 331.
+[12] P. Fayet, Spontaneous Supersymmetry Breaking Without Gauge Invaria nce, Phys.
+Lett.58B(1975) 67.
+[13] S. Coleman and E. Weinberg. Radiative Corrections as the Origin of Spontaneous
+Symmetry Breaking , Physical Review D7(1973) 1888.
+[14] P. West, Supersymmetric Eﬀective Potential , Nucl. Phys. B106(1976) 219.
+[15] E. Witten, Dynamical Breaking of Supersymmetry , Nucl. Phys. B188(1981) 513.
+[16] M Grisaru, W. Siegel and M. Rocek, Improved Methods for Supergraphs , Nucl.Phys.B
+159(1979) 429,
+[17] P. Nath and R. Arnowitt, Phys lett 56B(1975) 177, R. Arnowitt, P. Nath and B.
+Zumino, Phys. Lett 56B, (1975) 81,
+[18] D. Freedman, P. van Nieuwenhuizen and S. Ferrara, Progress toward a theory of su-
+pergravity , Phys. Rev. D13, 3214 (1976); D. Freedman and P. van Nieuwenhuizen,
+Properties of supergravity theory , Phys. Rev. D14, 912 (1976).
+[19] S. Deser and B. Zumino, Consistent Supergravity ,Phys. Lett. 62B, 335 (1976).
+[20] S. Ferrara, J. Scherk and P. van Nieuwenhuizen, Locally Supersymmetric Maxwell-
+Einstein Theory ,Phys. Rev. Lett. 37, 1035 (1976); S. Ferrara, F. Gliozzi, J. Scherk
+and P. van Nieuwenhuizen, Matter Couplings in. Supergravity Theory ,Phys. Rev.
+D15, 1013 (1977).
+[21] A. Chamseddine and P. West, Supergravity as a gauge theory of supersymmetry ,Nucl.
+Phys.B129, 39 (1977). This paper was received on the 28 September 1976 b ut was
+initially rejected for publication. The revised version, r eceived on 10 June 1977, was
+essentially the same except for two paragraphs explaining i n more detail its relation to
+references [18] and [19]. It was also published as the Imperi al preprint ICTP/75/22,
+September 1976.
+9[22] P. Townsend and P. van Nieuwenhuizen, Geometrical interpretation of extended su-
+pergravity ,Phys. Lett. B67, 439 (1977).
+[23] P. Van Nieuwenhuizen, M. Kaku, and P. Townsend, Properties of conformal super-
+gravity, Phys. Rev. D17, (1978) 1501.
+[24] A. H. Chamseddine, Supersymmetry and higher spin ﬁelds , Ph.D. Thesis, defended
+September 1976, ImperialCollege, LondonUniversity. Chap ter 6ofthethesisisstated
+as collaborative work with P. West. The thesis can be found at
+https://drive.google.com/ﬁle/d/0B8tITtoqQkxfeHQ3cFJ 0WUxIcHM/view?usp=sharing
+[25] S. MacDowell and F. Mansouri, Uniﬁed geometric theory of gravity and supergravity ,
+Phys. Rev. Lett. 38(1977) 739. This paper was received on the 9 February 1977.
+[26] Paul K. Townsend, Cosmological constant in supergravity , Phys. Rev. D15(1977)
+2802.
+[27] A. Chamseddine and P. West, The role of the 1.5 order formalism and the gauging of
+spacetime groups in the development of gravityand supergra vitytheories ,Mod.Phys.Lett.
+A 37(2022) 08, 2230005, arXiv:2201.06874.
+[28] P.Breitenlohner, D.Z.Freedman, Supergravity with axial-gauge invariance ,Phys. Rev.
+D15, 1173 (1977).
+[29] S. Ferrara and B. Zumino, Transformation properties of the supercurrent , Nuclear
+PhysicsB87(1975) 207
+[30] K. Stelle and P. West, Minimal auxiliary ﬁelds for supergravity ,Phys. Lett. B74,
+569. 330 (1978).
+[31] S. Ferrara and P. van Nieuwenhuizen, The auxiliary ﬁelds of supergravity , Phys.
+Lett.B74, 333 (1978).
+[32] K.S.StelleandP.West, Tensor calculus for the vector multiplet coupled to supergr avity,
+Phys. Lett. 77B, 376 (1978); Relation between vector and scalar multiplets and gauge
+invariance in supergravity , Nucl. Phys. B145(1978) 175.
+[33] S. Ferrara and P. van Nieuwenhuizen, Tensor calculus for supergravity , Phys. Lett.
+76B(1978) 404;
+[34]Structure of supergravity , Phys. Lett. 78B, 573 (1978). A. H. Chamseddine, R.
+Arnowitt and P. Nath, Locally supersymmetric grand uniﬁcation , Phys. Rev. Lett.
+49(1982) 970.
+[35] E. Cremmer, S. Ferrara, L. Girardello and A. Van Proeyen ,Coupling supersymmetric
+Yang-Mills gauge theories to supergravity , Phys. Lett. 116B(1982) 231.
+[36] P. Nath, R. Arnowitt and A. H. Chamseddine, Applied N=1 Supergravity, ICTP series
+in Theoretical Physics, Volume 1, (1982), World Scientiﬁc, Singapore.
+[37] P. Nath, R. Arnowitt and A. H. Chamseddine, Gauge hieirarchy in supergravity in
+supergravity Guts , Nucl. Phys. B227(1983) 121.
+[38] J. Wess and B. Zumino, Superspace formulation of supergravity , Phys Lett 66B(1971)
+361
+[39 ] W. Siegel, it A Comment on the Wess-Zumino Formulation o f Supergravity 1977,
+Harvard University preprint.
+[40] W.Siegel, SolutiontoConstraintsinWess-ZuminoSupe rgravityFormalism,Nucl.Phys.
+B142(1978)301-305; SupergravitySuperﬁelds Without a Supermetric ,Harvardpreprint
+10HUTP-771 A068, Nucl. Phys. B142, 301 (1978);
+[41] S.James Gates, Jr and W. Siegel, Understanding Constraints in Superspace Formula-
+tions of Supergravity , Nucl.Phys. B163(1980) 519.
+11

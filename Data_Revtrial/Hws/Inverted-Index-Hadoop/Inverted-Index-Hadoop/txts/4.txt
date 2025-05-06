@@ -1,0 +1,1669 @@
+A Markov approach to credit rating migration
+conditional on economic states
+Michael Kalkbrener∗, Natalie Packham†
+March 25, 2024
+Abstract
+We develop a model for credit rating migration that accounts for the impact of economic
+state fluctuations on default probabilities. The joint process for the economic state and the
+rating is modelled as a time-homogeneous Markov chain. While the rating process itself pos-
+sesses the Markov property only under restrictive conditions, methods from Markov theory
+can be used to derive the rating process’ asymptotic behaviour. We use the mathematical
+framework to formalise and analyse different rating philosophies, such as point-in-time (PIT)
+and through-the-cycle (TTC) ratings. Furthermore, we introduce stochastic orders on the
+bivariate process’ transition matrix to establish a consistent notion of “better” and “worse”
+ratings. Finally, the construction of PIT and TTC ratings is illustrated on a Merton-type
+firm-value process.
+Keywords: Risk management, credit risk, credit ratings, Markov chains
+MSC classification: 60J20, 91G40, 60J05, 60E15
+1 Introduction
+It is generally accepted that corporate default rates depend on economic conditions (Wilson,
+1998; Nickell et al. , 2000; Bangia et al. , 2002; Heitfield, 2005; Malik and Thomas, 2012). Rating
+systems, which are designed to provide information on the credit quality of corporates, differ
+with respect to the type of economic information reflected in the rating. The two main rating
+philosophies are through-the-cycle (TTC) ratings , which are insensitive to economic conditions
+and focus on company-specific criteria, and point-in-time (PIT) ratings , which reflect the current
+economic situation as well as expectations of future economic developments. However, no precise
+definition of PIT and TTC characteristics of rating systems has been established. One objective
+of this paper is to develop a mathematical framework for rating migration processes, factoring
+in the economic situation, that allows for a formal characterisation of PIT and TTC ratings.
+The distinction between PIT and TTC rating concepts is particularly relevant for banks
+who need to comply with accounting standards and capital regulation. Assessing the credit risk
+of a company solely by its probability of default (PD), incentivises procyclical adjustments of
+financial institutions’ capital requirements, i.e., decreasing default rates in economic upturns
+would allow financial institutions to reduce capital for their corporate credit portfolios, while
+∗Michael Kalkbrener, Deutsche Bank AG, Otto-Suhr-Allee 16, 10585 Berlin, Germany.
+†Natalie Packham, Berlin School of Economics and Law, Badensche Str. 52, 10825 Berlin, Germany.
+Email: packham@hwr-berlin.de
+The views expressed in this paper are those of the authors and do not necessarily reflect the position of Deutsche
+Bank AG.
+1arXiv:2403.14868v1  [q-fin.RM]  21 Mar 2024increasing default rates in economic downturns would increase capital requirements, see e.g.
+Borio et al. (2001); Behn et al. (2016) and references therein. As this procyclical capitalisation
+poses a threat to financial stability, financial regulators prefer banks to assess regulatory capital
+requirements for credit risk using TTC ratings and default probabilities,1which are designed
+to be stable through the business cycle. In contrast, the International Financial Reporting
+Standard (IFRS) 9 as well as the accounting standard Current Expected Credit Losses (CECL)
+require financial institutions to calculate expected credit losses that reflect current economic
+conditions and forecasts of future economic conditions,2leading to the challenging problem of
+incorporating the impact of economic factors into the estimation of default probabilities.
+Models of rating migration processes specified as time-homogeneous Markov chains, as is
+common in the credit risk literature (Duffie and Singleton, 2003; Jarrow et al. , 1997; Lando,
+2004; Bluhm et al. , 2003), lack the necessary flexibility to capture the complex link to the
+macroeconomic environment. To resolve this problem, several extensions of the simple Markov
+framework have been proposed in the literature: regime-switching models specify different rating
+migration matrices for periods of economic contraction and expansion (Bangia et al. , 2002),
+mixtures of Markov chain models define rating migration processes as a combination of several
+Markov chains (Frydman and Schuermann, 2008; Fei et al. , 2012).
+The model presented in this paper extends the above-mentioned approaches by incorporat-
+ing an economic state process with finitely many states. Our starting point is to model the
+evolution of economic states Aas a time-homogeneous Markov chain ( At)t∈N0. Rating migra-
+tions ( Rt)t∈N0, specified on the state space of rating classes R, are not assumed to follow a
+Markov process but are defined by transition matrices that depend on the state of the econ-
+omy. However, it is a key assumption that the rating process has the Markov property if its
+state space is extended to the product space A × R consisting of economic states and rating
+classes. More formally, the combined process ( Xt)t∈N0= (At, Rt)t∈N0defined on the product
+spaceA×R of economic states and ratings is assumed to be a time-homogeneous Markov chain.
+In the first part of the paper (Sections 2–4), we study conditions on the conditional transi-
+tion matrices that guarantee the Markov property for ( Rt)t∈N0within the state space Ritself.
+Since ( Rt)t∈N0is a projection of the time-homogeneous Markov chain ( Xt)t∈N0, this problem is
+a special case of the more general question of whether functions of Markov chains possess the
+Markov property (Rosenblatt, 1971). We show that only a small subclass of TTC rating migra-
+tion processes are (time-inhomogeneous) Markov chains on the state space R, which provides
+theoretical support to the claim that real-world rating systems do not have the Markov property,
+e.g. Altman (1998); Lando and Skødeberg (2002); G¨ uttler and Raupach (2010). However, it can
+be shown that for any non-Markovian rating process ( Rt)t∈N0there exists a time-inhomogeneous
+Markov chain ( eRt)t∈N0onRwith time-dependent transition matrices ( ePt)t∈Nthat has identical
+default rates and future rating distributions as ( Rt)t∈N0, i.e.,
+P(eRt=r) =P(Rt=r), t∈N0, r∈ R,
+where P(Rt=r) denotes the probability of Rtbeing in rating class r. Using the Perron-
+Frobenius Theorem, we prove that the sequence of transition matrices ( ePt)t∈Nconverges to a
+limit, denoted by eP∞. The corresponding time-homogeneous Markov chain on Rwith transition
+matrix eP∞replicates the rating distribution and default behaviour of ( Rt)t∈N0in the asymptotic
+limit. In particular, eP∞specifies the vector of asymptotic default probabilities of the different
+rating classes.
+1Capital requirements regulation and directive – CRR/CRD IV, Article 502
+2International Financial Reporting Standard (IFRS) 9, Paragraph 5.5.17. For CECL, see FASB Accounting
+Standards Update (ASU) 2016-13.
+2The explicit incorporation of an economic state process into the specification of the rating
+process ( Rt)t∈N0allows for a unified analysis of different rating philosophies. In the second
+part of the paper (Section 5), we provide a formal definition of PIT and TTC rating migration
+processes based on a decomposition of conditional transition matrices into default and non-
+default components. In a nutshell, TTC ratings have a firm-specific character, i.e., the non-
+default rating transitions are insensitive to economic state fluctuations, whereas PIT non-default
+ratings are explicitly assigned according to a firm’s PD (probability of default), whence they
+swing with economic state fluctuations.
+The third part of the paper (Section 6) is concerned with orderings on distributions on
+the state space A × R of the combined process ( Xt)t∈N0, formalising the notions of “better”
+or “worse” economic states and rating states. A natural approach to order rating states is
+by first-order stochastic dominance, see Jarrow et al. (1997), which, amongst other properties,
+preserves the order of long-term default probabilities. Several extensions of first-order stochastic
+dominance exist in a multivariate setting, amongst which stochastic dominance and the upper
+orthant order turn out to be relevant for the combined process ( Xt)t∈N0. We analyse conditions
+for stochastic monotonicity of transition matrices of ( Xt)t∈N0as well as conditions for preserving
+the order of multi-year default probabilities conditional on the initial economic state and rating.
+In the fourth part (Section 7), we apply the theoretical framework to create PIT and TTC
+ratings using a Merton-type firm-value process (Merton, 1974). The economic state influences
+the firm-value by adding a systematic drift. PIT ratings are determined by classifying firms
+according to their PDs. While the PIT rating construction is relatively straightforward, there
+are various methods to build TTC ratings, such as considering a firm’s idiosyncratic risk or
+stressed PDs. In a worked example we select the TTC rating that most closely aligns with the
+PIT rating by minimising the differences in multi-year PDs conditional on various combinations
+of initial economic states and PIT ratings. This provides valuable insights into how PIT and
+TTC ratings coexist, as well as their similarities and differences.
+We conclude by demonstrating how rating models within our framework concurrently meet
+requirements of ratings and PDs in both accounting and regulatory capital standards (Section
+8).
+2 Conditional rating transition matrices
+2.1 Definition
+We refer to Norris (1998) for basic definitions in the theory of Markov chains. Let (Ω ,F,P) be
+a probability space. On this probability space there exists a stochastic process ( At)t∈N0taking
+values in a set A, which consists of Keconomic states. The economic state process is assumed
+to be a time-homogeneous Markov chain with transition matrix M= (mab)∈[0,1]K×K, i.e.,
+P(At+1=b|At=a) =mabfort∈N0.
+In addition, a stochastic process ( Rt)t∈N0denoting the rating process of a firm exists, taking
+values in the set R. The set RhasJelements, which are interpreted as rating states including an
+absorbing default state r. The subset of non-default ratings is denoted by bR, i.e.,bR=R \ { r}.
+We do not require the rating process ( Rt)t∈N0to have the Markov property. Instead we
+make the weaker assumption that the joint process ( Xt)t∈N0= (At, Rt)t∈N0taking values in the
+product space X=A × R is a time-homogeneous Markov chain with transition matrix
+P= (p(a,r),(b,s))∈[0,1]KJ×KJ, (1)
+where
+p(a,r),(b,s)=P(At+1=b, Rt+1=s|At=a, R t=r)
+3denotes the probability of moving from the state ( a, r) to ( b, s). The distribution of X0is
+denoted by λ∈[0,1]KJ. W.l.o.g. we assume a default probability of 0 at time 0, i.e., λ(a,r)= 0
+fora∈ A.
+It is a reasonable assumption that if the current economic state is known, knowledge about
+the current rating does not add information about the future economic state. The following
+Lemma establishes that, under this assumption, the transition matrix Pis fully determined by
+1. the transition probabilities mabof the economic state process and
+2. the rating transition probabilities conditional on economic state transitions, i.e., the con-
+ditional probabilities P(Rt+1=s|Rt=r, At+1=b, At=a).
+To formalize this statement, conditional rating migration matrices M(a,b)= (m(a,b)
+rs)∈[0,1]J×J
+are defined for each economic state transition ( a, b)∈ A × A , where
+m(a,b)
+rs=P(Rt+1=s|Rt=r, At+1=b, At=a).
+We assume that migrations from non-default ratings to any other rating class have positive
+probability, i.e., m(a,b)
+rs>0 for all r∈bR,s∈ R anda, b∈ A. Since ris absorbing, m(a,b)
+rr= 0
+andm(a,b)
+rr= 1.
+Lemma 2.1. p(a,r),(b,s)=mabm(a,b)
+rsif and only if At+1andRtare conditionally independent
+given At.
+Proof. “⇐”: Using that P(At+1=b|At=a) =P(At+1=b|At=a, R t=r):
+mabm(a,b)
+rs=P(At+1=b|At=a)P(Rt+1=s|Rt=r, At+1=b, At=a)
+=P(At+1=b|At=a, R t=r)P(Rt+1=s|Rt=r, At+1=b, At=a)
+=P(At+1=b, Rt+1=s|Rt=r, At=a)
+=p(a,r),(b,s).
+“⇒” follows in the same way.
+From now on we assume that At+1andRtare conditionally independent given At. It
+immediately follows from P= (mabm(a,b)
+rs) that the process Xtas well as the rating process Rt,
+which can be considered as the projection of Xtonto the state space R, are completely specified
+by the initial distribution λ∈[0,1]KJof (A0, R0), the transition matrix M∈[0,1]K×KofAt
+and the K2conditional rating migration matrices M(a,b)∈[0,1]J×J. The probability of a path
+of economic states and ratings has the form
+P(X0= (a0, r0), . . . , X T= (aT, rT)) =P(X0= (a0, r0))T−1Y
+t=0matat+1m(at,at+1)
+rtrt+1.
+2.2 Example of a rating system
+The following example shows the economic state transition matrix Mand the M(a,b)andP
+matrices of a rating system. It is derived from a Merton model (Merton (1974)), as will be
+explained in detail in Section 7.
+Economic state transitions are assumed to follow a Markov process with transition matrix
+M=
+0.8 0 .175 0 .025
+0.1 0 .8 0 .1
+0.025 0 .175 0 .8
+. (2)
+4To economic stateFrom economic state1 2 3
+1
+12341 2 3 4
+1
+2
+3
+41 2 3 4
+12341 2 3 4
+2
+12341 2 3 4
+1
+2
+3
+41 2 3 4
+12341 2 3 4
+3
+12341 2 3 4
+1
+2
+3
+41 2 3 4
+12341 2 3 4
+To economic stateFrom economic state
+1 2 3 4 1 2 3 4 1 2 3 4 1
+2
+3
+4
+1
+2
+3
+4
+1
+2
+3
+4123123Figure 1: M(a,b)matrices (left) and Pmatrix (right). Economic states are labelled 1 (good), 2
+(neutral) and 3 (bad). Ratings are ordered from the highest rating class to the worst (default).
+Darker shades indicate values closer to one, whereas white indicates a value of zero or close to
+zero.
+Here, the first state is considered to be a good, the second state a neutral and the third state a
+bad economic state.
+There are four rating classes, of which the first three – ordered from best to worst – are
+non-default ratings and the fourth is the (absorbing) default state. The left hand side of Figure
+1 shows the M(a,b)matrices for economic states a, b∈ {1,2,3}. In this example, the economic
+state transition ( a, b) has a strong impact on rating migration: if bis the best economic state 1,
+upgrades clearly dominate downgrades (as illustrated by the three matrices in the first column),
+whereas a transition to the worst state b= 3 increases the probability of downgrades. Two
+examples of M(a,b)matrices are:
+M(2,1)=
+0.9808 0 .0192 0 .0001 4 ·10−7
+0.8371 0 .1598 0 .0030 0 .0001
+0.6137 0 .3660 0 .0195 0 .0008
+0 0 0 1
+, M(2,3)=
+0.1737 0 .5058 0 .3188 0 .0017
+0.0213 0 .2460 0 .7004 0 .0323
+0.0033 0 .0911 0 .7814 0 .1242
+0 0 0 1
+.
+The right-hand side of Figure 1 shows the Pmatrix resulting from p(a,r),(b,s)=mabm(a,b)
+rs,
+for all a, b∈ Aandr, s∈ R.
+3 Analysis of the Markov property of rating processes
+3.1 A class of Markovian rating processes
+As a consequence of the dependence on the underlying economic states, rating processes ( Rt)t∈N0
+typically do not have the Markov property if their state space is restricted to the set of rating
+classes. In this section, we establish conditions on the transition matrices M(a,b)that ensure
+that ( Rt)t∈N0is a Markov process on R.
+It is a key model assumption in this paper that rating processes have the Markov property on
+the extended state space X=A×R , which consists of all combinations of economic states and
+rating classes. More formally, ( Rt)t∈N0is the projection of the time-homogeneous Markov chain
+5(Xt)t∈N0with state space Xonto the state space R. Hence, the question whether ( Rt)t∈N0is a
+Markov process can be addressed in the more general context of studying the Markov property
+of functions of Markov processes, see Rosenblatt (1971).
+The general results in Rosenblatt (1971) can be significantly improved in our setup by
+utilizing the structure of the transition matrix P= (p(a,r),(b,s))∈[0,1]KJ×KJgiven in Lemma
+2.1, i.e., representing p(a,r),(b,s)in the form p(a,r),(b,s)=mabm(a,b)
+rs. Not surprisingly, severe
+restrictions on the conditional transition matrices M(a,b)are required to ensure the Markov
+property of the rating process ( Rt)t∈N0. It turns out that the following definition formalizes the
+key property of conditional transition matrices M(a,b)of Markovian rating processes ( Rt)t∈N0.
+Definition 3.1. The conditional transition matrices M(a,b)have identical ratios of non-default
+migration probabilities if for all r, r′, s, s′∈bRanda, a′, b, b′∈ A
+m(a,b)
+rs
+m(a,b)
+r′s′=m(a′,b′)
+rs
+m(a′,b′)
+r′s′. (3)
+It is easily verified that the two matrices provided in the example in Section 2.2 do not fulfil
+this: m(2,1)
+1,1/m(2,1)
+1,2>1, while m(2,3)
+1,1/m(2,3)
+1,2<1.
+As an example of a simple class of rating migration processes that have identical ratios of
+non-default migration probabilities, consider processes based on just two ratings randr. Since
+ris the only element of bRcondition (3) is always satisfied, regardless of the specification of the
+conditional transition matrices.
+The above condition significantly reduces the free parameters that are required for specifying
+conditional transition matrices. Choose a, b∈ Aandr, s∈bRand specify M(a,b)andm(a′,b′)
+rs for
+all (a′, b′)̸= (a, b). All other parameters m(a′,b′)
+r′s′are defined by (3), i.e., for ( r′, s′)̸= (r, s)
+m(a′,b′)
+r′s′=m(a,b)
+r′s′
+m(a,b)
+rsm(a′,b′)
+rs.
+Since M(a,b)is a stochastic matrix with one absorbing state, only ( J−1)2+K2−1 free
+parameters are required for fully specifying conditional transition matrices with identical ratios
+of non-default migration probabilities. In the case K= 1, just one rating transition matrix is
+defined, which is equivalent to the standard specification of a time-homogeneous Markov chain.
+ForK > 1, the number of conditional rating migration matrices M(a,b)as well as the number
+of free parameters increases by K2.
+The set of Equations (3) is a sufficient condition for the Markov property, see Corollary 3.3.
+In fact, Theorem 3.2 shows that the Equations (3) are equivalent to the economic state variable
+Atbeing independent of the rating history up to time t(conditional on no default), which is a
+slightly stronger condition than the Markov property of ( Rt)t∈N0.
+More formally, let t∈N0. Conditional on no default, the economic state variable Atis
+independent of the rating history up to time tif for all a∈ A andr0, s0, . . . , r t, st∈bRwith
+P(R0=r0, . . . , R t=rt)>0 and P(R0=s0, . . . , R t=st)>0,
+P(At=a|R0=r0, . . . , R t=rt) =P(At=a|R0=s0, . . . , R t=st) =P(At=a|Rt̸=r).(4)
+Theorem 3.2. The following conditions are equivalent.
+(i) The conditional transition matrices M(a,b)have identical ratios of non-default migration
+probabilities.
+6(ii) For every joint distribution λ∈[0,1]KJof independent variables A0andR0and every
+stochastic matrix M∈[0,1]K×Kthe rating process Rtspecified by the distribution λand
+transition matrices MandM(a,b)satisfies (4) for every t∈N0.
+Proof. In this proof we abbreviate a rating path {R0=r0, . . . , R t=rt}and a path {A0=
+a0, . . . , A t=at}of economic states by r0..tanda0..trespectively.
+“⇒”: For t∈N0leta0, b0, . . . , a t, bt∈ A,r0, s0, . . . , r t, st∈bRwithP(a0..t)>0 and
+P(b0..t)>0. We assume that A0andR0are independent variables and P(R0=r0)>0 and
+P(R0=s0)>0. We first prove by induction on tthat
+P(r0..t|a0..t)
+P(s0..t|a0..t)=P(r0..t|b0..t)
+P(s0..t|b0..t). (5)
+Since A0andR0are independent, Equation (5) holds for t= 0. For t >0, we assume that (5)
+holds for t−1. Note that
+P(r0..t|a0..t) =P(r0..t−1, a0..t−1)mat−1atm(at−1,at)
+rt−1rt
+P(a0..t−1)mat−1at=P(r0..t−1|a0..t−1)m(at−1,at)
+rt−1rt. (6)
+Hence, by induction and (3),
+P(r0..t|a0..t)
+P(s0..t|a0..t)=P(r0..t−1|a0..t−1)m(at−1,at)
+rt−1rt
+P(s0..t−1|a0..t−1)m(at−1,at)
+st−1st=P(r0..t−1|b0..t−1)m(bt−1,bt)
+rt−1rt
+P(s0..t−1|b0..t−1)m(bt−1,bt)
+st−1st=P(r0..t|b0..t)
+P(s0..t|b0..t).
+For proving (4) we apply Bayes formula. For t= 0, Equation (4) is implied by the inde-
+pendence of A0andR0. Otherwise it follows from (6) that Bayes formula can be expressed
+as
+P(a0..t|r0..t) =P(a0..t)P(r0..t−1|a0..t−1)m(at−1,at)
+rt−1rtP
+(b0,...,bt)∈At+1P(b0..t)P(r0..t−1|b0..t−1)m(bt−1,bt)
+rt−1rt. (7)
+Hence, P(a0..t|r0..t) =P(a0..t|s0..t) is equivalent to
+X
+(b0,...,bt)∈At+1P(b0..t)P(r0..t−1|a0..t−1)P(s0..t−1|b0..t−1)m(at−1,at)
+rt−1rtm(bt−1,bt)
+st−1st=
+X
+(b0,...,bt)∈At+1P(b0..t)P(r0..t−1|b0..t−1)P(s0..t−1|a0..t−1)m(at−1,at)
+st−1stm(bt−1,bt)
+rt−1rt.(8)
+By (5), Equation (8) holds if and only if
+X
+(b0,...,bt)∈At+1P(b0..t)P(r0..t−1|a0..t−1)P(s0..t−1|b0..t−1)(m(at−1,at)
+rt−1rtm(bt−1,bt)
+st−1st−m(at−1,at)
+st−1stm(bt−1,bt)
+rt−1rt) = 0 .
+Since the conditional transition matrices M(a,b)have identical ratios of non-default migration
+probabilities it follows that m(at−1,at)
+rt−1rtm(bt−1,bt)
+st−1st−m(at−1,at)
+st−1stm(bt−1,bt)
+rt−1rt= 0. Hence, we obtain
+P(a0..t|r0..t) =P(a0..t|s0..t), which implies (4).
+“⇐”: Let a, a′, b, b′∈ Aandr, r′, s, s′∈bRsuch that m(a,b)
+rsm(a′,b′)
+r′s′̸=m(a,b)
+r′s′m(a′,b′)
+rs. Ifb=b′
+we choose c∈ Awith c̸=b. Obviously, at least one of the two inequalities
+m(a,b)
+rs
+m(a,b)
+r′s′̸=m(a,c)
+rs
+m(a,c)
+r′s′,m(a′,b′)
+rs
+m(a′,b′)
+r′s′̸=m(a,c)
+rs
+m(a,c)
+r′s′
+7holds. Hence, we can assume that b̸=b′. We now define A0andR0as independent variables
+specified by
+P(A0=a) =P(A0=a′) =1
+|{a, a′}|,P(R0=r) =P(R0=r′) =1
+|{r, r′}|.
+Furthermore, it is assumed that the transition matrix Msatisfies mab=ma′b′= 1/2 ifa=a′
+andmab=ma′b′= 1 if a̸=a′.
+In both cases, P(A0=a, A1=b) =P(A0=a′, A1=b′) = 1 /2 and Bayes formula (7)
+specializes to
+P(A0=a, A1=b|R0=r, R1=s) =m(a,b)
+rs
+m(a,b)
+rs+m(a′,b′)
+rs.
+Since m(a,b)
+rs(m(a,b)
+r′s′+m(a′,b′)
+r′s′)̸=m(a,b)
+r′s′(m(a,b)
+rs+m(a′,b′)
+rs) we obtain
+P(A0=a, A1=b|R0=r, R1=s) =m(a,b)
+rs
+m(a,b)
+rs+m(a′,b′)
+rs
+̸=m(a,b)
+r′s′
+m(a,b)
+r′s′+m(a′,b′)
+r′s′
+=P(A0=a, A1=b|R0=r′, R1=s′).
+It follows from b̸=b′thatP(A0=a, A1=b) =P(A1=b) and therefore
+P(A1=b|R0=r, R1=s)̸=P(A1=b|R0=r′, R1=s′).
+Hence, (4) does not hold.
+Corollary 3.3. The rating process Rthas the Markov property if
+(i) the variables A0andR0, which are specified by their joint distribution λ∈[0,1]KJ, are
+independent and
+(ii) the conditional transition matrices M(a,b)have identical ratios of non-default migration
+probabilities.
+Proof. By Theorem 3.2, Equation (4) holds for t∈N0, which implies
+P(At=a|R0=r0, . . . , R t=rt) =P(At=a|Rt=rt)
+fora∈ Aandr0, . . . , r t∈bRwithP(R0=r0, . . . , R t=rt)>0. Hence, in case of no default at
+time t, i.e., Rt̸=r, we obtain
+P(Rt+1=rt+1|R0=r0, . . . , R t=rt)
+=X
+a,b∈AP(Rt+1=rt+1, At=a, A t+1=b|R0=r0, . . . , R t=rt)
+=X
+a,b∈AP(Rt+1=rt+1, At+1=b|At=a, R0=r0, . . . , R t=rt)P(At=a|R0=r0, . . . , R t=rt)
+=X
+a,b∈AP(Rt+1=rt+1, At+1=b|Rt=rt, At=a)P(At=a|Rt=rt)
+=P(Rt+1=rt+1|Rt=rt).
+IfRt=rthen the Markov property holds because ris absorbing.
+83.2 Time-inhomogeneous Markov chains on ratings
+As shown above, rating processes typically do not have the Markov property. However, it is
+easy to prove that for each rating process ( Rt)t∈N0, a time-inhomogeneous Markov process can
+be constructed that replicates the unconditional distribution of ( Rt)t∈N0for each t∈N0.3Using
+mathematical results from Markov chain theory, this process will then be used to determine the
+long-term and asymptotic rating transition behaviour of ( Rt)t∈N0, see Section 4.
+More precisely, we define a time-inhomogeneous Markov chain on the state space Rthat
+replicates the rating distribution
+(P(Rt=r))r∈R, t∈N0.
+Proposition 3.4. There exists a time-inhomogeneous Markov process (eRt)t∈N0with
+(i) state space R,
+(ii) initial distribution ˜λon[0,1]Jdefined by ˜λ= (P(R0=r))r∈R,
+(iii) transition matrices (ePt)t∈N0that can be determined from (λ, P), such that
+P(eRt=r) =P(Rt=r), t∈N0, r∈ R. (9)
+In particular, long-term default probabilities and distributions of non-default ratings can be
+immediately derived via
+(P(RT=r))r∈R=˜λ·TY
+t=1ePt, T∈N0. (10)
+Essentially, the distributions of the process eRare averaged with respect to the economic state
+transitions. Depending on the initial distribution λof (Xt)t∈N0= (At, Rt)t∈N0, information
+about the initial economic state may enter the rating distributions, which creates the time-
+inhomogeneity in the transitions.
+Proof. First, we construct transition matrices ( ePt)t∈N0. For t∈N0, let λt∈[0,1]KJbe the
+distribution of Xt, i.e., λt,(a,r)=P(Xt= (a, r)) for ( a, r)∈ X, and define the matrix ePt=
+(˜pt,rs)∈[0,1]J×Jfort≥1: ifP(Rt−1=r)>0, then
+˜pt,rs=P(Rt=s|Rt−1=r) =X
+a∈AP(Rt=s|Rt−1=r, At−1=a)·P(At−1=a|Rt−1=r)
+=X
+a∈AP(Rt=s|Rt−1=r, At−1=a)·P(At−1=a, R t−1=r)
+P(Rt−1=r)
+=P
+a,b∈Ap(a,r)(b,s)·λt−1,(a,r)P
+a′∈Aλt−1,(a′,r).
+Otherwise, ˜ pt,rs= 0 for s∈bRand ˜pt,rr= 1. By definition, the matrices ePt,t≥1, are
+stochastic and can be calculated iteratively from ( λ, P). Hence, the process ( eRt)t≥N0can be
+defined as a time-inhomogeneous Markov chain. It is easily verified that P(eRt=r) =P(Rt=r),
+t >0: From
+P(Rt=s) =X
+r∈RP(Rt=s|Rt−1=r)·P(Rt−1=r),
+the claim follows by definition of ˜λand by induction.
+3A Markov chain is time-inhomogeneous if the transition matrices are time-dependent, see e.g. Chapter 1 of
+Br´ emaud (1999).
+9Bluhm and Overbeck (2007) propose a parametric class of time-inhomogeneous Markov
+chains to calibrate observed multi-year default rates. Proposition 3.4 provides theoretical sup-
+port to the claim that a convincing fit can be achieved even if the underlying process is not
+Markovian.
+4 Asymptotic properties
+In this section, we use standard techniques from the theory of Markov chains to prove that
+the sequence of transition matrices ( ePt)t∈N0converges to a limit, denoted by eP∞. The proof is
+based on the Perron-Frobenius Theorem (Perron (1907); Frobenius (1912)). In order to apply
+the theorem we assume in this section that the economic state process ( At)t∈N0is irreducible
+and aperiodic. Hence, the transition matrix Mis primitive, i.e., there exists an integer ksuch
+that Mk>0. Furthermore, recall that m(a,b)
+rs>0 for all r∈bR,s∈ R anda, b∈ A. This
+assumption implies that bPis a primitive matrix, where bX=A×bRandbPis the restriction of P
+tobX, i.e.,bP= (ˆp(a,r),(b,s))∈[0,1]K(J−1)×K(J−1)with ˆ p(a,r),(b,s)=p(a,r),(b,s)for (a, r),(b, s)∈bX.
+Likewise, we denote the restriction of λtobXbyˆλ∈[0,1]K(J−1). Note that the assumption
+P(X0∈bX) = 1 implies that ˆλis a distribution on bX.
+The matrix bPis not stochastic but it is primitive. Hence, the following properties are a
+consequence of the Perron-Frobenius Theorem (see e.g. Theorems 1.1 and 1.2 of Seneta (1973),
+Chapter 6 of Br´ emaud (1999)):
+(P1) The primitive matrix bPhas a real eigenvalue ρwith algebraic as well as geometric mul-
+tiplicity one such that ρ >0 and ρ >|ρ′|for any other eigenvalue ρ′. Moreover, the left
+eigenvector µand the right eigenvector νassociated with ρcan be chosen positive and
+such that µν= 1.4
+(P2) The matrix ((1 /ρ)bP)nconverges to the matrix νµ.
+We assume that the components of µadd up to 1, i.e., µis a distribution on bX. Let ˜ µbe the
+corresponding distribution on Rspecified by
+˜µr=X
+a∈Aµ(a,r)forr∈bR and ˜ µr= 0, (11)
+and define the stochastic matrix eP∞= (˜p∞,rs)∈[0,1]J×Jby
+˜p∞,rs=X
+a∈Aµ(a,r)X
+b∈Ap(a,r),(b,s)/˜µr, r∈bR, s∈ R, (12)
+˜p∞,rr= 0 for r∈bRand ˜p∞,rr= 1.
+We will now study the asymptotic properties of the Markov chain ( Xt)t∈N0. Since A × { r}
+is a closed subset of the state space of ( Xt)t∈N0it immediately follows from the assumptions on
+the transition matrices MandM(a,b)that
+lim
+t→∞P(Xt∈ A × { r}) = 1 .
+The more relevant question is the asymptotic behaviour of ( Xt)t∈N0conditionally on no default,
+which is summarized in the following theorem. In particular, it is shown that the conditional
+4Note that the left eigenvector µis a row-vector and the right eigenvector νis a column-vector, both of
+dimension K(J−1). Hence, µνis a real number whereas νµis aK(J−1)×K(J−1) matrix.
+10distribution of non-default rating states of Xconverges to µ, which implies convergence of
+(ePt)t∈NtoeP∞. Furthermore, 1 −ρis the limit of the marginal default rates.5
+In the following, note that {Rt=r}={Xt∈(·,r)}and{Rt̸=r}={Xt̸∈(·,r)}. For ease
+of exposition, we use both notations.
+Theorem 4.1. (i) For all (a, r)∈bX,
+lim
+t→∞P(Xt= (a, r)|Xt̸∈(·,r)) =µ(a,r).
+Furthermore,
+lim
+t→∞ePt=eP∞ and lim
+t→∞P(Rt=r|Rt−1̸=r) = 1−ρ. (13)
+(ii) If the limit distribution µ= (µ(a,r))∈[0,1]K(J−1)is the distribution of X0on the set of
+non-default states bX, i.e., ˆλ=µ, then for all t∈N
+P(Xt= (a, r)|Xt/∈(·,r)) =µ(a,r)and ePt=eP∞.
+Proof. (i) Since νis a column-vector with positive entries and ˆλ̸= 0 has only non-negative
+entries, the vector product c=ˆλ·νis a positive number. By (P2),
+lim
+t→∞ˆλ·((1/ρ)bP)t=ˆλ·ν·µ=c·µ. (14)
+Lett∈Nand define αt∈[0,1]K(J−1)as the distribution of Xtconditional on Rt̸=r, i.e.,
+αt=P(Xt= (a, r)|Xt̸∈(·,r))(a,r)∈bX.
+Since the set of default states A × { r}is closed,
+αt=P(Xt−1/∈(·,r))
+P(Xt/∈(·,r))·αt−1·bP=1
+P(Xt/∈(·,r))·ˆλ·bPt(15)
+and therefore
+αt=ρt
+P(Xt/∈(·,r))·ˆλ·((1/ρ)bP)t.
+Using (14) and the fact that the L1-norm of µandαtis 1 for each t∈Nwe obtain
+lim
+t→∞αt=µ. (16)
+SincebPis primitive, P(Xt= (a, r))>0 for all ( a, r)∈bXand sufficiently large t∈N. By the
+definition of the matrix ePt= (˜pt,rs)∈[0,1]J×J, for all r∈bRands∈ R
+˜pt+1,rs= X
+a∈AP(Xt= (a, r))X
+b∈Ap(a,r),(b,s)!
+/P(Xt∈(·, r))
+= X
+a∈A(P(Xt= (a, r))/P(Xt/∈(·,r)))X
+b∈Ap(a,r),(b,s)!
+/(P(Xt∈(·, r))/P(Xt/∈(·,r)))
+= X
+a∈Aαt,(a,r)X
+b∈Ap(a,r),(b,s)!
+/X
+a∈Aαt,(a,r) (17)
+5Marginal default rates refer to probabilities of default conditional on no prior default, as opposed to cumu-
+lative default rates.
+11and ˜pt+1,rr= 0 for r∈bRand ˜pt+1,rr= 1. Hence, by (16),
+lim
+t→∞ePt=eP∞.
+From (16) and the first equation in (15) it follows that
+µ=
+lim
+t→∞P(Xt−1/∈(·,r))
+P(Xt/∈(·,r))
+·µ·bP.
+Since µis an eigenvector with eigenvalue ρ,
+lim
+t→∞P(Xt−1/∈(·,r))
+P(Xt/∈(·,r))=1
+ρand lim
+t→∞P(Xt∈(·,r)|Xt−1/∈(·,r)) = 1 −ρ.
+(ii) We now assume that ˆλ=µ. It follows from (15) and µ·bP=ρ·µthat
+αt=1
+P(Xt/∈(·,r))·µ·bPt=1
+P(Xt/∈(·,r))·ρt·µ=µ
+for every t∈Nand therefore, by (17), ePt=eP∞.
+Definition 4.2. Let ( St)t∈N0be the time-homogeneous Markov chain with state space R,
+transition matrix eP∞= (˜prs)∈[0,1]J×Jand initial distribution ˜λ. Then ( St)t∈N0is called the
+asymptotic approximation of (Rt)t∈N0.
+The following corollary summarises the properties of the asymptotic approximation.
+Corollary 4.3. (i) For any r∈bR,
+lim
+t→∞P(St=r|St̸=r) = lim
+t→∞P(Rt=r|Rt̸=r). (18)
+(ii) If the limit distribution µ= (µ(a,r))∈[0,1]K(J−1)is the distribution of X0onbXthen
+P(St=r) =P(Rt=r) =P(Xt∈(·, r)) (19)
+fort∈N0andr∈ R. Furthermore, for t∈N,
+P(St=r|P(St−1̸=r) =P(Rt=r|P(Rt−1̸=r) = (1 −ρ)ρt−1. (20)
+Proof. We first assume that the limit distribution µ= (µ(a,r))∈[0,1]K(J−1)is the distribution
+ofX0onbX. It follows from Theorem 4.1 that eRt∈N0is a time-homogeneous Markov process,
+which equals the asymptotic approximation ( St)t∈N0, and
+P(Rt̸=r|Rt−1̸=r) =ρ and P(Rt=r|Rt−1̸=r) = 1−ρ
+for all t∈N. Hence, Equations (19) and (20) follow from Proposition 3.4. Furthermore, we
+obtain from Theorem 4.1 that (˜ µr)r∈bRis a positive left eigenvector of the restriction of eP∞to
+bR. Analogously to the proof of Theorem 4.1, it follows from the Perron-Frobenius Theorem
+that
+lim
+t→∞P(St=r|St̸=r) = ˜µr, r∈bR, (21)
+holds for any initial distribution of S0. Hence, (18) follows from Theorem 4.1.
+125 Rating philosophies: Point-in-time and through-the-cycle
+5.1 Definition of TTC and PIT ratings
+This section deals with the characterisation of rating systems. Ratings are designed to provide
+information on the credit quality of an obligor. However, rating systems may differ with respect
+to the type of information reflected in the rating. There exist two main rating philosophies:
+(i) Point-in-time (PIT) ratings reflect the likelihood of default over a future period, e.g. one
+year, and are therefore dependent on firm-specific as well as systematic factors. The
+PIT rating of an obligor reflects the current state of the economy as well as all available
+information about the current and future economic development. As such, PIT ratings
+fluctuate over economic cycles (e.g. economic downturns lead to an increased number of
+downgrades), whereas expected one-period default probabilities of PIT rating classes are
+stable.
+(ii) In contrast, through-the-cycle (TTC) ratings have a longer rating horizon covering mul-
+tiple periods, i.e., the rating is performed through the cycle. As a consequence, economic
+effects cancel out and TTC ratings are therefore independent of the state of the economy
+and, as such, are insensitive to economic or credit cycles. However, since actual corpo-
+rate default rates depend on the economic environment the expected one-period default
+probabilities of TTC rating classes inevitably fluctuate with the economic cycle.6
+Figure 2 shows an example of an economic path (top) together with rating distributions of
+PIT and TTC ratings for a firm starting in the best PIT rating. This shows how PIT ratings
+fluctuate with the economy while TTC non-default ratings are insensitive to the economic
+environment. The rating models used in this illustration will be discussed in Section 7.
+Both rating philosophies are interesting theoretical concepts. For practical applications,
+however, it is almost impossible to implement TTC or PIT ratings in a strict sense. First of all,
+it is very difficult to completely separate firm-specific components from macroeconomic devel-
+opments. It is equally challenging to implement a rating system that comprehensively reflects
+the current state of the economy as well as all available information about the future economic
+development in a timely manner. As a consequence, real-world rating systems are typically hy-
+brids in the following sense: Individual ratings are impacted by macroeconomic developments,
+e.g. upgrades are more frequent in economic upturns, but not all the available economic infor-
+mation is reflected leading to fluctuations of default rates of rating classes across credit cycles.
+Rating systems mainly differ with respect to the weights of TTC and PIT components, i.e.,
+whether they are predominantly through-the-cycle or point-in-time, see Morone and Cornaglia
+(2009); Rubtsov and Petrov (2016) for estimating the degree of PIT-ness of a rating system.
+The consistent calculation of TTC and PIT default probabilities is intensively discussed in the
+literature, e.g. in Aguais et al. (2008); Carlehed and Petrov (2012); Rubtsov and Petrov (2016);
+Miu and Ozdemir (2017); Rubtsov (2021).
+In order to formally define point-in-time rating migration processes we consider expected
+(one-period) default probabilities for each combination of economic state aand rating r:
+PD(a, r) =X
+b∈Ap(a,r)(b,r)=P(Rt+1=r|At=a, R t=r)
+6The characteristics of expected one-period default probabilities of TTC rating classes is different to TTC
+PDs defined in the literature as long-run averages of one-year default probabilities (e.g. Vall´ es (2006); Gordy and
+Howells (2004); Altman and Rijken (2004)) or stressed default probability (e.g. Heitfield (2005); Crouhy et al.
+(2001)). A comparison of these concepts in our mathematical framework is provided in Sections 7.3 and 8 of this
+paper.
+130 5 10 15 20 25 30123Path of economic state
+0 5 10 15 20 25 300.00.20.40.60.81.0PIT rating distributions
+0 5 10 15 20 25 300.00.20.40.60.81.0TTC rating distributions
+Figure 2: Example paths of economic states (top), PIT (middle) and TTC (bottom) rating
+distributions over 30 time periods for a firm starting in the best PIT rating. Economic states
+are ordered from best (1) to worst (3).
+for any t∈N0. Since the PIT rating rof a company already reflects the impact of the state of the
+economy on its creditworthiness the corresponding default probability is completely determined
+byr.
+Definition 5.1. A rating migration process is point-in-time (PIT) if PD( a, r) = PD( b, r) for
+all ratings r∈ Rand economic states a, b∈ A.
+Essentially, this captures that ratings are assigned such that expected default and survival
+probabilities of a rating class do not depend on the economic state. However, ex-post default
+frequencies P(Rt+1=r|Rt=r, At=a, A t+1=b) still depend on the economic state transition,
+e.g. if the economy transitions into a worse state, more defaults will be observed compared to
+a neutral or positive transition.
+In contrast, through-the-cycle ratings are insensitive to economic or credit cycles. More
+formally, let Q(a,b)∈[0,1]J×Jbe the matrix of transition probabilities from rating rto rating
+14sconditionally on economic states a, b∈ Aand no default:
+q(a,b)
+rs=
+
+P(Rt+1=s|Rt=r, At=a, A t+1=b, Rt+1̸=r) =m(a,b)
+rs
+1−m(a,b)
+rr,ifr, s̸=r,
+1, ifr=s=r,
+0, else.(22)
+Definition 5.2. A rating migration process is through-the-cycle (TTC) if there exists a stochas-
+tic matrix Q∈[0,1]J×Jsuch that Q(a,b)=Qfor all a, b∈ A.
+The definition captures that, conditional on no-default, rating transitions are independent
+of the economic state.
+5.2 Decomposition into rating and default components
+For all a, b∈ Athe rating migration matrix M(a,b)can be decomposed into a matrix product
+M(a,b)=D(a,b)·Q(a,b), (23)
+where the non-default component Q(a,b)has already been specified in (22) and the default
+component D(a,b)∈[0,1]J×Jis defined as a stochastic matrix with entries
+d(a,b)
+rr=P(Rt+1=r|Rt=r, At=a, A t+1=b) =m(a,b)
+rr,
+d(a,b)
+rr=P(Rt+1̸=r|Rt=r, At=a, A t+1=b) = 1−m(a,b)
+rr,ifr̸=r,
+and all other entries taking value zero. The default component D(a,b)can be further decomposed
+as
+D(a,b)=Da·C(a,b),
+where Da∈[0,1]J×Jis fully specified by the default probabilities PD( a, r), i.e., Dadepends on
+the current economic state aof the economy but not on futures states, whereas C(a,b)∈[0,1]J×J
+specifies the ex-post deviation from the expected default probability PD( a, r) if the economy
+transitions from atob. More precisely,
+•for each state a∈ Aof the economy, Da= (da
+rs)∈[0,1]J×Jis a stochastic matrix contain-
+ing default and survival probabilities unconditional on the future state of the economy;
+its entries are, for r̸=r,
+da
+rr= PD( a, r) =P(Rt+1=r|At=a, R t=r), da
+rr= 1−da
+rr, da
+rr= 1;
+all other entries take value zero;
+•C(a,b)∈[0,1]J×Jhas entries, for r̸=r,
+c(a,b)
+rr=d(a,b)
+rr
+darr, c(a,b)
+rr= 1−c(a,b)
+rr, c(a,b)
+rr= 1;
+all other entries in C(a,b)are zero.
+15Proposition 5.3. Fora, b∈ A,
+M(a,b)=D(a,b)·Q(a,b)and D(a,b)=Da·C(a,b).
+The matrices C(a,b)satisfyX
+b∈AmabC(a,b)=I
+for all a∈ Aand identity matrix I∈[0,1]J×J.
+Proof. The equation M(a,b)=D(a,b)·Q(a,b)immediately follows from the definition of D(a,b)
+andQ(a,b).
+All matrix elements of Da·C(a,b)andD(a,b)are 0 except the diagonal elements and the last
+columns. By definition,
+da
+rrc(a,b)
+rr=d(a,b)
+rr (24)
+and therefore the matrices Da·C(a,b)andD(a,b)have the same diagonal elements. The matrix
+elements in the last column satisfy the following equations:
+da
+rrc(a,b)
+rr+da
+rr=da
+rr(1−c(a,b)
+rr) +da
+rr=da
+rr−d(a,b)
+rr+da
+rr=d(a,b)
+rr
+and therefore D(a,b)=Da·C(a,b).
+It follows from (24) and
+da
+rr=P(At=a, R t=r, Rt+1̸=r)
+P(At=a, R t=r), d(a,b)
+rr=P(At=a, A t+1=b, Rt=r, Rt+1̸=r)
+P(At=a, A t+1=b, Rt=r)
+that
+c(a,b)
+rr=P(At+1=b|At=a, R t=r, Rt+1̸=r)
+P(At+1=b|At=a, R t=r).
+By Lemma 2.1,X
+b∈Amabc(a,b)
+rr=X
+b∈AP(At+1=b|At=a, R t=r)c(a,b)
+rr= 1
+for all a∈ A. Since all matrix elements of C(a,b)are 0 except the diagonal and the last column
+and each row sum equals 1 we obtain
+X
+b∈AmabC(a,b)=I.
+PIT and TTC rating migration processes have a rather intuitive interpretation in the context
+of the decomposition
+M(a,b)=Da·C(a,b)·Q(a,b), a, b ∈ A,
+given in the proposition above:
+1. A rating migration process is point-in-time (PIT) iff there exists a stochastic matrix
+D∈[0,1]J×Jsuch that Da=Dfor all a∈ A, i.e.,
+M(a,b)=D·C(a,b)·Q(a,b), a, b ∈ A.
+Note that the matrix D, which does not depend on economic states, specifies the ex-
+pected default and survival probabilities for each rating class whereas the economic-state
+dependent matrix C(a,b)reflects that ex-post default frequencies P(Rt+1=r|Rt=r, At=
+a, A t+1=b) still depend on the economic state transition.
+162. A rating migration process is through-the-cycle (TTC) if there exists a stochastic matrix
+Q∈[0,1]J×Jsuch that Q(a,b)=Qfor all a, b∈ A, i.e.,
+M(a,b)=D(a,b)·Q=Da·C(a,b)·Q, a, b ∈ A. (25)
+In contrast to rating migrations specified by Qfor all economic states, expected default
+probabilities are economic-state dependent for TTC processes, which is reflected by the
+specification of the default component Da.
+We will now provide an alternative definition of TTC and PIT rating migration processes
+in terms of the asymptotic rating migration matrix eP∞. Analogously to the decomposition of
+the conditional rating migration matrices M(a,b)(see Equation (23)), eP∞can be decomposed
+into a default component eD∞and a non-default component eQ∞with
+eP∞=eD∞·eQ∞. (26)
+Theorem 5.4.
+(i)(Rt)t∈N0is a TTC rating migration process if and only if eQ∞=Q(a,b)for each a, b∈ A.
+(ii) (Rt)t∈N0is a PIT rating migration process if and only if eD∞=Dafor each a∈ A.
+Note that the condition in Theorem 5.4(ii) can also be expressed as follows.
+Corollary 5.5. (Rt)t∈N0is a PIT rating migration process if and only if the default vector of
+eP∞equals the PD vector (PD( a, r))r∈Rfor all economic states a∈ A.
+The proof of Theorem 5.4 is an immediate consequence of the following lemma, which pro-
+vides a characterisation of the rating migration matrices ePtof the time-inhomogeneous Markov
+process ( eRt)t∈N0if (Rt)t∈N0is PIT or TTC.
+Lemma 5.6.
+(i) Let (Rt)t∈N0be a TTC rating migration process and let Qdenote the uniquely defined
+non-default component of the rating transition matrices M(a,b). Then Qis the non-default
+component of each of the rating transition matrices ePtfort >0.
+(ii) Let (Rt)t∈N0be a PIT rating migration process and write each rating transition matrix
+M(a,b)in the form
+M(a,b)=D·C(a,b)·Q(a,b).
+Then Dis the default component of each of the rating transition matrices ePtfort >0.
+Proof. (i) Let r, s∈bRand denote the distribution of Xtbyλt∈[0,1]KJ, i.e., λt,(a,r)=P(Xt=
+(a, r)) for ( a, r)∈ Xandt∈N0. Using the expression of ˜ pt,rsfrom the proof of Proposition 3.4,
+we obtain
+˜pt,rs=P
+a,b∈Ap(a,r)(b,s)·λt−1,(a,r)P
+a∈Aλt−1,(a,r)=P
+a,b∈Ama,bm(a,b)
+rsλt−1,(a,r)P
+a∈Aλt−1,(a,r)
+=P
+a,b∈Ama,bqrs(1−m(a,b)
+rr)λt−1,(a,r)P
+a∈Aλt−1,(a,r)=qrscr,
+where cris defined by
+cr=P
+a,b∈Ama,b(1−m(a,b)
+rr)λt−1,(a,r)P
+a∈Aλt−1,(a,r).
+17SinceP
+s∈ˆRqrscr+ ˜pt,rr= 1, it follows, together withP
+s∈ˆRqrs= 1, that cr= 1−˜pt,rr. As a
+consequence, ˜ pt,rs=qrs(1−˜pt,rr) and therefore qrs= ˜pt,rs/(1−˜pt,rr).
+(ii) It follows from Proposition 5.3 that for every a∈ A
+X
+b∈AmabD(a,b)=DX
+b∈AmabC(a,b)=D.
+Hence, for r∈ R,
+˜pt,rr=P
+a,b∈Ap(a,r)(b,r)λt−1(a, r)P
+a∈Aλt−1(a, r)=P
+a∈Aλt−1(a, r)P
+b∈Amabd(a,b)
+rrP
+a∈Aλt−1(a, r)=drr. (27)
+The default component eDtofePtis a stochastic matrix and all matrix element are zero except
+the diagonal elements and the last column, which equals (˜ pt,rr)r∈R. Hence, by (27), eDt=Dfor
+every t >0.
+We finish this subsection by showing an interesting property of TTC rating migration pro-
+cesses. In Section 3, a class of Markovian rating processes has been identified. These processes
+are characterized by the property that their rating migration matrices M(a,b)have identical ra-
+tios of non-default migration probabilities. It is easy to prove that this class of rating processes
+is a subclass of TTC rating migration processes.
+Definition 5.7. The conditional transition matrices M(a,b)have identical survival ratios if for
+allr, s∈bRanda, a′, b, b′∈ A
+d(a,b)
+rr
+d(a,b)
+ss=d(a′,b′)
+rr
+d(a′,b′)
+ss, (28)
+where D(a,b)= (d(a,b)
+rs) is the default component of M(a,b), see Equation (23).
+Proposition 5.8. The following conditions are equivalent for a rating migration process
+(Rt)t∈N0.
+(i) The matrices M(a,b)have identical ratios of non-default migration probabilities (3).
+(ii) (Rt)t∈N0is TTC and the matrices M(a,b)have identical survival ratios (28).
+Proof. “⇒”: Let r, r′, s∈bRanda, a′, b, b′∈ A. It follows from (3) that
+m(a,b)
+rsd(a′,b′)
+r′r′=X
+s′∈bRm(a,b)
+rsm(a′,b′)
+r′s′=X
+s′∈bRm(a′,b′)
+rsm(a,b)
+r′s′=m(a′,b′)
+rsd(a,b)
+r′r′.
+By setting r′torand to srespectively we obtain
+q(a,b)
+rs=m(a,b)
+rs
+d(a,b)
+rr=m(a′,b′)
+rs
+d(a′,b′)
+rr=q(a′,b′)
+rs andd(a,b)
+rr
+d(a′,b′)
+rr=m(a,b)
+rs
+m(a′,b′)
+rs=d(a,b)
+ss
+d(a′,b′)
+ss.
+“⇐”: Let r, r′, s, s′∈bRanda, a′, b, b′∈ A. Since ( Rt)t∈N0is TTC there exists a matrix
+Q= (qrs)∈[0,1]J×Jsuch that m(a,b)
+rs=qrsd(a,b)
+rr. Together with (28),
+m(a,b)
+rs
+m(a,b)
+r′s′=qrsd(a,b)
+rr
+qr′s′d(a,b)
+r′r′=qrsd(a′,b′)
+rr
+qr′s′d(a′,b′)
+r′r′=m(a′,b′)
+rs
+m(a′,b′)
+r′s′.
+186 Ordered rating processes
+6.1 Ordered rating distributions
+In this section, we formalize the notions of “better” or “worse” economic and rating states. A
+rating ris typically considered better than a rating sif the multi-year PDs of rare consistently
+smaller than the multi-year PDs of s. In order to satisfy this condition, not only the 1y PDs
+ofrandshave to be ordered accordingly but the rating migration matrices also have to
+meet certain requirements. Informally, the probability that an r-rated company is downgraded
+to a bad rating has to be lower than the corresponding migration probability for an s-rated
+company. It is well-know that these conditions on migration probabilities can be formalised
+by monotonicity properties of rating migration matrices, where a migration matrix is called
+monotone with respect to a given (partial) order on the set of rating distributions if the order
+is preserved under multiplication with the respective migration matrix. The main objective
+of the section is to study conditions on the transition matrices M,M(a,b)andPto ensure
+monotonicity of the matrices with respect to a given order.
+Our starting point is the formal specification of a total order on the set Rof ratings. We
+assume that the vector of asymptotic PDs (˜ prr)r∈Rconsists of Jdistinct values and introduce
+the total order ≤onRbyr≤r′if ˜prr≤˜pr′rforr, r′∈ R. Note that the default rating ris the
+biggest element, i.e., r≤rfor all r∈ R.
+Consider rating distributions λandµrepresented by their density functions, i.e., λ= (λr)r∈R
+andµ= (µr)r∈Rare elements of [0 ,1]JwithP
+r∈Rλr=P
+r∈Rµr= 1. The distribution µis
+typically considered to be more risky than λif for all r∈ R
+X
+r≤sλs≤X
+r≤sµs, (29)
+see Jarrow et al. (1997). The partial order on rating distributions defined by (29) is called
+stochastic dominance orusual stochastic order , written λ≤stµ. It is obvious that (29) is
+equivalent to ¯Fλ(r)≤¯Fµ(r) for all r∈ R, where ¯Fλ(r) =P
+r≤sλsdenotes the survival function
+ofλ. In the context of a rating transition matrix, where each row represents a rating distribution,
+tail probabilities thus induce the notion of “better” and “worse” ratings. Another condition
+equivalent to (29) is
+λxT≤µxTfor each increasing real-valued sequence x= (x1, . . . , x J)∈RJ, (30)
+see (M¨ uller and Stoyan, 2002; F¨ ollmer and Schied, 2002; Shaked and Shanthikumar, 2007; Rolski
+et al. , 2009).
+A stochastic matrix L∈[0,1]J×Jis called monotone with respect to a partial order ≤on
+the set of distributions if λL≤µLfor all distributions with λ≤µ, see e.g. (Rolski et al. , 2009).
+In particular, a stochastic matrix Lis called stochastically monotone if it is monotone with
+respect to ≤st. It is easy to show (Theorem 7.4.1 of Rolski et al. (2009)) that Lis stochastically
+monotone iff
+r≤simplies lr≤stlsfor all r, s∈ R, (31)
+where the distribution lrdenotes the r-th row of matrix L.
+We now apply the concept of stochastic monotonicity to the (conditional) rating migration
+matrices M(a,b)∈[0,1]J×J. It follows immediately from the definition that the M(a,b)are
+stochastically monotone if and only if the order relation ≤stis preserved on each economic
+path.
+Theorem 6.1. The following two conditions are equivalent:
+19(i) For each a, b∈ A, the (conditional) rating migration matrix M(a,b)∈[0,1]J×Jis stochas-
+tically monotone.
+(ii) For all rating distributions λ, µ∈[0,1]Jand each path a0, . . . , a T∈ Aof economic states,
+λ≤stµimplies λT−1Y
+t=0M(at,at+1)≤stµT−1Y
+t=0M(at,at+1).
+6.2 Ordered distributions of economic states and ratings
+We will now order the set of distributions on the product space X=A × R of economic states
+and ratings. First we fix a total order ≤on the set of economic states A. The total orders on
+AandRare now extended to the (partial) product order ≤onX: (a, r)≤(b, s) inXifa≤b
+inAandr≤sinR.
+Letλ= (λa,r)(a,r)∈Xandµ= (µa,r)(a,r)∈Xbe distributions on X, i.e., elements of [0 ,1]KJ
+withP
+(a,r)∈Xλa,r= 1. The following definition generalizes the concept of stochastic dominance
+(or the usual stochastic order) to distributions on X: the distribution µstochastically dominates
+λ, written λ≤stµ, if
+X
+(a,r)∈Uλa,r≤X
+(a,r)∈Uµa,r,for all upper sets U⊆ X, (32)
+where U⊆ X is called an upper set if ( a, r)∈Uand ( a, r)≤(b, s) implies ( b, s)∈U.7As for
+rating distributions, stochastic dominance on Xcan be characterized via increasing real-valued
+sequences, see e.g. Theorem 3.3.4 of M¨ uller and Stoyan (2002). More precisely, the relation
+λ≤stµholds for distributions on XiffλxT≤µxTfor each increasing real-valued sequence
+x= (xa,r)(a,r)∈XinRKJ, where xis called increasing if ( a, r)≤(b, s) implies xa,r≤xb,s.
+Another potential generalisation of the partial order on rating distributions defined in (29)
+is formalised by the concept of upper orthant orders. In our setup, the upper orthant order on
+Xcan be defined as follows. For ( a, r)∈ X letU(a,r)denote the upper set generated by ( a, r),
+i.e.,U(a,r)={(b, s)∈ X | (a, r)≤(b, s)}and let λ= (λa,r)(a,r)∈Xandµ= (µa,r)(a,r)∈Xbe
+distributions on X. The upper orthant order ≤uois defined by λ≤uoµif
+X
+(b,s)∈U(a,r)λb,s≤X
+(b,s)∈U(a,r)µb,s for all ( a, r)∈ X. (33)
+Note that the definition of ≤uois obtained by restricting the upper sets in the definition (32)
+of≤stto upper sets that are generated by single elements ( a, r)∈ X.8It is an immediate
+consequence that λ≤stµimplies λ≤uoµ. Again, it is obvious that (33) is equivalent to
+¯Fλ(a, r)≤¯Fµ(a, r) for all ( a, r)∈ X, where ¯Fλ(a, r) =P
+(a,r)≤(b,s)λb,sdenotes the survival
+function of λ.
+7Upper sets of the ordered set {1,2} × { 1,2,3}with Hasse diagram
+(1,1)(1,2)(1,3)
+(2,1)(2,2)(2,3)
+:
+{},(2,3)	
+,
+(2,3)
+(1,3)
+,
+(2,3)
+(2,2)
+,
+
+(2,3)
+(2,2)
+(1,3)
+
+,
+
+(2,3)
+(2,2)
+(2,1)
+
+,
+
+(2,3)
+(2,2)
+(1,3)
+(1,2)
+
+,
+
+(2,3)
+(2,2)
+(2,1)
+(1,3)
+
+,
+
+(2,3)
+(2,2)
+(2,1)
+(1,3)
+(1,2)
+
+,
+
+(2,3)
+(2,2)
+(2,1)
+(1,3)
+(1,2)
+(1,1)
+
+.
+8From the list of upper sets in the previous footnote, this excludes the first, fifth, eigth and ninth sets.
+20In analogy to the ordering of ratings in a rating transition matrix, a minimum requirement
+on the transition matrix P= (p(a,r),(b,s)) is
+(a, r)≤(a′, r′) implies p(a,r)≤uop(a′,r′)for every ( a, r),(a′, r′)∈ X, (34)
+where the row vectors of Pare denoted by p(a,r). In other words, ( a, r)≤(a′, r′) implies
+P(At+1≥b, Rt+1≥s|At=a, R t=r)≤P(At+1≥b, Rt+1≥s|At=a′, Rt=r′), for all
+(b, s)∈ X. It turns out, however, this is not sufficient to ensure that the order of multi-year
+PDs is preserved.
+To this end, we will now analyse the monotonicity of the transition matrix Pwith respect
+to the partial orders ≤stand≤uo. First of all, it can be shown (e.g. Corollary 5.2.4 of M¨ uller
+and Stoyan (2002)) that Pis stochastically monotone, i.e., λ≤stµimplies λP≤stµP, if and
+only if the following generalisation of (31) holds:
+(a, r)≤(a′, r′) implies p(a,r)≤stp(a′,r′)for every ( a, r),(a′, r′)∈ X. (35)
+If≤stis replaced by ≤uo, i.e., (34) is considered instead of (35), a condition for monotonicity
+with respect to ≤uois obtained, which is necessary but not sufficient. In order to ensure the
+≤uo-monotonicity of P, further conditions on the row vectors of Pare required, which can be
+derived from results in M¨ uller (2013).
+For ( a, r)∈ X define the distribution 1(a,r)= (1(a,r)
+b,s)(b,s)∈Xby 1(a,r)
+a,r= 1 and 1(a,r)
+b,s= 0 for
+(b, s)̸= (a, r). Note that if Pis monotone with respect to ≤stor≤uothe matrix products Pt
+satisfy
+(a, r)≤(a′, r′) implies 1(a,r)Pt≤uo1(a′,r′)Pt, (36)
+for (a, r),(a′, r′)∈ Xandt∈N. An immediate consequence of condition (36) is that multi-year
+default probabilities are ordered with respect to the initial economic state and rating. More
+formally, we define the multi-year default probabilities
+PDt(a, r) =P(Rt=r|A0=a, R0=r), t∈N,
+for initial economic state and rating ( a, r)∈ X. If the transition matrix Psatisfies (36) then
+(a, r)≤(a′, r′) implies PD t(a, r)≤PDt(a′, r′) for t∈N. (37)
+For the rest of this section we will study monotonicity properties of the transition matrix
+M∈[0,1]K×Kand the conditional rating migration matrices M(a,b)∈[0,1]J×Jthat imply
+stochastic monotonicity of the transition matrix P∈[0,1]KJ×KJ. It turns out that Mand the
+M(a,b)have to be stochastic monotone and, in addition, the M(a,b)have to satisfy a condition
+formulated in terms of the following order relation: M(a,b)≤stM(a′,b′)ifm(a,b)
+r≤stm(a′,b′)
+r for
+allr∈ R, where m(a,b)
+randm(a′,b′)
+r denote the rows of M(a,b)andM(a′,b′)respectively.
+Theorem 6.2. Assume that the transition matrix M∈[0,1]K×Kand the rating migration
+matrices M(a,b)∈[0,1]J×Jhave the following properties:
+(i)Mis stochastically monotone.
+(ii) M(a,b)is stochastically monotone for all a, b∈ A.
+(iii) a≤a′andb≤b′imply M(a,b)≤stM(a′,b′)for all a, a′, b, b′∈ A.
+Then the transition matrix P∈[0,1]KJ×KJis stochastically monotone.
+21Proof. Leta, a′∈ Aandr, r′∈ Rsuch that a≤a′andr≤r′. In order to prove (35) it suffices
+to show that
+X
+(b,s)∈Up(a,r),(b,s)≤X
+(b,s)∈Up(a,r′),(b,s)andX
+(b,s)∈Up(a,r),(b,s)≤X
+(b,s)∈Up(a′,r),(b,s), (38)
+where U⊆ X is an arbitrary upper set with respect to the order ≤onX.
+We define the partition
+U=[
+b∈A{(b, r)|r∈Ub}, U b={r∈ R | (b, r)∈U},
+where each Ubis an upper set in R. By Lemma 2.1, p(a,r),(b,s)=mabm(a,b)
+rs. Hence, the left
+inequality in (38) follows from the assumption that the rating migration matrices M(a,b)are
+stochastically monotone for all a, b∈ A:
+X
+(b,s)∈Up(a,r),(b,s)=X
+b∈AmabX
+s∈Ubm(a,b)
+rs≤X
+b∈AmabX
+s∈Ubm(a,b)
+r′s=X
+(b,s)∈Up(a,r′),(b,s).
+It remains to prove the right inequality in (38). By definition of the product order ≤onX,
+b≤cimplies Ub⊆Ucfor all b, c∈ A. Together with M(a,b)≤stM(a,c)it follows that
+X
+s∈Ubm(a,b)
+rs≤X
+s∈Ubm(a,c)
+rs≤X
+s∈Ucm(a,c)
+rs.
+Hence, by defining xb=P
+s∈Ubm(a,b)
+rswe obtain a real-valued increasing sequence ( xb)b∈A, i.e.,
+b≤cimplies xb≤xc. Since Mis stochastically monotone it follows from (30) that
+X
+(b,s)∈Up(a,r),(b,s)=X
+b∈AmabX
+s∈Ubm(a,b)
+rs≤X
+b∈Ama′bX
+s∈Ubm(a,b)
+rs. (39)
+Since M(a,b)≤stM(a′,b),
+X
+b∈Ama′bX
+s∈Ubm(a,b)
+rs≤X
+b∈Ama′bX
+s∈Ubm(a′,b)
+rs=X
+(b,s)∈Up(a′,r),(b,s).
+Together with (39), we obtain the right inequality in (38).
+7 Ratings in the Merton model
+To demonstrate the above and further properties of PIT and TTC ratings, we consider a Merton
+firm-value model (Merton, 1974), where an additional drift component, reflecting the economic
+state, affects the firm’s profitability.9More specifically, consider a firm’s asset value process
+(credit quality process ,ability-to-pay process ) (Vt)t≥0, with
+Vt+1=Vte(µ+µA
+t+1−1/2σ2)+σ∆Wt+1, (40)
+where, in the standard Merton-model, µ, σ > 0 are constants and W= (Wt)t≥0is a Brownian
+motion (without loss of generality, we set ∆ t= 1). The economic state process At, independent
+9For an application to real data using historical S&P rating data and GDP growth rates, see (Gera, 2020).
+22ofWintroduces an additional drift in the credit quality process with magnitude given by the
+one-to-one mapping v:A →R, i.e., the drift is given by µA
+t=v(At).
+The firm is in default at time t+ 1 if {Vt+1< D t+1}, with Dt+1theFt-measurable default
+threshold. In a Markov setting, Dt+1will be σ(Vt, µA
+t)-measurable. If one associates with V
+the firm’s asset value, then Dcorresponds to the firm’s debt value, with default taking place if
+the asset value drops below the debt value. We give details on how the firm updates its debt
+level Din Assumption 1 below.
+To ease notation, we write the log asset-to-debt ratio process Zt= ln( Vt/Dt). Because
+default takes place if Zt<0, this process has an interpretation as the “distance to default”.
+Because the firm updates Zt(e.g. by updating Dt), we also write Z(t+1)−= ln( Vt+1/Dt) to
+denote the random variable, which initially at time treflects the “distance to default”, and in
+response to which the firm updates DttoDt+1.
+7.1 Point-in-time rating
+At any time, a firm’s PIT rating is determined by its probability of default. The non-default
+rating classes r1, . . . , r J−1are specified via PD buckets ( dj−1, dj],j= 1, . . . J −1, with PD
+boundaries {d0= 0, d1, . . . , d J−1= 1}. In other words, rating rjis assigned at time tif the
+firm’s probability of default at time tis in ( dj−1, dj]. To ensure that the overall Markov process
+is time-homogeneous, we assume that the firm makes adjustments to its capital structure over
+time. This assumption is justified e.g. by (Lemmon et al. , 2008) who observe that capital
+structures and leverage ratios tend to remain stable over time. In the following, we assume that
+the firm is not in default at time t.
+Assumption 1. At time t, the initial debt level is Dt. Denote Z(t+1)−= ln( Vt+1/Dt). The
+rating class rjat time tis determined from P(Z(t+1)−<0|Zt, µA
+t)∈(dj−1, dj]. Associated with
+each rating class is a PD pj∈(dj−1, dj],j= 1, . . . , J . Based on the rating class rj, the firm
+chooses its debt level Dt+1such that P(Zt+1<0|Zt, µA
+t) =pj.
+By construction, a PIT rating is fully determined by a firm’s PD, so a firm with rating rj
+has a probability of default of pj, regardless of the state of the economy. Formally,
+Rt=rj⇐⇒ P(Z(t+1)−<0|Zt, µA
+t)∈(dj−1, dj]⇐⇒ P(Zt+1<0|Zt, µA
+t) =pj.
+This is how PIT ratings are assigned . The following proposition gives details about the rating
+process obtained by this construction.
+Proposition 7.1.
+(i) At time t, conditional on no-default, i.e., Rt∈bR, which is equivalent to {Zt≥0}, the
+firm’s initial probability of default is given by
+P(Z(t+1)−<0|Zt, µA
+t) =X
+a∈AN 
+−Zt+µ+v(a)−1
+2σ2
+σ!
+P(µA
+t+1=v(a)|µA
+t),
+where Ndenotes the standard normal distribution function.
+(ii) For each economic state, there exist asset-to-debt ratios α1, . . . , α J−1, determined by solv-
+ing, for each rating class rj,
+P(Rt+1=r|Rt=rj, At) =pj=X
+a∈AN 
+−ln(αj) +µ+v(a)−1
+2σ2
+σ!
+P(µA
+t+1=v(a)|µA
+t),
+(41)
+23where pjis the default probability associated with rating rj. The asset-to-debt ratio corre-
+spond to αj=Vt/Dt+1,j= 1, . . . , J −1. In particular, the left equation implies that the
+rating is a PIT rating, see Definition 5.1.
+(iii) There exist rating boundaries cJ+1=−∞< cJ= 0< cJ−1<···< c1=∞depending on
+At,At+1andRtsuch that the conditional rating transition probabilities m(a,b)
+r rjare given
+by
+m(a,b)
+r rj=P(Rt+1=rj|Rt=r, At=a, A t+1=b) = N( cj)−N(cj+1), j = 1, . . . , J.
+Using that the asset-to-debt ratio is αgiven Rt=randAt=a, the boundaries are
+cj+1=min(˜cj+1,0)−ln(α)−µ−v(b) + 1/2σ2
+σ(42)
+cj=˜cj−ln(α)−µ−v(b) + 1/2σ2
+σ, (43)
+where ˜cj,˜cj+1, depending on At=a, are such that
+P(Z(t+1)−<0|Zt, µA
+t=v(a))∈(dj−1, dj]⇐⇒ Zt∈[˜cj+1,˜cj).
+(iv) The process (Rt, At)is a time-homogeneous Markov process.
+Proof. (i) The claim is obtained from Z(t+1)−=Zt+µ+µA
+t+1−1
+2σ2+σ∆Wt+1and taking
+expectation with respect to µA
+t+1.
+(ii) By construction Rt=rjif and only if P(Zt+1<0|Zt, µA
+t) =pj. Since the asset-to-debt
+ratio Vt/Dt+1is (Zt, µA
+t)-measurable, Vt/Dt+1may be replaced by αj, so that
+Zt+1= ln( Vt/Dt+1) +µ+µA
+t+1−1/2σ2+σ∆Wt+1
+= ln( αj) +µ+µA
+t+1−1/2σ2+σ∆Wt+1.
+The left equation of (41) holds by definition of the rating classes, while the right equation
+holds by construction of the PIT rating system on the firm-value process. It remains to observe
+that the sum in (41) is a mixture of functions strictly monotone in αj; hence, αjis uniquely
+determined given pj. (iii) If j=J, then
+P(Rt+1=r|Rt, µA
+t, µA
+t+1) =P(Z(t+1)−<0|Rt, µA
+t, µA
+t+1),
+socJ+1=−∞andcJ= 0. In the case j̸=J, we have
+P(Rt+1=rj|Rt, At, At+1)
+=P 
+P(Zt+2<0|Zt+1, µA
+t+1) =pj, Zt+1>0Zt, µA
+t, µA
+t+1
+=P 
+P(Z(t+2)−<0|Zt+1, µA
+t+1)∈(dj−1, dj], Zt+1>0Zt, µA
+t, µA
+t+1
+.(44)
+On{Zt+1≥0}, holding µA
+t+1fixed, the PD P(Z(t+2)−<0|Zt+1, µA
+t+1) is invertible in Zt+1, since
+from (i):
+P(Z(t+2)−<0|Zt+1, µA
+t+1) =KX
+k=1N 
+−Zt+1+µ+µA
+t+2−1
+2σ2
+σ!
+P(µA
+t+2=v(ak)|µA
+t+1),(45)
+24which is a mixture of functions strictly monotone in Zt+1. Hence, there exist boundaries ˜ cj+1,˜cj
+dependent on µA
+t+1such that,
+P(Z(t+2)−<0|Zt+1, µA
+t+1)∈(dj−1, dj]⇐⇒ Zt+1∈[˜cj+1,˜cj).
+Inserting in (45) and using that, if Rt=r,
+Zt+1= ln( α) +µ+µA
+t+1−1/2σ2+σ∆Wt+1,
+gives
+P(Rt+1=rj|Rt=r, At=a, A t+1=b)
+=P(Zt+1∈[min(˜ cj+1,0),˜cj)|Vt/Dt+1=α, µA
+t=v(a), µA
+t+1=v(b))
+=P(∆Wt+1∈[cj+1, cj)),
+where cj+1andcjare given by (42) and (43), respectively. (iv) It is a consequence of Assumption
+1 and parts (ii), (iii) that the rating transition probabilities do not depend on time or on the
+history of the asset-to-debt ratio.
+7.2 Through-the-cycle rating
+The PIT rating construction implies that, when observing the economic state, it is equivalent to
+observe a firm’s credit quality or rating process. The Markov property is secured via Assumption
+1, which links the credit quality (via the asset-to-debt ratio) to the firm’s rating class.
+Conditional TTC rating changes are determined independent of the economic state, for ex-
+ample due to credit quality changes idiosyncratic to the firm. As a consequence, building a
+TTC rating on the process (40) following Assumption 1 will, in general, be non-Markovian,
+as observing the history of economic state transitions will reveal additional information on a
+firm’s probability of default. Hence, a similar construction for a TTC rating requires different
+assumptions on the firm’s activities: achieving the Markov property requires the firm to elimi-
+nate credit quality information from systematic changes (i.e., the economic state) at each point
+in time. This stronger assumption will, in general, lead to a time-inhomogeneous Markovian
+PIT rating. Depending on the economic state, one would have to adjust rating boundaries to
+yield probabilities of default that are independent of the economic state.
+Not only is the stronger assumption suggested above economically implausible, but from
+a practical point of view, it is not desirable to have two disconnected rating systems yielding
+entirely different rating classes. Rather, it is reasonable to build on the PIT property, i.e., the
+connection between rating class and probability of default, while enforcing the TTC property.
+As a consequence, we shall stick to the construction of the PIT rating, in particular Assump-
+tion 1, and establish the closest TTC rating by minimising the discrepancy between TTC and
+PIT default term structures, conditional on economic states and PIT ratings. This provides a
+feasible construction of a TTC rating from a given PIT rating, even without the explicit PIT
+rating construction from the previous section.
+In the following, we assume throughout that the number of rating classes are the same for
+both PIT and TTC ratings.
+Definition 7.2. A firm’s default term structure at time 0 is defined as
+t7→pt:=P(Rt=r|Rt−1̸=r), t > 0.
+25PDs entering the default term structure are calculated as follows: with λ0the initial dis-
+tribution of rating and economic state, λt=λ0·Ptis the time- tdistribution, where Pis the
+rating transition matrix given by (1). The time- tdefault probability is given by P(Rt=r) =P
+a∈Aλt,(a,r), where λt,(a,r),a∈ A,r∈ R, denote the entries of λt.
+The construction of the TTC rating could be done in one step, but due to the computational
+burden, we break it down into two steps:
+(I) Define the TTC Qmatrix (see Definition 5.2), which embodies the non-default rating
+transitions and is independent of the economic state.
+(II) Determine the TTC Pmatrix and TTC initial distributions conditional on economic
+state and PIT rating.
+The two steps are now described in detail:
+(I). There are different plausible ways to build a TTC’s rating Qmatrix: one can average
+the PIT rating’s Q(a,b)matrices, which depend on the economic state transitions. The averaging
+may be weighed according to the probabilities of economic state transitions:
+P(At+1=b, At=a) =P(At+1=b|At=a)P(At=a) =mab·µA
+a, a, b ∈ A,
+where µAdenotes the stationary distribution of the economic states.
+Another method – the one used in the numerical example below – would use the PIT ratings’
+asymptotic Qmatrix, which is denoted by ˜Qand derived from ˜P∞, see Equations (12) and (26).
+(II). From Equation (25), a TTC rating transition matrix is characterised by
+M(a,b)=D(a,b)·Q, a, b ∈ A. (46)
+It remains to specify the default probabilities m(a,b)
+rjr,j= 1, . . . , J −1, of the default component
+matrix D(a,b). The goal is to determine the default probabilities by calibrating default-term
+structures for each combination of PIT rating and economic state. This requires calibrating
+probabilities of the initial TTC rating for each of these combinations as well. More specifically,
+for each initial state ( a, r), the initial probabilities under the TTC rating, λTTC
+(a,r)∈[0,1]KJ, are
+determined by calibrating the default term structure conditional on the economic state aand
+the PIT rating r. In addition, default-term structures are fitted where only the economic state
+is given and the initial PIT rating is specified by the stationary distribution of the non-default
+states. The corresponding TTC default-term structures (for each economic state) are also
+determined from the TTC rating’s stationary distributions. Formally, the calibration problem
+is specified as
+min
+{m(a,b)
+rr,λTTC
+(a,r)|r∈bR,a,b∈A}
+X
+r∈bRX
+a∈AX
+t∈T
+pTTC
+t,(a,r)−pPIT
+t,(a,r)2
++X
+a∈AX
+t∈T(pTTC
+t,a−pPIT
+t,a)2
+1/2
+.(47)
+As outline above, ( pPIT
+t,(a,r))t∈Tand ( pTTC
+t,(a,r))t∈Tas well as λTTC
+(a,r)refer to default term struc-
+tures, resp. an initial distribution, conditional on economic state aand PIT rating r, whereas
+(pTTC
+t,a)t∈Tand ( pPIT
+t,a)t∈Trefer to default term structures where the initial rating distribution
+is determined from the respective stationary distribution conditional on economic state a∈ A.
+Constraints of the optimisation problem ensure that the initial distribution is a probability
+measure, that the matrix PTTCis a stochastic matrix and that PDs of default term structures
+with varying initial distributions are well-ordered.
+267.3 Example
+Parameter Value
+Merton model
+µ 0.003
+σ 0.006
+∆t 1
+Economic states
+# economic states 3
+Economic state transition matrix M
+0.8 0 .175 0 .025
+0.1 0 .8 0 .1
+0.025 0 .175 0 .8
+
+Economic state drift µA{σ,0,−σ}
+Rating classes
+# non-default rating classes 3
+PIT default probabilities p∈ {0.0002,0.005,0.025}
+PIT rating boundaries d∈ {0,0.0003,0.02,1}
+Table 1: Parameters used in the example.
+This section illustrates PIT and TTC ratings determined from a Merton model as outlined
+in the previous sections. The parameters used are shown in Table 1.
+To economic stateFrom economic state1 2 3
+1
+12341 2 3 4
+1
+2
+3
+41 2 3 4
+12341 2 3 4
+2
+12341 2 3 4
+1
+2
+3
+41 2 3 4
+12341 2 3 4
+3
+12341 2 3 4
+1
+2
+3
+41 2 3 4
+12341 2 3 4
+To economic stateFrom economic state
+1 2 3 4 1 2 3 4 1 2 3 4 1
+2
+3
+4
+1
+2
+3
+4
+1
+2
+3
+4123123
+Figure 3: M(a,b)matrices (left) and Pmatrix (right) of TTC rating. Economic states are
+labelled 1 (good), 2 (neutral) and 3 (bad). Darker shades indicate values closer to one, whereas
+white indicates a value of zero or close to zero.
+Figure 1 in Section 2.2 shows the PIT M(a,b)matrices and Pmatrix. Figure 3 shows
+the corresponding matrices of the TTC rating. The M(a,b)matrices reveal that, as expected,
+rating transitions in the PIT rating depend more strongly on the economic state transition,
+while transitions to non-default ratings of the TTC system vary little across economic state
+transitions. The PDs of TTC rating classes (last column in each matrix) show variation across
+the economic states. It is easily verified that the Pmatrices are monotone with respect to the
+upper orthant order. They are even stochastically monotone, so powers are monotone with
+respect to the upper orthant order as well.
+272 4 6 8100.0000.0020.0040.0060.0080.010
+PeriodProbability of DefaultBest PIT Rating2 4 6 8100.0000.0020.0040.0060.0080.010
+PeriodProbabilityofDefaultCorresponding TTC rating
+2 4 6 8100.0000.0020.0040.0060.0080.0100.012
+PeriodProbability of DefaultMediumPITrating2 4 6 8100.0000.0020.0040.0060.0080.0100.012
+PeriodProbabilityofDefaultCorrespondingTTCrating
+ 
+2 4 6 8100.0000.0050.0100.0150.0200.025
+PeriodProbability of DefaultWorst non -default PIT rating 
+2 4 6 8100.0000.0050.0100.0150.0200.025
+PeriodProbabilityofDefaultCorresponding TTC ratingFigure 4: Default curves generated by PIT (left) and TTC (right) ratings. Left, from top to
+bottom: initial PIT ratings are ordered from best to worst non-default rating; each curve denotes
+the economic state in which the curve starts (blue: good, red: neutral, green: bad). Right:
+Corresponding TTC ratings, where initial distributions λTTC
+(a,r), r∈ˆR, a∈ A, are calibrated to
+respective initial PIT rating, see Equation (47).
+In the following, we compare various default curves generated by PIT and TTC ratings. The
+left-hand side of Figure 4 shows default curves for all combinations of initial PIT non-default
+ratings and economic states. The right-hand side shows the corresponding calibrated TTC
+ratings. Regardless of the economic state, the PIT one-period PD depends only on the initial
+PIT rating. This is not the case for TTC ratings, although default probabilities are close, given
+that each TTC default curve represents firms in one PIT rating. The default curves converge at
+the long end across ratings and economic states. Because TTC rating classes are more stable,
+due to the constant Qmatrix, convergence tends to occur faster.
+Figure 5 shows default curves for every combination of initial TTC rating and initial eco-
+nomic state. In each graph, the curves are again ordered according to the initial economic state
+(blue: good, red: neutral, green: bad). As the one-period PDs for the best and medium TTC
+ratings are practically zero, regardless of the economic state, a firm’s rating path will nearly
+certainly pass through the worst TTC rating before it defaults.
+Also shown in Figure 5 (in grey) are default curves derived from the asymptotic approx-
+imation (12) of the TTC rating. As before, (conditional) rating migrations are insensitive to
+282 4 6 8100.0000.0020.0040.0060.0080.010
+PeriodProbability of DefaultBest TTC rating 
+2 4 6 8100.0000.0050.0100.015
+PeriodProbabilityofDefaultMedium TTC rating
+
+2 4 6 8 100.000.020.040.06
+PeriodProbability of DefaultWorst non -default TTC ratingFigure 5: Default curves generated by TTC ratings. Colour-coded curves denote the initial
+economic state (blue: good, red: neutral, green: bad). The grey curve denotes the default
+probabilities of the asymptotic approximation (12), which corresponds to a TTC rating that
+has no economic-state information at all.
+2 4 6 8100.0000.0050.0100.015
+PeriodProbability of DefaultPIT rating2 4 6 8100.0000.0050.0100.015
+PeriodProbabilityofDefaultTTC rating
+Figure 6: Default curves generated by PIT and TTC ratings where only the initial economic
+state is known. The initial distributions of the PIT and TTC ratings are determined from the
+stationary distribution of P. Colour-coded curves denote the initial economic state (blue: good,
+red: neutral, green: bad). The grey curve denotes the default probabilities of the asymptotic
+approximation (12), which corresponds to a TTC rating that has no economic-state information
+at all.
+the economic state, but in addition, this is now also the case for PDs. These PDs meet regu-
+latory capital requirements by being based on the observed historical average one-year default
+rate, Basel Committee on Banking Supervision (2016). It can be seen that these PDs over- or
+underestimate real PDs depending on the economic state.
+Finally, Figure 6 shows default curves of PIT and TTC ratings, where only the initial
+economic state is known. The initial distributions are chosen as the stationary distributions,
+which are determined from the Pmatrices with default states removed, and then conditioned
+on each economic state. The curves can be interpreted as representing – conditional on the
+economic state – the default probabilities of a randomly picked firm. As such, ideally, the
+curves would be equal, as the default probabilities of a randomly picked firm should not depend
+on a particular rating philosophy. However, as can be seen, with the TTC rating being “more
+stable”, it is harder to differentiate the neutral and bad economic states than in the case of the
+PIT ratings where the initial default probabilities are given.
+The grey curve in Figure 6 shows the default curve of the TTC rating’s asymptotic approx-
+imation (12). Given that there is no initial information about the firm and the economic state,
+these PDs remain constant through time.
+298 Conclusion
+To conclude, we point out how the rating framework introduced in this paper complies with
+requirements of ratings and PDs in both accounting and regulatory capital standards.
+The International Financial Reporting Standard (IFRS) 9 as well as the accounting stan-
+dard Current Expected Credit Losses (CECL) require financial institutions to calculate expected
+credit losses that reflect current economic conditions and forecasts of future economic condi-
+tions10. Hence, default probabilities that are used for calculating expected credit losses for
+accounting purposes have to be realistic estimates of the actual probability of default taking the
+current economic state as well as the future (stochastic) development of economic conditions
+into account. As the accounting standards do not contain any requirements on rating systems,
+even default probabilities of a rating process ( Rt)t∈N0that is predominantly TTC satisfies the
+accounting requirements as long as the PD curve P(Rt=r)t∈N0specified by ( Rt)t∈N0provides
+a realistic estimate of the actual probabilities of default. This requirement typically implies
+that default probabilities P(Rt+1=r|Rt=r) show a strong dependence on economic states
+to make up for the low sensitivity of non-default ratings to economic conditions if ( Rt)t∈N0is
+predominantly TTC.
+The PD curve P(Rt=r)t∈N0can be derived from the time-inhomogeneous transition matri-
+cesePtvia Equation (10). In our setup, the transition matrices ePtdepend on the probabilities of
+the different economic paths ( a0, a1, . . . , a t)∈ At+1specified by the Markov process ( At)t∈N0.
+In practice, the specification of economic scenarios ( a0, a1, . . . , a T) is based on actual macro-
+economic forecasts, which provide the economic information required for the transition matrices
+eP1, . . . ,ePTup to a forecast horizon T. For extending the default curve beyond T, the asymp-
+totic transition matrix eP∞is typically used, which formalizes the long-term average migrations
+of the rating process, see Equation (12).
+In contrast to accounting requirements, financial regulators wish to avoid procyclical capital-
+isation of financial institutions, as this would incentivise firms to reduce their capital when the
+economy thrives, which in turn would require firms to increase their capital in economic down-
+turns, when this is particularly difficult to achieve. As this procyclical capitalisation poses a
+threat to financial stability, financial regulators prefer banks to assess regulatory capital require-
+ments for credit risk using through-the-cycle (TTC) ratings,11which are designed to be stable
+through the business cycle. In addition, default probabilities in regulatory capital requirement
+calculations should be based on the observed historical average one-year default rate, see Basel
+Committee on Banking Supervision (2016). In order to satisfy these requirements in our setup,
+consider a rating migration process ( Rt)t∈N0that is predominantly TTC. The asymptotic PDs
+of (Rt)t∈N0correspond to the historical average one-year default rate of this rating migration
+process. Hence, the asymptotic approximation ( St)t∈N0based on the transition matrix eP∞(see
+Definition 4.2) is a rating migration process that is consistent with the regulatory requirements
+listed above. However, as the example in Section 7.3 demonstrates, ( St)t∈N0does not provide
+realistic PD estimates. In particular, these PDs – shown in Figures 5 and 6 – tend to underesti-
+mate the actual default risk in a negative economic environment. Alternatively, the asymptotic
+default probabilities specified by eP∞could be replaced by default probabilities taken from a
+conditional transition matrix M(a,b), where the choice of the economic states a, b∈ A reflects
+the underlying economic assumptions. For example, if the transition from atobrepresents a
+negative economic scenario the default probabilities in M(a,b)could be interpreted as stressed
+PDs. If default probabilities are specified in this way the underestimation of the actual default
+risk could be avoided, even in a negative economic environment, but at the expense of overly
+conservative PD estimates during benign economic times.
+10International Financial Reporting Standard (IFRS) 9, Paragraph 5.5.17
+11Capital requirements regulation and directive – CRR/CRD IV, Article 502
+30References
+Aguais, S. D., L. R. Forest, M. King, M. C. Lennon, and B. Lordkipanidze. Designing and
+Implementing a Basel II Compliant PIT-TTC Ratings Framework. In The Basel Handbook .
+Risk Books, 2nd edition, 2008.
+Altman, E. I. and H. A. Rijken. How rating agencies achieve rating stability. Journal of Banking
+& Finance , 28(11):2679–2714, 2004.
+Altman, E. I. The importance and subtlety of credit rating migration. Journal of Banking &
+Finance , 22(10-11):1231–1247, 1998.
+Bangia, A., F. X. Diebold, A. Kronimus, C. Schagen, and T. Schuermann. Ratings migration
+and the business cycle, with application to credit portfolio stress testing. Journal of Banking
+& Finance , 26:445–474, 2002.
+Basel Committee on Banking Supervision. Reducing variation in credit risk-weighted assets -
+constraints on the use of internal model approaches. Consultative Document, 2016.
+Behn, M., R. Haselmann, and P. Wachtel. Procyclical capital regulation and lending. The
+Journal of Finance , 71(2):919–956, 2016.
+Bluhm, C. and L. Overbeck. Calibration of PD term structures: to be Markov or not to be.
+Risk, 20(11):98–103, 2007.
+Bluhm, C., L. Overbeck, and C. Wagner. An Introduction to Credit Risk Modeling . Chapman
+& Hall/CRC, London, 2003.
+Borio, C., C. Furfine, and P. Lowe. Procyclicality of the financial system and financial stability:
+issues and policy options. BIS papers, No. 1, 2001.
+Br´ emaud, P. Markov chains: Gibbs fields, Monte Carlo simulation, and Queues , volume 31.
+Springer, 1999.
+Carlehed, M. and A. Petrov. A methodology for point-in-time-through-the-cycle probability of
+default decomposition in risk classification systems. The Journal of Risk Model Validation ,
+6(3):3, 2012.
+Crouhy, M., D. Galai, and R. Mark. Prototype risk rating system. Journal of Banking &
+Finance , 25(1):47–95, 2001.
+Duffie, D. and K. J. Singleton. Credit Risk: Pricing, Measurement, and Management . Princeton
+University Press, 2003.
+Fei, F., A.-M. Fuertes, and E. Kalotychou. Credit rating migration risk and business cycles.
+Journal of Business Finance & Accounting , 39(1-2):229–263, 2012.
+F¨ ollmer, H. and A. Schied. Stochastic Finance. An Introduction in Discrete Time . de Gruyter,
+2002.
+Frobenius, G. ¨Uber Matrizen aus nicht negativen Elementen. Sitzungsberichte der K¨ oniglich
+Preussischen Akademie der Wissenschaften , pages 456–477, 1912.
+Frydman, H. and T. Schuermann. Credit rating dynamics and markov mixture models. Journal
+of Banking & Finance , 32(6):1062–1075, 2008.
+Gera, I. Credit rating migration processes based on economic state-dependent transition ma-
+trices. Master’s thesis, Goethe-University Frankfurt, 2020.
+Gordy, M. B. and B. Howells. Procyclicality in Basel II: Can we treat the disease without killing
+the patient? Working Paper, Board of Governors of the Federal Reserve System, April 2004.
+31G¨ uttler, A. and P. Raupach. The impact of downward rating momentum. Journal of Financial
+Services Research , 37(1):1, 2010.
+Heitfield, E. A. Dynamics of rating systems. In Studies on the Validation of Internal Rating
+Systems . BIS Working Papers, No. 14, 2005.
+Jarrow, R. A., D. Lando, and S. M. Turnbull. A Markov model for the term structure of credit
+risk spreads. Review of Financial Studies , 10(2):481–523, 1997.
+Lando, D. and T. M. Skødeberg. Analyzing rating transitions and rating drift with continuous
+observations. Journal of Banking & Finance , 26(2-3):423–444, 2002.
+Lando, D. Credit Risk Modeling . Princeton University Press, 2004.
+Lemmon, M. L., M. R. Roberts, and J. F. Zender. Back to the beginning: persistence and the
+cross-section of corporate capital structure. Journal of Finance , 63(4):1575–1608, 2008.
+Malik, M. and L. C. Thomas. Transition matrix models of consumer credit ratings. International
+Journal of Forecasting , 28(1):261–272, 2012.
+Merton, R. C. On the pricing of corporate debt: The risk structure of interest rates. Journal
+of Finance , 29(2):449–470, May 1974.
+Miu, P. and B. Ozdemir. Adapting the Basel II advanced internal-ratings-based models for
+International Financial Reporting Standard 9. Journal of Credit Risk , 13(2):53–83, 2017.
+Morone, M. and A. Cornaglia. Rating philosophy and dynamic properties of internal rating
+systems: a general framework and an application to backtesting. Journal of Risk Model
+Validation , 3(4):61–88, 2009.
+M¨ uller, A. and D. Stoyan. Comparison methods for stochastic models and risks , volume 389.
+Wiley, 2002.
+M¨ uller, A. Stochastic Orders in Reliability and Risk , chapter Duality Theory and Transfers for
+Stochastic Order Relations, pages 41–57. Springer New York, 2013.
+Nickell, P., W. Perraudin, and S. Varotto. Stability of rating transitions. Journal of Banking
+& Finance , 24:203–227, 2000.
+Norris, J. R. Markov Chains . Cambridge University Press, 1998.
+Perron, O. Zur Theorie der Matrices. Mathematische Annalen , 64(2):248–263, 1907.
+Rolski, T., H. Schmidli, V. Schmidt, and J. L. Teugels. Stochastic processes for insurance and
+finance . John Wiley & Sons, 2 edition, 2009.
+Rosenblatt, M. Markov processes, Structure and Asymptotic Behavior . Springer, 1971.
+Rubtsov, M. and A. Petrov. A point-in-time-through-the-cycle approach to rating assignment
+and probability of default calibration. Journal of Risk Model Validation , 10(2):83–112, 2016.
+Rubtsov, M. Calibration of rating grades to point-in-time and through-the-cycle levels of prob-
+ability of default. Journal of Risk Model Validation , 2021.
+Seneta, E. Non-negative matrices . George Allen & Unwin Ltd, 1973.
+Shaked, M. and J. G. Shanthikumar. Stochastic orders . Springer Science & Business Media,
+2007.
+Vall´ es, V. Stability of a ”through-the-cycle” rating system during a financial crisis. Financial
+Stability Institute, Bank of International Settlements (BIS), 2006.
+Wilson, T. C. Portfolio credit risk. Federal Reserve Bank of New York Economic Policy Review,
+1998.
+32

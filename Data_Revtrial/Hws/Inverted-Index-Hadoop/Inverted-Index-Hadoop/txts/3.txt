@@ -1,0 +1,685 @@
+arXiv:2403.13957v2  [math.HO]  30 Mar 2024Linear Algebra In A Jiﬀy
+Leo Livshits
+Tuesday 2ndApril, 2024
+Dedicated to Heydar Radjavi on the occasion of his 89-th birthday.
+Abstract
+Everyn-tuple in Fnhas a ﬁrst non-zero entry and a last non-zero entry.
+What do the positions of such entries in the elements of a subs paceWofFn
+reveal about W? It turns out, a great deal! This insight oﬀers a beeline to
+the fundamental results on general bases and dimension (inc luding dimensions
+of complements, rank of a transpose, Rank-Nullity Theorem, Full Rank Factor-
+ization, and existence/uniqueness of RREF), bypassing som e of the traditional
+stumbling blocks and time sinks.
+1Introduction
+This article is about doing old things in a new way. It is aimed at mathematicians
+who teach linear algebra, and it is laid out in a fairly formal way, for eﬃciency
+sake.1The reader who decides to embark on this trip is advised to exe rcise a touch
+of amnesia; otherwise the tenets of the standard approach wi ll not let go of the
+mind.
+Modern developments suggest that initial focus in introduc tory linear algebra
+should be placed on RnandCn, with concepts of orthogonality and least squares
+playing an earlier and more central role, and Singular Value Decomposition done
+justice within the ﬁrst course. To be able to implement this w ithout skipping ar-
+guments that justify claims, or replacing proper developme nt with commandments,
+something has to go overboard.
+Our approach establishes basic fundamental results quickl y, bypassing traditional
+stumbling blocks and time sinks. The gained eﬃciency is due t o an early introduc-
+tion of a combinatorial concept of right/left dimension of a subspace, requiring no
+prior exposure to linear independence, linear systems or ro w-reduction.
+In a course, the material that should precede our point of dep arture, would include
+an introduction to the operations on Rn(orCn, orFn), the concept of a subspace,
+and the fact that spans and ortho-complements generate subs paces. No more than
+that.
+The article is organized as follows. In section 2 we introduc e right/left-standard
+indices. This is a new concept that serves as a trailhead for t he shortcut. Section
+3 deals with the right/left-basic elements of subspaces and canonical coordinate
+systems. Section 4 treats dimensionality. In section 5 we co nnect the canonical
+coordinate systems of a subspace with those of its ortho-com plement.
+1It is a useful feature of the arguments that they are short and are easily converted into a concrete
+and visual form that students ﬁnd pleasantly comprehensibl e and convincing, despite the absence of full
+generality and rigorous formalism. This is how the material is presented in our forthcoming textbook
+“Not Your Grandpa’s First Introduction To Linear Algebra.”2 Right/Left-Standard Indices 2
+The material in sections 6 and 7 assumes some rudimentary fam iliarity with matrix
+algebra, including transposition. Again, only the basics ar e required. In these
+sections we apply the new methods to establish the equality o f row and column
+ranks, Rank-Nullity theorem, full rank factorization, and existence/uniqueness of
+the RREF, all as immediate by-products. All of this happens qu ickly and at a low
+cost.
+Section 8 describes a recursive form of Gauss-Jordan elimin ation reminiscent of
+Gram-Schmidt process, that can be used to construct the RREF of a matrix.
+Section 9 of the article deals with a combinatorial question that is not usually a
+part of the course. If one were to mark all of the positions whe re the elements
+of a subspace have their ﬁrst non-zero entry and their last no n-zero entry, what
+conﬁgurations can be thus produced?
+Throughout this article, Frepresents an arbitrary ﬁeld. We interpret the vectors
+ofFnas lists, and as such these can be presented vertically, hori zontally, or even
+diagonally, as long as the ordering is clear. The entries of a vector in Fnappear
+in itsnpositions , indexed 1 through n. Thei-th entry of X∈Fnis the element
+ofFthat appears in the i-th position of X, and it is denoted by X(i). Thek-th
+standard basis vector E kinFnis the list that has 1 as its k-th entry and zeros
+in all other positions.
+The last non-zero entry of a vector in Fnis said to be the terminating entry of
+that vector. Obviously the zero vector has none such. If the t erminating entry
+ofX∈Fnoccurs in the j-th position, we say that Xterminates in thej-th
+position. Similarly the ﬁrst non-zero entry of an element of Fnis itsoriginating
+entry, andXoriginates in thej-th position if its originating entry occurs in that
+position.
+2Right/Left-Standard Indices
+LetWbe a subspace of Fn. IfWcontains an element that terminates in the
+j-th position, we say that jis aright-standard index ofW, and the j-th position
+is aright-standard position forW. For example, if Wcontains an element with
+no zero entries, then the n-th position is a right-standard position for W. Since
+subspaces are closed under scaling, a position is right-sta ndard for Wif and only
+ifWcontains an element which terminates with a 1 in that positio n.
+To avoid tongue-twisting, we will trade in the term “right-s tandard” for “ red”. Why
+red? Well, both terms start with an r, “red” is a short word, and redentries are
+bound to leave redresidue, marking the redpositions.
+Similarly, if Wcontains an element that originates in the j-th position, then jis
+aleft-standard index ofW, and the j-th position is a left-standard position forW.
+We write “ lime” for “left-standard”.
+Since results involving limeindices, entries and positions are mostly analogous to
+those involving the redversions thereof, we will just focus on the latter, unless we
+specify otherwise.
+The number of redpositions for Wis said to be the red-imension ofW. Obviously
+thered-imension of the trivial subspace {On}is zero. We choose this (temporary)
+strange terminology to highlight the fact that we are not che ating by somehow
+sneaking in the usual notion of dimension before the underly ing concepts and
+results are established.3 Red-Basic Elements 3
+Since any non-zero element of Wterminates in a redposition,
+the only element of Wthat has zeros in all redpositions of Wis the zero vector. (*)
+AsWis closed under subtraction, it follows that
+two elements of Ware equal exactly when they coincide in all redpositions of W.(**)
+In particular, if iisthe smallest redindex of W, then there is exactly one element
+inWwhich terminates with a 1 in the i-th position.
+The existence of the redindices for a non-trivial subspace of Fnis undeniable, no
+matter how the subspace is deﬁned . Finding what these indices are in a particular
+situation is a diﬀerent story, as is often the case in linear a lgebra. This does
+not diminish the value of the approach, which is designed to b eeline through the
+introductory fundamentals of linear algebra in an honest wa y.
+3Red-Basic Elements
+3.1 Theorem /hand_rightRed-Basic Elements
+WhenWis a non-trivial subspace of Fn, for each redindexiofWthere
+exists a unique element Wi∈ Wthat terminates with a 1 in the i-th position,
+and has 0’s in all preceding redpositions of W.
+Proof.Let us start with the uniqueness, as this is an easier task. If XandY
+were distinct elements of Wwith the described property for a redindexi, their
+diﬀerence would be a non-zero element of Wthat has zeros in all redpositions of
+W, which is not possible, by (**).
+On to the existence. As we have already observed, the claim hol ds true for the
+smallest redindexi1ofW. We proceed inductively. Suppose that Wi1,Wi2,...,Wikhave been constructed for the smallest kredindicesi1,i2,...,ikofW, andik+1is
+the next redindex of W.
+Wcontains an element Xwhich terminates with a 1 in the ik+1-st position. It
+follows that
+X−X(i1)Wi1−X(i2)Wi2−···−X(ik)Wik
+is an element of Wthat has zero entries in positions indexed by i1,i2,...,ik, and
+terminates with a 1 in the ik+1-st position. This is the Wik+1we seek. /squaresolid
+For each redindexiofW, we will refer to the element Widescribed in theorem
+3.1 asthered-basic element ofWcorresponding to i. Restricted to the red
+positions of Wthered-basic elements of Wlook like the standard basis m-tuples
+E1,E2,...,E m, wheremis thered-imension of W.3 Red-Basic Elements 4
+3.2 Theorem /hand_rightRedEntries Are Free
+Suppose that a subspace WofFnhasred-imension k, anda1,a2,...,a k∈F.
+Then there exists exactly one element X∈ Wwitha1,a2,...,a kas its entries
+in theredpositions of W(in that order).
+Proof.We have already noted in (**) that there cannot be two distinc t elements
+ofWwith the described property. All we need to show is that there i s always at
+least one such.
+This is not diﬃcult, since on the redpositions of Wthered-basic elements of W
+look like the standard basis vectors E1,E2,...,E kofFk.
+Ifi1< i2<···< ikare theredindices of W, then the element
+X=a1Wi1+a2Wi2+···+akWik∈ W
+satisﬁes the required condition of having a1,a2,...,a kas its entries in the red
+positions of W. /squaresolid
+3.3Deﬁnition /hand_rightCoordinate Systems
+We say that a list X1,X2,...,X kin a subspace WofFngenerates a coordinate
+system forWif every element of Wcan be expressed uniquely as a linear
+combination of X1,X2,...,X k.
+3.4 Corollary /hand_rightRed-basic elements generate a coordinate system
+IfWis a non-trivial subspace of Fnthen the red-basic elements of Wgenerate
+a coordinate system of W.
+Proof.We use the fact that on the redpositions of Wthered-basic elements look
+like the standard basis vectors.
+Ifi1< i2,<···< ikare theredindices of W, andX∈ Wthen
+X(i1)Wi1+X(i2)Wi2+···+X(ik)Wik
+is the unique element of WwithX(i1),X(i2),...,X(ik)as its entries in the
+redpositions of W. Of course Xitself has these same entries in those same posi-
+tions. By (**),
+X(i1)Wi1+X(i2)Wi2+···+X(ik)Wik
+is the one and only linear combination of the red-basic elements of Wthat equals
+X. /squaresolid
+To express an element XinWas a linear combination of the red-basic elements of
+W, one uses the entries of Xin theredpositions of Was coeﬃcients.
+In particular, if Wi1,Wi2,...,W ikare thered-basic elements of W, testing whether
+a givenn-tupleXis inWis as easy as pie: simply test the equality
+X=X(i1)Wi1+···+X(ik)Wik. (1)4 Red Indices Give Dimension 5
+4Red Indices Give Dimension
+The following result is standard and has an easy enough stand ard proof, which
+we omit for the sake of brevity.
+4.1 Theorem /hand_rightCoordinate system criterion
+A listX1,X2,...,X kin a subspace WofFngenerates a coordinate system for
+W(see 3.3) exactly when it spans W, does not start with a zero vector, and
+has no elements that are linear combinations of the precedin g elements.
+In view of theorem 4.1, we can use the traditional term “ basis” and our term
+“coordinate system” interchangeably. The redbasisofWis the coordinate system
+formed by its red-basic elements listed in the order of the corresponding redindices
+(see corollary 3.4).
+4.2 Theorem /hand_rightMonotonicity of red-imension
+IfW /precedesequal V /precedesequal Fn, thenred-imension (W)≤red-imension (V),and the equality
+ofred-imensions holds only when W=V.
+Proof.Theredindices of a subspace are determined by the terminal positio ns of
+its elements. Through enlarging the subspace one can only ad d to the collection of
+such indices.
+If no new redindices have been added in the process, then the red-basic elements
+ofWmust be exactly the red-basic elements of V, which means that WandV
+have the same redbasis and are therefore equal. /squaresolid
+4.3 Theorem /hand_rightStep-up bound for red-imension
+For any X1,X2,...,X k,Y∈Fn,
+red-imension/parenleftBig
+Span(X1,X2,...,X k,Y)/parenrightBig
+≤red-imension/parenleftBig
+Span(X1,X2,...,X k)/parenrightBig
++1.
+Proof.Let us denote the span of X1,X2,...,X kbyW, and the span of
+X1,X2,...,X k,YbyV. Elements of Vhave the form Z+αY, whereZ∈ W,α∈F.
+We need to demonstrate that we could not have created two new redindices for
+the span, by attaching Yto the original list X1,X2,...,X k. Had we done so, there
+would be elements Z1+αYandZ2+βYthat terminate in distinct non- redpositions
+forW(say,i-th andj-th positions, with i < j).
+Neitherαnorβcan be zero. Consequently βZ1+αβYandαZ2+αβYstill terminate
+in thei-th and j-th positions respectively. Therefore their diﬀerence, wh ich is
+αZ2−βZ1, terminates in the j-th position (since i < j). Yet this diﬀerence is
+an element of W, and hence cannot terminate in a non- redposition of W. This
+contradiction completes the proof. /squaresolid5 Red/Lime Bases And •-Complements 6
+4.4 Theorem /hand_rightRed-imension is the dimension
+Every basis of Whas exactly the same number of elements as the redbasis
+ofW.∗
+∗It is worth reiterating that naturally we have made neither u se of nor assumption about the
+equality of cardinalities of various bases of a given subspac e. The equality is an easy byproduct
+of our tack.
+Proof.By theorem 4.1, a list X1,X2,...,X min a non-trivial subspace WofFnis a
+basis of Wexactly when
+{O}/subsetnoteqlSpan(X1)/subsetnoteqlSpan(X1,X2)/subsetnoteql···/subsetnoteqlSpan(X1,X2,...,X m) =W.
+By theorem 4.2, this, apart from the requirement that Xi∈ W, can be restated in
+terms of red-imension :
+1=red-imension/parenleftBig
+Span(X1)/parenrightBig
+<red-imension/parenleftBig
+Span(X1,X2)/parenrightBig
+<···
+<red-imension/parenleftBig
+Span(X1,X2,...,X m)/parenrightBig
+=red-imension (W).
+In such a case each step-up in red-imension must be exactly 1, by theorem 4.3, and
+the proof is complete. /squaresolid
+4.5 Corollary
+Every subspace WofFnhas as many limeindices and redones.∗
+∗Of course the reader will have noticed that the linear isomor phism on Fnthat reverses the
+order of the entries in each n-tuple, maps a subspace Wto a subspace W/curlyleftin such a way that
+theredindices of Wbecome the limeindices of W/curlyleft. This demonstrates that red-imension and
+limed-imension of a subspace are equal, but obviously by “borrowin g from the future”.
+A compelling reason for introducing red/limeindices is to provide an eﬃcient alternate path
+for the ﬁrst linear algebra course. The red/limeindices are designed to be encountered well
+before linear functions make their oﬃcial appearance, or th e traditional concept of dimension is
+introduced.
+5Red/Lime Bases And •-Complements
+We will write X•Yto indicate the standard symmetric bilinear form, commonly
+known as the dot product, for elements of Fn. For each collection SinFn, we
+deﬁne its •-complement to be
+S•={X∈Fn|∀Y∈ S:X•Y=0}.
+WhenF=R,•-complement captures the geometry of perpendicularity.2
+2For the standard inner product on Cnsee remark 5.4.5 Red/Lime Bases And •-Complements 7
+5.1 Theorem /hand_rightDuality of red/limeindices of •-complements
+For any subspace WofFn, thelimeindices of W•are exactly the non- red
+indices of W.
+Proof.Ifiis aredindex of W, it cannot be a limeindex of W•, since otherwise
+Wwould contain an element that terminates with a 1 in the i-th position, while
+W•would contain an element that originates with a 1 in the i-th position. The dot
+product of these two elements would be 1, contrary the deﬁnit ion ofW•.
+Ifiois a non- redindex of W, then there are two scenarios to consider. In the
+ﬁrst scenario there are no redindices of Wthat are greater than io. In that case
+every element of Wterminates before the io-th position. Therefore the standard
+basis vector Eiois inW•, which shows that iois alimeindex of W•.
+In the remaining scenario iois followed by some redindices, say i1,i2,...,ik. Let
+us write ajfor theio-th entry of Wij.
+We shall construct an element ZofW•which originates in the io-th position, so
+thatiois alimeindex of W•.3The design of Zis such that for each red-basic
+element WiofW, there are at most two positions where both WiandZhave
+non-zero entries.
+We let
+Z(m) =
+
+1 ifm=io
+−ajifm=ij;1≤j≤k
+0 otherwise.
+It is easy to see that Z•W=0 for every red-basic element WiofW, and since
+these form a basis of W,Z∈ W•. /squaresolid
+Here is an illustration of the construction in the proof of th eorem 5.1, when io=2
+andi1,i2,...,ikare 5,8,9,13,...,p:
+W5= (⋆,a5,⋆,⋆,1,0,0,0,0,0,0,0,0, ..., 0, ..., 0)
+W8= (⋆,a8,⋆,⋆,0,⋆,⋆,1,0,0,0,0,0, ..., 0, ... 0)
+W9= (⋆,a9,⋆,⋆,0,⋆,⋆,0,1,0,0,0,0, ..., 0, ... 0)
+:
+Wp= (⋆,ap,⋆,⋆,0,⋆,⋆,0,0,⋆,⋆,⋆,0, ..., 1, ... 0)
+Z= (0,1,0,0,−a5,0,0,−a8,−a9,0,0,0,−a13, ..., −ap, ... 0)
+↑ ↑ ↑ ↑ ↑ ↑
+5.2Observation
+It is worth noting that the element Zconstructed in the proof of theorem 5.1
+is exactly the lime-basic element of W•corresponding to the limeindexioof
+W•. This shows that
+thelimebasis of W•can be simply read oﬀ from the redbasis of W, and vice
+versa.
+3This proof is followed by an illustration of the constructio n.6 Red/Lime Bases And Ranges/Nullspaces 8
+5.3 Corollary /hand_rightDimensions of •-complements
+For any subspace WofFn,dim(W)+dim/parenleftbig
+W•/parenrightbig
+=n, and consequently
+/parenleftbig
+W•/parenrightbig•
+=W.
+Proof.We have veriﬁed that the limeindices of W•are exactly the non- redindices
+ofW. Of course this shows that dim/parenleftbig
+W•/parenrightbig
+=n−dim(W).
+To establish the remaining claim, note that Wis naturally included in/parenleftbig
+W•/parenrightbig•
+, and
+the two subspaces have the same dimensions. /squaresolid
+5.4Observation
+An analogous argument (cf. proof of theorem 5.1) demonstrate s similar results
+in the case F=C, when•is replaced by the standard inner product. This can
+be viewed as a particular case of a more general claim. If ϕ:F−→Fis an
+involutive isomorphism, and we deﬁne P:Fn×Fn−→Fby
+P(X,Y) =X•ϕ(n)(Y),
+where
+ϕ(n)
+y1
+y2
+:
+yn
+=
+ϕ(y1)
+ϕ(y2)
+:
+ϕ(yn)
+,
+then analogous conclusions can be drawn regarding WPand/parenleftBig
+WP/parenrightBigP
+.
+6Red/Lime Bases And Ranges/Nullspaces
+Let us begin with a brief review of some concepts and terminol ogy pertaining to
+matrices, which would have to be introduced prior to the mate rial we are about to
+discuss.
+When one applies an n×mmatrixAto anm-tupleX, the resulting n-tupleA(X)
+can be described in terms of the rows R1,R2,...,R nofA, as well as in terms of
+the columns C1,C2,...,C mofA:
+1. thei-th entry of A(X)is the dot products Ri•X;
+2.A(X) =X(1)C1+X(2)C2+···+X(m)Cm.
+For convenience let us refer to these as a row-centric and acolumn-centric
+descriptions of A(X), respectively.
+The column-centric perspective shows that, interpreted as a linear function acting
+fromFmtoFn,Ais invertible (i.e. bijective) if and only if every element o fFn
+can be expressed uniquely as a linear combination of the colu mns ofA; in other
+words, if and only if the columns of Aform basis of Fn(see deﬁnition 3.3 and
+theorem 4.1). As we have already established in theorem 4.4, e very basis of Fnhas
+nelements. Hence invertible matrices are square.6 Red/Lime Bases And Ranges/Nullspaces 9
+The row-centric perspective shows that A(X)is a zero vector exactly when Xis
+in the•-complement of rows of AwithinFm; in other words, when Xis in the
+•-complement of the span of these rows, known as the row space ofA. This states
+that
+Nullspace (A)and Row Space (A)are•-complements within Fm.
+While we are on the topic, let us remind the reader that the spa n of the columns of
+a matrix Ais said to be its column space , and is exactly the range of A, whenA
+is interpreted as a linear function from FmtoFn.Column rank ofAis deﬁned
+to be the dimension of the column space of A, androw rank is the dimension of
+the row space. Since columns of AT(the transpose of A) are rows of A, column
+space of ATequals row space of A, and row rank of Aequals column rank of
+AT.
+By corollary 5.3,
+m=Nullity(A) +Row Rank (A) =Nullity(A) +Column Rank/parenleftBig
+AT/parenrightBig
+.(2)
+Using the column-centric perspective and theorem 3.1, it is not hard to see that
+each of the following claims regarding an index iand a matrix Awith columns
+C1,C2,...,Cmis equivalent to the rest.
+1.Ciis a linear combination of the preceding columns of A.
+2. There are scalars a1,a2,...,a i−1∈Fsuch that
+O=a1C1+a2C2+···+ai−1Ci−1+1Ci
+3. There is a vector Xin the nullspace of Athat terminates with a 1 in the i-th
+position.
+4.iis aredindex for the nullspace of A.
+5. There is a vector Wiin the nullspace of Athat terminates with a 1 in the
+i-th position, and has zeros in all of the preceding redpositions.
+6.Ciis a linear combination of the preceding columns of Athat correspond to
+non-redindices of the nullspace of A.
+Since Nullspace (A)and Row Space (A)are•-complements, the redindices of the
+nullspace of Aare exactly the non- limeindices of the row space of A(by theorem
+5.1). It follows, by theorem 4.1, that
+ifi1< i2<···< ikare thelime(resp.red) indices of the row space of A,
+then the columns Ci1,Ci2,...,C ikform a basis of the column space of A.∗(†)
+∗Of course the roles of rows and columns can be reversed here th rough transposition.
+Therefore
+Row Rank (A) =Column Rank (A),
+and we just use Rank(A)for both. In particular,
+Rank/parenleftBig
+AT/parenrightBig
+=Rank(A). (3)
+By (2), we have arrived that
+Rank(A)+Nullity(A) =m(Rank-Nullity Formula).7 Red/Lime Bases and RREF/RCEF 10
+7Red/Lime Bases and RREF/RCEF
+Next we discuss the connection between RREF/RCEF and limebases, touching base
+with Grinberg’s “gauche perspective” [1]. Existence and un iqueness of RREF (A),
+for any matrix A, is an immediate by-product of our approach.
+Our path to RREF/RCEF passes through the Full Rank factoriza tion, which is
+fundamental in its own right. If the reader has not encounter ed it previously, we
+recommend treating it as a generalization of the fact that ma trices of rank 1 are
+exactly those of the form [X]n×1[Y]T
+m×1.
+7.1 Theorem /hand_rightFull Rank factorization using rows of A
+Suppose that a matrix A∈Mn×mhas rank r >0, andWi1,Wi2,...,W iris
+thelimebasis of the columns space of A.
+LetBbe the matrix whose columns are Wi1,Wi2,...,W ir, and let Gbe the
+matrix whose rows are the rows Ri1,Ri2,...,R irofA.∗Then
+A=BGandRank(B) =r=Rank(G).
+∗By (†) these rows form a basis of the row space of A.
+Proof.The rank condition is immediate for B, and for Git follows from ( †).
+The fact that A=BGis best seen one column at a time, via the column-centric
+perspective. Each column CjofAis a linear combination of Wi1,Wi2,...,W ir, i.e.
+of the columns of B, with coeﬃcients being the entries of Cjcorresponding to the
+indicesi1< i2<···< ir(see (1)). These entries in the columns C1,C2,...,C m
+form rows of Athat correspond to the indices i1< i2<···< ir; i.e. the rows of
+G. /squaresolid
+A matrix whose rows are the limebasis of its row space, in the increasing order
+of indices, followed perhaps by some zero rows at the bottom, is said to be in
+Reduced Row Echelon Form (RREF).
+If one switches “rows” to “columns” (and “bottom” to “right” ) in the paragraph
+above, one arrives at Reduced Column Echelon Form (RCEF).
+It is not hard to see that the transpose of an RREF matrix is an R CEF matrix, and
+conversely.
+The use limebases renders the question of uniqueness of RREF/RCEF trivi al: for
+a givenm×nmatrixA, we write RREF(A)for the unique m×nRREF matrix
+with the same row space as A.
+Since row space of a matrix is the •-complement of its nullspace, RREF (A)is the
+uniquem×nRREF matrix with the same nullspace as A.4By remark 5.2, one can
+read oﬀ the redbasis of the nullspace of an RREF matrix from the matrix itsel f
+with minimal eﬀort.
+Similarly, we write RCEF(A)for the unique m×nRCEF matrix with the same
+column space as A. Since column space of Aequals row space of AT, the two
+4In particular, any RREF matrix is completely determined by i ts nullspace.7 Red/Lime Bases and RREF/RCEF 11
+spaces share the limebasis, and it follows that
+/parenleftBig
+RCEF(A)/parenrightBigT
+=RREF/parenleftBig
+AT/parenrightBig
+. (4)
+7.2 Corollary /hand_rightRCEF factorization
+Suppose that Ais ann×mnon-zero matrix, and i1< i2<···< irare the
+limeindices of the column space of A. Then
+A=RCEF(A)◦S, (5)
+whereSis the matrix whose rows are the rows Ri1,Ri2,...,R irofA(in that
+order), followed by some zero rows.
+By replacing the zero rows at the bottom of Sby some standard basis elements
+ofFm, one can create an invertible matrix Swhich still satisﬁes (5).
+Proof.Take matrices BandGdescribed in theorem 7.1. If we beef Bup to an
+n×msize, by attaching zero columns from the right, the resultin g matrix is exactly
+RCEF(A). Append a corresponding number of zero rows to the bottom of Gto
+produce S.
+Let us settle the second claim. The rows of Gform a basis of the row space of A,
+and so can be extended to a basis of Fmthrough addition of some standard basis
+elements of Fm.5If we replace the zero rows at the bottom of Swith these, we
+produce the desired new invertible matrix S. /squaresolid
+If we apply corollary 7.2 to AT, use equalities (3) and (4), remembering that column
+space of ATand Nullspace (A)are•-complements, we obtain a corresponding claim
+about RREF factorization.
+7.3 Corollary /hand_rightRREF factorization
+Suppose that Ais ann×mnon-zero matrix, and i1< i2<···< irare the
+limeindices of the row space of A.∗Then
+A=T◦RREF(A), (6)
+where the columns of Tare the columns Ci1,Ci2,...,C irofA(in that order),
+followed by some zero columns.
+By replacing the eastern zero columns of Tby some some standard basis
+elements of Fn, one can create an invertible matrix Twhich still satisﬁes (6).
+∗Theselimeindices of the row space of Aare exactly the non- redindices of the nullspace of
+A.
+5Of course this needs to be demonstrated, but it is an easy argu ment.8 Gauss-Jordan à la Gram-Schmidt 12
+8Gauss-Jordan à la Gram-Schmidt
+The reader may have grown concerned that our approach does no t expose students
+to Gauss-Jordan elimination that has long been sacred in a ﬁr st course on linear
+algebra.
+We live in the contemporary world with vast computing resour ces and AI at our
+ﬁngertips. It is counterproductive to let students think th at proﬁciency in carrying
+out Gauss-Jordan elimination by hand is a valuable intellec tual accomplishment.
+Proﬁciency in reducing a quest to a recognizable procedure, being able to use
+computers to carry out the calculations, and having the skil ls to interpret the
+results, is of course a diﬀerent matter.
+The eﬃciency we gain through our approach is in part due to fac t that row-
+reduction no longer needs to play a central role in the course . Still, Gauss-Jordan
+elimination has a natural place within the development of red/limebases,well
+before matrices are oﬃcially introduced . Furthermore, in this form the elimination
+is reminiscent of Gram-Schmidt process, or vice versa. This is something that
+students appreciate.
+The value of including this algorithm in a ﬁrst linear algebr a course is in demon-
+strating its existence. We certainly do not suggest that stu dents should be asked
+to carry out such a procedure by hand; one should use a compute r for any such
+task.
+Like Gram-Schmidt process, the procedure we present is recu rsive, and it relies on
+the repeated use of a procedure P(described below) which pertains to the following
+question: when one appends an element Y∈Fnto thelimebasis of a subspace
+WofFn, how does one generate the limebasis of the resulting span Vof the
+new list?6We consider the limecase because it corresponds most directly to the
+traditional Gauss-Jordan elimination.
+Before stating a general form of the procedure, let us illust rate it with a concrete
+example. This will convince the reader that the procedure is indeed a form of
+Gauss-Jordan elimination.
+Say,W5,W8,W9,W13,...,W pare theklime-basic elements of W(that correspond
+to thelimeindices 5 ,8,9,13,...,pand form the limebasis of W). Suppose Yorig-
+inates with a 1 in the 11-th position, and insert Yinto the list between W9and
+W13:
+W5= (0,0,0,0,1,⋆,⋆,0,0, a,⋆,⋆,0, ..., 0, ..., ⋆)
+W8= (0,0,0,0,0,0,0,1,0, b,⋆,⋆,0, ..., 0, ... ⋆)
+W9= (0,0,0,0,0,0,0,0,1, c,⋆,⋆,0, ..., 0, ... ⋆)
+Y= (0,0,0,0,0,0,0,0,0,1,⋆,⋆,α, ..., ζ, ... ⋆)
+W13= (0,0,0,0,0,0,0,0,0,0,0,0,1, ..., 0, ... ⋆)
+:
+Wp= (0,0,0,0,0,0,0,0,0,0,0,0,0, ..., 1, ... ⋆)
+6Since there is nothing to do if Yis already in W, and testing for this inclusion is easy (see (1)), we
+will focus on the case of Y/negationslash∈ W.9 Sub-Terminal Entries, Subspace Truncations And Possible Conﬁgurations 13
+Let^Y=Y−αW13−···−ζWp. Then
+W5= (0,0,0,0,1,⋆,⋆,0,0, a,⋆,⋆,0, ..., 0, ..., ⋆)
+W8= (0,0,0,0,0,0,0,1,0, b,⋆,⋆,0, ..., 0, ... ⋆)
+W9= (0,0,0,0,0,0,0,0,1, c,⋆,⋆,0, ..., 0, ... ⋆)
+^Y= (0,0,0,0,0,0,0,0,0,1,⋆,⋆,0, ..., 0, ... ⋆)
+W13= (0,0,0,0,0,0,0,0,0,0,0,0,1, ..., 0, ... ⋆)
+:
+Wp= (0,0,0,0,0,0,0,0,0,0,0,0,0, ..., 1, ... ⋆)
+In the list W5,W8,W9,^Y,W13,...,W preplaceW5,W8,W9with
+W5−a^Y, W 8−b^Y, W 9−C^Y
+to produce the limebasis of the span of W5,W8,W9,Y,W13,...,W p.7
+Procedure P: When Yis not in W, by the limeversion of the redcase arguments
+presented on the preceding page, Vgains one new limeindex in addition to those
+inherited from W: the originating index ioofY. After scaling, we may assume
+thatYoriginates with a 1.
+By theorem 3.2, some linear combination Xof thelime-basic elements of W,
+corresponding to the limeindices exceeding io, matches Yin every limeposition of
+W. Let^Y=Y−X. This^Y∈ Vis not a zero vector and still originates with a 1 in the
+io-th position. The newly minted ^Yis thelime-basic element of Vcorresponding
+to the index io.
+The original lime-basic elements of Wcorresponding to the limeindices that ex-
+ceedioalso serve as lime-basic elements of V. Thelime-basic elements of W
+corresponding to indices preceding iowould be lime-basic elements of V, were not
+for their potentially non-zero io-th entries. So we subtract from them appropriate
+multiples of ^Yto zero out these entries, and, voilà, we arrive at the limebasis of
+V.
+By using the procedure Precursively, one can produce the limebasisY1,Y2,...,Y p
+of the span of the list O/negationslash=X1,X2,...,X kinFn, with well-aligned intermediate
+spans, à la Gram-Schmidt process.
+Start by scaling X1so that it originates with a 1. This is Y1, and the case k=1 is
+done. Then use the procedure Precursively on k, by appending Xj+1to the already
+constructed limebasisY1,Y2,...,Y lof the span of X1,X2,...,X j.
+Of course this algorithm can be used to construct the limebasis of the row space
+ofA, i.e. to construct RREF (A).
+9Sub-Terminal Entries, Subspace Truncations
+And Possible Conﬁgurations
+This section is motivated by a natural question (which turns out to have a pretty
+answer): “what conﬁgurations of redandlimeindices are possible?”
+7Of course, we could have done the same type of thing with redbases.9 Sub-Terminal Entries, Subspace Truncations And Possible Conﬁgurations 14
+We will work our way towards the answer by asking a simpler que stion: “what can
+be said about the positions of the second-to-last non-zero e ntry in the elements of
+a subspace WofFn?”
+Let us say that Z∈ Wsub-terminates in thej-th position if its second-to-last
+non-zero entry is in that position. If an element has no secon d-to-last non-zero
+entry, its sub-terminal index is 0.
+WhenXandYare distinct elements of Wthat terminate in the i-th position, after
+scaling we can assume that their terminating non-zero entri es (in the i-th position)
+are both 1. Hence X−Yis an element of Wthat terminates in some redk-th
+position, with k < i. In particular, XandYcoincide past the k-th position, but not
+in thek-th position. Consequently, the sub-terminal index of at le ast one of X,Y
+is at least k(and is less than i). If it is strictly between kandi, then it is the sub-
+terminal index for both XandY. This shows that when the sub-terminal entries
+ofXandYoccur in non- redpositions, they occur in the same position.
+This shows that
+there is at most one non- redposition in which the elements of Wthat termi-
+nate in the i-th position can sub-terminate.
+The sub-terminal index jiof ared-basic element WiofW(3.1) is not red, and so
+it is the only non- redsub-terminal index for elements of Wthat terminate in the
+i-th position. Hence we can identify all of the sub-terminal i ndices of the elements
+ofWthat terminate in the i-th position.
+These indices are: ji, and all redindices between jiandi.∗
+∗To reach this conclusion one makes use of the red-basic elements for indices preceding i.
+It will be handy to designate the nindices/positions of a subspace WofFnby
+lettersρ,λ,βandνas follows:
+
+
+ρ:red, but not lime
+λ:lime, but not red
+β:bothredandlime
+ν:neitherrednorlime
+The last position for a subspace WofFnis aβ-position exactly when W
+contains the standard basis element En.
+The last position is a ν-position if and only if all elements of Whave zero
+as their last entry.
+The last position of a subspace can never be a λ-position, and the ﬁrst position
+- can never be a ρ-position.
+We can transform Fn, withn >1, intoFn−1, by simply dropping oﬀ the last
+entry of the n-tuples to produce (n−1)-tuples. In the process subspaces of Fn
+get transformed into subspaces of Fn−1. For simplicity, let us refer to this as a
+“truncation of Fn(and its subspaces) from the right.”9 Sub-Terminal Entries, Subspace Truncations And Possible Conﬁgurations 15
+9.1 Theorem /hand_rightEﬀect of truncation on red/limeindices
+The act of a truncation of Wfrom the right to produce a subspace Uhas the
+following eﬀect on the special positions:
+•If the last position of Wis aβ-position or a ν-position, then the indices
+ofUhave exactly the same designations as they had for W.
+•If the last position of Wis aρ-position, then one of the indices for U
+gains aredstatus (that it did not have for W), and status of all other
+indices remain unchanged. So, either some ν-index of Wbecomes a
+ρ-index for U, or aλ-index for Wbecomes a β-index for U.
+Proof.The only possible change in status is that sub-terminal posi tions of the
+elements of Wthat terminate in the last ( n-th) position, become terminal positions
+for the corresponding elements of U.
+As we have observed, such sub-terminal positions are either t he sub-terminal po-
+sition of the red-basic element of Wcorresponding to the index n(ifnhappens to
+be aredindex) or are the positions corresponding to the redindices that are less
+thann. /squaresolid
+Now we are ready to answer our original question. Suppose tha tnpositions
+are marked by (perhaps repeated) symbols ρ,λ,β,ν , in some fashion. Is there a
+subspace WofFnfor which this is exactly its “signature”, in the sense descr ibed
+above?
+The answer is certainly “not always”. As we have already noted , the last position
+cannot be a λ-position. So, which signatures are possible?
+We begin with an example that provides a partial answer to the question by demon-
+strating a suﬃcient condition.
+Let
+W={(0,a1,a2,a3,a4,0,a1,a5,a6,0,a4,a6,a7,a7,a8,a9,a8,a10)|ai∈F}.
+ThenWis a subspace of F18with the following signature:
+(ν,λ,β,β,λ,ν,ρ,β,λ,ν,ρ,ρ,λ,ρ,λ,β,ρ,β ).
+From this example it is quite obvious that the locations of th eν-positions and β-
+positions are generally unrestricted. Furthermore, if the locations of the λ-positions
+andρ-positions correspond to the positions of “matched” left/r ight parentheses, the
+whole conﬁguration is achievable as a signature of a subspac e ofFnof the type
+shown. This describes a suﬃcient condition, but is it necess ary? We claim that it
+is.
+Any conﬁguration of matched left/right parentheses has the p roperty that to the left
+of any left parenthesis there are more right parentheses tha n there are left ones. In
+fact, apart from stating that there are as many left parenthe ses as there are right
+parentheses, this property identiﬁes all possible conﬁgur ations of matched left/right
+parentheses.One More Thing 16
+9.2 Theorem /hand_rightAll Possible Conﬁgurations
+Aρ/λ/β/ν -conﬁguration of npositions represents a signature of a subspace
+ofFnif and only if the number of λ-positions equals the number of ρ-
+positions, and to the right of every λ-position there are more ρ-positions than
+λ-positions.
+Proof.We focus on the forward implication, since the validity of th e reverse im-
+plication has already been discussed. Our proof is inductiv e onn. The claim is
+trivially true when n=1. If it were not universally true, there would be a smallest
+no>1 for which the claim fails. So, we have some subspace WoofFnowhose
+signature does not have the stated property. The signature o f the right truncation
+UoofWowould enjoy the described property by the minimality of no.
+This means (by theorem 9.1) that the last position of Wowould have to be a
+ρ-position. Yet in that case the signature of Wocould be recovered from the
+signature of Uoby turning a ρ-position into a ν-positions or a β-position into
+aλ-position, and attaching a new ρ-position to the end. Such a transformation
+could not produce a λ-position that has no more ρ-positions to the right of it than
+λ-positions, in contradiction to hypothesis about Wo. /squaresolid
+It is not hard to see that a feasible ρ/λ/β/ν -signature does not always describe
+a unique subspace. How diﬀerent can two subspaces be if they h ave identical
+ρ/λ/β/ν -signatures? Note that the persistent zero position may not be the same.
+Subspaces
+Z={(0,a1,a2,a3,a4,a4,a1,a5,a6,a6,a4,a6,a7,a7,a8,a9,a8,a10)|ai∈F}
+and
+X={(0,a1,a2,a3,a4,a1,a1,a5,a6,a4,a4,a6,a7,a7,a8,a9,a8,a10)|ai∈F}
+ofF18both have the same signature as the subspace Wwe had presented ear-
+lier.
+Of course if a signature begins with a ν, this forces the ﬁrst position of a subspace
+to be a zero position. Analogous claim is true when νis the last symbol of a
+signature.
+One More Thing
+So, before we wrap things up, there is one more question that s eems too natural
+to be ignored, and has a simple answer.
+If a subspace ZofFn, restricted to some kpositions, presents as Fk,
+can one apply a permutation matrix to Zand have those kpositions
+becomeredpositions of the resulting subspace?
+The answer is aﬃrmative. Take a permutation matrix that maps thosekpositions
+ofFnto the last kpositions (with indices n−(k−1), ..., n−1, n), and apply it to Zto
+produce a subspace Zo. Since, restricted to these last kpositions, Zopresents as
+Fk, each of these positions is indeed a redposition for Zo.
+Ifkhappens to be the dimension of Z, then the last kpositions of Zoare all of
+itsredpositions. In this case, the elements of Zpresenting as the standard basis
+ofFkon the original kpositions, are uniquely determined, and are sent to the
+redbasis of Zoby the permutation matrix.10 Concluding Remarks 17
+10Concluding Remarks
+According to John Baez’ insight [2], a good mathematical arti cle should not end
+abruptly, and we concur.
+Originally we were motivated by a search for a palatable argu ment showing the
+uniqueness of RREF for the students in the ﬁrst linear algebr a course at our home
+institution. At the same time we had grown weary of our student s ﬁxating on
+row reduction and the RREF, making these a knee-jerk respons e to almost any
+linear-algebraic question. Given the centrality of the ort hogonality-related notions
+in contemporary applications, this just won’t do.
+Furthermore, it is counterproductive to let students think that proﬁciency in carry-
+ing out Gauss-Jordan elimination or a determinant calculat ion by hand is a sign
+of valuable intellectual accomplishment. Present day prof essionals perform such
+procedures by hand just about as often as they extract square roots by hand or
+graph complicated functions with pencils on paper. Proﬁcie ncy in reducing a quest
+to Gauss-Jordan elimination (or a determinant calculation ), along with an ability
+to use computing systems, and having the skills to interpret the results, is of course
+a diﬀerent matter.
+It has to be mentioned that we have only tested “in a jiﬀy” appr oach at our home
+institution, which beneﬁts from having strong and motivate d students. It works
+well and is indeed eﬃcient. The approach is most eﬀective whe n the emphasis is
+placed on comprehension of the ideass, and the general proof s are scaled down to
+more visual and concrete arguments that can be played with in real time.
+It is our hope that the right/left-standard bases tack can be adopted more broadly,
+and that it ﬁnds a regular place in the toolbox of modern mathe matical educa-
+tors.
+Acknowledgements: We are very grateful to Professors Ferna ndo Gouvea and Scott
+Taylor, who had kindly read the ﬁrst version of the article. T heir insightful sugges-
+tions prompted a signiﬁcant improvement, as did the blog pos t by John Baez which
+Fernando Gouvea had brought to my attention. We would also be remiss not to
+thank those Colby students whom we had subjected to early ver sions of the ideas in
+this article. Their questions and comments contributed gre atly to a reﬁnement of the
+approach.
+References
+[1] Grinberg EL. A gauche perspective on row reduced echelon form and
+its uniqueness. Amer Math Monthly. 2022;129(4):364-73. Avai lable from:
+https://doi.org/10.1080/00029890.2022.2027717 .
+[2] Baez J. Why Mathematics Is Boring. 2024. Available from:
+https://golem.ph.utexas.edu/category/2024/03/why_ma thematics_is_boring_1.html .

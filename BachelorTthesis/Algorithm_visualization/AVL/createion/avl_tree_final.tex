@@ -1,0 +1,53 @@
+
+\documentclass[10pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{tikz}
+\usepackage[margin=1cm]{geometry}
+\begin{document}
+\section*{AVL Tree Algorithm Overview}
+
+An AVL tree is a self-balancing binary search tree where the height difference between the left and right subtrees of any node is at most one. This balance ensures that the tree remains approximately balanced, leading to $O(\log n)$ time complexity for search, insertion, and deletion operations.
+
+\subsection*{Key Concepts}
+\begin{itemize}
+    \item \textbf{Height}: The height of a node in an AVL tree is the length of the longest path from the node to a leaf. This height is used to determine the balance of the node.
+    \item \textbf{Balance Factor}: For any node in the AVL tree, the balance factor is calculated as the height of the left subtree minus the height of the right subtree. It helps in determining if the node is balanced, left-heavy, or right-heavy.
+    \item \textbf{Rotations}: To maintain balance in the AVL tree after insertions and deletions, rotations are performed. There are four types of rotations:
+    \begin{itemize}
+        \item \textbf{Right Rotation (Single Rotation)}: Applied when a left-heavy subtree needs balancing.
+        \item \textbf{Left Rotation (Single Rotation)}: Applied when a right-heavy subtree needs balancing.
+        \item \textbf{Left-Right Rotation (Double Rotation)}: Applied when a left subtree has a right-heavy child.
+        \item \textbf{Right-Left Rotation (Double Rotation)}: Applied when a right subtree has a left-heavy child.
+    \end{itemize}
+\end{itemize}
+
+\subsection*{Operations}
+\begin{itemize}
+    \item \textbf{Insertion}:
+    \begin{itemize}
+        \item Insert the new node following the standard binary search tree (BST) insertion rules.
+        \item Update the height of each ancestor node.
+        \item Calculate the balance factor of each node.
+        \item Perform rotations if any node becomes unbalanced (balance factor is greater than 1 or less than -1).
+    \end{itemize}
+    \item \textbf{Rotations}:
+    \begin{itemize}
+        \item \textbf{Right Rotation}: Used when a left-heavy subtree (balance factor > 1) is unbalanced.
+        \item \textbf{Left Rotation}: Used when a right-heavy subtree (balance factor < -1) is unbalanced.
+        \item \textbf{Left-Right Rotation}: First perform a left rotation on the left child, then a right rotation on the current node.
+        \item \textbf{Right-Left Rotation}: First perform a right rotation on the right child, then a left rotation on the current node.
+    \end{itemize}
+\end{itemize}
+\begin{center}
+\begin{tikzpicture}[level distance=15mm, sibling distance=20mm]
+    \tikzstyle{every node}=[circle,inner sep=1pt, minimum size=8mm]
+    \tikzstyle{level 1}=[sibling distance=60mm]
+    \tikzstyle{level 2}=[sibling distance=30mm]
+    \tikzstyle{level 3}=[sibling distance=15mm]
+    \tikzstyle{level 4}=[sibling distance=10mm]
+
+    \node [fill=green!80] {56} node [below=3pt] {\tiny 0} child {node [fill=green!80] {10} node [below=3pt] {\tiny -1} child[fill=none] {edge from parent[draw=none]} child {node [fill=green!80] {23} node [below=3pt] {\tiny 0} }} child {node [fill=green!80] {90} node [below=3pt] {\tiny -1} child[fill=none] {edge from parent[draw=none]} child {node [fill=green!80] {100} node [below=3pt] {\tiny 0} }};
+
+\end{tikzpicture}
+\end{center}
+\end{document}

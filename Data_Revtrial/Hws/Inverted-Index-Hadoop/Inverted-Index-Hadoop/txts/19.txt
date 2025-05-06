@@ -1,0 +1,247 @@
+Call the Dentist! A (Con-)Cavity in the
+Value of Information
+Mark Whitmeyer1
+A natural way of quantifying the “amount of information” in
+decision problems yields a globally concave value for information.
+Another (in contrast, adversarial) way almost never does.
+1 Introduction
+We take another look at the classical nonconcavity of the value of information. This
+observation originates with Radner and Stiglitz (1984), who point out that the value
+of information may not exhibit diminishing marginal returns. Since then, a number of
+papers have explored this idea further, including Chade and Schlee (2002), De Lara and
+Gilotte (2007), and De Lara and Gossner (2020).
+An illustration as to why the value of information may not be concave in its “quantity,”
+and in particular why the marginal value of information at quantity 0may be zero goes
+something as follows. Take a decision problem with finitely many undominated actions.
+This means that the set of beliefs at which an action is optimal is a convex body: it
+is compact, convex, and possesses a non-empty interior. Accordingly, for a prior in the
+interior of one of these regions any information that does not move the prior much is
+worthless.
+However, it is difficult to quantify information and as noted by Radner and Stiglitz
+(1984), “the marginal productivity of information depends, of course, on the way the
+quantity of information is measured.” They, as well as the aforementioned works, specify
+particular parametrizations of the quantity of information, which allows them to derive
+1Arizona State University. Email: mark.whitmeyer@gmail.com. I thank Joseph Whitmeyer and Kun
+Zhang for their comments.
+1arXiv:2404.01190v1  [econ.TH]  1 Apr 2024their results. The point of this paper is to argue that a natural way of quantifying
+information yields a value of information that is concave in its quantity.
+Here is that quantification. Equating information with a Bayes-plausible distribution
+over posteriors F(given some prior), we specify the Quantity of Information to be a convex
+function of the expected (convex) divergence of the posterior. Furthermore, as many
+different distributions over posteriors can yield the same quantity, we select distributions
+that are optimal for a decision-maker’s (DM’s) decision problem. That is all we need:
+in the main result of the paper we reveal that the value of information is concave in
+its amount, and so in non-trivial decision problems the marginal value of information is
+strictly positive at zero.
+On the other hand, if we take the opposite approach, selecting distributions that are
+worst for a DM’s decision problem, we discover that the value of information is almost
+never concave in its amount. In particular, the marginal value of information is almost
+always zero at zero. We finish the paper by departing from the expected-utility realm, and
+show that if the DM takes a max-min approach, and experiments are chosen benevolently,
+the value of information remains concave in its amount.
+Essentially, these results follow from replication arguments. First, regardless of whether
+the DM is an expected-utility (EU) maximizer or a max-min (MEU) DM or whether
+information is chosen adversarially or benevolently, the quantity-of-information constraint
+binds: any optimal distribution must contain the maximal (or minimal, in the adversarial
+setting) “amount” of information. Second, given the first observation, the linearity of
+expectation means that an average of experiments always remains feasible for any average
+of information “amounts.” This produces the result (note that for an MEU DM, the
+impulse toward concavity is even stronger, as nature has less strategic freedom to choose
+her prior for a convex combination of “amounts”).
+2 Model and Results
+There is a single, Bayesian decision-maker (DM). There is an unknown state of the world
+θlying in some finite set of states Θ.θis distributed according to some full-support prior
+µ∈int∆(Θ). Information arrives according to a signal, stochastic map π:Θ→∆(S),
+whereSis a compact set of signal realizations. Equivalently, information corresponds to
+2a Bayes-plausible distribution F∈Fµ⊂∆2over posteriors x∈∆.2
+The DM is an expected-utility maximizer with a compact set of actions, A, available to
+her. She has a continuous utility function u:A×Θ→R. For any posterior, we note the
+DM’s value function,
+V(x):= max
+a∈AExu(a,θ),
+which we impose is not affine; viz.,Acontains at least two undominated actions.
+Here is how we quantify the amount of information provided to the decision maker.
+Definition 2.1. Given function c:∆2→Rsatisfying i. c(x,µ)is strictly convex, and ii.
+c(µ,µ) = 0for allµ∈∆; and (weakly) convex, strictly increasing ϕ:R→Rsatisfying
+ϕ(0) = 0, the Amount of Information contained in the distribution over posteriors Fis
+D(F):=ϕ/bracketleftbigg/integraldisplay
+∆c(x,µ)dF(x)/bracketrightbigg
+.
+Functioncis a convex Divergence, which are of central importance to models of flexible
+costly information acquisition (Bloedel and Zhong (2020)). One such cis the difference
+in Shannon entropy between the prior µand the posterior x. An especially compelling
+justification of this definition of the “amount of information,” is Mensch (2018) (for
+an affineϕ). In particular, his Theorem 1 reveals that this definition is the unique
+representation of preferences over experiments satisfying certain axioms. Denti, Marinacci,
+and Rustichini (2022) contains a similar result.
+Forη∈[0,¯η](where ¯η∈R++), we define function W:R→Rto be
+W(η):= max
+F∈Fµ, D(F)≤ηEFV(x). ( ♣)
+That is,Wis the DM’s value for the amount of information ηevaluated at an optimal
+distribution over posteriors Fof amountη. We termWthe Efficient Value of Information.
+Let
+F∗
+µ:=/braceleftigg
+F∈Fµ:EFV≥max
+F′∈FµEF′V/bracerightigg
+.
+We impose that
+¯η< inf
+F∈F∗µD(F).
+That is,F∗
+µis the set of Bayes-plausible distributions over posteriors that optimize EFV.
+As full information optimizes EFV,F∗
+µis nonempty. As Vis not affine, infF∈F∗µD(F)>0.
+2Given prior µ, the set of Bayes-plausible distributions, Fµ, is/braceleftbig
+F∈∆2:EFx=µ/bracerightbig
+.
+3Our imposition means that the amount of information provided to the DM is less than
+any amount that yields the maximal value in the decision problem. This restriction
+engenders Lemma 2.2, though the concavity of the efficient value of information holds
+with or without it.
+We say that the amount-of-information constraint binds if D(F∗) =ηfor any solution
+F∗to Program♣.
+Lemma 2.2. The amount-of-information constraint binds.
+Proof.Suppose for the sake of contraction not. Take an arbitrary purported optimum F.
+Let¯Fbe the (Bayes-plausible) distribution over posteriors supported on the vertices of
+the simplex (induced by a fully informative experiment). Define Fλ:=λF+(1−λ)¯Ffor
+λ∈[0,1]. By the continuity of ϕ,D(Fλ)is continuous in λ, so, by the intermediate-value
+theorem, there exists a λ∗∈(0,1)such thatD(Fλ∗) =η. Moreover, as η≤¯η<E¯F,
+EFV <λ∗EFV+ (1−λ∗)E¯FV=Eλ∗F+(1−λ∗)¯FV,
+which contradicts the optimality of F. ■
+Now, our first result: the efficient value of information is concave.
+Proposition 2.3. The efficient value of information, W, is weakly concave in η, strictly
+so ifϕis strictly convex.
+Proof.Take distinct η1andη2and letF1andF2be respective optimizers of Program ♣.
+Thus, by Lemma 2.2, D(F1) =η1andD(F2) =η2, and so (if ϕis strictly convex)
+υη1+ (1−υ)η2=υD(F1) + (1−υ)D(F2)≥
+(>)D(υF1+ (1−υ)F2).
+Thus,υF1+(1−υ)F2is always feasible for information amount υη1+(1−υ)η2, strictly
+so ifϕis strictly convex. Accordingly, (if ϕis strictly convex)
+W(υη1+ (1−υ)η2)≥
+(>)EυF1+(1−υ)F2V=υEF1V+ (1−υ)EF2V,
+where the inequality is implied by the binding information-amount constraint and the
+equality by the linearity of expectation. ■
+As there are at least two undominated actions,
+Corollary 2.4. The marginal value of information at 0is strictly positive.
+4Our next result provides a sufficient condition for Wto be strictly concave when ϕis
+linear.
+Proposition 2.5. If there are just two undominated actions, the efficient value of
+information, W, is strictly concave.
+Proof.As there are just two actions, for any η∈[0,¯η]any optimizer must be binary.
+Accordingly, for any distinct η1andη2with respective optimizers of Program ♣F1and
+F2,νF1+ (1−ν)F2is strictly sub-optimal for information amount νη1+ (1−ν)η2.■
+It is straightforward to construct a decision problem with three actions that is such
+thatWis linear over a sub-interval of [0,¯η].
+An alternative formulation of the value of information almost never produces a concave
+value of information. In contrast to W, which is generated by maximally efficient
+information acquisition, our next formulation is one in which information is acquired
+in a maximally inefficient manner. For η∈[0,¯η](where ¯η∈R++), we define function
+U:R→Rto be
+U(η):= min
+F∈Fµ, D(F)≥ηEFV(x). ( ♡)
+We termUthe Inefficient Value of Information.
+We say a value of information is Almost Never Concave if the set of priors µat which
+the value of information is 0for allη∈[0,ˆηµ](ˆηµ>0) is dense in ∆.
+Proposition 2.6. LetΘand the number of undominated actions be finite. Then the
+inefficient value of information is almost never concave.
+Proof.As the number of undominated actions is finite Vis the maximum of a finite number
+of affine functions. We may project Vonto ∆, yielding a finite collection polytopes C.
+§2.1of Whitmeyer (2023) contains more information about this object. On each element
+Ci∈C,Vis affine. Moreover, by construction C:=∪m
+i=1intCiis dense in ∆(wheremis
+the number of undominated actions in A).
+Observe that for any Ciand any prior µ∈intCi, the DM is indifferent between
+no information and any (Bayes-plausible) distribution over posteriors supported on Ci.
+Evidently, for any Ci, anyµ∈intCi, and any Bayes-plausible distribution Gsupported
+on the extreme points of Ci,D(G)>0. Consequently, for any µ∈intCi, there exists a
+cost threshold ˆηµ>0such that for all η∈[0,ˆηµ], any solution to Program ♡is supported
+on a subset of Ci. Thus, for any η∈[0,ˆηµ],U(η) =U(0). ■
+53 A Max-min DM
+Now, suppose that the DM is not an expected-utility maximizer, but instead evaluates
+decisions according to a max-min criterion à la Gilboa and Schmeidler (1989). Let Abe
+finite. There is a compact and convex subset of feasible priors M⊆∆, which we specify
+is of full-dimension in ∆. Following Çelen (2012), the value of experiment πto the DM is
+T(π):= maxσmin
+µ∈MEB(µ,π)ExEσu(a,θ),
+whereσ:S→∆(A)is the DM’s signal-dependent choice of action, and B(µ,π)∈∆2is
+the Bayes-map that takes as input prior µand statistical experiment πand outputs a
+distribution over posteriors B(µ,π).3
+Definition 3.1. Given function c:∆2→Rsatisfying i. c(x,µ)is strictly convex, and
+ii.c(µ,µ) = 0for allµ∈∆; element ˜µ∈int∆; and (weakly) convex, strictly increasing
+ϕ:R→Rsatisfyingϕ(0) = 0, the Amount of Information contained in experiment πis
+C(π):=ϕ/bracketleftbigg/integraldisplay
+∆c(x,˜µ)dB[˜µ,π] (x)/bracketrightbigg
+.
+Now, forη∈[0,¯η](where ¯η∈R++), we define function ¯W:R→Rto be
+¯W(η):= max
+π, C (π)≤ηT(π). ( ♠)
+We term ¯Wthe Max-min Value of Information. As we did before, we bound the informa-
+tiveness ofπ: let
+Π∗:={π:T(π) =T(¯π)},
+where ¯πis the fully informative experiment. We impose that
+¯η< inf
+π∈Π∗C(π).
+Lemma 3.2. The amount-of-information constraint binds.
+Proof.Mirroring the proof to Lemma 2.2, we suppose for the sake of contradiction that
+the constraint doesn’t bind. As noted there, given a purported optimal π, there exists
+someλ∈(0,1)such thatλπ+ (1−λ)¯πis feasible, where (recall) ¯πis the fully informative
+experiment.
+3Please refer to, e.g., Denti, Marinacci, and Rustichini (2022) or Denti (2018).
+6Letσbe an equilibrium strategy when the experiment is π; and given σ, letµ∗be an
+arbitrary solution to
+min
+µ∈MEB(µ,π)ExEσu(a,θ).
+Next, let ¯σbe an action strategy when the experiment is ¯πthat picks an arbitrary
+optimal action in every state. By construction, the DM’s payoff, T(λπ+ (1−λ)¯π), is
+weakly greater than
+min
+µ∈M/braceleftig
+λEB(µ,π)ExEσu(a,θ) + (1−λ)EB(µ,¯π)ExE¯σu(a,θ)/bracerightig
+. (♢)
+Evidently, for an arbitrary solution to Program ♢,¯µ, we have
+EB(¯µ,π)ExEσu(a,θ)≥EB(µ∗,π)ExEσu(a,θ).
+Moreover, as πmaxis fully informative,
+EB(¯µ,¯π)ExE¯σu(a,θ)>EB(¯µ,π)ExEσu(a,θ).
+Combining these, we conclude that πis strictly sub-optimal, a contradiction. ■
+Here is our last result: the max-min value of information is concave.
+Proposition 3.3. The max-min value of information, ¯W, is weakly concave in η, strictly
+so ifϕis strictly convex.
+Proof.Take distinct η1andη2and letπ1andpi2be respective optimizers of Program
+♠. By the same logic as that in the proof for Proposition 2.3, υπ1+(1−υ)π2is always
+feasible for information amount υη1+ (1−υ)η2, strictly so if ϕis strictly convex.
+Letσi(i= 1,2) be equilibrium strategies for experiments π1andπ2, respectively.
+Obviously,
+min
+µ∈M/braceleftig
+ηEB(µ,π1)ExEσ1u(a,θ) + (1−η)EB(µ,π2)ExEσ2u(a,θ)/bracerightig
+(⋆)
+is weakly greater than
+ηmin
+µ∈MEB(µ,π1)ExEσ1u(a,θ) + (1−η) min
+µ∈MEB(µ,π2)ExEσ2u(a,θ),
+and Expression ⋆, itself, is weakly (strictly, if ϕis strictly convex) less than ¯W(υη1+
+(1−υ)η2). Thus, we have (strict) concavity. ■
+7References
+Alexander W Bloedel and Weijie Zhong. The cost of optimally-acquired information.
+Mimeo, 2020.
+Boğaçhan Çelen. Informativeness of experiments for meu. Journal of Mathematical
+Economics , 48(6):404–406, 2012.
+Hector Chade and Edward Schlee. Another look at the radner–stiglitz nonconcavity in
+the value of information. Journal of Economic Theory , 107(2):421–452, 2002.
+Michel De Lara and Laurent Gilotte. A tight sufficient condition for radner–stiglitz
+nonconcavity in the value of information. Journal of Economic Theory , 137(1):696–708,
+2007.
+Michel De Lara and Olivier Gossner. Payoffs-beliefs duality and the value of information.
+SIAM Journal on Optimization , 30(1):464–489, 2020.
+TommasoDenti. Posteriorseparablecostofinformation. Forthcoming, American Economic
+Review, 2018.
+Tommaso Denti, Massimo Marinacci, and Aldo Rustichini. Experimental cost of informa-
+tion.American Economic Review , 112(9):3106–23, September 2022.
+Itzhak Gilboa and David Schmeidler. Maxmin expected utility with non-unique prior.
+Journal of mathematical economics , 18(2):141–153, 1989.
+Jeffrey Mensch. Cardinal representations of information. Mimeo, 2018.
+Roy Radner and Joseph Stiglitz. A nonconcavity in the value of information. Bayesian
+models in economic theory , 5:33–52, 1984.
+Mark Whitmeyer. Making information more valuable. Mimeo, 2023.
+8
