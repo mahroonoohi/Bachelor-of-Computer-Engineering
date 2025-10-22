@@ -41,7 +41,4 @@ A **C++** and **Qt** based cinema management system that allows administrators a
 - Windows OS (due to use of `Sleep()` and `system("cls")`)
 
 ### Steps
-1. Clone the repository:
-
-```bash
-git clone <https://github.com/mahroonoohi/Bachelor-of-Computer-Engineering/tree/main/Advanced%20Programming/Cinema>
+1. Clone the repository
