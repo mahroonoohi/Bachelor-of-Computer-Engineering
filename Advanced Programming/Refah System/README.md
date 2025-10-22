@@ -25,6 +25,4 @@ It allows you to **add, edit, delete, display personnel**, and calculate their *
 ---
 
 ## Installation
-1. Clone or download this repository:
-   ```bash
-   git clone https://github.com/mahroonoohi/Bachelor-of-Computer-Engineering/tree/main/Advanced%20Programming/Refah%20System
+1. Clone or download this repository
