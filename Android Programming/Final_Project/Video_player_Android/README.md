@@ -4,8 +4,6 @@
 *Instructor: Dr. Shirmohammadi*  
 *April 2024*  
 
-[View Project on GitHub](https://github.com/mahroonoohi/Bachelor-of-Computer-Engineering/tree/main/Android%20Programming)
-
 ---
 
 ## Project Description
