@@ -1,0 +1,104 @@
+.container {
+  width: 25rem;
+  height: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  margin: 0.5rem;
+  background-color: #fcb6b9;
+
+  @media (max-width: 575.98px) {
+    height: 20rem;
+    flex-direction: column-reverse;
+  }
+
+  .ideaInfo {
+    width: 18rem;
+    height: 10rem;
+    padding: 0.4rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+
+    @media (max-width: 575.98px) {
+      width: 100%;
+    }
+
+    .ideaTitle {
+      flex: 1;
+      width: 30%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      animation: fadingAnimation 1s ease infinite alternate;
+      background-color: #f96c73;
+      border-radius: 0.2rem;
+    }
+
+    .ideaGoal {
+      flex: 1;
+      width: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 0.5rem 0;
+      animation: fadingAnimation 1s ease infinite alternate;
+      background-color: #f96c73;
+      border-radius: 0.2rem;
+    }
+
+    .ideaDesc {
+      flex: 5;
+      width: 100%;
+      margin-bottom: 0.5rem;
+      animation: fadingAnimation 1s ease infinite alternate;
+      background-color: #f96c73;
+      border-radius: 0.2rem;
+    }
+  }
+
+  .ideaImage {
+    width: 7rem;
+    height: 10rem;
+    border-radius: 0 0.5rem 0.5rem 0;
+    animation: fadingAnimation 1s ease infinite alternate;
+    background-color: #f96c73;
+
+    @media (max-width: 575.98px) {
+      width: 100%;
+      height: 10rem;
+      border-radius: 0.5rem 0.5rem 0 0;
+      border: none;
+    }
+  }
+}
+
+.options {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+
+  div {
+    &.account {
+      width: 6rem;
+      height: 1.5rem;
+      animation: fadingAnimation 1s ease infinite alternate;
+      background-color: #061c7e;
+    }
+
+    &.userImage {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      animation: fadingAnimation 1s ease infinite alternate;
+      background-color: #061c7e;
+    }
+  }
+}
+
+@keyframes fadingAnimation {
+  to {
+    opacity: 0.5;
+  }
+}

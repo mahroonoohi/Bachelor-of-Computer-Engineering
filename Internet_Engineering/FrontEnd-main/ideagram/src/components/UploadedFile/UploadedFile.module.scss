@@ -1,0 +1,88 @@
+.container {
+  width: 20rem;
+  height: 8rem;
+  background-color: #fee7e8;
+  border: 1px solid #303030;
+  border-radius: 0.3rem;
+  padding: 0.3rem 0.3rem 0.5rem 1rem;
+  text-decoration: none;
+
+  @media (max-width: 575.98px) {
+    width: 100%;
+  }
+
+  .deleteDownloadFile {
+    display: flex;
+    justify-content: end;
+
+    a {
+      text-decoration: none;
+    }
+
+    button {
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 0.2rem 0.4rem;
+      border-radius: 0.3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.2rem;
+      color: white;
+      font-size: 0.7rem;
+      transition: all 0.3s ease-in-out;
+
+      &.delete {
+        background-color: #cd0404;
+
+        &:hover {
+          background-color: #990808;
+        }
+      }
+
+      &.download {
+        background-color: #52047b;
+
+        &:hover {
+          background-color: #309165;
+        }
+      }
+    }
+  }
+
+  .uploadedFile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: fit-content;
+    gap: 1rem;
+
+    h3 {
+      font-family: Montserrat, sans-serif;
+      max-width: 10rem;
+      white-space: nowrap;
+      overflow: hidden;
+      overflow-x: scroll;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  }
+}
+
+@font-face {
+  font-family: Rubik;
+  src: url("../../fonts/Rubik-VariableFont_wght.ttf");
+}
+
+@font-face {
+  font-family: Montserrat;
+  src: url("../../fonts/Montserrat-VariableFont_wght.ttf");
+}
+
+@font-face {
+  font-family: Verdana;
+  src: url("../../fonts/Verdana.ttf");
+}

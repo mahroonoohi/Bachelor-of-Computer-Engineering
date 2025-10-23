@@ -1,0 +1,62 @@
+.menu {
+  position: absolute;
+  top: 3rem;
+  list-style-type: none;
+  width: 18rem;
+  z-index: 10;
+
+  &.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-15rem);
+    transition: 1s ease-in;
+  }
+
+  &.invisible {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(3rem);
+    transition: 1s ease-out;
+  }
+
+  li {
+    border-bottom: 0.1px solid #fee7e8;
+    font-family: Verdana, sans-serif;
+
+    .sidebarOptions {
+      flex: 1;
+      width: 100%;
+      color: white;
+      background-color: #d90816;
+      font-size: 1rem;
+      padding: 0.8rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      cursor: pointer;
+      border: 1px solid #ffffff;
+      transition: all 0.3s ease-in-out;
+      text-decoration: none;
+      font-family: Verdana, sans-serif;
+
+      &:hover {
+        background-color: #f72634;
+      }
+
+      &:focus {
+        background-color: #f72634;
+      }
+
+      img {
+        width: 2rem;
+        height: 2rem;
+      }
+    }
+  }
+}
+
+@font-face {
+  font-family: Verdana;
+  src: url("../../../fonts/Verdana.ttf");
+}

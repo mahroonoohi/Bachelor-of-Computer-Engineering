@@ -1,0 +1,244 @@
+.container {
+  width: 25rem;
+  height: 10rem;
+  font-family: Rubik, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #303030;
+  border-radius: 0.5rem;
+  background-color: #e4e3e3;
+  place-self: center;
+  text-decoration: none;
+  color: black;
+
+  @media (max-width: 575.98px) {
+    height: 20rem;
+    flex-direction: column-reverse;
+  }
+
+  @media (max-width: 479.98px) {
+    width: 100%;
+  }
+
+  .ideaInfo {
+    width: 18rem;
+    height: 10rem;
+    padding: 0.2rem 0.5rem 0.4rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+
+    @media (max-width: 575.98px) {
+      width: 100%;
+    }
+
+    .ideaTitle {
+      flex: 1;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      @media (max-width: 575.98px) {
+        margin-top: 0.5rem;
+      }
+
+      .title {
+        font-size: 1rem;
+        max-width: 10.5rem;
+        width: 10.5rem;
+        white-space: nowrap;
+        text-overflow: clip;
+        overflow: hidden;
+        overflow-x: scroll;
+
+        &::-webkit-scrollbar {
+          display: none;
+        }
+      }
+
+      .options {
+        border: none;
+        outline: none;
+        padding: 0.2rem 0.5rem;
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0.3rem;
+        cursor: pointer;
+        width: 4rem;
+        gap: 0.3rem;
+        transition: all 0.3s ease-in-out;
+        font-size: 0.7rem;
+        text-decoration: none;
+
+        &.deleteIdea {
+          background-color: #cd0404;
+
+          @media (max-width: 767.98px) {
+            width: 5rem;
+            height: 1.5rem;
+            font-size: 0.8rem;
+          }
+
+          &:hover {
+            background-color: #990808;
+          }
+        }
+
+        &.editIdea {
+          background-color: #ad1952;
+
+          @media (max-width: 767.98px) {
+            width: 4rem;
+            height: 1.4rem;
+          }
+
+          &:hover {
+            background-color: #da5095;
+          }
+        }
+      }
+    }
+
+    .ideaGoal {
+      width: 100%;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 0.3rem 0 0.8rem 0;
+
+      @media (max-width: 767.98px) {
+        margin: 0;
+        margin-bottom: 1.5rem;
+      }
+
+      @media (max-width: 689.98px) {
+        margin-bottom: 0.5rem;
+      }
+
+      @media (max-width: 575.98px) {
+        margin: 0.9rem 0;
+      }
+
+      p {
+        max-width: 10rem;
+        width: 10rem;
+        white-space: nowrap;
+        text-overflow: clip;
+        overflow: hidden;
+        overflow-x: scroll;
+
+        &::-webkit-scrollbar {
+          display: none;
+        }
+      }
+
+      button {
+        border: none;
+        outline: none;
+        padding: 0.2rem 0.5rem;
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0.3rem;
+        cursor: pointer;
+        width: 4rem;
+        gap: 0.3rem;
+        transition: all 0.3s ease-in-out;
+
+        &.deleteIdea {
+          background-color: #cd0404;
+          font-size: 0.65rem;
+
+          @media (max-width: 767.98px) {
+            width: 4rem;
+            height: 1.4rem;
+          }
+
+          &:hover {
+            background-color: #990808;
+          }
+        }
+      }
+    }
+
+    .ideaDesc {
+      flex: 1;
+      width: 100%;
+      height: fit-content;
+      max-height: 4rem;
+      word-break: break-all;
+      white-space: normal;
+      overflow: hidden;
+      overflow-y: scroll;
+      margin-bottom: 0.5rem;
+      font-size: 0.7rem;
+      text-justify: auto;
+
+      @media (max-width: 767.98px) {
+        margin: 0;
+        margin-bottom: 1.5rem;
+        font-size: 0.8rem;
+      }
+
+      @media (max-width: 689.98px) {
+        margin-bottom: 0.5rem;
+      }
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+
+    .feedback {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid #8f8f8f;
+      padding: 0.5rem 0.5rem 0.1rem 0.5rem;
+
+      div {
+        flex: 1;
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+
+        .icon {
+          width: 1rem;
+          height: 1rem;
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+
+  .ideaImage {
+    width: 7rem;
+    height: 10rem;
+    border-radius: 0 0.5rem 0.5rem 0;
+    margin-top: 0.2rem;
+    border-bottom: 2px solid #303030;
+    border-top: 2px solid #303030;
+
+    @media (max-width: 575.98px) {
+      width: 100%;
+      height: 10rem;
+      border-radius: 0.5rem 0.5rem 0 0;
+      border: none;
+      // border-right: 2px solid #303030;
+      // border-top: 2px solid #303030;
+    }
+  }
+}
+
+@font-face {
+  font-family: Rubik;
+  src: url("../../fonts/Rubik-VariableFont_wght.ttf");
+}

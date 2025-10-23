@@ -1,0 +1,87 @@
+.body {
+  width: 100%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+
+  h2 {
+    font-family: Rubik, sans-serif;
+    margin: 0.5rem 1rem;
+    flex: 1;
+  }
+
+  .collaborationRequests {
+    flex: 1;
+    border: 1px solid #303030;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem;
+    border-radius: 0.5rem;
+
+    .title {
+      font-family: Rubik, sans-serif;
+      font-size: 1.1rem;
+    }
+
+    .collaborationRequestsList {
+      width: fit-content;
+      height: 6rem;
+      max-height: 6rem;
+      overflow: hidden;
+      overflow-y: scroll;
+      margin: 1rem auto;
+      padding: 0 0.2rem;
+
+      @media (max-width: 575.98px) {
+        width: 100%;
+      }
+
+      &::-webkit-scrollbar {
+        width: 4px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: rgb(172, 170, 170);
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: gray;
+        border-radius: 10px;
+      }
+
+      &::-webkit-scrollbar-thumb:hover {
+        background: rgb(155, 155, 155);
+      }
+    }
+  }
+
+  .collaborationsInfoContainer {
+    flex: 5;
+    padding: 0.5rem 1rem;
+
+    .title {
+      font-family: Rubik, sans-serif;
+      font-size: 1.1rem;
+    }
+
+    .collaborationsInfo {
+      height: 80%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      @media (max-width: 991.98px) {
+        margin-top: 1.5rem;
+      }
+    }
+  }
+}
+
+@font-face {
+  font-family: Verdana;
+  src: url("../../fonts/Verdana.ttf");
+}
+
+@font-face {
+  font-family: Rubik;
+  src: url("../../fonts/Rubik-VariableFont_wght.ttf");
+}

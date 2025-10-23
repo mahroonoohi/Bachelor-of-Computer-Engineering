@@ -1,0 +1,47 @@
+.container {
+  width: 25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ffffff;
+  font-family: Montserrat, sans-serif;
+  margin: 0.5rem auto;
+  color: #000000;
+  padding: 0.5rem;
+  text-align: center;
+  gap: 1rem;
+  border-radius: 0.1rem;
+  border: 1px solid #000000;
+  border-radius: 0.2rem;
+
+  h4 {
+    border-left: 1px solid #000000;
+    border-right: 1px solid #000000;
+    width: 18rem;
+    max-width: 18rem;
+    overflow: hidden;
+    overflow-x: scroll;
+    padding: 0 0.5rem;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  button {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: #ffffff;
+
+    img {
+      width: 1rem;
+      height: 1rem;
+    }
+  }
+}
+
+@font-face {
+  font-family: Montserrat;
+  src: url("../../fonts/Montserrat-VariableFont_wght.ttf");
+}

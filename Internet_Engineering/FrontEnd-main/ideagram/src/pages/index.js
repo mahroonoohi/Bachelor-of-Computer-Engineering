@@ -1,0 +1,11 @@
+export { default as ShowProfile } from "./ShowProfile/ShowProfile";
+export { default as ForgotPassword } from "./ForgotPassword/ForgotPassword";
+export { default as MainPage } from "./MainPage/MainPage";
+export { default as StepsStructure } from "./StepsStructure/StepsStructure";
+export { default as AccountReport } from "./AccountReport/AccountReport";
+export { default as IdeaReport } from "./IdeaReport/IdeaReport";
+export { default as ProfileStructure } from "./ProfileStructure/ProfileStructure";
+export { default as IdeaStructure } from "./IdeaStructure/IdeaStructure";
+export { default as CreateAccount } from "./CreateAccount/CreateAccount";
+export { default as Login } from "./Login/Login";
+export { default as MainContainer } from "./MainContainer/MainContainer";

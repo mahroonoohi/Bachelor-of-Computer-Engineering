@@ -1,0 +1,104 @@
+.container {
+  width: 100%;
+  // height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.2rem 1rem;
+  background-color: #35034f;
+
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+
+    &.options {
+      div {
+        .btn {
+          border: none;
+          outline: none;
+          background-color: transparent;
+          text-decoration: none;
+        }
+
+        @media (max-width: 991.98px) {
+          display: none;
+        }
+      }
+
+      .smallOptionsMenu {
+        position: relative;
+        display: none;
+
+        @media (max-width: 991.98px) {
+          display: block;
+        }
+
+        .showOptionsMenuBTN {
+          border: none;
+          outline: none;
+          background: transparent;
+          cursor: pointer;
+        }
+      }
+    }
+
+    &.userInfo {
+      .account {
+        font-family: Verdana, sans-serif;
+        color: white;
+        text-decoration: none;
+
+        @media (max-width: 991.98px) {
+          display: none;
+        }
+      }
+
+      .profile {
+        text-decoration: none;
+
+        img {
+          width: 3rem;
+          height: 3rem;
+          border-radius: 50%;
+        }
+
+        @media (max-width: 991.98px) {
+          display: none;
+        }
+      }
+
+      .smallMenu {
+        position: relative;
+        display: none;
+
+        @media (max-width: 991.98px) {
+          display: block;
+        }
+
+        .showMenuBTN {
+          border: none;
+          outline: none;
+          background: transparent;
+          cursor: pointer;
+        }
+      }
+    }
+
+    &.title {
+      font-family: Pacifico_Regular, sans-serif;
+      color: #ffffff;
+    }
+  }
+}
+
+@font-face {
+  font-family: Pacifico_Regular;
+  src: url("../../fonts/Pacifico-Regular.ttf");
+}
+
+@font-face {
+  font-family: Verdana;
+  src: url("../../fonts/Verdana.ttf");
+}

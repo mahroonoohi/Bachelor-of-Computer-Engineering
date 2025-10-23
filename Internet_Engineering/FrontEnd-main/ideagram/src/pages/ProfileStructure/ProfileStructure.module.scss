@@ -1,0 +1,67 @@
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  background-color: #fee7e8;
+
+  .sidebar {
+    // height: calc(100vh - 50px);
+    flex: 1;
+    background-color: #d90816;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    font-family: Verdana, sans-serif;
+
+    @media (max-width: 991.98px) {
+      display: none;
+    }
+
+    .sidebarOptions {
+      flex: 1;
+      width: 100%;
+      color: white;
+      background-color: #d90816;
+      font-size: 1rem;
+      padding: 0.8rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      cursor: pointer;
+      border: 1px solid #ffffff;
+      transition: all 0.3s ease-in-out;
+      text-decoration: none;
+      font-family: Verdana, sans-serif;
+
+      &:hover {
+        background-color: #f72634;
+      }
+
+      &:focus {
+        background-color: #f72634;
+      }
+
+      img {
+        width: 2rem;
+        height: 2rem;
+      }
+    }
+  }
+
+  .main {
+    flex: 6;
+    background-color: #fee7e8;
+  }
+}
+
+@font-face {
+  font-family: Montserrat;
+  src: url("../../fonts/Montserrat-VariableFont_wght.ttf");
+}
+
+@font-face {
+  font-family: Verdana;
+  src: url("../../fonts/Verdana.ttf");
+}

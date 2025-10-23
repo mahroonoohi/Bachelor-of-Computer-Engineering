@@ -1,0 +1,27 @@
+version: "3.9"
+
+services:
+
+  db:
+    image: postgres:15.2
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_DB=internet_eng
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=internet_eng@1402
+    volumes:
+      - postgres-data:/var/lib/postgresql/data/
+
+
+  redis:
+    image: redis:7
+    ports:
+      - 6379:6379
+    volumes:
+      - redis-data:/data
+
+
+volumes:
+    postgres-data:
+    redis-data:

@@ -1,0 +1,59 @@
+.container {
+  font-family: Montserrat, sans-serif;
+
+  @media (max-width: 767.98px) {
+    width: 100%;
+  }
+
+  div {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin: 0.5rem 0;
+
+    @media (max-width: 767.98px) {
+      flex-direction: column;
+    }
+
+    label {
+      width: 8rem;
+      font-size: 1.1rem;
+    }
+
+    p {
+      width: 35rem;
+      max-width: 35rem;
+      background-color: #ffffff;
+      color: black;
+      padding: 0.5rem 1rem;
+      border: 1px solid black;
+      border-radius: 0.2rem;
+
+      @media (max-width: 767.98px) {
+        width: 100%;
+        max-width: 100%;
+      }
+
+      &.shortText {
+        overflow: hidden;
+        overflow-x: scroll;
+      }
+
+      &.longText {
+        height: 6.5rem;
+        max-height: 6.5rem;
+        overflow: hidden;
+        overflow-y: scroll;
+      }
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  }
+}
+
+@font-face {
+  font-family: Montserrat;
+  src: url("../../fonts/Montserrat-VariableFont_wght.ttf");
+}
