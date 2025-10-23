@@ -1,0 +1,361 @@
+\documentclass{article}%
+\usepackage[T1]{fontenc}%
+\usepackage[utf8]{inputenc}%
+\usepackage{lmodern}%
+\usepackage{textcomp}%
+\usepackage{lastpage}%
+\usepackage{tikz}%
+%
+\usepackage[a4paper, left=0.5in, top=0.5in]{geometry}%
+\usepackage{xcolor}%
+\definecolor{leftcolor}{HTML}{874dfa}%
+\definecolor{rightcolor}{HTML}{fa4dd5}%
+\definecolor{midcolor}{HTML}{4df4fa}%
+\definecolor{bgcolor}{HTML}{fafafa}%
+\definecolor{targetcolor}{HTML}{70f567}%
+%
+\begin{document}%
+\normalsize%
+\section{Binary Search Visualization}%
+\label{sec:BinarySearchVisualization}%
+
+        \section*{Introduction}
+        Binary search is an efficient algorithm for finding an item from a sorted list of items. It works by repeatedly dividing in half the portion of the list that could contain the item, until you've narrowed down the possible locations to just one. 
+        %
+
+
+\begin{figure}[h!]%
+\begin{tikzpicture}%
+\node at (0,1.200000) {\textbf{\fontsize{8.000000}{9.600000}\selectfont Initial Array}};%
+\fill[bgcolor] (0.000000, 0) rectangle (0.800000, -0.800000);%
+\draw (0.000000, 0) rectangle (0.800000, -0.800000);%
+\node at (0.400000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 8};%
+\node at (0.400000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 0};%
+\fill[bgcolor] (0.800000, 0) rectangle (1.600000, -0.800000);%
+\draw (0.800000, 0) rectangle (1.600000, -0.800000);%
+\node at (1.200000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 4};%
+\node at (1.200000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 1};%
+\fill[bgcolor] (1.600000, 0) rectangle (2.400000, -0.800000);%
+\draw (1.600000, 0) rectangle (2.400000, -0.800000);%
+\node at (2.000000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 3};%
+\node at (2.000000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 2};%
+\fill[bgcolor] (2.400000, 0) rectangle (3.200000, -0.800000);%
+\draw (2.400000, 0) rectangle (3.200000, -0.800000);%
+\node at (2.800000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 10};%
+\node at (2.800000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 3};%
+\fill[bgcolor] (3.200000, 0) rectangle (4.000000, -0.800000);%
+\draw (3.200000, 0) rectangle (4.000000, -0.800000);%
+\node at (3.600000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 12};%
+\node at (3.600000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 4};%
+\fill[bgcolor] (4.000000, 0) rectangle (4.800000, -0.800000);%
+\draw (4.000000, 0) rectangle (4.800000, -0.800000);%
+\node at (4.400000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 15};%
+\node at (4.400000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 5};%
+\fill[bgcolor] (4.800000, 0) rectangle (5.600000, -0.800000);%
+\draw (4.800000, 0) rectangle (5.600000, -0.800000);%
+\node at (5.200000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 18};%
+\node at (5.200000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 6};%
+\fill[bgcolor] (5.600000, 0) rectangle (6.400000, -0.800000);%
+\draw (5.600000, 0) rectangle (6.400000, -0.800000);%
+\node at (6.000000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 7};%
+\node at (6.000000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 7};%
+\fill[bgcolor] (6.400000, 0) rectangle (7.200000, -0.800000);%
+\draw (6.400000, 0) rectangle (7.200000, -0.800000);%
+\node at (6.800000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 1};%
+\node at (6.800000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 8};%
+\fill[bgcolor] (7.200000, 0) rectangle (8.000000, -0.800000);%
+\draw (7.200000, 0) rectangle (8.000000, -0.800000);%
+\node at (7.600000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 0};%
+\node at (7.600000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 9};%
+\fill[bgcolor] (8.000000, 0) rectangle (8.800000, -0.800000);%
+\draw (8.000000, 0) rectangle (8.800000, -0.800000);%
+\node at (8.400000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 22};%
+\node at (8.400000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 10};%
+\end{tikzpicture}%
+\end{figure}
+
+%
+
+
+\begin{figure}[h!]%
+\begin{tikzpicture}%
+\node at (0,1.200000) {\textbf{\fontsize{8.000000}{9.600000}\selectfont Sorted Array}};%
+\fill[bgcolor] (0.000000, 0) rectangle (0.800000, -0.800000);%
+\draw (0.000000, 0) rectangle (0.800000, -0.800000);%
+\node at (0.400000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 0};%
+\node at (0.400000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 0};%
+\fill[bgcolor] (0.800000, 0) rectangle (1.600000, -0.800000);%
+\draw (0.800000, 0) rectangle (1.600000, -0.800000);%
+\node at (1.200000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 1};%
+\node at (1.200000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 1};%
+\fill[bgcolor] (1.600000, 0) rectangle (2.400000, -0.800000);%
+\draw (1.600000, 0) rectangle (2.400000, -0.800000);%
+\node at (2.000000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 3};%
+\node at (2.000000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 2};%
+\fill[bgcolor] (2.400000, 0) rectangle (3.200000, -0.800000);%
+\draw (2.400000, 0) rectangle (3.200000, -0.800000);%
+\node at (2.800000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 4};%
+\node at (2.800000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 3};%
+\fill[bgcolor] (3.200000, 0) rectangle (4.000000, -0.800000);%
+\draw (3.200000, 0) rectangle (4.000000, -0.800000);%
+\node at (3.600000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 7};%
+\node at (3.600000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 4};%
+\fill[bgcolor] (4.000000, 0) rectangle (4.800000, -0.800000);%
+\draw (4.000000, 0) rectangle (4.800000, -0.800000);%
+\node at (4.400000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 8};%
+\node at (4.400000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 5};%
+\fill[bgcolor] (4.800000, 0) rectangle (5.600000, -0.800000);%
+\draw (4.800000, 0) rectangle (5.600000, -0.800000);%
+\node at (5.200000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 10};%
+\node at (5.200000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 6};%
+\fill[bgcolor] (5.600000, 0) rectangle (6.400000, -0.800000);%
+\draw (5.600000, 0) rectangle (6.400000, -0.800000);%
+\node at (6.000000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 12};%
+\node at (6.000000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 7};%
+\fill[bgcolor] (6.400000, 0) rectangle (7.200000, -0.800000);%
+\draw (6.400000, 0) rectangle (7.200000, -0.800000);%
+\node at (6.800000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 15};%
+\node at (6.800000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 8};%
+\fill[bgcolor] (7.200000, 0) rectangle (8.000000, -0.800000);%
+\draw (7.200000, 0) rectangle (8.000000, -0.800000);%
+\node at (7.600000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 18};%
+\node at (7.600000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 9};%
+\fill[bgcolor] (8.000000, 0) rectangle (8.800000, -0.800000);%
+\draw (8.000000, 0) rectangle (8.800000, -0.800000);%
+\node at (8.400000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 22};%
+\node at (8.400000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 10};%
+\end{tikzpicture}%
+\end{figure}
+
+%
+
+
+\begin{figure}[h!]%
+\begin{tikzpicture}%
+\node at (0,1.200000) {\textbf{\fontsize{8.000000}{9.600000}\selectfont Step 1}};%
+\fill[bgcolor] (0.000000, 0) rectangle (0.800000, -0.800000);%
+\draw (0.000000, 0) rectangle (0.800000, -0.800000);%
+\node at (0.400000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 0};%
+\node at (0.400000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 0};%
+\fill[bgcolor] (0.800000, 0) rectangle (1.600000, -0.800000);%
+\draw (0.800000, 0) rectangle (1.600000, -0.800000);%
+\node at (1.200000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 1};%
+\node at (1.200000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 1};%
+\fill[bgcolor] (1.600000, 0) rectangle (2.400000, -0.800000);%
+\draw (1.600000, 0) rectangle (2.400000, -0.800000);%
+\node at (2.000000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 3};%
+\node at (2.000000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 2};%
+\fill[bgcolor] (2.400000, 0) rectangle (3.200000, -0.800000);%
+\draw (2.400000, 0) rectangle (3.200000, -0.800000);%
+\node at (2.800000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 4};%
+\node at (2.800000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 3};%
+\fill[bgcolor] (3.200000, 0) rectangle (4.000000, -0.800000);%
+\draw (3.200000, 0) rectangle (4.000000, -0.800000);%
+\node at (3.600000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 7};%
+\node at (3.600000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 4};%
+\fill[bgcolor] (4.000000, 0) rectangle (4.800000, -0.800000);%
+\draw (4.000000, 0) rectangle (4.800000, -0.800000);%
+\node at (4.400000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 8};%
+\node at (4.400000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 5};%
+\fill[bgcolor] (4.800000, 0) rectangle (5.600000, -0.800000);%
+\draw (4.800000, 0) rectangle (5.600000, -0.800000);%
+\node at (5.200000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 10};%
+\node at (5.200000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 6};%
+\fill[bgcolor] (5.600000, 0) rectangle (6.400000, -0.800000);%
+\draw (5.600000, 0) rectangle (6.400000, -0.800000);%
+\node at (6.000000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 12};%
+\node at (6.000000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 7};%
+\fill[bgcolor] (6.400000, 0) rectangle (7.200000, -0.800000);%
+\draw (6.400000, 0) rectangle (7.200000, -0.800000);%
+\node at (6.800000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 15};%
+\node at (6.800000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 8};%
+\fill[bgcolor] (7.200000, 0) rectangle (8.000000, -0.800000);%
+\draw (7.200000, 0) rectangle (8.000000, -0.800000);%
+\node at (7.600000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 18};%
+\node at (7.600000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 9};%
+\fill[bgcolor] (8.000000, 0) rectangle (8.800000, -0.800000);%
+\draw (8.000000, 0) rectangle (8.800000, -0.800000);%
+\node at (8.400000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 22};%
+\node at (8.400000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 10};%
+\draw[leftcolor, very thick] (0.400000, -0.400000) circle (0.400000);%
+\draw[rightcolor, very thick] (8.400000, -0.400000) circle (0.400000);%
+\draw[midcolor, very thick] (4.400000, -0.400000) circle (0.400000);%
+\node[below] at (0.400000, -0.800000) {\fontsize{6.400000}{5.120000}\selectfont Left};%
+\node[below] at (8.400000, -0.800000) {\fontsize{6.400000}{5.120000}\selectfont Right};%
+\node[below] at (4.400000, -0.800000) {\fontsize{6.400000}{5.120000}\selectfont Mid};%
+\end{tikzpicture}%
+\end{figure}
+
+%
+
+
+\begin{figure}[h!]%
+\begin{tikzpicture}%
+\node at (0,1.200000) {\textbf{\fontsize{8.000000}{9.600000}\selectfont Step 2}};%
+\fill[bgcolor] (0.000000, 0) rectangle (0.800000, -0.800000);%
+\draw (0.000000, 0) rectangle (0.800000, -0.800000);%
+\node at (0.400000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 0};%
+\node at (0.400000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 0};%
+\fill[bgcolor] (0.800000, 0) rectangle (1.600000, -0.800000);%
+\draw (0.800000, 0) rectangle (1.600000, -0.800000);%
+\node at (1.200000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 1};%
+\node at (1.200000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 1};%
+\fill[bgcolor] (1.600000, 0) rectangle (2.400000, -0.800000);%
+\draw (1.600000, 0) rectangle (2.400000, -0.800000);%
+\node at (2.000000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 3};%
+\node at (2.000000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 2};%
+\fill[bgcolor] (2.400000, 0) rectangle (3.200000, -0.800000);%
+\draw (2.400000, 0) rectangle (3.200000, -0.800000);%
+\node at (2.800000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 4};%
+\node at (2.800000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 3};%
+\fill[bgcolor] (3.200000, 0) rectangle (4.000000, -0.800000);%
+\draw (3.200000, 0) rectangle (4.000000, -0.800000);%
+\node at (3.600000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 7};%
+\node at (3.600000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 4};%
+\fill[bgcolor] (4.000000, 0) rectangle (4.800000, -0.800000);%
+\draw (4.000000, 0) rectangle (4.800000, -0.800000);%
+\node at (4.400000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 8};%
+\node at (4.400000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 5};%
+\fill[bgcolor] (4.800000, 0) rectangle (5.600000, -0.800000);%
+\draw (4.800000, 0) rectangle (5.600000, -0.800000);%
+\node at (5.200000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 10};%
+\node at (5.200000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 6};%
+\fill[bgcolor] (5.600000, 0) rectangle (6.400000, -0.800000);%
+\draw (5.600000, 0) rectangle (6.400000, -0.800000);%
+\node at (6.000000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 12};%
+\node at (6.000000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 7};%
+\fill[bgcolor] (6.400000, 0) rectangle (7.200000, -0.800000);%
+\draw (6.400000, 0) rectangle (7.200000, -0.800000);%
+\node at (6.800000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 15};%
+\node at (6.800000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 8};%
+\fill[bgcolor] (7.200000, 0) rectangle (8.000000, -0.800000);%
+\draw (7.200000, 0) rectangle (8.000000, -0.800000);%
+\node at (7.600000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 18};%
+\node at (7.600000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 9};%
+\fill[bgcolor] (8.000000, 0) rectangle (8.800000, -0.800000);%
+\draw (8.000000, 0) rectangle (8.800000, -0.800000);%
+\node at (8.400000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 22};%
+\node at (8.400000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 10};%
+\draw[leftcolor, very thick] (5.200000, -0.400000) circle (0.400000);%
+\draw[rightcolor, very thick] (8.400000, -0.400000) circle (0.400000);%
+\draw[midcolor, very thick] (6.800000, -0.400000) circle (0.400000);%
+\node[below] at (5.200000, -0.800000) {\fontsize{6.400000}{5.120000}\selectfont Left};%
+\node[below] at (8.400000, -0.800000) {\fontsize{6.400000}{5.120000}\selectfont Right};%
+\node[below] at (6.800000, -0.800000) {\fontsize{6.400000}{5.120000}\selectfont Mid};%
+\end{tikzpicture}%
+\end{figure}
+
+%
+
+
+\begin{figure}[h!]%
+\begin{tikzpicture}%
+\node at (0,1.200000) {\textbf{\fontsize{8.000000}{9.600000}\selectfont Step 3}};%
+\fill[bgcolor] (0.000000, 0) rectangle (0.800000, -0.800000);%
+\draw (0.000000, 0) rectangle (0.800000, -0.800000);%
+\node at (0.400000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 0};%
+\node at (0.400000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 0};%
+\fill[bgcolor] (0.800000, 0) rectangle (1.600000, -0.800000);%
+\draw (0.800000, 0) rectangle (1.600000, -0.800000);%
+\node at (1.200000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 1};%
+\node at (1.200000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 1};%
+\fill[bgcolor] (1.600000, 0) rectangle (2.400000, -0.800000);%
+\draw (1.600000, 0) rectangle (2.400000, -0.800000);%
+\node at (2.000000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 3};%
+\node at (2.000000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 2};%
+\fill[bgcolor] (2.400000, 0) rectangle (3.200000, -0.800000);%
+\draw (2.400000, 0) rectangle (3.200000, -0.800000);%
+\node at (2.800000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 4};%
+\node at (2.800000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 3};%
+\fill[bgcolor] (3.200000, 0) rectangle (4.000000, -0.800000);%
+\draw (3.200000, 0) rectangle (4.000000, -0.800000);%
+\node at (3.600000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 7};%
+\node at (3.600000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 4};%
+\fill[bgcolor] (4.000000, 0) rectangle (4.800000, -0.800000);%
+\draw (4.000000, 0) rectangle (4.800000, -0.800000);%
+\node at (4.400000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 8};%
+\node at (4.400000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 5};%
+\fill[bgcolor] (4.800000, 0) rectangle (5.600000, -0.800000);%
+\draw (4.800000, 0) rectangle (5.600000, -0.800000);%
+\node at (5.200000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 10};%
+\node at (5.200000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 6};%
+\fill[bgcolor] (5.600000, 0) rectangle (6.400000, -0.800000);%
+\draw (5.600000, 0) rectangle (6.400000, -0.800000);%
+\node at (6.000000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 12};%
+\node at (6.000000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 7};%
+\fill[bgcolor] (6.400000, 0) rectangle (7.200000, -0.800000);%
+\draw (6.400000, 0) rectangle (7.200000, -0.800000);%
+\node at (6.800000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 15};%
+\node at (6.800000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 8};%
+\fill[bgcolor] (7.200000, 0) rectangle (8.000000, -0.800000);%
+\draw (7.200000, 0) rectangle (8.000000, -0.800000);%
+\node at (7.600000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 18};%
+\node at (7.600000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 9};%
+\fill[bgcolor] (8.000000, 0) rectangle (8.800000, -0.800000);%
+\draw (8.000000, 0) rectangle (8.800000, -0.800000);%
+\node at (8.400000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 22};%
+\node at (8.400000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 10};%
+\draw[leftcolor, very thick] (7.600000, -0.400000) circle (0.400000);%
+\draw[rightcolor, very thick] (8.400000, -0.400000) circle (0.400000);%
+\draw[midcolor, very thick] (7.600000, -0.400000) circle (0.400000);%
+\node[below] at (7.600000, -0.800000) {\fontsize{6.400000}{5.120000}\selectfont Left};%
+\node[below] at (7.600000, -1.200000) {\fontsize{6.400000}{5.120000}\selectfont Mid};%
+\node[below] at (8.400000, -0.800000) {\fontsize{6.400000}{5.120000}\selectfont Right};%
+\end{tikzpicture}%
+\end{figure}
+
+%
+
+
+\begin{figure}[h!]%
+\begin{tikzpicture}%
+\node at (0,1.200000) {\textbf{\fontsize{8.000000}{9.600000}\selectfont Final Step}};%
+\fill[bgcolor] (0.000000, 0) rectangle (0.800000, -0.800000);%
+\draw (0.000000, 0) rectangle (0.800000, -0.800000);%
+\node at (0.400000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 0};%
+\node at (0.400000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 0};%
+\fill[bgcolor] (0.800000, 0) rectangle (1.600000, -0.800000);%
+\draw (0.800000, 0) rectangle (1.600000, -0.800000);%
+\node at (1.200000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 1};%
+\node at (1.200000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 1};%
+\fill[bgcolor] (1.600000, 0) rectangle (2.400000, -0.800000);%
+\draw (1.600000, 0) rectangle (2.400000, -0.800000);%
+\node at (2.000000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 3};%
+\node at (2.000000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 2};%
+\fill[bgcolor] (2.400000, 0) rectangle (3.200000, -0.800000);%
+\draw (2.400000, 0) rectangle (3.200000, -0.800000);%
+\node at (2.800000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 4};%
+\node at (2.800000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 3};%
+\fill[bgcolor] (3.200000, 0) rectangle (4.000000, -0.800000);%
+\draw (3.200000, 0) rectangle (4.000000, -0.800000);%
+\node at (3.600000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 7};%
+\node at (3.600000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 4};%
+\fill[bgcolor] (4.000000, 0) rectangle (4.800000, -0.800000);%
+\draw (4.000000, 0) rectangle (4.800000, -0.800000);%
+\node at (4.400000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 8};%
+\node at (4.400000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 5};%
+\fill[bgcolor] (4.800000, 0) rectangle (5.600000, -0.800000);%
+\draw (4.800000, 0) rectangle (5.600000, -0.800000);%
+\node at (5.200000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 10};%
+\node at (5.200000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 6};%
+\fill[bgcolor] (5.600000, 0) rectangle (6.400000, -0.800000);%
+\draw (5.600000, 0) rectangle (6.400000, -0.800000);%
+\node at (6.000000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 12};%
+\node at (6.000000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 7};%
+\fill[bgcolor] (6.400000, 0) rectangle (7.200000, -0.800000);%
+\draw (6.400000, 0) rectangle (7.200000, -0.800000);%
+\node at (6.800000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 15};%
+\node at (6.800000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 8};%
+\fill[targetcolor] (7.200000, 0) rectangle (8.000000, -0.800000);%
+\draw (7.200000, 0) rectangle (8.000000, -0.800000);%
+\node at (7.600000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 18};%
+\node at (7.600000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 9};%
+\fill[bgcolor] (8.000000, 0) rectangle (8.800000, -0.800000);%
+\draw (8.000000, 0) rectangle (8.800000, -0.800000);%
+\node at (8.400000, -0.400000) {\fontsize{6.400000}{5.120000}\selectfont 22};%
+\node at (8.400000, 0.320000) {\fontsize{6.400000}{5.120000}\selectfont 10};%
+\end{tikzpicture}%
+\end{figure}
+
+%
+\end{document}

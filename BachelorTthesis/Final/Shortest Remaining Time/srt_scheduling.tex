@@ -1,0 +1,638 @@
+\documentclass{article}%
+\usepackage[T1]{fontenc}%
+\usepackage[utf8]{inputenc}%
+\usepackage{lmodern}%
+\usepackage{textcomp}%
+\usepackage{lastpage}%
+\usepackage{xcolor}%
+\usepackage{tikz}%
+\usepackage[left=0.5in, right=0.5in, top=1in, bottom=1in]{geometry}%
+%
+\definecolor{P0}{HTML}{f5aee0}%
+\definecolor{P1}{HTML}{daaef5}%
+\definecolor{P2}{HTML}{aee4f5}%
+\definecolor{P3}{HTML}{aef5d7}%
+%
+\begin{document}%
+\normalsize%
+\section{SRT Scheduling}%
+\label{sec:SRTScheduling}%
+
+        \section*{Introduction}
+        Shortest Remaining Time (SRT) scheduling is one of the scheduling algorithms in operating systems that is used to manage processes. This algorithm is an advanced version of the Shortest Job Next (SJN) algorithm. In SRT, the process with the shortest remaining time is executed, and if a new process with a shorter remaining time enters the system, the algorithm switches to that new process.
+        %
+\subsection{Time 0: Process P0}%
+\label{subsec:Time0ProcessP0}%
+
+
+\begin{figure}[h!]%
+\centering%
+\begin{tikzpicture}%
+\draw[thick] (0,0) rectangle (2.800000, 0.700000);%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P0, font=\fontsize{7}{8}\selectfont] at (0.350000, 0.350000) {P0};%
+\node[font=\fontsize{5}{7}\selectfont] at (0.000000, -0.3) {0};%
+\node[font=\fontsize{5}{7}\selectfont] at (0.700000, -0.3) {1};%
+\end{tikzpicture}%
+\end{figure}
+
+%
+\subsection{Time 1: Process P1}%
+\label{subsec:Time1ProcessP1}%
+
+
+\begin{figure}[h!]%
+\centering%
+\begin{tikzpicture}%
+\draw[thick] (0,0) rectangle (2.800000, 0.700000);%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P0, font=\fontsize{7}{8}\selectfont] at (0.350000, 0.350000) {P0};%
+\node[font=\fontsize{5}{7}\selectfont] at (0.000000, -0.3) {0};%
+\node[font=\fontsize{5}{7}\selectfont] at (0.700000, -0.3) {1};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P1, font=\fontsize{7}{8}\selectfont] at (1.050000, 0.350000) {P1};%
+\node[font=\fontsize{5}{7}\selectfont] at (0.700000, -0.3) {1};%
+\node[font=\fontsize{5}{7}\selectfont] at (1.400000, -0.3) {2};%
+\end{tikzpicture}%
+\end{figure}
+
+%
+\subsection{Time 2: Process P2}%
+\label{subsec:Time2ProcessP2}%
+
+
+\begin{figure}[h!]%
+\centering%
+\begin{tikzpicture}%
+\draw[thick] (0,0) rectangle (2.800000, 0.700000);%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P0, font=\fontsize{7}{8}\selectfont] at (0.350000, 0.350000) {P0};%
+\node[font=\fontsize{5}{7}\selectfont] at (0.000000, -0.3) {0};%
+\node[font=\fontsize{5}{7}\selectfont] at (0.700000, -0.3) {1};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P1, font=\fontsize{7}{8}\selectfont] at (1.050000, 0.350000) {P1};%
+\node[font=\fontsize{5}{7}\selectfont] at (0.700000, -0.3) {1};%
+\node[font=\fontsize{5}{7}\selectfont] at (1.400000, -0.3) {2};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P2, font=\fontsize{7}{8}\selectfont] at (1.750000, 0.350000) {P2};%
+\node[font=\fontsize{5}{7}\selectfont] at (1.400000, -0.3) {2};%
+\node[font=\fontsize{5}{7}\selectfont] at (2.100000, -0.3) {3};%
+\end{tikzpicture}%
+\end{figure}
+
+%
+\subsection{Time 3: Process P2}%
+\label{subsec:Time3ProcessP2}%
+
+
+\begin{figure}[h!]%
+\centering%
+\begin{tikzpicture}%
+\draw[thick] (0,0) rectangle (2.800000, 0.700000);%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P0, font=\fontsize{7}{8}\selectfont] at (0.350000, 0.350000) {P0};%
+\node[font=\fontsize{5}{7}\selectfont] at (0.000000, -0.3) {0};%
+\node[font=\fontsize{5}{7}\selectfont] at (0.700000, -0.3) {1};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P1, font=\fontsize{7}{8}\selectfont] at (1.050000, 0.350000) {P1};%
+\node[font=\fontsize{5}{7}\selectfont] at (0.700000, -0.3) {1};%
+\node[font=\fontsize{5}{7}\selectfont] at (1.400000, -0.3) {2};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P2, font=\fontsize{7}{8}\selectfont] at (1.750000, 0.350000) {P2};%
+\node[font=\fontsize{5}{7}\selectfont] at (1.400000, -0.3) {2};%
+\node[font=\fontsize{5}{7}\selectfont] at (2.100000, -0.3) {3};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P2, font=\fontsize{7}{8}\selectfont] at (2.450000, 0.350000) {P2};%
+\node[font=\fontsize{5}{7}\selectfont] at (2.100000, -0.3) {3};%
+\node[font=\fontsize{5}{7}\selectfont] at (2.800000, -0.3) {4};%
+\end{tikzpicture}%
+\end{figure}
+
+%
+\subsection{Time 4: Process P1}%
+\label{subsec:Time4ProcessP1}%
+
+
+\begin{figure}[h!]%
+\centering%
+\begin{tikzpicture}%
+\draw[thick] (0,0) rectangle (2.800000, 0.700000);%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P0, font=\fontsize{7}{8}\selectfont] at (0.350000, 0.350000) {P0};%
+\node[font=\fontsize{5}{7}\selectfont] at (0.000000, -0.3) {0};%
+\node[font=\fontsize{5}{7}\selectfont] at (0.700000, -0.3) {1};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P1, font=\fontsize{7}{8}\selectfont] at (1.050000, 0.350000) {P1};%
+\node[font=\fontsize{5}{7}\selectfont] at (0.700000, -0.3) {1};%
+\node[font=\fontsize{5}{7}\selectfont] at (1.400000, -0.3) {2};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P2, font=\fontsize{7}{8}\selectfont] at (1.750000, 0.350000) {P2};%
+\node[font=\fontsize{5}{7}\selectfont] at (1.400000, -0.3) {2};%
+\node[font=\fontsize{5}{7}\selectfont] at (2.100000, -0.3) {3};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P2, font=\fontsize{7}{8}\selectfont] at (2.450000, 0.350000) {P2};%
+\node[font=\fontsize{5}{7}\selectfont] at (2.100000, -0.3) {3};%
+\node[font=\fontsize{5}{7}\selectfont] at (2.800000, -0.3) {4};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P1, font=\fontsize{7}{8}\selectfont] at (3.150000, 0.350000) {P1};%
+\node[font=\fontsize{5}{7}\selectfont] at (2.800000, -0.3) {4};%
+\node[font=\fontsize{5}{7}\selectfont] at (3.500000, -0.3) {5};%
+\end{tikzpicture}%
+\end{figure}
+
+%
+\subsection{Time 5: Process P1}%
+\label{subsec:Time5ProcessP1}%
+
+
+\begin{figure}[h!]%
+\centering%
+\begin{tikzpicture}%
+\draw[thick] (0,0) rectangle (2.800000, 0.700000);%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P0, font=\fontsize{7}{8}\selectfont] at (0.350000, 0.350000) {P0};%
+\node[font=\fontsize{5}{7}\selectfont] at (0.000000, -0.3) {0};%
+\node[font=\fontsize{5}{7}\selectfont] at (0.700000, -0.3) {1};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P1, font=\fontsize{7}{8}\selectfont] at (1.050000, 0.350000) {P1};%
+\node[font=\fontsize{5}{7}\selectfont] at (0.700000, -0.3) {1};%
+\node[font=\fontsize{5}{7}\selectfont] at (1.400000, -0.3) {2};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P2, font=\fontsize{7}{8}\selectfont] at (1.750000, 0.350000) {P2};%
+\node[font=\fontsize{5}{7}\selectfont] at (1.400000, -0.3) {2};%
+\node[font=\fontsize{5}{7}\selectfont] at (2.100000, -0.3) {3};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P2, font=\fontsize{7}{8}\selectfont] at (2.450000, 0.350000) {P2};%
+\node[font=\fontsize{5}{7}\selectfont] at (2.100000, -0.3) {3};%
+\node[font=\fontsize{5}{7}\selectfont] at (2.800000, -0.3) {4};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P1, font=\fontsize{7}{8}\selectfont] at (3.150000, 0.350000) {P1};%
+\node[font=\fontsize{5}{7}\selectfont] at (2.800000, -0.3) {4};%
+\node[font=\fontsize{5}{7}\selectfont] at (3.500000, -0.3) {5};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P1, font=\fontsize{7}{8}\selectfont] at (3.850000, 0.350000) {P1};%
+\node[font=\fontsize{5}{7}\selectfont] at (3.500000, -0.3) {5};%
+\node[font=\fontsize{5}{7}\selectfont] at (4.200000, -0.3) {6};%
+\end{tikzpicture}%
+\end{figure}
+
+%
+\subsection{Time 6: Process P1}%
+\label{subsec:Time6ProcessP1}%
+
+
+\begin{figure}[h!]%
+\centering%
+\begin{tikzpicture}%
+\draw[thick] (0,0) rectangle (2.800000, 0.700000);%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P0, font=\fontsize{7}{8}\selectfont] at (0.350000, 0.350000) {P0};%
+\node[font=\fontsize{5}{7}\selectfont] at (0.000000, -0.3) {0};%
+\node[font=\fontsize{5}{7}\selectfont] at (0.700000, -0.3) {1};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P1, font=\fontsize{7}{8}\selectfont] at (1.050000, 0.350000) {P1};%
+\node[font=\fontsize{5}{7}\selectfont] at (0.700000, -0.3) {1};%
+\node[font=\fontsize{5}{7}\selectfont] at (1.400000, -0.3) {2};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P2, font=\fontsize{7}{8}\selectfont] at (1.750000, 0.350000) {P2};%
+\node[font=\fontsize{5}{7}\selectfont] at (1.400000, -0.3) {2};%
+\node[font=\fontsize{5}{7}\selectfont] at (2.100000, -0.3) {3};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P2, font=\fontsize{7}{8}\selectfont] at (2.450000, 0.350000) {P2};%
+\node[font=\fontsize{5}{7}\selectfont] at (2.100000, -0.3) {3};%
+\node[font=\fontsize{5}{7}\selectfont] at (2.800000, -0.3) {4};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P1, font=\fontsize{7}{8}\selectfont] at (3.150000, 0.350000) {P1};%
+\node[font=\fontsize{5}{7}\selectfont] at (2.800000, -0.3) {4};%
+\node[font=\fontsize{5}{7}\selectfont] at (3.500000, -0.3) {5};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P1, font=\fontsize{7}{8}\selectfont] at (3.850000, 0.350000) {P1};%
+\node[font=\fontsize{5}{7}\selectfont] at (3.500000, -0.3) {5};%
+\node[font=\fontsize{5}{7}\selectfont] at (4.200000, -0.3) {6};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P1, font=\fontsize{7}{8}\selectfont] at (4.550000, 0.350000) {P1};%
+\node[font=\fontsize{5}{7}\selectfont] at (4.200000, -0.3) {6};%
+\node[font=\fontsize{5}{7}\selectfont] at (4.900000, -0.3) {7};%
+\end{tikzpicture}%
+\end{figure}
+
+%
+\subsection{Time 7: Process P3}%
+\label{subsec:Time7ProcessP3}%
+
+
+\begin{figure}[h!]%
+\centering%
+\begin{tikzpicture}%
+\draw[thick] (0,0) rectangle (2.800000, 0.700000);%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P0, font=\fontsize{7}{8}\selectfont] at (0.350000, 0.350000) {P0};%
+\node[font=\fontsize{5}{7}\selectfont] at (0.000000, -0.3) {0};%
+\node[font=\fontsize{5}{7}\selectfont] at (0.700000, -0.3) {1};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P1, font=\fontsize{7}{8}\selectfont] at (1.050000, 0.350000) {P1};%
+\node[font=\fontsize{5}{7}\selectfont] at (0.700000, -0.3) {1};%
+\node[font=\fontsize{5}{7}\selectfont] at (1.400000, -0.3) {2};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P2, font=\fontsize{7}{8}\selectfont] at (1.750000, 0.350000) {P2};%
+\node[font=\fontsize{5}{7}\selectfont] at (1.400000, -0.3) {2};%
+\node[font=\fontsize{5}{7}\selectfont] at (2.100000, -0.3) {3};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P2, font=\fontsize{7}{8}\selectfont] at (2.450000, 0.350000) {P2};%
+\node[font=\fontsize{5}{7}\selectfont] at (2.100000, -0.3) {3};%
+\node[font=\fontsize{5}{7}\selectfont] at (2.800000, -0.3) {4};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P1, font=\fontsize{7}{8}\selectfont] at (3.150000, 0.350000) {P1};%
+\node[font=\fontsize{5}{7}\selectfont] at (2.800000, -0.3) {4};%
+\node[font=\fontsize{5}{7}\selectfont] at (3.500000, -0.3) {5};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P1, font=\fontsize{7}{8}\selectfont] at (3.850000, 0.350000) {P1};%
+\node[font=\fontsize{5}{7}\selectfont] at (3.500000, -0.3) {5};%
+\node[font=\fontsize{5}{7}\selectfont] at (4.200000, -0.3) {6};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P1, font=\fontsize{7}{8}\selectfont] at (4.550000, 0.350000) {P1};%
+\node[font=\fontsize{5}{7}\selectfont] at (4.200000, -0.3) {6};%
+\node[font=\fontsize{5}{7}\selectfont] at (4.900000, -0.3) {7};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P3, font=\fontsize{7}{8}\selectfont] at (5.250000, 0.350000) {P3};%
+\node[font=\fontsize{5}{7}\selectfont] at (4.900000, -0.3) {7};%
+\node[font=\fontsize{5}{7}\selectfont] at (5.600000, -0.3) {8};%
+\end{tikzpicture}%
+\end{figure}
+
+%
+\subsection{Time 8: Process P3}%
+\label{subsec:Time8ProcessP3}%
+
+
+\begin{figure}[h!]%
+\centering%
+\begin{tikzpicture}%
+\draw[thick] (0,0) rectangle (2.800000, 0.700000);%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P0, font=\fontsize{7}{8}\selectfont] at (0.350000, 0.350000) {P0};%
+\node[font=\fontsize{5}{7}\selectfont] at (0.000000, -0.3) {0};%
+\node[font=\fontsize{5}{7}\selectfont] at (0.700000, -0.3) {1};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P1, font=\fontsize{7}{8}\selectfont] at (1.050000, 0.350000) {P1};%
+\node[font=\fontsize{5}{7}\selectfont] at (0.700000, -0.3) {1};%
+\node[font=\fontsize{5}{7}\selectfont] at (1.400000, -0.3) {2};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P2, font=\fontsize{7}{8}\selectfont] at (1.750000, 0.350000) {P2};%
+\node[font=\fontsize{5}{7}\selectfont] at (1.400000, -0.3) {2};%
+\node[font=\fontsize{5}{7}\selectfont] at (2.100000, -0.3) {3};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P2, font=\fontsize{7}{8}\selectfont] at (2.450000, 0.350000) {P2};%
+\node[font=\fontsize{5}{7}\selectfont] at (2.100000, -0.3) {3};%
+\node[font=\fontsize{5}{7}\selectfont] at (2.800000, -0.3) {4};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P1, font=\fontsize{7}{8}\selectfont] at (3.150000, 0.350000) {P1};%
+\node[font=\fontsize{5}{7}\selectfont] at (2.800000, -0.3) {4};%
+\node[font=\fontsize{5}{7}\selectfont] at (3.500000, -0.3) {5};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P1, font=\fontsize{7}{8}\selectfont] at (3.850000, 0.350000) {P1};%
+\node[font=\fontsize{5}{7}\selectfont] at (3.500000, -0.3) {5};%
+\node[font=\fontsize{5}{7}\selectfont] at (4.200000, -0.3) {6};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P1, font=\fontsize{7}{8}\selectfont] at (4.550000, 0.350000) {P1};%
+\node[font=\fontsize{5}{7}\selectfont] at (4.200000, -0.3) {6};%
+\node[font=\fontsize{5}{7}\selectfont] at (4.900000, -0.3) {7};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P3, font=\fontsize{7}{8}\selectfont] at (5.250000, 0.350000) {P3};%
+\node[font=\fontsize{5}{7}\selectfont] at (4.900000, -0.3) {7};%
+\node[font=\fontsize{5}{7}\selectfont] at (5.600000, -0.3) {8};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P3, font=\fontsize{7}{8}\selectfont] at (5.950000, 0.350000) {P3};%
+\node[font=\fontsize{5}{7}\selectfont] at (5.600000, -0.3) {8};%
+\node[font=\fontsize{5}{7}\selectfont] at (6.300000, -0.3) {9};%
+\end{tikzpicture}%
+\end{figure}
+
+%
+\subsection{Time 9: Process P3}%
+\label{subsec:Time9ProcessP3}%
+
+
+\begin{figure}[h!]%
+\centering%
+\begin{tikzpicture}%
+\draw[thick] (0,0) rectangle (2.800000, 0.700000);%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P0, font=\fontsize{7}{8}\selectfont] at (0.350000, 0.350000) {P0};%
+\node[font=\fontsize{5}{7}\selectfont] at (0.000000, -0.3) {0};%
+\node[font=\fontsize{5}{7}\selectfont] at (0.700000, -0.3) {1};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P1, font=\fontsize{7}{8}\selectfont] at (1.050000, 0.350000) {P1};%
+\node[font=\fontsize{5}{7}\selectfont] at (0.700000, -0.3) {1};%
+\node[font=\fontsize{5}{7}\selectfont] at (1.400000, -0.3) {2};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P2, font=\fontsize{7}{8}\selectfont] at (1.750000, 0.350000) {P2};%
+\node[font=\fontsize{5}{7}\selectfont] at (1.400000, -0.3) {2};%
+\node[font=\fontsize{5}{7}\selectfont] at (2.100000, -0.3) {3};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P2, font=\fontsize{7}{8}\selectfont] at (2.450000, 0.350000) {P2};%
+\node[font=\fontsize{5}{7}\selectfont] at (2.100000, -0.3) {3};%
+\node[font=\fontsize{5}{7}\selectfont] at (2.800000, -0.3) {4};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P1, font=\fontsize{7}{8}\selectfont] at (3.150000, 0.350000) {P1};%
+\node[font=\fontsize{5}{7}\selectfont] at (2.800000, -0.3) {4};%
+\node[font=\fontsize{5}{7}\selectfont] at (3.500000, -0.3) {5};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P1, font=\fontsize{7}{8}\selectfont] at (3.850000, 0.350000) {P1};%
+\node[font=\fontsize{5}{7}\selectfont] at (3.500000, -0.3) {5};%
+\node[font=\fontsize{5}{7}\selectfont] at (4.200000, -0.3) {6};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P1, font=\fontsize{7}{8}\selectfont] at (4.550000, 0.350000) {P1};%
+\node[font=\fontsize{5}{7}\selectfont] at (4.200000, -0.3) {6};%
+\node[font=\fontsize{5}{7}\selectfont] at (4.900000, -0.3) {7};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P3, font=\fontsize{7}{8}\selectfont] at (5.250000, 0.350000) {P3};%
+\node[font=\fontsize{5}{7}\selectfont] at (4.900000, -0.3) {7};%
+\node[font=\fontsize{5}{7}\selectfont] at (5.600000, -0.3) {8};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P3, font=\fontsize{7}{8}\selectfont] at (5.950000, 0.350000) {P3};%
+\node[font=\fontsize{5}{7}\selectfont] at (5.600000, -0.3) {8};%
+\node[font=\fontsize{5}{7}\selectfont] at (6.300000, -0.3) {9};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P3, font=\fontsize{7}{8}\selectfont] at (6.650000, 0.350000) {P3};%
+\node[font=\fontsize{5}{7}\selectfont] at (6.300000, -0.3) {9};%
+\node[font=\fontsize{5}{7}\selectfont] at (7.000000, -0.3) {10};%
+\end{tikzpicture}%
+\end{figure}
+
+%
+\subsection{Time 10: Process P0}%
+\label{subsec:Time10ProcessP0}%
+
+
+\begin{figure}[h!]%
+\centering%
+\begin{tikzpicture}%
+\draw[thick] (0,0) rectangle (2.800000, 0.700000);%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P0, font=\fontsize{7}{8}\selectfont] at (0.350000, 0.350000) {P0};%
+\node[font=\fontsize{5}{7}\selectfont] at (0.000000, -0.3) {0};%
+\node[font=\fontsize{5}{7}\selectfont] at (0.700000, -0.3) {1};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P1, font=\fontsize{7}{8}\selectfont] at (1.050000, 0.350000) {P1};%
+\node[font=\fontsize{5}{7}\selectfont] at (0.700000, -0.3) {1};%
+\node[font=\fontsize{5}{7}\selectfont] at (1.400000, -0.3) {2};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P2, font=\fontsize{7}{8}\selectfont] at (1.750000, 0.350000) {P2};%
+\node[font=\fontsize{5}{7}\selectfont] at (1.400000, -0.3) {2};%
+\node[font=\fontsize{5}{7}\selectfont] at (2.100000, -0.3) {3};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P2, font=\fontsize{7}{8}\selectfont] at (2.450000, 0.350000) {P2};%
+\node[font=\fontsize{5}{7}\selectfont] at (2.100000, -0.3) {3};%
+\node[font=\fontsize{5}{7}\selectfont] at (2.800000, -0.3) {4};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P1, font=\fontsize{7}{8}\selectfont] at (3.150000, 0.350000) {P1};%
+\node[font=\fontsize{5}{7}\selectfont] at (2.800000, -0.3) {4};%
+\node[font=\fontsize{5}{7}\selectfont] at (3.500000, -0.3) {5};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P1, font=\fontsize{7}{8}\selectfont] at (3.850000, 0.350000) {P1};%
+\node[font=\fontsize{5}{7}\selectfont] at (3.500000, -0.3) {5};%
+\node[font=\fontsize{5}{7}\selectfont] at (4.200000, -0.3) {6};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P1, font=\fontsize{7}{8}\selectfont] at (4.550000, 0.350000) {P1};%
+\node[font=\fontsize{5}{7}\selectfont] at (4.200000, -0.3) {6};%
+\node[font=\fontsize{5}{7}\selectfont] at (4.900000, -0.3) {7};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P3, font=\fontsize{7}{8}\selectfont] at (5.250000, 0.350000) {P3};%
+\node[font=\fontsize{5}{7}\selectfont] at (4.900000, -0.3) {7};%
+\node[font=\fontsize{5}{7}\selectfont] at (5.600000, -0.3) {8};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P3, font=\fontsize{7}{8}\selectfont] at (5.950000, 0.350000) {P3};%
+\node[font=\fontsize{5}{7}\selectfont] at (5.600000, -0.3) {8};%
+\node[font=\fontsize{5}{7}\selectfont] at (6.300000, -0.3) {9};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P3, font=\fontsize{7}{8}\selectfont] at (6.650000, 0.350000) {P3};%
+\node[font=\fontsize{5}{7}\selectfont] at (6.300000, -0.3) {9};%
+\node[font=\fontsize{5}{7}\selectfont] at (7.000000, -0.3) {10};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P0, font=\fontsize{7}{8}\selectfont] at (7.350000, 0.350000) {P0};%
+\node[font=\fontsize{5}{7}\selectfont] at (7.000000, -0.3) {10};%
+\node[font=\fontsize{5}{7}\selectfont] at (7.700000, -0.3) {11};%
+\end{tikzpicture}%
+\end{figure}
+
+%
+\subsection{Time 11: Process P0}%
+\label{subsec:Time11ProcessP0}%
+
+
+\begin{figure}[h!]%
+\centering%
+\begin{tikzpicture}%
+\draw[thick] (0,0) rectangle (2.800000, 0.700000);%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P0, font=\fontsize{7}{8}\selectfont] at (0.350000, 0.350000) {P0};%
+\node[font=\fontsize{5}{7}\selectfont] at (0.000000, -0.3) {0};%
+\node[font=\fontsize{5}{7}\selectfont] at (0.700000, -0.3) {1};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P1, font=\fontsize{7}{8}\selectfont] at (1.050000, 0.350000) {P1};%
+\node[font=\fontsize{5}{7}\selectfont] at (0.700000, -0.3) {1};%
+\node[font=\fontsize{5}{7}\selectfont] at (1.400000, -0.3) {2};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P2, font=\fontsize{7}{8}\selectfont] at (1.750000, 0.350000) {P2};%
+\node[font=\fontsize{5}{7}\selectfont] at (1.400000, -0.3) {2};%
+\node[font=\fontsize{5}{7}\selectfont] at (2.100000, -0.3) {3};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P2, font=\fontsize{7}{8}\selectfont] at (2.450000, 0.350000) {P2};%
+\node[font=\fontsize{5}{7}\selectfont] at (2.100000, -0.3) {3};%
+\node[font=\fontsize{5}{7}\selectfont] at (2.800000, -0.3) {4};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P1, font=\fontsize{7}{8}\selectfont] at (3.150000, 0.350000) {P1};%
+\node[font=\fontsize{5}{7}\selectfont] at (2.800000, -0.3) {4};%
+\node[font=\fontsize{5}{7}\selectfont] at (3.500000, -0.3) {5};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P1, font=\fontsize{7}{8}\selectfont] at (3.850000, 0.350000) {P1};%
+\node[font=\fontsize{5}{7}\selectfont] at (3.500000, -0.3) {5};%
+\node[font=\fontsize{5}{7}\selectfont] at (4.200000, -0.3) {6};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P1, font=\fontsize{7}{8}\selectfont] at (4.550000, 0.350000) {P1};%
+\node[font=\fontsize{5}{7}\selectfont] at (4.200000, -0.3) {6};%
+\node[font=\fontsize{5}{7}\selectfont] at (4.900000, -0.3) {7};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P3, font=\fontsize{7}{8}\selectfont] at (5.250000, 0.350000) {P3};%
+\node[font=\fontsize{5}{7}\selectfont] at (4.900000, -0.3) {7};%
+\node[font=\fontsize{5}{7}\selectfont] at (5.600000, -0.3) {8};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P3, font=\fontsize{7}{8}\selectfont] at (5.950000, 0.350000) {P3};%
+\node[font=\fontsize{5}{7}\selectfont] at (5.600000, -0.3) {8};%
+\node[font=\fontsize{5}{7}\selectfont] at (6.300000, -0.3) {9};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P3, font=\fontsize{7}{8}\selectfont] at (6.650000, 0.350000) {P3};%
+\node[font=\fontsize{5}{7}\selectfont] at (6.300000, -0.3) {9};%
+\node[font=\fontsize{5}{7}\selectfont] at (7.000000, -0.3) {10};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P0, font=\fontsize{7}{8}\selectfont] at (7.350000, 0.350000) {P0};%
+\node[font=\fontsize{5}{7}\selectfont] at (7.000000, -0.3) {10};%
+\node[font=\fontsize{5}{7}\selectfont] at (7.700000, -0.3) {11};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P0, font=\fontsize{7}{8}\selectfont] at (8.050000, 0.350000) {P0};%
+\node[font=\fontsize{5}{7}\selectfont] at (7.700000, -0.3) {11};%
+\node[font=\fontsize{5}{7}\selectfont] at (8.400000, -0.3) {12};%
+\end{tikzpicture}%
+\end{figure}
+
+%
+\subsection{Time 12: Process P0}%
+\label{subsec:Time12ProcessP0}%
+
+
+\begin{figure}[h!]%
+\centering%
+\begin{tikzpicture}%
+\draw[thick] (0,0) rectangle (2.800000, 0.700000);%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P0, font=\fontsize{7}{8}\selectfont] at (0.350000, 0.350000) {P0};%
+\node[font=\fontsize{5}{7}\selectfont] at (0.000000, -0.3) {0};%
+\node[font=\fontsize{5}{7}\selectfont] at (0.700000, -0.3) {1};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P1, font=\fontsize{7}{8}\selectfont] at (1.050000, 0.350000) {P1};%
+\node[font=\fontsize{5}{7}\selectfont] at (0.700000, -0.3) {1};%
+\node[font=\fontsize{5}{7}\selectfont] at (1.400000, -0.3) {2};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P2, font=\fontsize{7}{8}\selectfont] at (1.750000, 0.350000) {P2};%
+\node[font=\fontsize{5}{7}\selectfont] at (1.400000, -0.3) {2};%
+\node[font=\fontsize{5}{7}\selectfont] at (2.100000, -0.3) {3};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P2, font=\fontsize{7}{8}\selectfont] at (2.450000, 0.350000) {P2};%
+\node[font=\fontsize{5}{7}\selectfont] at (2.100000, -0.3) {3};%
+\node[font=\fontsize{5}{7}\selectfont] at (2.800000, -0.3) {4};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P1, font=\fontsize{7}{8}\selectfont] at (3.150000, 0.350000) {P1};%
+\node[font=\fontsize{5}{7}\selectfont] at (2.800000, -0.3) {4};%
+\node[font=\fontsize{5}{7}\selectfont] at (3.500000, -0.3) {5};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P1, font=\fontsize{7}{8}\selectfont] at (3.850000, 0.350000) {P1};%
+\node[font=\fontsize{5}{7}\selectfont] at (3.500000, -0.3) {5};%
+\node[font=\fontsize{5}{7}\selectfont] at (4.200000, -0.3) {6};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P1, font=\fontsize{7}{8}\selectfont] at (4.550000, 0.350000) {P1};%
+\node[font=\fontsize{5}{7}\selectfont] at (4.200000, -0.3) {6};%
+\node[font=\fontsize{5}{7}\selectfont] at (4.900000, -0.3) {7};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P3, font=\fontsize{7}{8}\selectfont] at (5.250000, 0.350000) {P3};%
+\node[font=\fontsize{5}{7}\selectfont] at (4.900000, -0.3) {7};%
+\node[font=\fontsize{5}{7}\selectfont] at (5.600000, -0.3) {8};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P3, font=\fontsize{7}{8}\selectfont] at (5.950000, 0.350000) {P3};%
+\node[font=\fontsize{5}{7}\selectfont] at (5.600000, -0.3) {8};%
+\node[font=\fontsize{5}{7}\selectfont] at (6.300000, -0.3) {9};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P3, font=\fontsize{7}{8}\selectfont] at (6.650000, 0.350000) {P3};%
+\node[font=\fontsize{5}{7}\selectfont] at (6.300000, -0.3) {9};%
+\node[font=\fontsize{5}{7}\selectfont] at (7.000000, -0.3) {10};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P0, font=\fontsize{7}{8}\selectfont] at (7.350000, 0.350000) {P0};%
+\node[font=\fontsize{5}{7}\selectfont] at (7.000000, -0.3) {10};%
+\node[font=\fontsize{5}{7}\selectfont] at (7.700000, -0.3) {11};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P0, font=\fontsize{7}{8}\selectfont] at (8.050000, 0.350000) {P0};%
+\node[font=\fontsize{5}{7}\selectfont] at (7.700000, -0.3) {11};%
+\node[font=\fontsize{5}{7}\selectfont] at (8.400000, -0.3) {12};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P0, font=\fontsize{7}{8}\selectfont] at (8.750000, 0.350000) {P0};%
+\node[font=\fontsize{5}{7}\selectfont] at (8.400000, -0.3) {12};%
+\node[font=\fontsize{5}{7}\selectfont] at (9.100000, -0.3) {13};%
+\end{tikzpicture}%
+\end{figure}
+
+%
+\subsection{Time 13: Process P0}%
+\label{subsec:Time13ProcessP0}%
+
+
+\begin{figure}[h!]%
+\centering%
+\begin{tikzpicture}%
+\draw[thick] (0,0) rectangle (2.800000, 0.700000);%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P0, font=\fontsize{7}{8}\selectfont] at (0.350000, 0.350000) {P0};%
+\node[font=\fontsize{5}{7}\selectfont] at (0.000000, -0.3) {0};%
+\node[font=\fontsize{5}{7}\selectfont] at (0.700000, -0.3) {1};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P1, font=\fontsize{7}{8}\selectfont] at (1.050000, 0.350000) {P1};%
+\node[font=\fontsize{5}{7}\selectfont] at (0.700000, -0.3) {1};%
+\node[font=\fontsize{5}{7}\selectfont] at (1.400000, -0.3) {2};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P2, font=\fontsize{7}{8}\selectfont] at (1.750000, 0.350000) {P2};%
+\node[font=\fontsize{5}{7}\selectfont] at (1.400000, -0.3) {2};%
+\node[font=\fontsize{5}{7}\selectfont] at (2.100000, -0.3) {3};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P2, font=\fontsize{7}{8}\selectfont] at (2.450000, 0.350000) {P2};%
+\node[font=\fontsize{5}{7}\selectfont] at (2.100000, -0.3) {3};%
+\node[font=\fontsize{5}{7}\selectfont] at (2.800000, -0.3) {4};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P1, font=\fontsize{7}{8}\selectfont] at (3.150000, 0.350000) {P1};%
+\node[font=\fontsize{5}{7}\selectfont] at (2.800000, -0.3) {4};%
+\node[font=\fontsize{5}{7}\selectfont] at (3.500000, -0.3) {5};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P1, font=\fontsize{7}{8}\selectfont] at (3.850000, 0.350000) {P1};%
+\node[font=\fontsize{5}{7}\selectfont] at (3.500000, -0.3) {5};%
+\node[font=\fontsize{5}{7}\selectfont] at (4.200000, -0.3) {6};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P1, font=\fontsize{7}{8}\selectfont] at (4.550000, 0.350000) {P1};%
+\node[font=\fontsize{5}{7}\selectfont] at (4.200000, -0.3) {6};%
+\node[font=\fontsize{5}{7}\selectfont] at (4.900000, -0.3) {7};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P3, font=\fontsize{7}{8}\selectfont] at (5.250000, 0.350000) {P3};%
+\node[font=\fontsize{5}{7}\selectfont] at (4.900000, -0.3) {7};%
+\node[font=\fontsize{5}{7}\selectfont] at (5.600000, -0.3) {8};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P3, font=\fontsize{7}{8}\selectfont] at (5.950000, 0.350000) {P3};%
+\node[font=\fontsize{5}{7}\selectfont] at (5.600000, -0.3) {8};%
+\node[font=\fontsize{5}{7}\selectfont] at (6.300000, -0.3) {9};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P3, font=\fontsize{7}{8}\selectfont] at (6.650000, 0.350000) {P3};%
+\node[font=\fontsize{5}{7}\selectfont] at (6.300000, -0.3) {9};%
+\node[font=\fontsize{5}{7}\selectfont] at (7.000000, -0.3) {10};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P0, font=\fontsize{7}{8}\selectfont] at (7.350000, 0.350000) {P0};%
+\node[font=\fontsize{5}{7}\selectfont] at (7.000000, -0.3) {10};%
+\node[font=\fontsize{5}{7}\selectfont] at (7.700000, -0.3) {11};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P0, font=\fontsize{7}{8}\selectfont] at (8.050000, 0.350000) {P0};%
+\node[font=\fontsize{5}{7}\selectfont] at (7.700000, -0.3) {11};%
+\node[font=\fontsize{5}{7}\selectfont] at (8.400000, -0.3) {12};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P0, font=\fontsize{7}{8}\selectfont] at (8.750000, 0.350000) {P0};%
+\node[font=\fontsize{5}{7}\selectfont] at (8.400000, -0.3) {12};%
+\node[font=\fontsize{5}{7}\selectfont] at (9.100000, -0.3) {13};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P0, font=\fontsize{7}{8}\selectfont] at (9.450000, 0.350000) {P0};%
+\node[font=\fontsize{5}{7}\selectfont] at (9.100000, -0.3) {13};%
+\node[font=\fontsize{5}{7}\selectfont] at (9.800000, -0.3) {14};%
+\end{tikzpicture}%
+\end{figure}
+
+%
+\subsection{Time 14: Process P0}%
+\label{subsec:Time14ProcessP0}%
+
+
+\begin{figure}[h!]%
+\centering%
+\begin{tikzpicture}%
+\draw[thick] (0,0) rectangle (2.800000, 0.700000);%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P0, font=\fontsize{7}{8}\selectfont] at (0.350000, 0.350000) {P0};%
+\node[font=\fontsize{5}{7}\selectfont] at (0.000000, -0.3) {0};%
+\node[font=\fontsize{5}{7}\selectfont] at (0.700000, -0.3) {1};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P1, font=\fontsize{7}{8}\selectfont] at (1.050000, 0.350000) {P1};%
+\node[font=\fontsize{5}{7}\selectfont] at (0.700000, -0.3) {1};%
+\node[font=\fontsize{5}{7}\selectfont] at (1.400000, -0.3) {2};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P2, font=\fontsize{7}{8}\selectfont] at (1.750000, 0.350000) {P2};%
+\node[font=\fontsize{5}{7}\selectfont] at (1.400000, -0.3) {2};%
+\node[font=\fontsize{5}{7}\selectfont] at (2.100000, -0.3) {3};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P2, font=\fontsize{7}{8}\selectfont] at (2.450000, 0.350000) {P2};%
+\node[font=\fontsize{5}{7}\selectfont] at (2.100000, -0.3) {3};%
+\node[font=\fontsize{5}{7}\selectfont] at (2.800000, -0.3) {4};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P1, font=\fontsize{7}{8}\selectfont] at (3.150000, 0.350000) {P1};%
+\node[font=\fontsize{5}{7}\selectfont] at (2.800000, -0.3) {4};%
+\node[font=\fontsize{5}{7}\selectfont] at (3.500000, -0.3) {5};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P1, font=\fontsize{7}{8}\selectfont] at (3.850000, 0.350000) {P1};%
+\node[font=\fontsize{5}{7}\selectfont] at (3.500000, -0.3) {5};%
+\node[font=\fontsize{5}{7}\selectfont] at (4.200000, -0.3) {6};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P1, font=\fontsize{7}{8}\selectfont] at (4.550000, 0.350000) {P1};%
+\node[font=\fontsize{5}{7}\selectfont] at (4.200000, -0.3) {6};%
+\node[font=\fontsize{5}{7}\selectfont] at (4.900000, -0.3) {7};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P3, font=\fontsize{7}{8}\selectfont] at (5.250000, 0.350000) {P3};%
+\node[font=\fontsize{5}{7}\selectfont] at (4.900000, -0.3) {7};%
+\node[font=\fontsize{5}{7}\selectfont] at (5.600000, -0.3) {8};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P3, font=\fontsize{7}{8}\selectfont] at (5.950000, 0.350000) {P3};%
+\node[font=\fontsize{5}{7}\selectfont] at (5.600000, -0.3) {8};%
+\node[font=\fontsize{5}{7}\selectfont] at (6.300000, -0.3) {9};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P3, font=\fontsize{7}{8}\selectfont] at (6.650000, 0.350000) {P3};%
+\node[font=\fontsize{5}{7}\selectfont] at (6.300000, -0.3) {9};%
+\node[font=\fontsize{5}{7}\selectfont] at (7.000000, -0.3) {10};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P0, font=\fontsize{7}{8}\selectfont] at (7.350000, 0.350000) {P0};%
+\node[font=\fontsize{5}{7}\selectfont] at (7.000000, -0.3) {10};%
+\node[font=\fontsize{5}{7}\selectfont] at (7.700000, -0.3) {11};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P0, font=\fontsize{7}{8}\selectfont] at (8.050000, 0.350000) {P0};%
+\node[font=\fontsize{5}{7}\selectfont] at (7.700000, -0.3) {11};%
+\node[font=\fontsize{5}{7}\selectfont] at (8.400000, -0.3) {12};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P0, font=\fontsize{7}{8}\selectfont] at (8.750000, 0.350000) {P0};%
+\node[font=\fontsize{5}{7}\selectfont] at (8.400000, -0.3) {12};%
+\node[font=\fontsize{5}{7}\selectfont] at (9.100000, -0.3) {13};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P0, font=\fontsize{7}{8}\selectfont] at (9.450000, 0.350000) {P0};%
+\node[font=\fontsize{5}{7}\selectfont] at (9.100000, -0.3) {13};%
+\node[font=\fontsize{5}{7}\selectfont] at (9.800000, -0.3) {14};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, fill=P0, font=\fontsize{7}{8}\selectfont] at (10.150000, 0.350000) {P0};%
+\node[font=\fontsize{5}{7}\selectfont] at (9.800000, -0.3) {14};%
+\node[font=\fontsize{5}{7}\selectfont] at (10.500000, -0.3) {15};%
+\end{tikzpicture}%
+\end{figure}
+
+%
+\subsection{Final Process Table}%
+\label{subsec:FinalProcessTable}%
+\begin{tabular}{|c|c|c|c|}%
+\hline%
+\textbf{Process}&\textbf{Arrival Time}&\textbf{Burst Time}&\textbf{Completion Time}\\%
+\hline%
+P0&0&6&15\\%
+\hline%
+P1&1&4&7\\%
+\hline%
+P2&2&2&4\\%
+\hline%
+P3&3&3&10\\%
+\hline%
+\end{tabular}
+
+%
+\subsection{Execution Order}%
+\label{subsec:ExecutionOrder}%
+
+
+\begin{figure}[h!]%
+\centering%
+\begin{tikzpicture}%
+\draw[thick] (0,0) rectangle (2.800000, 0.700000);%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, font=\fontsize{7}{8}\selectfont, fill=P0] at (0.350000, 0.350000) {P0};%
+\node[font=\fontsize{5}{7}\selectfont] at (0.000000, -0.3) {0};%
+\node[font=\fontsize{5}{7}\selectfont] at (0.700000, -0.3) {1};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, font=\fontsize{7}{8}\selectfont, fill=P1] at (1.050000, 0.350000) {P1};%
+\node[font=\fontsize{5}{7}\selectfont] at (0.700000, -0.3) {1};%
+\node[font=\fontsize{5}{7}\selectfont] at (1.400000, -0.3) {2};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, font=\fontsize{7}{8}\selectfont, fill=P2] at (1.750000, 0.350000) {P2};%
+\node[font=\fontsize{5}{7}\selectfont] at (1.400000, -0.3) {2};%
+\node[font=\fontsize{5}{7}\selectfont] at (2.100000, -0.3) {3};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, font=\fontsize{7}{8}\selectfont, fill=P2] at (2.450000, 0.350000) {P2};%
+\node[font=\fontsize{5}{7}\selectfont] at (2.100000, -0.3) {3};%
+\node[font=\fontsize{5}{7}\selectfont] at (2.800000, -0.3) {4};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, font=\fontsize{7}{8}\selectfont, fill=P1] at (3.150000, 0.350000) {P1};%
+\node[font=\fontsize{5}{7}\selectfont] at (2.800000, -0.3) {4};%
+\node[font=\fontsize{5}{7}\selectfont] at (3.500000, -0.3) {5};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, font=\fontsize{7}{8}\selectfont, fill=P1] at (3.850000, 0.350000) {P1};%
+\node[font=\fontsize{5}{7}\selectfont] at (3.500000, -0.3) {5};%
+\node[font=\fontsize{5}{7}\selectfont] at (4.200000, -0.3) {6};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, font=\fontsize{7}{8}\selectfont, fill=P1] at (4.550000, 0.350000) {P1};%
+\node[font=\fontsize{5}{7}\selectfont] at (4.200000, -0.3) {6};%
+\node[font=\fontsize{5}{7}\selectfont] at (4.900000, -0.3) {7};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, font=\fontsize{7}{8}\selectfont, fill=P3] at (5.250000, 0.350000) {P3};%
+\node[font=\fontsize{5}{7}\selectfont] at (4.900000, -0.3) {7};%
+\node[font=\fontsize{5}{7}\selectfont] at (5.600000, -0.3) {8};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, font=\fontsize{7}{8}\selectfont, fill=P3] at (5.950000, 0.350000) {P3};%
+\node[font=\fontsize{5}{7}\selectfont] at (5.600000, -0.3) {8};%
+\node[font=\fontsize{5}{7}\selectfont] at (6.300000, -0.3) {9};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, font=\fontsize{7}{8}\selectfont, fill=P3] at (6.650000, 0.350000) {P3};%
+\node[font=\fontsize{5}{7}\selectfont] at (6.300000, -0.3) {9};%
+\node[font=\fontsize{5}{7}\selectfont] at (7.000000, -0.3) {10};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, font=\fontsize{7}{8}\selectfont, fill=P0] at (7.350000, 0.350000) {P0};%
+\node[font=\fontsize{5}{7}\selectfont] at (7.000000, -0.3) {10};%
+\node[font=\fontsize{5}{7}\selectfont] at (7.700000, -0.3) {11};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, font=\fontsize{7}{8}\selectfont, fill=P0] at (8.050000, 0.350000) {P0};%
+\node[font=\fontsize{5}{7}\selectfont] at (7.700000, -0.3) {11};%
+\node[font=\fontsize{5}{7}\selectfont] at (8.400000, -0.3) {12};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, font=\fontsize{7}{8}\selectfont, fill=P0] at (8.750000, 0.350000) {P0};%
+\node[font=\fontsize{5}{7}\selectfont] at (8.400000, -0.3) {12};%
+\node[font=\fontsize{5}{7}\selectfont] at (9.100000, -0.3) {13};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, font=\fontsize{7}{8}\selectfont, fill=P0] at (9.450000, 0.350000) {P0};%
+\node[font=\fontsize{5}{7}\selectfont] at (9.100000, -0.3) {13};%
+\node[font=\fontsize{5}{7}\selectfont] at (9.800000, -0.3) {14};%
+\node[draw, minimum width=0.700000cm, minimum height=0.700000cm, text centered, font=\fontsize{7}{8}\selectfont, fill=P0] at (10.150000, 0.350000) {P0};%
+\node[font=\fontsize{5}{7}\selectfont] at (9.800000, -0.3) {14};%
+\node[font=\fontsize{5}{7}\selectfont] at (10.500000, -0.3) {15};%
+\end{tikzpicture}%
+\end{figure}
+
+%
+\end{document}

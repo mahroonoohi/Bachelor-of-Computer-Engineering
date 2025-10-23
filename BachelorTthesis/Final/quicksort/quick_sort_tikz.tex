@@ -1,0 +1,239 @@
+\documentclass{article}%
+\usepackage[T1]{fontenc}%
+\usepackage[utf8]{inputenc}%
+\usepackage{lmodern}%
+\usepackage{textcomp}%
+\usepackage{lastpage}%
+\usepackage{tikz}%
+%
+\usepackage{tikz}%
+\usepackage{xcolor}%
+%
+\begin{document}%
+\normalsize%
+\section{Quick Sort Visualization}%
+\label{sec:QuickSortVisualization}%
+
+
+\begin{figure}[h!]%
+\begin{tikzpicture}%
+\node[draw=black, fill={rgb,255:red,252;green,245;blue,252}, minimum size=0.8cm] at (0.0,0) {1};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (0.0,0.8) {0};%
+\node[draw=black, fill={rgb,255:red,252;green,245;blue,252}, minimum size=0.8cm] at (0.8,0) {7};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (0.8,0.8) {1};%
+\node[draw=black, fill={rgb,255:red,252;green,245;blue,252}, minimum size=0.8cm] at (1.6,0) {3};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (1.6,0.8) {2};%
+\node[draw=black, fill={rgb,255:red,252;green,245;blue,252}, minimum size=0.8cm] at (2.4000000000000004,0) {4};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (2.4000000000000004,0.8) {3};%
+\node[draw=black, fill={rgb,255:red,252;green,245;blue,252}, minimum size=0.8cm] at (3.2,0) {9};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (3.2,0.8) {4};%
+\node[draw=black, fill={rgb,255:red,252;green,245;blue,252}, minimum size=0.8cm] at (4.0,0) {10};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (4.0,0.8) {5};%
+\node[draw=black, fill={rgb,255:red,252;green,245;blue,252}, minimum size=0.8cm] at (4.800000000000001,0) {0};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (4.800000000000001,0.8) {6};%
+\end{tikzpicture}%
+\caption{Step 1 of the quicksort algorithm}%
+\end{figure}
+
+%
+
+
+\begin{figure}[h!]%
+\begin{tikzpicture}%
+\node[draw=black, fill={rgb,255:red,250;green,187;blue,250}, minimum size=0.8cm] at (0.0,0) {0};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (0.0,0.8) {0};%
+\node[draw=black, fill={rgb,255:red,252;green,245;blue,252}, minimum size=0.8cm] at (0.8,0) {7};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (0.8,0.8) {1};%
+\node[draw=black, fill={rgb,255:red,252;green,245;blue,252}, minimum size=0.8cm] at (1.6,0) {3};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (1.6,0.8) {2};%
+\node[draw=black, fill={rgb,255:red,252;green,245;blue,252}, minimum size=0.8cm] at (2.4000000000000004,0) {4};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (2.4000000000000004,0.8) {3};%
+\node[draw=black, fill={rgb,255:red,252;green,245;blue,252}, minimum size=0.8cm] at (3.2,0) {9};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (3.2,0.8) {4};%
+\node[draw=black, fill={rgb,255:red,252;green,245;blue,252}, minimum size=0.8cm] at (4.0,0) {10};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (4.0,0.8) {5};%
+\node[draw=black, fill={rgb,255:red,250;green,97;blue,250}, minimum size=0.8cm] at (4.800000000000001,0) {1};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (4.800000000000001,0.8) {6};%
+\draw[black] (4.800000000000001,0) circle[radius=0.5cm];%
+\node[font=\small, anchor=north] at (4.800000000000001,-0.5) {pivot};%
+\end{tikzpicture}%
+\caption{Step 2 of the quicksort algorithm}%
+\end{figure}
+
+%
+
+
+\begin{figure}[h!]%
+\begin{tikzpicture}%
+\node[draw=black, fill={rgb,255:red,252;green,245;blue,252}, minimum size=0.8cm] at (0.0,0) {0};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (0.0,0.8) {0};%
+\node[draw=black, fill={rgb,255:red,250;green,187;blue,250}, minimum size=0.8cm] at (0.8,0) {1};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (0.8,0.8) {1};%
+\node[draw=black, fill={rgb,255:red,252;green,245;blue,252}, minimum size=0.8cm] at (1.6,0) {3};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (1.6,0.8) {2};%
+\node[draw=black, fill={rgb,255:red,252;green,245;blue,252}, minimum size=0.8cm] at (2.4000000000000004,0) {4};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (2.4000000000000004,0.8) {3};%
+\node[draw=black, fill={rgb,255:red,252;green,245;blue,252}, minimum size=0.8cm] at (3.2,0) {9};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (3.2,0.8) {4};%
+\node[draw=black, fill={rgb,255:red,252;green,245;blue,252}, minimum size=0.8cm] at (4.0,0) {10};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (4.0,0.8) {5};%
+\node[draw=black, fill={rgb,255:red,250;green,97;blue,250}, minimum size=0.8cm] at (4.800000000000001,0) {7};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (4.800000000000001,0.8) {6};%
+\draw[black] (4.800000000000001,0) circle[radius=0.5cm];%
+\node[font=\small, anchor=north] at (4.800000000000001,-0.5) {pivot};%
+\end{tikzpicture}%
+\caption{Step 3 of the quicksort algorithm}%
+\end{figure}
+
+%
+
+
+\begin{figure}[h!]%
+\begin{tikzpicture}%
+\node[draw=black, fill={rgb,255:red,252;green,245;blue,252}, minimum size=0.8cm] at (0.0,0) {0};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (0.0,0.8) {0};%
+\node[draw=black, fill={rgb,255:red,252;green,245;blue,252}, minimum size=0.8cm] at (0.8,0) {1};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (0.8,0.8) {1};%
+\node[draw=black, fill={rgb,255:red,250;green,187;blue,250}, minimum size=0.8cm] at (1.6,0) {3};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (1.6,0.8) {2};%
+\draw[black] (1.6,0) circle[radius=0.5cm];%
+\node[font=\small, anchor=north] at (1.6,-0.5) {pivot};%
+\node[draw=black, fill={rgb,255:red,252;green,245;blue,252}, minimum size=0.8cm] at (2.4000000000000004,0) {4};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (2.4000000000000004,0.8) {3};%
+\node[draw=black, fill={rgb,255:red,252;green,245;blue,252}, minimum size=0.8cm] at (3.2,0) {9};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (3.2,0.8) {4};%
+\node[draw=black, fill={rgb,255:red,252;green,245;blue,252}, minimum size=0.8cm] at (4.0,0) {10};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (4.0,0.8) {5};%
+\node[draw=black, fill={rgb,255:red,252;green,245;blue,252}, minimum size=0.8cm] at (4.800000000000001,0) {7};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (4.800000000000001,0.8) {6};%
+\end{tikzpicture}%
+\caption{Step 4 of the quicksort algorithm}%
+\end{figure}
+
+%
+
+
+\begin{figure}[h!]%
+\begin{tikzpicture}%
+\node[draw=black, fill={rgb,255:red,252;green,245;blue,252}, minimum size=0.8cm] at (0.0,0) {0};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (0.0,0.8) {0};%
+\node[draw=black, fill={rgb,255:red,252;green,245;blue,252}, minimum size=0.8cm] at (0.8,0) {1};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (0.8,0.8) {1};%
+\node[draw=black, fill={rgb,255:red,252;green,245;blue,252}, minimum size=0.8cm] at (1.6,0) {3};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (1.6,0.8) {2};%
+\node[draw=black, fill={rgb,255:red,250;green,187;blue,250}, minimum size=0.8cm] at (2.4000000000000004,0) {4};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (2.4000000000000004,0.8) {3};%
+\draw[black] (2.4000000000000004,0) circle[radius=0.5cm];%
+\node[font=\small, anchor=north] at (2.4000000000000004,-0.5) {pivot};%
+\node[draw=black, fill={rgb,255:red,252;green,245;blue,252}, minimum size=0.8cm] at (3.2,0) {9};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (3.2,0.8) {4};%
+\node[draw=black, fill={rgb,255:red,252;green,245;blue,252}, minimum size=0.8cm] at (4.0,0) {10};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (4.0,0.8) {5};%
+\node[draw=black, fill={rgb,255:red,252;green,245;blue,252}, minimum size=0.8cm] at (4.800000000000001,0) {7};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (4.800000000000001,0.8) {6};%
+\end{tikzpicture}%
+\caption{Step 5 of the quicksort algorithm}%
+\end{figure}
+
+%
+
+
+\begin{figure}[h!]%
+\begin{tikzpicture}%
+\node[draw=black, fill={rgb,255:red,252;green,245;blue,252}, minimum size=0.8cm] at (0.0,0) {0};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (0.0,0.8) {0};%
+\node[draw=black, fill={rgb,255:red,252;green,245;blue,252}, minimum size=0.8cm] at (0.8,0) {1};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (0.8,0.8) {1};%
+\node[draw=black, fill={rgb,255:red,252;green,245;blue,252}, minimum size=0.8cm] at (1.6,0) {3};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (1.6,0.8) {2};%
+\node[draw=black, fill={rgb,255:red,252;green,245;blue,252}, minimum size=0.8cm] at (2.4000000000000004,0) {4};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (2.4000000000000004,0.8) {3};%
+\node[draw=black, fill={rgb,255:red,250;green,187;blue,250}, minimum size=0.8cm] at (3.2,0) {7};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (3.2,0.8) {4};%
+\node[draw=black, fill={rgb,255:red,252;green,245;blue,252}, minimum size=0.8cm] at (4.0,0) {10};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (4.0,0.8) {5};%
+\node[draw=black, fill={rgb,255:red,250;green,97;blue,250}, minimum size=0.8cm] at (4.800000000000001,0) {9};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (4.800000000000001,0.8) {6};%
+\draw[black] (4.800000000000001,0) circle[radius=0.5cm];%
+\node[font=\small, anchor=north] at (4.800000000000001,-0.5) {pivot};%
+\end{tikzpicture}%
+\caption{Step 6 of the quicksort algorithm}%
+\end{figure}
+
+%
+
+
+\begin{figure}[h!]%
+\begin{tikzpicture}%
+\node[draw=black, fill={rgb,255:red,252;green,245;blue,252}, minimum size=0.8cm] at (0.0,0) {0};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (0.0,0.8) {0};%
+\node[draw=black, fill={rgb,255:red,252;green,245;blue,252}, minimum size=0.8cm] at (0.8,0) {1};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (0.8,0.8) {1};%
+\node[draw=black, fill={rgb,255:red,250;green,187;blue,250}, minimum size=0.8cm] at (1.6,0) {3};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (1.6,0.8) {2};%
+\draw[black] (1.6,0) circle[radius=0.5cm];%
+\node[font=\small, anchor=north] at (1.6,-0.5) {pivot};%
+\node[draw=black, fill={rgb,255:red,252;green,245;blue,252}, minimum size=0.8cm] at (2.4000000000000004,0) {4};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (2.4000000000000004,0.8) {3};%
+\node[draw=black, fill={rgb,255:red,252;green,245;blue,252}, minimum size=0.8cm] at (3.2,0) {7};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (3.2,0.8) {4};%
+\node[draw=black, fill={rgb,255:red,252;green,245;blue,252}, minimum size=0.8cm] at (4.0,0) {10};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (4.0,0.8) {5};%
+\node[draw=black, fill={rgb,255:red,252;green,245;blue,252}, minimum size=0.8cm] at (4.800000000000001,0) {9};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (4.800000000000001,0.8) {6};%
+\end{tikzpicture}%
+\caption{Step 7 of the quicksort algorithm}%
+\end{figure}
+
+%
+
+
+\begin{figure}[h!]%
+\begin{tikzpicture}%
+\node[draw=black, fill={rgb,255:red,252;green,245;blue,252}, minimum size=0.8cm] at (0.0,0) {0};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (0.0,0.8) {0};%
+\node[draw=black, fill={rgb,255:red,252;green,245;blue,252}, minimum size=0.8cm] at (0.8,0) {1};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (0.8,0.8) {1};%
+\node[draw=black, fill={rgb,255:red,252;green,245;blue,252}, minimum size=0.8cm] at (1.6,0) {3};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (1.6,0.8) {2};%
+\node[draw=black, fill={rgb,255:red,250;green,187;blue,250}, minimum size=0.8cm] at (2.4000000000000004,0) {4};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (2.4000000000000004,0.8) {3};%
+\draw[black] (2.4000000000000004,0) circle[radius=0.5cm];%
+\node[font=\small, anchor=north] at (2.4000000000000004,-0.5) {pivot};%
+\node[draw=black, fill={rgb,255:red,252;green,245;blue,252}, minimum size=0.8cm] at (3.2,0) {7};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (3.2,0.8) {4};%
+\node[draw=black, fill={rgb,255:red,252;green,245;blue,252}, minimum size=0.8cm] at (4.0,0) {10};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (4.0,0.8) {5};%
+\node[draw=black, fill={rgb,255:red,252;green,245;blue,252}, minimum size=0.8cm] at (4.800000000000001,0) {9};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (4.800000000000001,0.8) {6};%
+\end{tikzpicture}%
+\caption{Step 8 of the quicksort algorithm}%
+\end{figure}
+
+%
+
+
+\begin{figure}[h!]%
+\begin{tikzpicture}%
+\node[draw=black, fill={rgb,255:red,252;green,245;blue,252}, minimum size=0.8cm] at (0.0,0) {0};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (0.0,0.8) {0};%
+\node[draw=black, fill={rgb,255:red,252;green,245;blue,252}, minimum size=0.8cm] at (0.8,0) {1};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (0.8,0.8) {1};%
+\node[draw=black, fill={rgb,255:red,252;green,245;blue,252}, minimum size=0.8cm] at (1.6,0) {3};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (1.6,0.8) {2};%
+\node[draw=black, fill={rgb,255:red,252;green,245;blue,252}, minimum size=0.8cm] at (2.4000000000000004,0) {4};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (2.4000000000000004,0.8) {3};%
+\node[draw=black, fill={rgb,255:red,252;green,245;blue,252}, minimum size=0.8cm] at (3.2,0) {7};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (3.2,0.8) {4};%
+\node[draw=black, fill={rgb,255:red,250;green,187;blue,250}, minimum size=0.8cm] at (4.0,0) {9};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (4.0,0.8) {5};%
+\node[draw=black, fill={rgb,255:red,250;green,97;blue,250}, minimum size=0.8cm] at (4.800000000000001,0) {10};%
+\node[font=\fontsize{0.4pt}{0.4pt}] at (4.800000000000001,0.8) {6};%
+\draw[black] (4.800000000000001,0) circle[radius=0.5cm];%
+\node[font=\small, anchor=north] at (4.800000000000001,-0.5) {pivot};%
+\end{tikzpicture}%
+\caption{Step 9 of the quicksort algorithm}%
+\end{figure}
+
+%
+\end{document}

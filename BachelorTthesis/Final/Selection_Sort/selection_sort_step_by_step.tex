@@ -1,0 +1,156 @@
+
+\documentclass{article}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{ifthen}
+\usetikzlibrary{shapes, arrows.meta, positioning}
+\begin{document}
+\begin{center}
+\Large\textbf{Selection Sort Step-by-Step}
+\end{center}
+\vspace{1cm}
+Sorting array:\\
+\begin{center}
+\definecolor{keycolor}{HTML}{e63946}
+\definecolor{mincolor}{HTML}{8d99ae}
+\definecolor{compared}{HTML}{6a994e}
+\begin{tikzpicture}[scale=0.8, every node/.style={font=\normalsize}]
+\node[above] at (0, 1.5) {\textbf{Step 1}};
+\node[draw, fill=keycolor, rectangle, minimum size=1cm, anchor=north] at (-2.4, 0) {\textbf{4}};
+\node[draw, fill=compared, rectangle, minimum size=1cm, anchor=north] at (-1.2000000000000002, 0) {\textbf{7}};
+\node[draw, fill=gray!10, rectangle, minimum size=1cm, anchor=north] at (-1.1102230246251565e-16, 0) {\textbf{2}};
+\node[draw, fill=gray!10, rectangle, minimum size=1cm, anchor=north] at (1.1999999999999997, 0) {\textbf{1}};
+\node[draw, fill=gray!10, rectangle, minimum size=1cm, anchor=north] at (2.4, 0) {\textbf{6}};
+\end{tikzpicture}
+\\[0.5cm]
+\begin{tikzpicture}[scale=0.8, every node/.style={font=\normalsize}]
+\node[above] at (0, 1.5) {\textbf{Step 2}};
+\node[draw, fill=keycolor, rectangle, minimum size=1cm, anchor=north] at (-2.4, 0) {\textbf{4}};
+\node[draw, fill=gray!10, rectangle, minimum size=1cm, anchor=north] at (-1.2000000000000002, 0) {\textbf{7}};
+\node[draw, fill=mincolor, rectangle, minimum size=1cm, anchor=north] at (-1.1102230246251565e-16, 0) {\textbf{2}};
+\node[draw, fill=gray!10, rectangle, minimum size=1cm, anchor=north] at (1.1999999999999997, 0) {\textbf{1}};
+\node[draw, fill=gray!10, rectangle, minimum size=1cm, anchor=north] at (2.4, 0) {\textbf{6}};
+\end{tikzpicture}
+\\[0.5cm]
+\begin{tikzpicture}[scale=0.8, every node/.style={font=\normalsize}]
+\node[above] at (0, 1.5) {\textbf{Step 3}};
+\node[draw, fill=keycolor, rectangle, minimum size=1cm, anchor=north] at (-2.4, 0) {\textbf{4}};
+\node[draw, fill=gray!10, rectangle, minimum size=1cm, anchor=north] at (-1.2000000000000002, 0) {\textbf{7}};
+\node[draw, fill=gray!10, rectangle, minimum size=1cm, anchor=north] at (-1.1102230246251565e-16, 0) {\textbf{2}};
+\node[draw, fill=mincolor, rectangle, minimum size=1cm, anchor=north] at (1.1999999999999997, 0) {\textbf{1}};
+\node[draw, fill=gray!10, rectangle, minimum size=1cm, anchor=north] at (2.4, 0) {\textbf{6}};
+\end{tikzpicture}
+\\[0.5cm]
+\begin{tikzpicture}[scale=0.8, every node/.style={font=\normalsize}]
+\node[above] at (0, 1.5) {\textbf{Step 4}};
+\node[draw, fill=keycolor, rectangle, minimum size=1cm, anchor=north] at (-2.4, 0) {\textbf{4}};
+\node[draw, fill=gray!10, rectangle, minimum size=1cm, anchor=north] at (-1.2000000000000002, 0) {\textbf{7}};
+\node[draw, fill=gray!10, rectangle, minimum size=1cm, anchor=north] at (-1.1102230246251565e-16, 0) {\textbf{2}};
+\node[draw, fill=mincolor, rectangle, minimum size=1cm, anchor=north] at (1.1999999999999997, 0) {\textbf{1}};
+\node[draw, fill=compared, rectangle, minimum size=1cm, anchor=north] at (2.4, 0) {\textbf{6}};
+\end{tikzpicture}
+\\[0.5cm]
+\begin{tikzpicture}[scale=0.8, every node/.style={font=\normalsize}]
+\node[above] at (0, 1.5) {\textbf{Step 5}};
+\node[draw, fill=keycolor, rectangle, minimum size=1cm, anchor=north] at (-2.4, 0) {\textbf{1}};
+\node[draw, fill=gray!10, rectangle, minimum size=1cm, anchor=north] at (-1.2000000000000002, 0) {\textbf{7}};
+\node[draw, fill=gray!10, rectangle, minimum size=1cm, anchor=north] at (-1.1102230246251565e-16, 0) {\textbf{2}};
+\node[draw, fill=mincolor, rectangle, minimum size=1cm, anchor=north] at (1.1999999999999997, 0) {\textbf{4}};
+\node[draw, fill=gray!10, rectangle, minimum size=1cm, anchor=north] at (2.4, 0) {\textbf{6}};
+\end{tikzpicture}
+\\[0.5cm]
+\begin{tikzpicture}[scale=0.8, every node/.style={font=\normalsize}]
+\node[above] at (0, 1.5) {\textbf{Step 6}};
+\node[draw, fill=gray!10, rectangle, minimum size=1cm, anchor=north] at (-2.4, 0) {\textbf{1}};
+\node[draw, fill=keycolor, rectangle, minimum size=1cm, anchor=north] at (-1.2000000000000002, 0) {\textbf{7}};
+\node[draw, fill=mincolor, rectangle, minimum size=1cm, anchor=north] at (-1.1102230246251565e-16, 0) {\textbf{2}};
+\node[draw, fill=gray!10, rectangle, minimum size=1cm, anchor=north] at (1.1999999999999997, 0) {\textbf{4}};
+\node[draw, fill=gray!10, rectangle, minimum size=1cm, anchor=north] at (2.4, 0) {\textbf{6}};
+\end{tikzpicture}
+\\[0.5cm]
+\begin{tikzpicture}[scale=0.8, every node/.style={font=\normalsize}]
+\node[above] at (0, 1.5) {\textbf{Step 7}};
+\node[draw, fill=gray!10, rectangle, minimum size=1cm, anchor=north] at (-2.4, 0) {\textbf{1}};
+\node[draw, fill=keycolor, rectangle, minimum size=1cm, anchor=north] at (-1.2000000000000002, 0) {\textbf{7}};
+\node[draw, fill=mincolor, rectangle, minimum size=1cm, anchor=north] at (-1.1102230246251565e-16, 0) {\textbf{2}};
+\node[draw, fill=compared, rectangle, minimum size=1cm, anchor=north] at (1.1999999999999997, 0) {\textbf{4}};
+\node[draw, fill=gray!10, rectangle, minimum size=1cm, anchor=north] at (2.4, 0) {\textbf{6}};
+\end{tikzpicture}
+\\[0.5cm]
+\begin{tikzpicture}[scale=0.8, every node/.style={font=\normalsize}]
+\node[above] at (0, 1.5) {\textbf{Step 8}};
+\node[draw, fill=gray!10, rectangle, minimum size=1cm, anchor=north] at (-2.4, 0) {\textbf{1}};
+\node[draw, fill=keycolor, rectangle, minimum size=1cm, anchor=north] at (-1.2000000000000002, 0) {\textbf{7}};
+\node[draw, fill=mincolor, rectangle, minimum size=1cm, anchor=north] at (-1.1102230246251565e-16, 0) {\textbf{2}};
+\node[draw, fill=gray!10, rectangle, minimum size=1cm, anchor=north] at (1.1999999999999997, 0) {\textbf{4}};
+\node[draw, fill=compared, rectangle, minimum size=1cm, anchor=north] at (2.4, 0) {\textbf{6}};
+\end{tikzpicture}
+\\[0.5cm]
+\begin{tikzpicture}[scale=0.8, every node/.style={font=\normalsize}]
+\node[above] at (0, 1.5) {\textbf{Step 9}};
+\node[draw, fill=gray!10, rectangle, minimum size=1cm, anchor=north] at (-2.4, 0) {\textbf{1}};
+\node[draw, fill=keycolor, rectangle, minimum size=1cm, anchor=north] at (-1.2000000000000002, 0) {\textbf{2}};
+\node[draw, fill=mincolor, rectangle, minimum size=1cm, anchor=north] at (-1.1102230246251565e-16, 0) {\textbf{7}};
+\node[draw, fill=gray!10, rectangle, minimum size=1cm, anchor=north] at (1.1999999999999997, 0) {\textbf{4}};
+\node[draw, fill=gray!10, rectangle, minimum size=1cm, anchor=north] at (2.4, 0) {\textbf{6}};
+\end{tikzpicture}
+\\[0.5cm]
+\begin{tikzpicture}[scale=0.8, every node/.style={font=\normalsize}]
+\node[above] at (0, 1.5) {\textbf{Step 10}};
+\node[draw, fill=gray!10, rectangle, minimum size=1cm, anchor=north] at (-2.4, 0) {\textbf{1}};
+\node[draw, fill=gray!10, rectangle, minimum size=1cm, anchor=north] at (-1.2000000000000002, 0) {\textbf{2}};
+\node[draw, fill=keycolor, rectangle, minimum size=1cm, anchor=north] at (-1.1102230246251565e-16, 0) {\textbf{7}};
+\node[draw, fill=mincolor, rectangle, minimum size=1cm, anchor=north] at (1.1999999999999997, 0) {\textbf{4}};
+\node[draw, fill=gray!10, rectangle, minimum size=1cm, anchor=north] at (2.4, 0) {\textbf{6}};
+\end{tikzpicture}
+\\[0.5cm]
+\begin{tikzpicture}[scale=0.8, every node/.style={font=\normalsize}]
+\node[above] at (0, 1.5) {\textbf{Step 11}};
+\node[draw, fill=gray!10, rectangle, minimum size=1cm, anchor=north] at (-2.4, 0) {\textbf{1}};
+\node[draw, fill=gray!10, rectangle, minimum size=1cm, anchor=north] at (-1.2000000000000002, 0) {\textbf{2}};
+\node[draw, fill=keycolor, rectangle, minimum size=1cm, anchor=north] at (-1.1102230246251565e-16, 0) {\textbf{7}};
+\node[draw, fill=mincolor, rectangle, minimum size=1cm, anchor=north] at (1.1999999999999997, 0) {\textbf{4}};
+\node[draw, fill=compared, rectangle, minimum size=1cm, anchor=north] at (2.4, 0) {\textbf{6}};
+\end{tikzpicture}
+\\[0.5cm]
+\begin{tikzpicture}[scale=0.8, every node/.style={font=\normalsize}]
+\node[above] at (0, 1.5) {\textbf{Step 12}};
+\node[draw, fill=gray!10, rectangle, minimum size=1cm, anchor=north] at (-2.4, 0) {\textbf{1}};
+\node[draw, fill=gray!10, rectangle, minimum size=1cm, anchor=north] at (-1.2000000000000002, 0) {\textbf{2}};
+\node[draw, fill=keycolor, rectangle, minimum size=1cm, anchor=north] at (-1.1102230246251565e-16, 0) {\textbf{4}};
+\node[draw, fill=mincolor, rectangle, minimum size=1cm, anchor=north] at (1.1999999999999997, 0) {\textbf{7}};
+\node[draw, fill=gray!10, rectangle, minimum size=1cm, anchor=north] at (2.4, 0) {\textbf{6}};
+\end{tikzpicture}
+\\[0.5cm]
+\begin{tikzpicture}[scale=0.8, every node/.style={font=\normalsize}]
+\node[above] at (0, 1.5) {\textbf{Step 13}};
+\node[draw, fill=gray!10, rectangle, minimum size=1cm, anchor=north] at (-2.4, 0) {\textbf{1}};
+\node[draw, fill=gray!10, rectangle, minimum size=1cm, anchor=north] at (-1.2000000000000002, 0) {\textbf{2}};
+\node[draw, fill=gray!10, rectangle, minimum size=1cm, anchor=north] at (-1.1102230246251565e-16, 0) {\textbf{4}};
+\node[draw, fill=keycolor, rectangle, minimum size=1cm, anchor=north] at (1.1999999999999997, 0) {\textbf{7}};
+\node[draw, fill=mincolor, rectangle, minimum size=1cm, anchor=north] at (2.4, 0) {\textbf{6}};
+\end{tikzpicture}
+\\[0.5cm]
+\begin{tikzpicture}[scale=0.8, every node/.style={font=\normalsize}]
+\node[above] at (0, 1.5) {\textbf{Step 14}};
+\node[draw, fill=gray!10, rectangle, minimum size=1cm, anchor=north] at (-2.4, 0) {\textbf{1}};
+\node[draw, fill=gray!10, rectangle, minimum size=1cm, anchor=north] at (-1.2000000000000002, 0) {\textbf{2}};
+\node[draw, fill=gray!10, rectangle, minimum size=1cm, anchor=north] at (-1.1102230246251565e-16, 0) {\textbf{4}};
+\node[draw, fill=keycolor, rectangle, minimum size=1cm, anchor=north] at (1.1999999999999997, 0) {\textbf{6}};
+\node[draw, fill=mincolor, rectangle, minimum size=1cm, anchor=north] at (2.4, 0) {\textbf{7}};
+\end{tikzpicture}
+\\[0.5cm]
+\begin{tikzpicture}[scale=0.8, every node/.style={font=\normalsize}]
+\node[above] at (0, 1.5) {\textbf{Step 15}};
+\node[draw, fill=gray!10, rectangle, minimum size=1cm, anchor=north] at (-2.4, 0) {\textbf{1}};
+\node[draw, fill=gray!10, rectangle, minimum size=1cm, anchor=north] at (-1.2000000000000002, 0) {\textbf{2}};
+\node[draw, fill=gray!10, rectangle, minimum size=1cm, anchor=north] at (-1.1102230246251565e-16, 0) {\textbf{4}};
+\node[draw, fill=gray!10, rectangle, minimum size=1cm, anchor=north] at (1.1999999999999997, 0) {\textbf{6}};
+\node[draw, fill=keycolor, rectangle, minimum size=1cm, anchor=north] at (2.4, 0) {\textbf{7}};
+\end{tikzpicture}
+\\[0.5cm]
+
+\end{center}
+\end{document}
