@@ -7,7 +7,6 @@ ZAhra Amirinezhad 993613008
 Kiana Mahdian 993663007
 
 
-=======
 # Android Application Development
 
 **Course Project – Android Programming**  
