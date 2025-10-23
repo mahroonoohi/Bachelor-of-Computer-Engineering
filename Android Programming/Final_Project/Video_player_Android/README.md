@@ -23,4 +23,3 @@ This project is a **Video Player Application** developed using **Android Studio*
 - Play, pause, seek, and full-screen video playback.
 - Integration with **ExoPlayer** for smooth media rendering and adaptive streaming.
 - Playback of online videos, including **YouTube content**.
->>>>>>> a38602676f02d1711b0fb1f27cfb7a457be20040
