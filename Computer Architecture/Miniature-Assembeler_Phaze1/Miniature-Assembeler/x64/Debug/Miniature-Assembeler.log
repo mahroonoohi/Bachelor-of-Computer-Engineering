@@ -1,0 +1,47 @@
+﻿  Miniature_Assembeler.c
+C:\Users\NOOHI\source\repos\Miniature-Assembeler\Miniature-Assembeler\Miniature_Assembeler.c(5,13): warning C4013: 'isalpha' undefined; assuming extern returning int
+C:\Users\NOOHI\source\repos\Miniature-Assembeler\Miniature-Assembeler\Miniature_Assembeler.c(20,9): warning C4013: 'memcpy' undefined; assuming extern returning int
+C:\Users\NOOHI\source\repos\Miniature-Assembeler\Miniature-Assembeler\Miniature_Assembeler.c(52,13): warning C4013: 'strcmp' undefined; assuming extern returning int
+C:\Users\NOOHI\source\repos\Miniature-Assembeler\Miniature-Assembeler\Miniature_Assembeler.c(184,6): warning C4101: 'Unkown4': unreferenced local variable
+C:\Users\NOOHI\source\repos\Miniature-Assembeler\Miniature-Assembeler\Miniature_Assembeler.c(164,6): warning C4101: 'Unknown': unreferenced local variable
+C:\Users\NOOHI\source\repos\Miniature-Assembeler\Miniature-Assembeler\Miniature_Assembeler.c(307,66): warning C4047: '==': 'int' differs in levels of indirection from 'char [3]'
+C:\Users\NOOHI\source\repos\Miniature-Assembeler\Miniature-Assembeler\Miniature_Assembeler.c(307,89): warning C4047: '==': 'int' differs in levels of indirection from 'char [4]'
+C:\Users\NOOHI\source\repos\Miniature-Assembeler\Miniature-Assembeler\Miniature_Assembeler.c(307,113): warning C4047: '==': 'int' differs in levels of indirection from 'char [5]'
+C:\Users\NOOHI\source\repos\Miniature-Assembeler\Miniature-Assembeler\Miniature_Assembeler.c(307,138): warning C4047: '==': 'int' differs in levels of indirection from 'char [6]'
+C:\Users\NOOHI\source\repos\Miniature-Assembeler\Miniature-Assembeler\Miniature_Assembeler.c(307,164): warning C4047: '==': 'int' differs in levels of indirection from 'char [7]'
+C:\Users\NOOHI\source\repos\Miniature-Assembeler\Miniature-Assembeler\Miniature_Assembeler.c(307,191): warning C4047: '==': 'int' differs in levels of indirection from 'char [8]'
+C:\Users\NOOHI\source\repos\Miniature-Assembeler\Miniature-Assembeler\Miniature_Assembeler.c(330,17): warning C4013: 'isdigit' undefined; assuming extern returning int
+C:\Users\NOOHI\source\repos\Miniature-Assembeler\Miniature-Assembeler\Miniature_Assembeler.c(363,75): warning C4133: '=': incompatible types - from 'INSTRUCTION_I *' to 'INSTRUCTION *'
+C:\Users\NOOHI\source\repos\Miniature-Assembeler\Miniature-Assembeler\Miniature_Assembeler.c(526,77): warning C4133: '=': incompatible types - from 'INSTRUCTION_J *' to 'INSTRUCTION *'
+C:\Users\NOOHI\source\repos\Miniature-Assembeler\Miniature-Assembeler\Miniature_Assembeler.c(543,45): warning C4047: '!=': 'char [10]' differs in levels of indirection from 'int'
+C:\Users\NOOHI\source\repos\Miniature-Assembeler\Miniature-Assembeler\Miniature_Assembeler.c(590,20): warning C4552: '*': result of expression not used
+C:\Users\NOOHI\source\repos\Miniature-Assembeler\Miniature-Assembeler\Miniature_Assembeler.c(633,45): warning C4047: '!=': 'char [200]' differs in levels of indirection from 'int'
+C:\Users\NOOHI\source\repos\Miniature-Assembeler\Miniature-Assembeler\Miniature_Assembeler.c(640,48): warning C4047: '==': 'int' differs in levels of indirection from 'char [2]'
+C:\Users\NOOHI\source\repos\Miniature-Assembeler\Miniature-Assembeler\Miniature_Assembeler.c(640,70): warning C4047: '==': 'int' differs in levels of indirection from 'char [3]'
+C:\Users\NOOHI\source\repos\Miniature-Assembeler\Miniature-Assembeler\Miniature_Assembeler.c(640,93): warning C4047: '==': 'int' differs in levels of indirection from 'char [4]'
+C:\Users\NOOHI\source\repos\Miniature-Assembeler\Miniature-Assembeler\Miniature_Assembeler.c(640,117): warning C4047: '==': 'int' differs in levels of indirection from 'char [5]'
+C:\Users\NOOHI\source\repos\Miniature-Assembeler\Miniature-Assembeler\Miniature_Assembeler.c(640,142): warning C4047: '==': 'int' differs in levels of indirection from 'char [6]'
+C:\Users\NOOHI\source\repos\Miniature-Assembeler\Miniature-Assembeler\Miniature_Assembeler.c(640,168): warning C4047: '==': 'int' differs in levels of indirection from 'char [7]'
+C:\Users\NOOHI\source\repos\Miniature-Assembeler\Miniature-Assembeler\Miniature_Assembeler.c(640,195): warning C4047: '==': 'int' differs in levels of indirection from 'char [8]'
+C:\Users\NOOHI\source\repos\Miniature-Assembeler\Miniature-Assembeler\Miniature_Assembeler.c(656,65): warning C4047: '==': 'int' differs in levels of indirection from 'char [2]'
+C:\Users\NOOHI\source\repos\Miniature-Assembeler\Miniature-Assembeler\Miniature_Assembeler.c(656,87): warning C4047: '==': 'int' differs in levels of indirection from 'char [3]'
+C:\Users\NOOHI\source\repos\Miniature-Assembeler\Miniature-Assembeler\Miniature_Assembeler.c(656,110): warning C4047: '==': 'int' differs in levels of indirection from 'char [4]'
+C:\Users\NOOHI\source\repos\Miniature-Assembeler\Miniature-Assembeler\Miniature_Assembeler.c(656,134): warning C4047: '==': 'int' differs in levels of indirection from 'char [5]'
+C:\Users\NOOHI\source\repos\Miniature-Assembeler\Miniature-Assembeler\Miniature_Assembeler.c(656,159): warning C4047: '==': 'int' differs in levels of indirection from 'char [6]'
+C:\Users\NOOHI\source\repos\Miniature-Assembeler\Miniature-Assembeler\Miniature_Assembeler.c(656,185): warning C4047: '==': 'int' differs in levels of indirection from 'char [7]'
+C:\Users\NOOHI\source\repos\Miniature-Assembeler\Miniature-Assembeler\Miniature_Assembeler.c(656,212): warning C4047: '==': 'int' differs in levels of indirection from 'char [8]'
+C:\Users\NOOHI\source\repos\Miniature-Assembeler\Miniature-Assembeler\Miniature_Assembeler.c(675,66): warning C4047: '==': 'int' differs in levels of indirection from 'char [2]'
+C:\Users\NOOHI\source\repos\Miniature-Assembeler\Miniature-Assembeler\Miniature_Assembeler.c(675,88): warning C4047: '==': 'int' differs in levels of indirection from 'char [3]'
+C:\Users\NOOHI\source\repos\Miniature-Assembeler\Miniature-Assembeler\Miniature_Assembeler.c(675,111): warning C4047: '==': 'int' differs in levels of indirection from 'char [4]'
+C:\Users\NOOHI\source\repos\Miniature-Assembeler\Miniature-Assembeler\Miniature_Assembeler.c(675,135): warning C4047: '==': 'int' differs in levels of indirection from 'char [5]'
+C:\Users\NOOHI\source\repos\Miniature-Assembeler\Miniature-Assembeler\Miniature_Assembeler.c(675,160): warning C4047: '==': 'int' differs in levels of indirection from 'char [6]'
+C:\Users\NOOHI\source\repos\Miniature-Assembeler\Miniature-Assembeler\Miniature_Assembeler.c(675,186): warning C4047: '==': 'int' differs in levels of indirection from 'char [7]'
+C:\Users\NOOHI\source\repos\Miniature-Assembeler\Miniature-Assembeler\Miniature_Assembeler.c(675,213): warning C4047: '==': 'int' differs in levels of indirection from 'char [8]'
+C:\Users\NOOHI\source\repos\Miniature-Assembeler\Miniature-Assembeler\Miniature_Assembeler.c(747,51): warning C4047: '==': 'int' differs in levels of indirection from 'char [3]'
+C:\Users\NOOHI\source\repos\Miniature-Assembeler\Miniature-Assembeler\Miniature_Assembeler.c(747,74): warning C4047: '==': 'int' differs in levels of indirection from 'char [4]'
+C:\Users\NOOHI\source\repos\Miniature-Assembeler\Miniature-Assembeler\Miniature_Assembeler.c(747,98): warning C4047: '==': 'int' differs in levels of indirection from 'char [5]'
+C:\Users\NOOHI\source\repos\Miniature-Assembeler\Miniature-Assembeler\Miniature_Assembeler.c(747,123): warning C4047: '==': 'int' differs in levels of indirection from 'char [6]'
+C:\Users\NOOHI\source\repos\Miniature-Assembeler\Miniature-Assembeler\Miniature_Assembeler.c(747,149): warning C4047: '==': 'int' differs in levels of indirection from 'char [7]'
+C:\Users\NOOHI\source\repos\Miniature-Assembeler\Miniature-Assembeler\Miniature_Assembeler.c(747,176): warning C4047: '==': 'int' differs in levels of indirection from 'char [8]'
+C:\Users\NOOHI\source\repos\Miniature-Assembeler\Miniature-Assembeler\Miniature_Assembeler.c(767,76): warning C4133: '=': incompatible types - from 'INSTRUCTION_I *' to 'INSTRUCTION *'
+  Miniature-Assembeler.vcxproj -> C:\Users\NOOHI\source\repos\Miniature-Assembeler\x64\Debug\Miniature-Assembeler.exe
