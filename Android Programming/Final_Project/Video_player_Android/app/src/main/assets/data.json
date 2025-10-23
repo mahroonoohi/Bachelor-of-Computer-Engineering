@@ -1,0 +1,84 @@
+{
+  "result": [
+    {
+      "id": "1",
+      "trailer_url": "https://videos.pexels.com/video-files/5342194/5342194-sd_640_360_30fps.mp4",
+      "title": "Jubilee",
+      "thumbnail": "https://m.media-amazon.com/images/S/pv-target-images/9e39552f26c52760492026c8f36116928ac3a2b3bb1bb5ab0e187aac69361fab._UR2000,3000_.jpg",
+      "banner": "https://m.media-amazon.com/images/S/pv-target-images/1ec963e832611fd653f827ba64eb4ab44034fa88a25b014b7a7f1844880937c4._UR1920,1080_.jpg",
+      "bio": "Nine noble families wage war against each other in order to gain control over the mythical land of Westeros. Meanwhile, a force is rising after millenniums and threatens the existence of living men.",
+      "year": "2024",
+      "genres": "Action"
+    },
+    {
+      "id": "2",
+      "trailer_url": "https://videos.pexels.com/video-files/3999356/3999356-sd_640_360_24fps.mp4",
+      "title": "The Power",
+      "thumbnail": "https://m.media-amazon.com/images/S/pv-target-images/d5f46c87921f6a416c02a8d99200ec6269f7473d744fadd701a1e9f2fd43509c._UR2000,3000_.png",
+      "banner": "https://m.media-amazon.com/images/S/pv-target-images/0345e3278ea8e894adc93093199a0c2b83078e54ba703eb37074a68ab9edde08._UR1920,1080_.jpg",
+      "bio": "Walter White, a chemistry teacher, discovers that he has cancer and decides to get into the meth-making business to repay his medical debts. His priorities begin to change when he partners with Jesse.",
+      "year": "2023",
+      "genres": "Romantic"
+    },
+    {
+      "id": "3",
+      "trailer_url": "https://videos.pexels.com/video-files/5495322/5495322-hd_1920_1080_30fps.mp4",
+      "title": "Tiger",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Panthera_tigris_altaica_28_-_Buffalo_Zoo_%281%29.jpg/899px-Panthera_tigris_altaica_28_-_Buffalo_Zoo_%281%29.jpg",
+      "banner": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Panthera_tigris_altaica_28_-_Buffalo_Zoo_%281%29.jpg/899px-Panthera_tigris_altaica_28_-_Buffalo_Zoo_%281%29.jpg",
+      "bio": "The tiger is the largest living cat species and a member of the genus Panthera native to Asia. It has a powerful, muscular body with a large head and paws, a long tail, and orange fur with black, mostly vertical stripes.",
+      "year": "2012",
+      "genres": "Adventure"
+    },
+    {
+      "id": "4",
+      "trailer_url": "https://videos.pexels.com/video-files/1858244/1858244-uhd_4096_2160_24fps.mp4",
+      "title": "Snow",
+      "thumbnail": "https://cdn.britannica.com/79/149179-050-DC23D823/snowflake-threads-wool-coat.jpg",
+      "banner": "https://cdn.britannica.com/79/149179-050-DC23D823/snowflake-threads-wool-coat.jpg",
+      "bio": "Snow is an image messaging and multimedia mobile application created by Camp Mobile, a subsidiary of South Korean internet search giant Naver Corporation. It features virtual stickers using augmented reality and photographic filters. Pictures and messages sent through Snow are only accessible for a short time.",
+      "year": "2023",
+      "genres": "Romantic"
+    },
+    {
+      "id": "5",
+      "trailer_url": "https://videos.pexels.com/video-files/4226090/4226090-hd_1920_1080_30fps.mp4",
+      "title": "Spring",
+      "thumbnail": "https://c02.purpledshub.com/uploads/sites/40/2020/03/RBD290319-128_2_2-1ada353-scaled.jpg?crop=2px,848px,1703px,1134px&webp=1&w=1200",
+      "banner": "https://c02.purpledshub.com/uploads/sites/40/2020/03/RBD290319-128_2_2-1ada353-scaled.jpg?crop=2px,848px,1703px,1134px&webp=1&w=1200",
+      "bio": "Spring, also known as springtime, is one of the four temperate seasons, succeeding winter and preceding summer. There are various technical definitions of spring, but local usage of the term varies according to local climate, cultures and customs. When it is spring in the Northern Hemisphere, it is autumn in the Southern Hemisphere and vice versa. At the spring (or vernal) equinox, days and nights are approximately twelve hours long, with daytime length increasing and nighttime length decreasing as the season progresses until the Summer Solstice in June (Northern Hemisphere) and December (Southern Hemisphere).",
+      "year": "2023",
+      "genres": "Romantic"
+    },
+    {
+      "id": "6",
+      "trailer_url": "https://videos.pexels.com/video-files/2439510/2439510-hd_1920_1080_30fps.mp4",
+      "title": "Sea Waves",
+      "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgZDKwGlc_iK7PdkymLJuarMBmGXGZHKMYqqD39iS34Q&s",
+      "banner": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgZDKwGlc_iK7PdkymLJuarMBmGXGZHKMYqqD39iS34Q&s",
+      "bio": "Sea Limited is a tech conglomerate headquartered in Singapore. Established in 2009 by Forrest Li, Sea was initially founded as Garena, a game development and publishing company known for its Free Fire title.",
+      "year": "2020",
+      "genres": "Adventure"
+    },
+    {
+      "id": "7",
+      "trailer_url": "https://videos.pexels.com/video-files/856227/856227-hd_1920_960_24fps.mp4",
+      "title": "Fire",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Fire_inside_an_abandoned_convent_in_Massueville%2C_Quebec%2C_Canada.jpg/1280px-Fire_inside_an_abandoned_convent_in_Massueville%2C_Quebec%2C_Canada.jpg",
+      "banner": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Fire_inside_an_abandoned_convent_in_Massueville%2C_Quebec%2C_Canada.jpg/1280px-Fire_inside_an_abandoned_convent_in_Massueville%2C_Quebec%2C_Canada.jpg",
+      "bio": "Fire is the rapid oxidation of a material (the fuel) in the exothermic chemical process of combustion, releasing heat, light, and various reaction products. At a certain point in the combustion reaction, called the ignition point, flames are produced. The flame is the visible portion of the fire. Flames consist primarily of carbon dioxide, water vapor, oxygen and nitrogen. If hot enough, the gases may become ionized to produce plasma. Depending on the substances alight, and any impurities outside, the color of the flame and the fire's intensity will be different.",
+      "year": "2019",
+      "genres": "Adventure"
+    },
+    {
+      "id": "8",
+      "trailer_url": "https://videos.pexels.com/video-files/3040808/3040808-uhd_3840_2160_30fps.mp4",
+      "title": "Cat",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Felis_catus-cat_on_snow.jpg/269px-Felis_catus-cat_on_snow.jpg",
+      "banner": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Felis_catus-cat_on_snow.jpg/269px-Felis_catus-cat_on_snow.jpg",
+      "bio": "The cat (Felis catus), commonly referred to as the domestic cat or house cat, is a small domesticated carnivorous mammal. It is the only domesticated species of the family Felidae. Recent advances in archaeology and genetics have shown that the domestication of the cat occurred in the Near East around 7500 BC. It is commonly kept as a house pet and farm cat, but also ranges freely as a feral cat avoiding human contact. It is valued by humans for companionship and its ability to kill vermin. Its retractable claws are adapted to killing small prey like mice and rats. It has a strong, flexible body, quick reflexes, sharp teeth, and its night vision and sense of smell are well developed. It is a social species, but a solitary hunter and a crepuscular predator. Cat communication includes vocalizations like meowing, purring, trilling, hissing, growling, and grunting as well as cat body language. It can hear sounds too faint or too high in frequency for human ears, such as those made by small mammals. It secretes and perceives pheromones.",
+      "year": "2023",
+      "genres": "Adventure"
+    }
+  ]
+}
